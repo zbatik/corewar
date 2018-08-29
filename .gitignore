@@ -3,3 +3,5 @@ a.out
 *.o
 *.zip
 *.tar
+*.swp
+.DS_Store
