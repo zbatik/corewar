@@ -1,0 +1,3 @@
+[submodule "vm/libft"]
+	path = vm/libft
+	url = https://github.com/zbatik/libft.git
