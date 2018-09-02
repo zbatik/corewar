@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/08/30 16:45:44 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/02 13:08:43 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,36 +58,6 @@ typedef char	t_arg_type;
 #define T_DIR					2
 #define T_IND					4
 #define T_LAB					8
-
-/*
-**	Added by Zack
-*/
-
-typedef char t_byte;
-
-enum {
-	live,
-	ld,
-	st,
-	add,
-	sub,
-	and,
-	or,
-	xor,
-	zjmp,
-	ldi,
-	sti,
-	fork,
-	lld,
-	lldi,
-	lfork,
-	aff,
-	null,
-};
-
-/*
-**	End
-*/
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)

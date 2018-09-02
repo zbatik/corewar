@@ -6,12 +6,11 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:44:00 by zbatik            #+#    #+#             */
-/*   Updated: 2018/08/30 16:49:03 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/02 14:53:39 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
-#include "op.h"
+#include "inter.h"
 
 void	print_hex(int n, int cl)
 {
@@ -40,7 +39,7 @@ void	print_hex(int n, int cl)
 		ft_putchar_cl(out[i--], cl);
 }
 
-void	print_mem(char *reg, char *player_input, int player_num)
+void	print_mem(t_byte *reg, char *colouring)
 {
 	int i;
 	int cl;
@@ -50,9 +49,10 @@ void	print_mem(char *reg, char *player_input, int player_num)
 	{
 		if (i % 64 == 0 && i != 0)
 			ft_putchar('\n');
-		cl = (player_input[i] == -1 ? na : player_num);
-		print_hex(((char *)reg)[i], cl);
+		cl = colouring[i];
+		print_hex(reg[i], colouring[i]);
 		ft_putchar(' ');
 		i++;
 	}
+	ft_putchar('\n');
 }
