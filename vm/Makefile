@@ -6,14 +6,14 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 12:48:33 by zbatik            #+#    #+#              #
-#    Updated: 2018/08/30 14:52:00 by zbatik           ###   ########.fr        #
+#    Updated: 2018/09/03 17:44:20 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 VM			= core
 LIB			= libft/libft.a
-FLAGS		= -Wall -Werror -Wextra
-FILES		= main.c disp.c
+FLAGS		= -g -Wall -Werror -Wextra
+FILES		= main.c disp.c instr.c read.c player.c
 
 all: clean $(VM)
 $(LIB):

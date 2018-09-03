@@ -1,46 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.h                                               :+:      :+:    :+:   */
+/*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 12:48:49 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/02 13:13:47 by zbatik           ###   ########.fr       */
+/*   Created: 2018/09/03 15:26:33 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/03 16:05:22 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VM_H
-# define VM_H
+#include "vm.h"
 
-#include "libft/includes/libft.h"
-#include "op.h"
-#include <stdlib.h>
-#include <stdio.h>
+void read_player_bin(char *cor_file)
+{
+//	t_byte			buffer[CHAMP_MAX_SIZE];
+	t_byte	magic[4];
+	FILE *ptr;
 
-typedef unsigned char	t_byte;
-
-enum {
-	live,
-	ld,
-	st,
-	add,
-	sub,
-	and,
-	or,
-	xor,
-	zjmp,
-	ldi,
-	sti,
-	fork,
-	lld,
-	lldi,
-	lfork,
-	aff,
-	null,
-};
-
-void print_hex(int n, int cl);
-void print_mem(t_byte *reg, char *player_intput);
-
-#endif
+	ptr = fopen(cor_file, "rb");
+	fread(magic, 4, 1, ptr);
+	ft_putendl((char*)magic);
+	if ((unsigned int)magic == COREWAR_EXEC_MAGIC)
+		ft_putendl("success!");
+	else
+		ft_putendl("Oops");
+	//	fread(buffer, MAX_CHAM_SIZE, 1, ptr);
+	
+}

@@ -6,11 +6,11 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:44:00 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/02 14:53:39 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/03 16:15:44 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inter.h"
+#include "vm.h"
 
 void	print_hex(int n, int cl)
 {
@@ -39,7 +39,7 @@ void	print_hex(int n, int cl)
 		ft_putchar_cl(out[i--], cl);
 }
 
-void	print_mem(t_byte *reg, char *colouring)
+void	print_mem(t_byte *reg, t_byte *colouring)
 {
 	int i;
 	int cl;
