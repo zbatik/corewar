@@ -1,0 +1,6 @@
+.DS_Store
+libft.a
+a.out
+*.o
+*.a
+*.swp

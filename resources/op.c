@@ -39,3 +39,18 @@ t_op    op_tab[17] =
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
 
+//potentially change "live" num_cycles to 4
+//change lfork "carry bit flip" to 0
+
+//1st param = "name in asm"
+//2nd param = "num args"
+//3rd param = "Type of argument"
+//4th param = "op number"
+//5th param = "number of cycles"
+//6th param = "long description"
+//7th param = "flip carry bit"
+//8th param = "on switch"
+
+//all registers begin from 1 to 16
+
+//ind is with % and dir is without
