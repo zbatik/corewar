@@ -5,3 +5,4 @@ a.out
 *.tar
 *.swp
 .DS_Store
+.vscode

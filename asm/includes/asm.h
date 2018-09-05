@@ -6,26 +6,25 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/05 10:31:55 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/05 10:47:52 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-#include "../libft/includes/libft.h"
-
-typedef unsigned char	t_byte;
+#include "../shared/libft/includes/libft.h"
+#include "../shared/includes/op.h"
+#include "../shared/includes/shared.h"
 
 typedef struct	s_instruct
 {
 	
 	t_opnum 	name;
-	int 		args[MAX_ARGS];
-	t_arg_type	type[MAX];
-	char		
-
-	data	*next;
+	int 		args[MAX_ARGS_NUMBER];
+	t_arg_type	type[MAX_ARGS_NUMBER];
+	t_byte		*instruct_byte_code;		
+	s_instruct	*next;
 
 }				t_instruct;
 
