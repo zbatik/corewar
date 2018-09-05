@@ -1,7 +1,7 @@
 .name "bigzork"
 .comment "I know i cant win"
 
-ld %0, r2
+ld %1, r13
 st r1, 211
 st r1, 211
 st r1, 211

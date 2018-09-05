@@ -6,17 +6,16 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/05 10:47:52 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/05 17:37:19 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-#include "../shared/libft/includes/libft.h"
-#include "../shared/includes/op.h"
-#include "../shared/includes/shared.h"
+#include "../../shared/includes/shared.h"
 
+/*
 typedef struct	s_instruct
 {
 	
@@ -24,12 +23,23 @@ typedef struct	s_instruct
 	int 		args[MAX_ARGS_NUMBER];
 	t_arg_type	type[MAX_ARGS_NUMBER];
 	t_byte		*instruct_byte_code;		
-	s_instruct	*next;
+	t_instruct	*next;
 
 }				t_instruct;
+*/
+/*
+** Zack's fns
+*/
+
+t_opnum inst_to_enum(char *str);
+t_opinfo	index_opinfo(t_opnum op_index);
 
 /*
-** lable list can be replaced with a libft t_list
+** Eddie's fns
+*/
+
+/*
+** Fred's fns
 */
 
 /*
