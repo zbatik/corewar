@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 14:31:36 by mdilapi           #+#    #+#              #
-#    Updated: 2018/09/05 17:57:17 by zbatik           ###   ########.fr        #
+#    Updated: 2018/09/06 15:22:28 by emaune           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,13 @@ SHARED_FILES 	= op_info.c \
 
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
-SRC_FILES		= main_test.c \
+SRC_FILES		= main.c \
 					inst_to_enum.c \
-					label.c
+					label.c \
+					is_valid_mnemonic.c \
+					is_label.c \
+					is_valid_name_comment.c \
+					error_check_line.c
 
 all: clean $(NAME)
 $(NAME):

@@ -6,13 +6,13 @@
 /*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:39:32 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/04 14:39:38 by mdilapi          ###   ########.fr       */
+/*   Updated: 2018/09/06 15:34:02 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "../includes/asm.h"
 #include <stdio.h>
-
+/*
 t_dblist	*file_tolist(char *fname)
 {
 	//convert the file to a linked list with each lines
@@ -39,15 +39,17 @@ void	parse_listtolabel(t_dblist **head)
 void	convert_to_byte(t_dblist **head)
 {
 
-}
+} */
 
 int main(int ac, char *av[])
 {
-	char *str;
-
-	//file_tolist
-	//parse_listtolabel
-	//convert  to byte code
-	//stich and write
-
+	if (ac > 1)
+	{
+		
+	}
+	else
+	{
+		ft_putendl("Usage:\n./asm file_name[.s] ...\n");
+		return (0);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 10:40:04 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/06 18:36:13 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/06 18:58:46 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+
+# define TRUE 1
+# define FALSE 0
+
 
 typedef unsigned char	t_byte;
 
