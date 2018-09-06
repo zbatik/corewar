@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/05 18:27:31 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/06 15:23:32 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,21 @@ typedef struct	s_instruct
 ** Zack's fns
 */
 
-t_opnum inst_to_enum(char *str);
-t_opinfo	index_opinfo(t_opnum op_index);
-int instruction_byte_size(t_byte *instuction_line);
+t_opnum				inst_to_enum(char *str);
+t_opinfo			index_opinfo(t_opnum op_index);
+int					instruction_byte_size(t_byte *instuction_line);
 
 /*
 ** Eddie's fns
 */
-
+int					is_valid_mnemonic(char *str);
+int					is_label(char *str);
+int					is_valid_label(char *str);
+int					error_check_line(char *line);
+int					is_name(char *line);
+int					is_comment(char *line);
+int					is_valid_name(char *line);
+int					is_valid_comment(char *line);
 /*
 ** Fred's fns
 */

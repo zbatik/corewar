@@ -1,10 +1,10 @@
 .name "our file"
 
-live1:live	%42
+live1:live %42
 ld 2 r1
 
 add r1 r2 r3
 
 zjmp	%:live1
-ld:live1 r1
+ld:live %42
 zjmp %:live1
