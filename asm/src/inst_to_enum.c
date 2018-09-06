@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 11:14:51 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/05 13:42:41 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/05 18:15:23 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_opnum inst_to_enum(char *str)
 {
     while (ft_isws(*str))
         str++;
-    if (ft_strnequ(str, "live", 5))
+    if (ft_strnequ(str, "live", 4))
         return (e_live);
     else if (ft_strnequ(str, "lldi", 4))
         return (e_lldi);
@@ -49,5 +49,5 @@ t_opnum inst_to_enum(char *str)
     else if (ft_strnequ(str, "aff", 3))
         return (e_aff);
     else
-        return (null)
+        return (e_null);
 }

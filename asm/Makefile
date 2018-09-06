@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 14:31:36 by mdilapi           #+#    #+#              #
-#    Updated: 2018/09/05 17:41:01 by zbatik           ###   ########.fr        #
+#    Updated: 2018/09/05 17:57:17 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,15 @@ SHARED_FILES 	= op_info.c \
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
 SRC_FILES		= main_test.c \
-					inst_to_enum.c
+					inst_to_enum.c \
+					label.c
 
-all: $(NAME)
+all: clean $(NAME)
 $(NAME):
 	make -s -C $(LIB_DIR)
 	$(CC) $(FLAGS) $(SRC_PATH) $(SHARED_PATHS) $(LIB) -o $(NAME)
 
-$(OBJ): $(addprefix $(SRC),$(SRC_NAME))
+clean:
+	rm -f $(NAME)
+
 	

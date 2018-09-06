@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 10:40:04 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/05 17:34:44 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/05 18:23:38 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,6 @@ typedef enum {
 	e_aff,
 } t_opnum;
 
-typedef struct s_inst_args
-{
-	t_arg_type	arg1;
-	t_arg_type	arg2;
-	t_arg_type	arg3;
-	t_arg_type	arg4;
-}				t_inst_args;
-
 typedef struct	s_opinfo
 {
 	char		instruction[5];
@@ -53,7 +45,7 @@ typedef struct	s_opinfo
 	t_byte		arg_types[MAX_ARGS_NUMBER];
 	short		op_number;
 	int			cycles;
-	char		*description;
+	char		description[128];
 	t_bool		arg_encoding_byte;		/* could be wrong */
 	t_bool		modifies_carry;   		/* could be wrong */
 }				t_opinfo;
