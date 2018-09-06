@@ -6,20 +6,20 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 12:48:33 by zbatik            #+#    #+#              #
-#    Updated: 2018/08/30 14:52:00 by zbatik           ###   ########.fr        #
+#    Updated: 2018/09/06 13:45:07 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 VM			= core
 LIB			= libft/libft.a
 FLAGS		= -Wall -Werror -Wextra
-FILES		= main.c disp.c
+FILES		= src/main.c src/disp.c src/read.c
 
 all: clean $(VM)
 $(LIB):
-	make -s -C ./libft
+	make -s -C ../shared/libft
 $(VM) : $(LIB)
-	gcc $(FLAGS) $(FILES) $(LIB) -o $(VM)
+	gcc $(FLAGS) $(FILES) ../shared/libft/libft.a -o $(VM)
 clean :
 	rm -f $(VM)
 fclean : clean

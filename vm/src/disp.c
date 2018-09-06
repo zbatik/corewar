@@ -6,12 +6,11 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:44:00 by zbatik            #+#    #+#             */
-/*   Updated: 2018/08/30 16:49:03 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/06 18:35:42 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
-#include "op.h"
+#include "../includes/vm.h"
 
 void	print_hex(int n, int cl)
 {
@@ -56,3 +55,9 @@ void	print_mem(char *reg, char *player_input, int player_num)
 		i++;
 	}
 }
+void	print_player(t_player *player)
+{
+	ft_putendl(player->name);
+	ft_putendl(player->comment);
+	printf("%x\n", player->size);
+	}
