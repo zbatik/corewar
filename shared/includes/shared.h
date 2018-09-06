@@ -15,6 +15,8 @@
 
 #include "../libft/includes/libft.h"
 #include "op.h"
+# define TRUE 1
+# define FALSE 0
 
 typedef unsigned char	t_byte;
 

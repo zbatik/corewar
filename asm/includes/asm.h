@@ -48,6 +48,18 @@ int instruction_byte_size(t_byte *instuction_line);
 ** Fred's fns
 */
 
+typedef struct		s_input
+{
+	char			*line;
+	int				line_no;
+	int				byte_count;
+	t_byte			byte_code;
+	t_byte			param_encoding;
+	t_bool			is_label;
+	t_opnum			instruction_type;
+	struct t_input	*next;
+}					t_input;
+
 /*
 typedef struct	s_label
 {

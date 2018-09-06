@@ -22,7 +22,7 @@ SHARED_FILES 	= op_info.c \
 
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
-SRC_FILES		= main_test.c \
+SRC_FILES		= main.c \
 					inst_to_enum.c \
 					label.c
 
