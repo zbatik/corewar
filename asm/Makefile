@@ -22,13 +22,16 @@ SHARED_FILES 	= op_info.c \
 
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
-SRC_FILES		= main.c \
+SRC_FILES		=	error_check_line.c\
+					file_tolist.c \
+					main.c \
 					inst_to_enum.c \
 					label.c \
+					input_del.c \
 					is_valid_mnemonic.c \
 					is_label.c \
 					is_valid_name_comment.c \
-					error_check_line.c
+					
 
 all: clean $(NAME)
 $(NAME):
