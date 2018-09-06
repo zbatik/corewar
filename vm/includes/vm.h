@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:48:49 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/06 18:32:05 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/06 18:56:39 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef	struct	s_player
 	char	name[PROG_NAME_LENGTH + 1];
 	char	comment[COMMENT_LENGTH + 1];
 	int		size;
-	char	*program;
+	char	program[CHAMP_MAX_SIZE];
 	int		start_pos;
 }				t_player;
 

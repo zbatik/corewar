@@ -1,3 +1,5 @@
+.name "ours"
+.comment "Phuti is watching"
 
 live1: live	%42
 ld 2 r1
