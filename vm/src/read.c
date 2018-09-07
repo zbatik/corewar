@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 12:38:34 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/06 18:55:17 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/07 12:14:25 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,21 @@ int read_file(char *file_name, t_player *player)
     return (1);
 }
 */
-unsigned char    *ft_strrev(unsigned char *str)
+unsigned char    *ft_strrev(char *str)
 {
     char    *tmp;
     int     i;
     int     len;
 
-    tmp = ft_strdup((char*)str);
-    len = ft_strlen((char*)str);
-    i = 0;
-    while (i < len)
+    tmp = ft_strdup(str);
+    len = ft_strlen(str);
+    i = -1;
+    while (++i < len)
     {
         str[i] = tmp[len - 1 - i];
     }
     free(tmp);
-    return (str);
+    return ((unsigned char *)str);
 }
 
 int read_file(char *file_name, t_player *player)
@@ -87,7 +87,11 @@ int read_file(char *file_name, t_player *player)
     fd = open(file_name, O_RDONLY);
     ret = read(fd, header_info, sizeof(header_t));
     header = (header_t *)header_info;
-  /*  if ((unsigned int)ft_strrev(header->magic) != COREWAR_EXEC_MAGIC)
+    ft_putendl("HER");
+    char hat[4] = "hat";
+         printf("%s\n", ft_strrev(hat));
+     ft_putendl("HER");
+    if ((unsigned int)ft_strrev(header->magic) != COREWAR_EXEC_MAGIC)
     {
          ft_puterror("Error: not a valid file .cor binary");
          exit(-1);
@@ -96,10 +100,10 @@ int read_file(char *file_name, t_player *player)
     {
          ft_puterror("Error: missing infomation");
          exit(-1);
-    }*/
+    }
     ft_strcpy((char*)player->name, header->prog_name);
     ft_strcpy((char*)player->comment, header->comment);
-    player->size = (int)ft_strrev(header->prog_size);
+    player->size = (int)ft_strrev((char*)header->prog_size);
     read(fd, player->program, player->size);
     return (1);
 }
