@@ -13,7 +13,10 @@
 VM			= core
 LIB			= libft/libft.a
 FLAGS		= -Wall -Werror -Wextra
-FILES		= src/main.c src/disp.c src/read.c
+FILES		= src/main.c \
+				src/disp.c \
+				src/read.c \
+				src/exit.c
 
 all: clean $(VM)
 $(LIB):

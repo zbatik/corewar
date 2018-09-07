@@ -37,13 +37,16 @@ typedef struct	s_info
 {
 	char		*player_input;
 	int			num_players;
-	t_player	**players;
+	t_player	players[MAX_PLAYERS];
 
 }				t_info;
 
 int read_file(char *file_name, t_player *player);
-void	print_player(t_player *player);
 
+
+void exit_on_error(char *error_msg);
+
+void	print_player(t_player *player);
 void print_hex(int n, int cl);
 void print_mem(char *reg, char *player_intput, int player_num);
 

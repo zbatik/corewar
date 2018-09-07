@@ -20,26 +20,26 @@ int			error_check_line(char *line)
 	{
 		ft_putendl("name");
 		if (!is_valid_name(line))
-			return (0);
+			return (FALSE);
 	}
 	else if (is_comment(line))
 	{
 		ft_putendl("comment");
 		if (!is_valid_comment(line))
-			return (0);
+			return (FALSE);
 	}
 	else if (is_label(line))
 	{
 		ft_putendl("label");
 		if (!is_valid_label(line))
-			return (0);
+			return (FALSE);
 	}
 	else
 	{
 		ft_putendl("ins");
 		ins = ft_strsplit(line, ' ');
 		if (!is_valid_mnemonic(ins[0]))
-			return (0);
+			return (FALSE);
 	}
-	return (1);
+	return (TRUE);
 }

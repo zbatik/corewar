@@ -16,24 +16,31 @@ FLAGS			= -Wall -Werror -Wextra
 LIB_DIR			= ../shared/libft/
 LIB				= $(join $(LIB_DIR),libft.a)
 
+INCLUDES		=-I./includes/
+
 SHARED_DIR		= ../shared/src/
 SHARED_PATHS	= $(addprefix $(SHARED_DIR),$(SHARED_FILES))
 SHARED_FILES 	= op_info.c \
 
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
-SRC_FILES		= main.c \
+SRC_FILES		=	error_check_line.c\
+					file_tolist.c \
+					input_del.c \
 					inst_to_enum.c \
-					label.c \
-					is_valid_mnemonic.c \
 					is_label.c \
+					is_valid_mnemonic.c \
 					is_valid_name_comment.c \
-					error_check_line.c
+					label.c \
+					main.c \
+					parse_listinfo.c \
+					print_cor.c \
+					
 
 all: clean $(NAME)
 $(NAME):
 	make -s -C $(LIB_DIR)
-	$(CC) $(FLAGS) $(SRC_PATH) $(SHARED_PATHS) $(LIB) -o $(NAME)
+	$(CC) $(FLAGS) $(SRC_PATH) $(SHARED_PATHS) $(LIB) $(INCLUDES)  -o $(NAME)
 
 clean:
 	rm -f $(NAME)

@@ -13,7 +13,10 @@
 #ifndef ASM_H
 # define ASM_H
 
-#include "../../shared/includes/shared.h"
+# include "../../shared/includes/shared.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 # define DEBUG 1
 
@@ -64,8 +67,15 @@ typedef struct		s_input
 	t_byte			param_encoding;
 	t_bool			is_label;
 	t_opnum			instruction_type;
-	struct t_input	*next;
+	struct s_input	*next;
 }					t_input;
+
+void				input_del(t_input **ahead);
+void				gen_bytecode(t_input *elem);
+t_input				*file_tolist(char *fname);
+t_bool				parse_listinfo(t_input *ahead);
+t_bool				is_validfile(t_input *ahead);
+void				print_cor(t_input *head, char *fname);
 
 /*
 typedef struct	s_label

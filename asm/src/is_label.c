@@ -33,16 +33,16 @@ int			is_valid_label(char *str)
 			j++;
 		}
 		if (!flag)
-			return (0);
+			return (FALSE);
 		i++;
 	}
-	return (1);
+	return (TRUE);
 }
 
 int			is_label(char *str)
 {
 	if (ft_strlen(str) > 1)
 		if (str[ft_strlen(str) - 1] == ':')
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
