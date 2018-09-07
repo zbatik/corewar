@@ -16,7 +16,9 @@ FLAGS		= -Wall -Werror -Wextra
 FILES		= src/main.c \
 				src/disp.c \
 				src/read.c \
-				src/exit.c
+				src/exit.c \
+				src/init.c \
+				src/input.c
 
 all: clean $(VM)
 $(LIB):

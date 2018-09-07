@@ -17,6 +17,7 @@
 
 typedef	struct	s_player
 {
+	char	*file_name;
 	int		num;
 	char	name[PROG_NAME_LENGTH + 1];
 	char	comment[COMMENT_LENGTH + 1];
@@ -27,25 +28,30 @@ typedef	struct	s_player
 
 typedef struct	s_process
 {
-	int	pc;
+	int		pc;
+
 	int reg[REG_NUMBER];
 	t_bool carry;
 	struct s_process *next;
 }				t_process;
 
-typedef struct	s_info
+typedef struct	s_core
 {
-	char		*player_input;
+	t_process	*process;
+	t_bool		dump;
+	int			cycles_to_dump;
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
 
-}				t_info;
+}				t_core;
 
 int read_file(char *file_name, t_player *player);
 
-
+int parse_input(t_core *core, int c, char **v);
 void exit_on_error(char *error_msg);
+int init_core(t_core *core);
 
+void	print_parsed_info(t_core *core);
 void	print_player(t_player *player);
 void print_hex(int n, int cl);
 void print_mem(char *reg, char *player_intput, int player_num);
