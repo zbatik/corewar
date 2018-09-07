@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <asm.h>
+#include <stdio.h>
 
 
 void	gen_bytecode(t_input *elem)
@@ -39,12 +40,14 @@ t_bool	parse_listinfo(t_input *ahead)
 	count = 0;
 	if (tmp != NULL)
 	{
-		if (tmp->is_label == TRUE)
+		//if (tmp->is_label == FALSE)
+		printf("%d\n",instruction_byte_size(tmp->line));
+		/*if (tmp->is_label == TRUE)
 			tmp->byte_count = count;
 		else if (is_name(tmp->line) == FALSE && is_comment(tmp->line) == FALSE)
 		{
 			gen_bytecode(tmp);
-		}
+		}*/
 		tmp = tmp->next;
 	}
 	return(TRUE);

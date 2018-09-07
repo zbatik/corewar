@@ -41,7 +41,7 @@ typedef struct	s_instruct
 
 t_opnum				inst_to_enum(char *str);
 t_opinfo			index_opinfo(t_opnum op_index);
-int					instruction_byte_size(t_byte *instuction_line);
+int					instruction_byte_size(char *instuction_line);
 
 /*
 ** Eddie's fns
@@ -76,6 +76,8 @@ t_input				*file_tolist(char *fname);
 t_bool				parse_listinfo(t_input *ahead);
 t_bool				is_validfile(t_input *ahead);
 void				print_cor(t_input *head, char *fname);
+void				inlstadd(t_input **ahead, t_input *elem);
+t_input				*inlstnew(char	*line, int line_no, t_bool is_label);
 
 /*
 typedef struct	s_label
