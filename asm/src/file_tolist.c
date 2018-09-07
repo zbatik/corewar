@@ -16,8 +16,31 @@ void	process_normal(char *str, t_input **tmp, int *i)
 		*i = *i + 1;
 		//free(str);
 		tmp[0]->next = (t_input *)malloc(sizeof(t_input));
-		//tmp[0] = tmp[0]->next;
 	}
+}
+
+void	process_label(char **label, t_input **tmp, int *i)
+{
+		tmp[0]->line = *label;
+		tmp[0]->is_label = TRUE;
+		tmp[0]->line_no = *i;
+		*i = *i + 1;
+		//free(label);
+		tmp[0]->next = (t_input *)malloc(sizeof(t_input));
+}
+
+int		is_wsstring(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str != NULL)
+	{
+		while (str[i] != '\0')
+			if (ft_isws(str[i++]) == 0)
+				return (FALSE);
+	}
+	return (TRUE);
 }
 
 t_input	*file_tolist(char *fname)
@@ -40,19 +63,23 @@ t_input	*file_tolist(char *fname)
 	i = 0;
 	while (get_next_line(fd, &str) > 0)
 	{
-		if (ft_indexcin(str, ':') != -1)
+		if (is_wsstring(str) == FALSE)
 		{
-			label = ft_strsub(str, 0, ft_indexcin(str, ':'));
-			if (is_valid_label(label) == TRUE)
+			if (ft_indexcin(str, ':') != -1)
 			{
-				tmp->line = label;
-				tmp->is_label = TRUE;
-				tmp->line_no = i++;
-				//free(label);
-				tmp->next = (t_input *)malloc(sizeof(t_input));
-				tmp = tmp->next;
-				process_normal(str + ft_indexcin(str, ':')+ 1, &tmp, &i);
-				tmp = tmp->next;
+				label = ft_strsub(str, 0, ft_indexcin(str, ':'));
+				if (is_valid_label(label) == TRUE)
+				{
+					process_label(&label, &tmp, &i);
+					tmp = tmp->next;
+					process_normal(str + ft_indexcin(str, ':')+ 1, &tmp, &i);
+					tmp = tmp->next;
+				}
+				else
+				{
+					process_normal(str, &tmp, &i);
+					tmp = tmp->next;
+				}
 			}
 			else
 			{
@@ -60,13 +87,7 @@ t_input	*file_tolist(char *fname)
 				tmp = tmp->next;
 			}
 		}
-		else
-		{
-			process_normal(str, &tmp, &i);
-			tmp = tmp->next;
-		}
 	}
 	tmp->next = NULL;
 	return (head);
-
 }
