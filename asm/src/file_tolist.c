@@ -17,6 +17,8 @@
 **check forbidden characters
 **if the start of the line is a label, followed by commands make a split
 ** split this function up into a smaller collection
+** Check if the characters are legit
+** trim whitespaces before and after the input string && swap out tabs for spaces
 */
 
 void	process_normal(char *str, t_input **tmp, int *i)
@@ -27,7 +29,8 @@ void	process_normal(char *str, t_input **tmp, int *i)
 		tmp[0]->line_no = *i;
 		*i = *i + 1;
 		//free(str);
-		tmp[0]->next = (t_input *)malloc(sizeof(t_input));
+		tmp[0]->next = NULL;
+		//tmp[0]->next = (t_input *)malloc(sizeof(t_input));
 	}
 }
 
@@ -38,7 +41,8 @@ void	process_label(char **label, t_input **tmp, int *i)
 		tmp[0]->line_no = *i;
 		*i = *i + 1;
 		//free(label);
-		tmp[0]->next = (t_input *)malloc(sizeof(t_input));
+		tmp[0]->next = NULL;
+		//tmp[0]->next = (t_input *)malloc(sizeof(t_input));
 }
 
 int		is_wsstring(const char *str)
@@ -53,6 +57,16 @@ int		is_wsstring(const char *str)
 				return (FALSE);
 	}
 	return (TRUE);
+}
+
+void	init_head(int fd, t_input *head)
+{
+	if (get_next_line(fd, &str) < 0)
+	{
+		ft_putendl("ERROR: Cant read from file");
+		return (NULL);
+	}
+	
 }
 
 t_input	*file_tolist(char *fname)
@@ -70,9 +84,7 @@ t_input	*file_tolist(char *fname)
 		ft_putendl("ERROR: File does not exist");
 		return (NULL);
 	}
-	head = (t_input *)malloc(sizeof(t_input));
-	tmp = head;
-	i = 0;
+	i = 1;
 	while (get_next_line(fd, &str) > 0)
 	{
 		if (is_wsstring(str) == FALSE)
@@ -83,7 +95,6 @@ t_input	*file_tolist(char *fname)
 				if (is_valid_label(label) == TRUE)
 				{
 					process_label(&label, &tmp, &i);
-					tmp = tmp->next;
 					process_normal(str + ft_indexcin(str, ':')+ 1, &tmp, &i);
 					tmp = tmp->next;
 				}
@@ -100,7 +111,7 @@ t_input	*file_tolist(char *fname)
 			}
 		}
 	}
-	tmp->next = NULL;
+	//tmp->next = NULL;
 	close(fd);
 	return (head);
 }

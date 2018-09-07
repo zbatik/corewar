@@ -17,6 +17,7 @@
 **At the end of the main process delete memory
 ** input_del needs to be tested
 ** After file_tolist all error handling (is_validfile)
+** Upadate byte count will require pass_param function
 ** After Error handling we need to run function that
 ** 			popuates the input with byte_size instuction_code etc 
 **	Write to file which will take all the info in in_head and print its bytes
@@ -40,13 +41,15 @@ int main(int ac, char *av[])
 		}
 		/*if (is_validfile(in_head) == TRUE)
 		{
+
 			if (parse_listinfo(in_head) == TRUE)
 			{
 				print_cor(in_head, av[1]);
 			}
 		}
 		else
-			ft_putendl("ERROR: error in file"); */
+			ft_putendl("ERROR: error in file");
+			*/
 	}
 	else
 	{

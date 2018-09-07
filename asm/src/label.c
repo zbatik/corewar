@@ -12,11 +12,11 @@
 
 #include "../includes/asm.h"
 
-t_arg_type parse_instruction_arg(t_byte *instruction_line);
+t_arg_type parse_instruction_arg(char *instruction_line);
 
 int instruction_arg_size(t_opnum instruction, t_arg_type arg1);
 
-int instruction_byte_size(t_byte *instruction_line)
+int instruction_byte_size(char *instruction_line)
 {
     t_opnum op;
     int     byte_size;

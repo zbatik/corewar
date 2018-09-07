@@ -26,6 +26,8 @@ SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
 SRC_FILES		=	error_check_line.c\
 					file_tolist.c \
+					inlstadd.c \
+					inlstnew.c \
 					input_del.c \
 					inst_to_enum.c \
 					is_label.c \
