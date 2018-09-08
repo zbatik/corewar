@@ -22,7 +22,7 @@ typedef	struct	s_player
 	char	name[PROG_NAME_LENGTH + 1];
 	char	comment[COMMENT_LENGTH + 1];
 	int		size;
-	char	program[CHAMP_MAX_SIZE];
+	t_byte	program[CHAMP_MAX_SIZE];
 	int		start_pos;
 }				t_player;
 
@@ -42,8 +42,8 @@ typedef struct	s_core
 	int			cycles_to_dump;
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
-	char		mem[MEM_SIZE];
-	char		colouring[MEM_SIZE];
+	t_byte		mem[MEM_SIZE];
+	t_byte		colouring[MEM_SIZE];
 }				t_core;
 
 int read_file(char *file_name, t_player *player);
@@ -52,6 +52,7 @@ int parse_input(t_core *core, int c, char **v);
 void exit_on_error(char *error_msg);
 int init_core(t_core *core);
 int creat_players(t_core *core);
+int load_players(t_core *core);
 
 void	print_parsed_info(t_core *core);
 void	print_players(t_core *core);

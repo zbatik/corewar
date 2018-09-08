@@ -6,13 +6,13 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 12:38:34 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/08 18:00:06 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/08 18:05:13 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static int  assign_player_pos(t_core *core)
+static int          assign_player_pos(t_core *core)
 {
     int i;
     int factor;
@@ -29,7 +29,7 @@ static int  assign_player_pos(t_core *core)
     return (1);
 }
 
-static int  assign_player_num(t_core *core)
+static int          assign_player_num(t_core *core)
 {
     int j;
     int i;
@@ -67,7 +67,7 @@ static unsigned int rev_endian(unsigned int num)
     return (swapped);
 }
 
-static int read_player_file(t_player *player)
+static int          read_player_file(t_player *player)
 {
     char         header_info[sizeof(header_t)]; 
     header_t    *header;
@@ -91,7 +91,7 @@ static int read_player_file(t_player *player)
     return (1);
 }
 
-int creat_players(t_core *core)
+int                 creat_players(t_core *core)
 {
     int i;
 

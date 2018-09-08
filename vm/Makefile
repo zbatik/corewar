@@ -29,7 +29,8 @@ SRC_FILES		=	main.c \
 				players.c \
 				exit.c \
 				init.c \
-				input.c
+				input.c \
+				load.c \
 					
 
 all: clean $(NAME)
