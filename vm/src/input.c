@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:10:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/07 18:46:20 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/08 14:54:56 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 // check number hasn't been assigned already
 
+/*
 static int  next_avi_num(t_core *core)
 {
     int num;
@@ -38,6 +39,18 @@ static int  next_avi_num(t_core *core)
     }
     return (-1);
 }
+*/
+static void  check_duplicate(t_core *core, int player_num)
+{
+    int i;
+
+    i = -1;
+    while (++i < core->num_players)
+    {
+        if (core->players[i].num == player_num)
+            exit_on_error("Error: duplicate player numbers");
+    }
+}
 
 static int  ft_isposint(char *num)
 {
@@ -57,8 +70,6 @@ static int parse_dump(t_core *core, int c, char **v)
 {
     if (c > 2)
     {
-        printf("v0: %s is -dump %d\n", v[0],ft_strequ(v[0], "-dump"));
-        printf("v1: %s\n", v[1]);
         if (ft_strequ(v[0], "-dump"))
         {
             core->dump = 1;
@@ -71,6 +82,7 @@ static int parse_dump(t_core *core, int c, char **v)
 static int parse_players(t_core *core, int c, char **v)
 {
     int i;
+    int player_num;
 
     i = -1;
     while (++i < c)
@@ -78,20 +90,19 @@ static int parse_players(t_core *core, int c, char **v)
         core->num_players += 1;
         if (core->num_players > MAX_PLAYERS)
             exit_on_error("Error: too many players");
-        ft_putendl(v[i]);
         if (ft_strequ(v[i], "-n"))
         {
-            ft_putendl("FLAG -n");
             i++;
             if (i >= c)
                 exit_on_error("Error: invalid argument");
-            core->players[core->num_players - 1].num = ft_isposint(v[i++]);
+            player_num = ft_isposint(v[i++]);
             if (i >= c)
                 exit_on_error("Error: invalid argument");
-
+            check_duplicate(core, player_num);
+            core->players[core->num_players - 1].num = player_num;
         }
-        else
-            core->players[core->num_players - 1].num = next_avi_num(core);
+        // else
+        //    core->players[core->num_players - 1].num = next_avi_num(core);
         core->players[core->num_players - 1].file_name = v[i];
     }
     return (1);
@@ -102,7 +113,6 @@ int parse_input(t_core *core, int c, char **v)
     parse_dump(core, c, v);
     if (1 == core->dump)
     {
-        ft_putendl("DUMP");
         v = v + 2;
         c = c - 2;
     }

@@ -42,7 +42,8 @@ typedef struct	s_core
 	int			cycles_to_dump;
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
-
+	char		mem[MEM_SIZE];
+	char		colouring[MEM_SIZE];
 }				t_core;
 
 int read_file(char *file_name, t_player *player);
@@ -50,8 +51,10 @@ int read_file(char *file_name, t_player *player);
 int parse_input(t_core *core, int c, char **v);
 void exit_on_error(char *error_msg);
 int init_core(t_core *core);
+int creat_players(t_core *core);
 
 void	print_parsed_info(t_core *core);
+void	print_players(t_core *core);
 void	print_player(t_player *player);
 void print_hex(int n, int cl);
 void print_mem(char *reg, char *player_intput, int player_num);

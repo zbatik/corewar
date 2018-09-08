@@ -55,12 +55,7 @@ void	print_mem(char *reg, char *player_input, int player_num)
 		i++;
 	}
 }
-void	print_player(t_player *player)
-{
-	ft_putendl(player->name);
-	ft_putendl(player->comment);
-	printf("%x\n", player->size);
-	}
+
 void	print_parsed_info(t_core *core)
 {	
 	printf("___Parsed Data___\n");
@@ -74,4 +69,29 @@ void	print_parsed_info(t_core *core)
 		printf("player file: |%s|, player num: %d\n", core->players[i].file_name, core->players[i].num);
 	}
 	printf("_____________\n");
+}
+
+void	print_players(t_core *core)
+{
+	int i;
+
+	i = -1;
+	printf("Number Players: %d\n", core->num_players);
+	while (++i < core->num_players)
+		print_player(&core->players[i]);
+}
+
+void	print_player(t_player *player)
+{
+		printf("___Player_Info___\n");
+		printf("Player Number %d\n", player->num);
+		printf("Player Name: \"%s\"\n", player->name);
+		printf("Player File name: %s\n", player->file_name);
+		printf("Comment: \"%s\"\n", player->comment);
+		printf("Player Size: %x (in decimal) %d\n", player->size, player->size);
+		printf("Program:");
+		for (int i = 0; i < player->size; i++)
+			printf("%x", player->program[i]);
+		printf("\n");
+		printf("Start Pos: %d\n", player->start_pos);
 }

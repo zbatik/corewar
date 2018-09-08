@@ -10,25 +10,39 @@
 #                                                                              #
 # **************************************************************************** #
 
-VM			= core
-LIB			= libft/libft.a
-FLAGS		= -Wall -Werror -Wextra
-FILES		= src/main.c \
-				src/disp.c \
-				src/read.c \
-				src/exit.c \
-				src/init.c \
-				src/input.c
+NAME			= core
+CC				= gcc
+FLAGS			= -Wall -Werror -Wextra
+LIB_DIR			= ../shared/libft/
+LIB				= $(join $(LIB_DIR),libft.a)
 
-all: clean $(VM)
+INCLUDES		=-I./includes/
+
+SHARED_DIR		= ../shared/src/
+SHARED_PATHS	= $(addprefix $(SHARED_DIR),$(SHARED_FILES))
+SHARED_FILES 	= op_info.c \
+
+SRC_DIR			= ./src/
+SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
+SRC_FILES		=	main.c \
+				disp.c \
+				players.c \
+				exit.c \
+				init.c \
+				input.c
+					
+
+all: clean $(NAME)
+$(NAME): $(LIB)
+	$(CC) $(FLAGS) $(SRC_PATH) $(SHARED_PATHS) $(LIB) $(INCLUDES)  -o $(NAME)
 $(LIB):
-	make -s -C ../shared/libft
-$(VM) : $(LIB)
-	gcc $(FLAGS) $(FILES) ../shared/libft/libft.a -o $(VM)
-clean :
-	rm -f $(VM)
-fclean : clean
+	make -s -C $(LIB_DIR)
+clean:
+	rm -f $(NAME)
+fclean: clean
 	rm -f $(LIB)
-norm :
-	norminette $(FILES) *.h
-re : fclean all
+re: fclean all
+norm:
+	norminette $(SHARED_PATHS) $(SRC_PATH) ../includes/*.h
+
+.PHONY: all clean fclean re norm
