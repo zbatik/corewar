@@ -26,11 +26,13 @@ int	main(int c, char **v)
 	parse_input(&core, c - 1, v + 1);
 	ft_putendl("Set players");
 	creat_players(&core);
+	print_players(&core);
 	ft_putendl("Load players & init cursors");
 	load(&core);
 	ft_putendl("Print");
-	print_players(&core);
-	print_processes(core.processes);
+	print_mem(core.mem, core.colouring, core.cursor);
+	
+	print_processes(&core);
 	exit(1);
 	return (1);
 }

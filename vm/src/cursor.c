@@ -3,15 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   cursor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 12:31:30 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/09 13:52:32 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/09 15:47:55 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
+void    process_add(t_core *core, int pc, int player_num)
+{
+    t_process   *cursor;
+    int         i;
+    
+    cursor = &core->processes[core->num_processes];
+    cursor->pc = pc;
+    cursor->carry = 0;
+    cursor->reg[0] = player_num;
+    i = 1;
+    while (i < REG_NUMBER)
+        cursor->reg[i++] = 0;
+    core->num_processes += 1;
+}
+/*
 t_process *process_new(int pc, int player_num)
 {
     t_process   *cursor;
@@ -59,3 +74,4 @@ void    process_del(t_process **head)
         *head = tmp;
     }
 }
+*/

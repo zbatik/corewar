@@ -19,32 +19,34 @@ typedef	struct	s_player
 {
 	char	*file_name;
 	int		num;
+	t_bool	alive;
 	char	name[PROG_NAME_LENGTH + 1];
 	char	comment[COMMENT_LENGTH + 1];
 	int		size;
 	t_byte	program[CHAMP_MAX_SIZE];
-	int		start_pos;
+	unsigned int		start_pos;
 }				t_player;
 
 typedef struct	s_process
 {
 	int					pc;
-	//int					*reg;
+	int					cycles_to_execute;
 	int					reg[REG_SIZE];
 	t_bool 				carry;
-	struct s_process	*next;
 }				t_process;
 
 typedef struct	s_core
 {
-	t_process	*processes;
+	t_process	processes[MEM_SIZE];
 	int			num_processes;
 	t_bool		dump;
+	int			cycles_to_die;
 	int			cycles_to_dump;
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
 	t_byte		mem[MEM_SIZE];
 	t_byte		colouring[MEM_SIZE];
+	t_byte		cursor[MEM_SIZE];
 }				t_core;
 
 /*
@@ -70,9 +72,10 @@ int load(t_core *core);
 /*
 **	cursor.c
 */
-t_process	*process_new(int pc, int player_num);
-void		process_add(t_process **head, t_process *new);
-void		process_del(t_process **head);
+void    process_add(t_core *core, int pc, int player_num);
+//t_process	*process_new(int pc, int player_num);
+//void		process_add(t_process **head, t_process *new);
+//void		process_del(t_process **head);
 
 /*
 **	disp.c
@@ -81,8 +84,8 @@ void	print_parsed_info(t_core *core);
 void	print_players(t_core *core);
 void	print_player(t_player *player);
 void	print_hex(int n, int cl);
-void	print_mem(char *reg, char *player_intput, int player_num);
-void	print_processes(t_process *cursor);
+void	print_mem(t_byte *reg, t_byte *colouring, t_byte *cursor);
+void	print_processes(t_core *core);
 
 /*
 **	exit.c 

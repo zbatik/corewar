@@ -39,23 +39,46 @@ void	print_hex(int n, int cl)
 		ft_putchar_cl(out[i--], cl);
 }
 
-void	print_mem(char *reg, char *player_input, int player_num)
+void	print_mem(t_byte *reg, t_byte *colouring, t_byte *cursor)
 {
 	int i;
-	int cl;
+	//int cl;
 
 	i = 0;
 	while (i < MEM_SIZE)
 	{
 		if (i % 64 == 0 && i != 0)
 			ft_putchar('\n');
-		cl = (player_input[i] == -1 ? na : player_num);
-		print_hex(((char *)reg)[i], cl);
+		ft_putstr(cursor[i] ? "\033[7m" : "");
+		print_hex(reg[i], colouring[i]);
+		ft_putstr(cursor[i] ? "\033[m": "");
 		ft_putchar(' ');
 		i++;
 	}
+	ft_putendl("");
 }
+void	print_processes(t_core *core)
+{
+	int j;
+	int i;
+	int reg_entry;
 
+	j = -1;
+	while (++j < core->num_processes)
+	{
+		printf("_____________\n");
+		printf("Process ID: %d\n", j + 1);
+		printf("PC: %d\n", core->processes[j].pc);
+		printf("Carry: %d\n", core->processes[j].carry);
+		i = -1;
+		while (++i < REG_NUMBER)
+		{
+			reg_entry = core->processes[j].reg[i];
+			printf("r%d: %x (or %d)\n", i + 1, reg_entry, reg_entry);
+		}
+	}
+}
+/*
 void	print_processes(t_process *cursor)
 {
 	int count;
@@ -76,7 +99,7 @@ void	print_processes(t_process *cursor)
 		cursor = cursor->next;
 	}
 }
-
+*/
 void	print_parsed_info(t_core *core)
 {	
 	printf("___Parsed Data___\n");
@@ -114,5 +137,5 @@ void	print_player(t_player *player)
 		for (int i = 0; i < player->size; i++)
 			printf("%x", player->program[i]);
 		printf("\n");
-		printf("Start Pos: %d\n", player->start_pos);
+		printf("Start Pos: %u\n", player->start_pos);
 }

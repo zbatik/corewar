@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   players.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 12:38:34 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/08 18:05:13 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/09 15:06:32 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int          assign_player_pos(t_core *core)
     i = -1;
     while (++i < core->num_players)
     {
+     //   printf("pos: %d\nfactor: %d\n", pos, factor);
         core->players[i].start_pos = pos;
         pos += factor;
     }
@@ -87,6 +88,8 @@ static int          read_player_file(t_player *player)
     ft_strcpy((char*)player->name, header->prog_name);
     ft_strcpy((char*)player->comment, header->comment);
     player->size = rev_endian(header->prog_size);
+    if (player->size > CHAMP_MAX_SIZE)
+        exit_on_error("Error: invalid player size");
     read(fd, player->program, player->size);
     return (1);
 }
