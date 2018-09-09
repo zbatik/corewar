@@ -56,6 +56,27 @@ void	print_mem(char *reg, char *player_input, int player_num)
 	}
 }
 
+void	print_processes(t_process *cursor)
+{
+	int count;
+	int i;
+
+	if (cursor == NULL)
+		return ;
+	count = 0;
+	while (cursor)
+	{
+		printf("_____________\n");
+		printf("Process ID: %d\n", count);
+		printf("PC: %d\n", cursor->pc);
+		printf("Carry: %d\n", cursor->carry);
+		i = -1;
+		while (++i < REG_NUMBER)
+			printf("r%d: %x (or %d)\n", i + 1, cursor->reg[i], cursor->reg[i]);
+		cursor = cursor->next;
+	}
+}
+
 void	print_parsed_info(t_core *core)
 {	
 	printf("___Parsed Data___\n");
@@ -66,7 +87,7 @@ void	print_parsed_info(t_core *core)
 	int	i = -1;
 	while (++i < core->num_players)
 	{
-		printf("player file: |%s|, player num: %d\n", core->players[i].file_name, core->players[i].num);
+		printf("Player file: |%s|, Player num: %d\n", core->players[i].file_name, core->players[i].num);
 	}
 	printf("_____________\n");
 }

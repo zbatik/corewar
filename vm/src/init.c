@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:12:42 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/08 14:57:40 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/09 13:19:05 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int init_core(t_core *core)
 {
 	int i;
 
-    core->process = NULL;
+    core->processes = NULL;
+	core->num_processes = 0;
 	core->dump = 0;
 	core->cycles_to_dump = -1;
 	core->num_players = 0;

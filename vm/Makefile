@@ -6,13 +6,13 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 12:48:33 by zbatik            #+#    #+#              #
-#    Updated: 2018/09/06 13:45:07 by zbatik           ###   ########.fr        #
+#    Updated: 2018/09/09 13:33:25 by zbatik           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= core
 CC				= gcc
-FLAGS			= -Wall -Werror -Wextra
+FLAGS			= -g -Wall -Werror -Wextra
 LIB_DIR			= ../shared/libft/
 LIB				= $(join $(LIB_DIR),libft.a)
 
@@ -31,6 +31,7 @@ SRC_FILES		=	main.c \
 				init.c \
 				input.c \
 				load.c \
+				cursor.c 
 					
 
 all: clean $(NAME)
