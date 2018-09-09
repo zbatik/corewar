@@ -6,7 +6,7 @@
 /*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:39:32 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/06 15:34:02 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/09 16:09:21 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,22 @@
 */
 int main(int ac, char *av[])
 {
-	t_input	*in_head;
-	t_input	*tmp;
+//	t_input	*in_head;
+//	t_input	*tmp;
+	t_main var;
 
-	(void) tmp;
+//	(void) tmp;
 	if (ac > 1)
 	{
-		in_head = file_tolist(av[1]);
-		tmp = in_head;
-		while (tmp != NULL)
+		//in_head = file_tolist(av[1]);
+		//tmp = in_head;
+		store_input(&var, av[1]);
+		while (var.temp_input != NULL)
 		{
-			ft_putnbr(tmp->line_no);
-			ft_putchar(':');
-			ft_putendl(tmp->line);
-			tmp = tmp->next;
+			ft_putnbr(var.temp_input->line_no);
+			ft_putchar('-');
+			ft_putendl(var.temp_input->line);
+			var.temp_input = var.temp_input->next;
 		}
 		/*if (is_validfile(in_head) == TRUE)
 		{

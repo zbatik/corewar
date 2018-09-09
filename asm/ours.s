@@ -1,4 +1,4 @@
 .name "ours"
-.comment "die"
-
-live %42
+.comment "fbjaf"
+live: 
+	 live %4

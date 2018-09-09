@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/06 15:23:32 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/09 14:34:02 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int					instruction_byte_size(char *instuction_line);
 /*
 ** Eddie's fns
 */
+
 int					is_valid_mnemonic(char *str);
 int					is_label(char *str);
 int					is_valid_label(char *str);
@@ -68,6 +69,7 @@ typedef struct		s_input
 	t_bool			is_label;
 	t_opnum			instruction_type;
 	struct s_input	*next;
+	struct s_input	*prev;
 }					t_input;
 
 void				input_del(t_input **ahead);
@@ -92,3 +94,13 @@ typedef struct	s_label
 /**
 indexing of labels starts from 256
 */
+/*
+** Eddie's tdef
+*/
+typedef struct s_main 
+{
+	t_input		*input;
+	t_input		*temp_input;
+}				t_main;
+void				store_input(t_main *var, char *);
+

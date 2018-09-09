@@ -59,7 +59,7 @@ int		is_wsstring(const char *str)
 	return (TRUE);
 }
 
-void	init_head(int fd, t_input *head)
+/*void	init_head(int fd, t_input *head)
 {
 	if (get_next_line(fd, &str) < 0)
 	{
@@ -67,7 +67,7 @@ void	init_head(int fd, t_input *head)
 		return (NULL);
 	}
 	
-}
+}*/
 
 t_input	*file_tolist(char *fname)
 {
@@ -78,6 +78,7 @@ t_input	*file_tolist(char *fname)
 	char	*label;
 	int		i;
 
+	head = NULL;
 	fd = open(fname, O_RDONLY);
 	if (fd < 0)
 	{

@@ -36,7 +36,7 @@ SRC_FILES		=	error_check_line.c\
 					label.c \
 					main.c \
 					parse_listinfo.c \
-					print_cor.c \
+					store_input.c \
 					
 
 all: clean $(NAME)
