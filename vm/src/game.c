@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 15:43:52 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/09 16:36:40 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/09 18:28:31 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,26 @@ static int execute_pcs(t_core *core)
     i = -1;
     while (++i < core->num_processes)
     {
-        move = execute_pc(&core->processes[i]);
+        move = execute_pc(core, &core->processes[i]);
         core->cursor[core->processes[i].pc - move] = 0;
         core->cursor[core->processes[i].pc] = 1;
     }
     return (1);
 }
 
-static int execute_pc(t_process *cursor, t_byte *mem)
+static int execute_pc(t_core *core, t_process *cursor)
 {
     int move;
 
     cursor->cycles_to_execute -= 1;
     if (cursor->cycles_to_execute == 0)
     {
-        if (mem[cursor->pc] >= 0x00 && mem[cursor->pc] <= 0x10)
-            move = instructon_pointer[mem[cursor->pc]];
+        if (core->mem[cursor->pc] >= 0x01 && core->mem[cursor->pc] <= 0x10)
+            move = core->instructon_fn[core->mem[cursor->pc] - 1](core);
         else
             move = 1;
         cursor->pc = (cursor->pc + move) % MEM_SIZE;
-        update_cycles_to_execute(mem[cursor->pc], cursor);
+        update_cycles_to_execute(core->mem[cursor->pc], cursor);
     }
     else
         move = 0;

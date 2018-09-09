@@ -37,6 +37,7 @@ typedef struct	s_process
 
 typedef struct	s_core
 {
+	int 		(*instructon_fn[16]) (struct s_core *core);
 	t_process	processes[MEM_SIZE];
 	int			num_processes;
 	t_bool		dump;
@@ -91,5 +92,25 @@ void	print_processes(t_core *core);
 **	exit.c 
 */
 void exit_on_error(char *error_msg);
+
+/*
+**	instructions/ 
+*/
+int ft_live(t_core *core);
+int ft_ld(t_core *core);
+int ft_st(t_core *core);
+int ft_add(t_core *core);
+int ft_sub(t_core *core);
+int ft_abd(t_core *core);
+int ft_or(t_core *core);
+int ft_xor(t_core *core);
+int ft_zjmp(t_core *core);
+int ft_ldi(t_core *core);
+int ft_sti(t_core *core);
+int ft_fork(t_core *core);
+int ft_lld(t_core *core);
+int ft_lldi(t_core *core);
+int ft_lfork(t_core *core);
+int ft_aff(t_core *core);
 
 #endif

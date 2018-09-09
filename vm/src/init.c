@@ -6,11 +6,31 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:12:42 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/09 16:26:26 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/09 18:14:39 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
+
+static void	init_fnptr(t_core *core)
+{
+    core->instructon_fn[0] = ft_live;
+    core->instructon_fn[1] = ft_ld;
+    core->instructon_fn[2] = ft_st;
+    core->instructon_fn[3] = ft_add;
+    core->instructon_fn[4] = ft_sub;
+    core->instructon_fn[5] = ft_abd;
+    core->instructon_fn[6] = ft_or;
+    core->instructon_fn[7] = ft_xor;
+    core->instructon_fn[8] = ft_zjmp;
+    core->instructon_fn[9] = ft_ldi;
+    core->instructon_fn[10] = ft_sti;
+    core->instructon_fn[11] = ft_fork;
+    core->instructon_fn[12] = ft_lld;
+    core->instructon_fn[13] = ft_lldi;
+    core->instructon_fn[14] = ft_lfork;
+    core->instructon_fn[15] = ft_aff;
+}
 
 static int	init_player(t_player *player)
 {
@@ -29,7 +49,7 @@ int init_core(t_core *core)
 {
 	int i;
 
-  //  core->processes = NULL;
+	init_fnptr(core);
 	core->num_processes = 0;
 	core->dump = 0;
 	core->cycles_to_die = CYCLE_TO_DIE;
