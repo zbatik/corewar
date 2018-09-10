@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "../includes/asm.h"
 #include <stdio.h>
 
 
@@ -38,6 +38,7 @@ t_bool	parse_listinfo(t_input *ahead)
 
 	tmp = ahead;
 	count = 0;
+	(void) count;
 	while (tmp != NULL)
 	{
 		if (tmp->is_label == FALSE && is_name(tmp->line) == FALSE

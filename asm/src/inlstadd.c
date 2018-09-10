@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "../includes/asm.h"
 
 void	inlstadd(t_input **ahead, t_input *elem)
 {

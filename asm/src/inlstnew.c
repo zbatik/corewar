@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <asm.h>
+#include "../includes/asm.h"
 
 t_input	*inlstnew(char	*line, int line_no, t_bool is_label)
 {

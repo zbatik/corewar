@@ -43,7 +43,7 @@ SRC_FILES		=	error_check_line.c\
 all: clean $(NAME)
 $(NAME):
 	make -s -C $(LIB_DIR)
-	$(CC) $(FLAGS) $(SRC_PATH) $(SHARED_PATHS) $(LIB) $(INCLUDES)  -o $(NAME)
+	gcc  -o $(NAME) $(FLAGS) $(SRC_PATH) $(SHARED_PATHS) $(LIB)
 
 clean:
 	rm -f $(NAME)

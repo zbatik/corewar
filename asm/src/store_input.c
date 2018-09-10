@@ -101,11 +101,11 @@ static void		split_and_add(t_main *var, char *line)
 void            store_input(t_main *var, char *fname)
 {
 	int         fd;
-	int         i;
+	//int         i;
 	char        *line;
 
 	fd = open(fname, O_RDONLY);
-	i = 1;
+	//i = 1;
 	var->input = NULL;
 	if (fd < 0)
 	{
