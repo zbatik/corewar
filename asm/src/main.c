@@ -24,34 +24,28 @@
 */
 int main(int ac, char *av[])
 {
-//	t_input	*in_head;
-//	t_input	*tmp;
 	t_main var;
 
-//	(void) tmp;
 	if (ac > 1)
 	{
-		//in_head = file_tolist(av[1]);
-		//tmp = in_head;
 		store_input(&var, av[1]);
-		while (var.temp_input != NULL)
+		/*while (var.temp_input != NULL)
 		{
 			ft_putnbr(var.temp_input->line_no);
 			ft_putchar('-');
 			ft_putendl(var.temp_input->line);
 			var.temp_input = var.temp_input->next;
-		}
-		/*if (is_validfile(in_head) == TRUE)
+		} */
+		if (is_validfile(var.input) == TRUE)
 		{
 
-			if (parse_listinfo(in_head) == TRUE)
+			if (parse_listinfo(var.input) == TRUE)
 			{
-				print_cor(in_head, av[1]);
+				print_cor(var.input, av[1]);
 			}
 		}
 		else
 			ft_putendl("ERROR: error in file");
-			*/
 	}
 	else
 	{

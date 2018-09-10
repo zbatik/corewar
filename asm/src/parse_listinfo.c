@@ -38,16 +38,11 @@ t_bool	parse_listinfo(t_input *ahead)
 
 	tmp = ahead;
 	count = 0;
-	if (tmp != NULL)
+	while (tmp != NULL)
 	{
-		//if (tmp->is_label == FALSE)
-		printf("%d\n",instruction_byte_size(tmp->line));
-		/*if (tmp->is_label == TRUE)
-			tmp->byte_count = count;
-		else if (is_name(tmp->line) == FALSE && is_comment(tmp->line) == FALSE)
-		{
-			gen_bytecode(tmp);
-		}*/
+		if (tmp->is_label == FALSE && is_name(tmp->line) == FALSE
+			&& is_comment(tmp->line) == FALSE )
+			printf("%d\n",instruction_byte_size(tmp->line));
 		tmp = tmp->next;
 	}
 	return(TRUE);

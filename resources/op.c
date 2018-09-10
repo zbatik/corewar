@@ -54,3 +54,5 @@ t_op    op_tab[17] =
 //all registers begin from 1 to 16
 
 //ind is with % and dir is without
+
+//Note that we can have more than one comment in the file

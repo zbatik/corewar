@@ -114,10 +114,15 @@ void            store_input(t_main *var, char *fname)
 	}
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (line_has_label(line) && !line_has_label_only(line))
-			split_and_add(var, line);
-		else
-			add_line(var, line, 0);
+		if (is_wsstring(line) == FALSE)
+		{
+			if (line_has_label(line) && !line_has_label_only(line))
+				split_and_add(var, line);
+			else
+				add_line(var, line, 0);
+			if(is_label(var->temp_input->line) ==  TRUE)
+				var->temp_input->is_label = TRUE;
+		}
 		ft_strdel(&line);
 	}
 	var->temp_input = var->input;

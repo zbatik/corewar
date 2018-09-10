@@ -11,10 +11,33 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
+#include <stdio.h>
 
-t_arg_type parse_instruction_arg(char *instruction_line);
+int instruction_arg_size(t_opnum op, const char *instruction_line)
+{
+    char    **split;
+    int     num_args;
+    char    *tmp;
+    int     i;
 
-int instruction_arg_size(t_opnum instruction, t_arg_type arg1);
+    i = 0;
+    tmp = (char *)instruction_line;
+    tmp += ft_indexcin(instruction_line, ' ');
+    split = ft_strsplit(tmp, ',');
+    if (split == NULL)
+        printf("theres only one arg\n");
+    num_args = (index_opinfo(op)).num_args;
+    printf("%d: num_args, split[0]: %s", num_args, split[0]);
+    while(split != NULL && i < num_args)
+    {
+        if (split[i][0] == '%')
+            ft_putendl("indeirect");
+        else
+            ft_putendl("direct");
+        i++;
+    }
+    return (i);
+}
 
 int instruction_byte_size(char *instruction_line)
 {
@@ -35,8 +58,16 @@ int instruction_byte_size(char *instruction_line)
         ft_putendl((char*)instruction_line);
         ft_putstr("Recognised as: ");
         ft_putendl((index_opinfo(op)).instruction);
+        if (ft_strcmp((index_opinfo(op)).instruction, "") == 0)
+        {
+            ft_putendl("not an instruction");
+        }
         ft_putstr("Calculate byte size of: ");
+        byte_size = instruction_arg_size(op, instruction_line);
         ft_putnbr(byte_size);
+        ft_putstr("\nthis instruction takes: ");
+        ft_putnbr(index_opinfo(op).num_args);
+        ft_putstr(" arguments");
         ft_putchar('\n');
     }
     return (byte_size);

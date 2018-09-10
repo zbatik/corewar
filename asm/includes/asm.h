@@ -80,6 +80,7 @@ t_bool				is_validfile(t_input *ahead);
 void				print_cor(t_input *head, char *fname);
 void				inlstadd(t_input **ahead, t_input *elem);
 t_input				*inlstnew(char	*line, int line_no, t_bool is_label);
+int					is_wsstring(const char *str);
 
 /*
 typedef struct	s_label

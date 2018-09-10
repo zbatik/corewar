@@ -22,6 +22,17 @@
 
 # define TRUE 1
 # define FALSE 0
+# define RRR 0b01010100
+# define RIR 0b01110100
+# define RDR 0b01100100
+# define IRR 0b11010100
+# define IIR 0b11110100
+# define IDR 0b11100100
+# define DRR 0b10010100
+# define DIR 0b10110100
+# define DDR 0b10100100
+# define IR 0b11010000
+# define DR 0b10010000
 
 
 typedef unsigned char	t_byte;
