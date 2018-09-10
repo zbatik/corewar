@@ -39,6 +39,23 @@ void	load_player(t_player *player, t_info *info, int start)
 */
 int	main(int c, char **v)
 {
+	t_core core;
+	if (c == 1)
+	{
+		ft_putendl("./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
+		return (1);
+	}
+	ft_putendl("Init data");
+	init_core(&core);
+	ft_putendl("Parse input");
+	parse_input(&core, c - 1, v + 1);
+	ft_putendl("Print");
+	print_parsed_info(&core);
+}
+
+/* read_player test 
+int	main(int c, char **v)
+{
 	t_player	*players[MAX_PLAYERS];
 	int		num_players;
 	int		i;
@@ -55,6 +72,8 @@ int	main(int c, char **v)
 	{
 		print_player(players[i]);
 	}
+}
+*/
 	/*
 	info = malloc(sizeof(info));
 	info->reg = malloc(sizeof(t_byte) * MEM_SIZE);
@@ -69,4 +88,3 @@ int	main(int c, char **v)
 	load_player(add_player(1, "harry", instr, info->reg), info, 0);
 	print_mem(info->reg, info->player_input, 1);
 	*/
-}

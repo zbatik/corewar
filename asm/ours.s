@@ -1,9 +1,4 @@
 .name "ours"
-.comment "Phuti is watching"
-
-live1:live %42
-ld 2 r1
-add r1 r2 r3
-zjmp	%:live1
-ld:live %42
-zjmp %:live1
+.comment "fbjaf"
+live: 
+	 live %4

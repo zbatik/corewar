@@ -58,6 +58,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s);
 char	**ft_strsplit(char const *s, char c);
 
+int     ft_isint(char *in);
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);

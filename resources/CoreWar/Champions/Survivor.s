@@ -1,5 +1,5 @@
-.name    "Survivor"
-.comment "Invincible"
+.name    'Survivor'
+.comment Invincible
 .extend
 
 	live	%1

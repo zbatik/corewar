@@ -61,3 +61,17 @@ void	print_player(t_player *player)
 	ft_putendl(player->comment);
 	printf("%x\n", player->size);
 	}
+void	print_parsed_info(t_core *core)
+{	
+	printf("___Parsed Data___\n");
+	printf("Dump core: %d\n", core->dump);
+	if (core->dump)
+		printf("after %d cycles\n", core->cycles_to_dump);
+	printf("Number Players: %d\n", core->num_players);
+	int	i = -1;
+	while (++i < core->num_players)
+	{
+		printf("player file: |%s|, player num: %d\n", core->players[i].file_name, core->players[i].num);
+	}
+	printf("_____________\n");
+}
