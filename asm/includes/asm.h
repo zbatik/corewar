@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/09 14:34:02 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/10 15:32:01 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,9 @@ int					instruction_byte_size(char *instuction_line);
 /*
 ** Eddie's fns
 */
-
 int					is_valid_mnemonic(char *str);
 int					is_label(char *str);
 int					is_valid_label(char *str);
-int					error_check_line(char *line);
 int					is_name(char *line);
 int					is_comment(char *line);
 int					is_valid_name(char *line);
@@ -103,4 +101,6 @@ typedef struct s_main
 	t_input		*temp_input;
 }				t_main;
 void				store_input(t_main *var, char *);
-
+void				error_check_data(t_main *var);
+int					error_check_line(t_main *var, char *line, int ln);
+int					args_are_valid(char *args);

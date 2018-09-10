@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 14:31:36 by mdilapi           #+#    #+#              #
-#    Updated: 2018/09/06 15:22:28 by emaune           ###   ########.fr        #
+#    Updated: 2018/09/10 15:36:39 by emaune           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SHARED_FILES 	= op_info.c \
 
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
-SRC_FILES		=	error_check_line.c\
+SRC_FILES		=	args_are_valid.c \
+					error_check_data.c \
+					error_check_line.c \
 					file_tolist.c \
 					inlstadd.c \
 					inlstnew.c \

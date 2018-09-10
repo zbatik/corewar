@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 14:24:20 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/06 15:02:53 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/10 15:40:00 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			is_valid_label(char *str)
 	int		flag;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && str[i] != ':')
 	{
 		j = 0;
 		flag = 0;

@@ -6,7 +6,7 @@
 /*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:39:32 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/09 16:09:21 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/10 15:35:55 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int main(int ac, char *av[])
 		//in_head = file_tolist(av[1]);
 		//tmp = in_head;
 		store_input(&var, av[1]);
+		error_check_data(&var);
 		while (var.temp_input != NULL)
 		{
 			ft_putnbr(var.temp_input->line_no);
