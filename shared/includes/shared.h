@@ -20,11 +20,13 @@
 #include <unistd.h>
 #include <stdio.h>
 
+
 # define TRUE 1
 # define FALSE 0
 # define RRR 0b01010100
 # define RIR 0b01110100
 # define RDR 0b01100100
+# define RRD 0b1011100
 # define IRR 0b11010100
 # define IIR 0b11110100
 # define IDR 0b11100100

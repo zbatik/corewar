@@ -37,6 +37,8 @@ int string_to_encoding (char str[3])
         return (RIR);
     else if (ft_strncmp(str, "RDR", 3) == 0)
         return (RDR);
+    else if (ft_strncmp(str, "RRD", 3) == 0)
+    	return (RRD);
     else if (ft_strncmp(str, "IRR", 3) == 0)
         return (IRR);
     else if (ft_strncmp(str, "IIR", 3) == 0)
@@ -84,7 +86,6 @@ int instruction_arg_size(t_opnum op, const char *instruction_line)
         i++;
     }
     arg_arr[i] = '\0';
-   	printf("string to encoding: %d, and str is: %s\n", string_to_encoding(arg_arr), arg_arr);
     return (arg_byte_count(arg_arr));
 }
 
@@ -102,7 +103,7 @@ int instruction_byte_size(char *instruction_line)
 		ft_putstr("Recognised as: ");
 		ft_putendl((index_opinfo(op)).instruction);
 		ft_putstr("Calculated byte size of: \n");
-		byte_size = instruction_arg_size(op, instruction_line);
+		byte_size = instruction_arg_size(op, instruction_line) + 2; // the plus 2 is the size of the actual instruction
 		ft_putnbr(byte_size);
 		ft_putchar('\n');
     }

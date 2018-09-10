@@ -34,17 +34,31 @@ t_bool	is_validfile(t_input *ahead)
 t_bool	parse_listinfo(t_input *ahead)
 {
 	t_input *tmp;
-	t_byte	count;
+	int		count;
 
 	tmp = ahead;
 	count = 0;
-	(void) count;
 	while (tmp != NULL)
 	{
-		if (tmp->is_label == FALSE && is_name(tmp->line) == FALSE
+		if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 			&& is_comment(tmp->line) == FALSE )
-			printf("%d\n",instruction_byte_size(tmp->line));
+		{
+			count += instruction_byte_size(tmp->line);
+		}
+		if (is_label(tmp->line) == TRUE)
+		{
+			tmp->byte_count = count;
+			tmp->is_label = TRUE;
+		}
 		tmp = tmp->next;
 	}
+	/*printf("Going to print out the absolute positions of all my labels\n");
+	tmp = ahead;
+	while (tmp != NULL)
+	{
+		if (is_label(tmp->line) == TRUE)
+			printf("Label: %s, has absolute position: %d\n",tmp->line ,tmp->byte_count);
+		tmp = tmp->next;
+	} */
 	return(TRUE);
 }
