@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lforl.c                                         :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 18:31:24 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/09 18:32:19 by zbatik           ###   ########.fr       */
+/*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/10 17:18:32 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/vm.h"
-
-int ft_lfork(t_core *core)
+t_bool  valid_reg(int rX)
 {
-    return (5);
+    if (rX >= 0x01 && rX <= 0x10)
+        return (1);
+    else
+        return (0);
 }
+
+void    cpy_to_reg(t_byte *reg_entry, t_byte *cpy_from, int size);

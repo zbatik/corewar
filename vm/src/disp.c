@@ -61,7 +61,6 @@ void	print_processes(t_core *core)
 {
 	int j;
 	int i;
-	int reg_entry;
 
 	j = -1;
 	while (++j < core->num_processes)
@@ -73,8 +72,9 @@ void	print_processes(t_core *core)
 		i = -1;
 		while (++i < REG_NUMBER)
 		{
-			reg_entry = core->processes[j].reg[i];
-			printf("r%d: %x (or %d)\n", i + 1, reg_entry, reg_entry);
+			printf("r%d: %x (or %d)\n", i + 1, 
+			*(int*)core->processes[j].reg[i],
+			 *(int*)core->processes[j].reg[i]);
 		}
 	}
 }
@@ -94,27 +94,63 @@ void	print_parsed_info(t_core *core)
 	printf("_____________\n");
 }
 
+void	print_cursor_info(t_process *cursor)
+{
+	ft_putstr("carry: ");
+	ft_putnbr(cursor->carry);
+	ft_putchar('\n');
+	ft_putstr("cycles_to_execute: ");
+	ft_putnbr(cursor->cycles_to_execute);
+	ft_putchar('\n');
+	ft_putstr("id: ");
+	ft_putnbr(cursor->id);
+	ft_putchar('\n');
+	ft_putstr("pc: ");
+	ft_putnbr(cursor->pc);
+	ft_putchar('\n');
+}
+
+void	print_cylce_info(t_core *core, int current)
+{
+	ft_putstr("cycles to die: ");
+	ft_putnbr(current);
+	ft_putstr(" of ");
+	ft_putnbr(core->cycles_to_die);
+	ft_putchar('\n');
+}
+
 void	print_players(t_core *core)
 {
 	int i;
 
 	i = -1;
-	printf("Number Players: %d\n", core->num_players);
+	ft_putendl_fd("\tPLAYER_BREAKDOWN:", core->fd);
+	ft_putstr_fd("Number Players: ", core->fd);
+	ft_putnbr_fd(core->num_players, core->fd);
+	ft_putchar_fd('\n', core->fd);
 	while (++i < core->num_players)
-		print_player(&core->players[i]);
+		print_player(&core->players[i], core->fd);
 }
 
-void	print_player(t_player *player)
+void	print_player(t_player *player, int fd)
 {
-		printf("___Player_Info___\n");
-		printf("Player Number %d\n", player->num);
-		printf("Player Name: \"%s\"\n", player->name);
-		printf("Player File name: %s\n", player->file_name);
-		printf("Comment: \"%s\"\n", player->comment);
-		printf("Player Size: %x (in decimal) %d\n", player->size, player->size);
-		printf("Program:");
-		for (int i = 0; i < player->size; i++)
-			printf("%x", player->program[i]);
-		printf("\n");
-		printf("Start Pos: %u\n", player->start_pos);
+		ft_putendl_fd("___Player_Info___", fd);
+		ft_putstr_fd("Player Number", fd); 
+		ft_putnbr_fd(player->num, fd);
+		ft_putchar_fd('\n', fd);
+		ft_putstr_fd("Player Name: ", fd);
+		ft_putendl_fd(player->name, fd);
+		ft_putstr_fd("Player File name: ", fd);
+		ft_putendl_fd(player->file_name, fd);
+		ft_putstr_fd("Comment: ", fd);
+		ft_putendl_fd(player->comment, fd);
+		ft_putstr_fd("Player Size: ", fd);
+		ft_putnbr_fd(player->size, fd);
+		ft_putchar_fd('\n', fd);
+	//	ft_putstr_fd("Program:", fd);
+	//	for (int i = 0; i < player->size; i++)
+	//		fprintf(fd, "%x ", player->program[i]); 
+		ft_putstr_fd("Start Pos: ", fd);
+		ft_putnbr_fd(player->start_pos, fd);
+		ft_putchar_fd('\n', fd);
 }

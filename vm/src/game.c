@@ -3,21 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 15:43:52 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/09 18:28:31 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/10 17:07:13 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static int update_cycles_to_execute(t_byte current, t_process *cursor)
+int update_cycles_to_execute(t_byte current, t_process *cursor)
 {
-    if (current >= 0x00 && current <= 0x10)
+    if (current >= 0x01 && current <= 0x10)
         cursor->cycles_to_execute = (index_opinfo(current)).cycles;
     else
         cursor->cycles_to_execute = 1;
+    return (1);
+}
+
+static int execute_pc(t_core *core, t_process *cursor)
+{
+    int move;
+    print_cursor_info(cursor);
+    if (cursor->cycles_to_execute == 0)
+    {
+        if (core->mem[cursor->pc] >= 0x01 && core->mem[cursor->pc] <= 0x10)
+            move = core->instructon_fn[core->mem[cursor->pc] - 1](core, cursor);
+        else
+            move = 1;
+        cursor->pc = (cursor->pc + move) % MEM_SIZE;
+        update_cycles_to_execute(core->mem[cursor->pc], cursor);
+    }
+    else
+        move = 0;
+    cursor->cycles_to_execute -= 1;
+    return (move);
 }
 
 static int execute_pcs(t_core *core)
@@ -35,36 +55,23 @@ static int execute_pcs(t_core *core)
     return (1);
 }
 
-static int execute_pc(t_core *core, t_process *cursor)
-{
-    int move;
-
-    cursor->cycles_to_execute -= 1;
-    if (cursor->cycles_to_execute == 0)
-    {
-        if (core->mem[cursor->pc] >= 0x01 && core->mem[cursor->pc] <= 0x10)
-            move = core->instructon_fn[core->mem[cursor->pc] - 1](core);
-        else
-            move = 1;
-        cursor->pc = (cursor->pc + move) % MEM_SIZE;
-        update_cycles_to_execute(core->mem[cursor->pc], cursor);
-    }
-    else
-        move = 0;
-    return (move);
-}
-
 int game_loop(t_core *core)
 {
     int i;
     char *line;
 
     i = -1;
-    while (++i < core->cycles_to_die)
+    while (core->cycles_to_die > 0)
     {
-        get_next_line(0, &line);
-        ft_strdel(&line);
-        execute_pcs(core);
+        while (++i < core->cycles_to_die)
+        {
+            get_next_line(0, &line);
+            ft_strdel(&line);
+            execute_pcs(core);
+            print_cylce_info(core, i);
+            print_mem(core->mem, core->colouring, core->cursor);
+        }
         core->cycles_to_die -= CYCLE_DELTA;
     }
+    return (1);
 }

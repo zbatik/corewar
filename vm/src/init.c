@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:12:42 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/09 18:14:39 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/10 11:21:36 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_fnptr(t_core *core)
     core->instructon_fn[2] = ft_st;
     core->instructon_fn[3] = ft_add;
     core->instructon_fn[4] = ft_sub;
-    core->instructon_fn[5] = ft_abd;
+    core->instructon_fn[5] = ft_and;
     core->instructon_fn[6] = ft_or;
     core->instructon_fn[7] = ft_xor;
     core->instructon_fn[8] = ft_zjmp;
@@ -37,7 +37,8 @@ static int	init_player(t_player *player)
 	player->file_name = NULL;
 	ft_bzero(player->name, PROG_NAME_LENGTH + 1);
 	ft_bzero(player->comment, COMMENT_LENGTH + 1);
-	player->alive = 0;
+	player->alive = 1;
+	player->live_count = 0;
 	player->size = 0;
 	player->num = -1;
 	ft_bzero(player->program, CHAMP_MAX_SIZE);

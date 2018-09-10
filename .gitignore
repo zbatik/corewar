@@ -6,4 +6,5 @@ a.out
 *.swp
 .DS_Store
 .vscode
-vm/core:
+vm/core
+core.log

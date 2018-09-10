@@ -20,19 +20,17 @@ int	main(int c, char **v)
 		ft_putendl("./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
 		return (1);
 	}
-	ft_putendl("Init data");
+	core.fd = open("core.log", O_WRONLY | O_CREAT);
+	ft_putendl_fd("Init data", core.fd);
 	init_core(&core);
-	ft_putendl("Parse input");
+	ft_putendl_fd("Parse input", core.fd);
 	parse_input(&core, c - 1, v + 1);
-	ft_putendl("Set players");
+	ft_putendl_fd("Set players", core.fd);
 	creat_players(&core);
 	print_players(&core);
-	ft_putendl("Load players & init cursors");
+	ft_putendl_fd("Load players & init cursors", core.fd);
 	load(&core);
-	ft_putendl("Print");
-	print_mem(core.mem, core.colouring, core.cursor);
-	
-	print_processes(&core);
-	exit(1);
+	game_loop(&core);
+//	print_processes(&core);
 	return (1);
 }

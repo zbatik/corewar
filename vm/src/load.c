@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:14:32 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/09 16:27:14 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/10 15:02:20 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,29 @@ static int load_players(t_core *core)
     return (1);
 }
 
+/*
+**  int_cursors
+**  __________
+**  the last player loaded into the memory is given 
+**  the first process. 
+*/
+
 static int init_cursors(t_core *core)
 {
-    int         i;
- //   t_process   *cursor;
+    int i;
+    int pc;
+    int r1;
 
-    i = core->num_players;
-    while (--i >= 0)
+    i = 0;
+    while (i < core->num_players)
     {
-        process_add(core, core->players[i].start_pos, core->players[i].num);
+        pc = core->players[core->num_players - i - 1].start_pos;
+        r1 = core->players[core->num_players - i - 1].num;
+        process_add(&core->processes[i], pc, r1, i);
+        update_cycles_to_execute(core->mem[pc], &core->processes[i]);
         core->cursor[core->players[i].start_pos] = 1;
+        core->num_processes += 1;
+        i++;
     }
     return (1);
 }

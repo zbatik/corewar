@@ -32,7 +32,8 @@ SRC_FILES		=	main.c \
 				input.c \
 				load.c \
 				cursor.c \
-				game.c 
+				game.c \
+				helpers.c
 
 INST_DIR		= ./src/instructions/
 INST_PATHS		= $(addprefix $(INST_DIR),$(INST_FILES))
@@ -41,7 +42,7 @@ INST_FILES		= ft_live.c \
 				ft_st.c \
 				ft_add.c \
 				ft_sub.c \
-				ft_abd.c \
+				ft_and.c \
 				ft_or.c \
 				ft_xor.c \
 				ft_zjmp.c \
