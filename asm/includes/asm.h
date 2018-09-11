@@ -55,14 +55,13 @@ int					is_valid_comment(char *line);
 /*
 ** Fred's fns
 */
-
 typedef struct		s_input
 {
 	char			*line;
 	char			args[4];
 	int				line_no;
 	int				byte_count;
-	t_byte			byte_code;
+	t_byte			*byte_code;
 	t_byte			param_encoding;
 	t_bool			is_label;
 	t_opnum			instruction_type;

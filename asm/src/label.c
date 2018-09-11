@@ -91,9 +91,7 @@ void    instruction_arg_size(t_opnum op, t_input *input)
 int    instruction_byte_size(t_input   *input)
 {
     t_opnum op;
-    int     byte_size;
 
-    byte_size = 0;
     op = inst_to_enum((char*)input->line);
     if (DEBUG)
     {
