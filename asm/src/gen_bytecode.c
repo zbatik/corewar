@@ -27,15 +27,50 @@ void	op_code_char(char	*code, t_opnum op)
 void	gen_bytecode(t_input *elem)
 {
 	char	code[elem->byte_count];
-	//int 	i;
-	//char	*tmp;
+	int 	i;
+	char	*tmp;
+	char	**split;
+	int		inter;
 	t_opnum op;
 
 	op = inst_to_enum((char*)elem->line);
-	//tmp = ft_itoa(op);
+	i = 0;
 	op_code_char((char *)code, op);
-	code[3] = '\0';
 	elem->byte_code = (unsigned char *) ft_strdup(code);
+	tmp = (char *)elem->line;
+    while(ft_isws(*tmp) == FALSE && *tmp != '\0')
+        tmp++;
+    while(ft_isws(*tmp) == TRUE && *tmp != '\0')
+        tmp++;
+    split = ft_strsplit(tmp, ',');
+	while (elem->args[i] != '\0')
+	{
+		if (elem->args[i] == 'D')
+		{
+			//Direct parsing
+
+		}
+		else if (elem->args[i] == 'I')
+		{
+			//indirect parsing, check if its a label.
+			if (split[i][1] == ':')
+			{
+				printf("Arg label\n");
+			}
+			else
+			{
+				inter = ft_atoi(split[i] + 1);
+				swapnfree((char **)&elem->byte_code, ft_strjoin((char *)elem->byte_code, ft_itoa_base(inter, 16)));
+			}
+			// if it is a label index it properly;
+		}
+		else
+		{
+			//register parsing
+		}
+		i++;
+	}
+	
 	printf("Current byte code: %s\n",elem->byte_code);
 	printf("Param encoding: %d\n\n",elem->param_encoding);
 }
