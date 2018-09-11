@@ -84,7 +84,7 @@ int 				string_to_encoding (char str[4]);
 t_opnum				inst_to_enum(char *str);
 t_opinfo			index_opinfo(t_opnum op_index);
 int					instruction_byte_size(t_input *input);
-
+t_input				*get_label(t_input *head, const char *str);
 
 /*
 typedef struct	s_label

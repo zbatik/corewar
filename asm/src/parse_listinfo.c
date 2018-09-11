@@ -13,12 +13,6 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
-
-void	gen_bytecode(t_input *elem)
-{
-	(void) elem;
-}
-
 t_bool	is_validfile(t_input *ahead)
 {
 	(void) ahead;
