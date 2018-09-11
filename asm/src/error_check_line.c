@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 14:40:01 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/10 15:41:15 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/11 14:53:22 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int			is_instruction(t_main *var, char *line, int ln)
 		}
 		return (0);
 	}
+	if (is_ignorable_line(line))
+		return (0);
 	if (is_label(line))
 	{
 		if (!is_valid_label(line))
@@ -55,32 +57,30 @@ int			is_instruction(t_main *var, char *line, int ln)
 	return (1);
 }
 
-int			error_check_line(t_main *var, char *line, int ln)
+void			error_check_line(t_main *var, char *line, int ln)
 {
 	char	**ins;
+	char	*no_spaces;
 
 	if (is_instruction(var, line, ln))
 	{
+		no_spaces = remove_spaces(line);
+		line = no_spaces;
+		remove_comment(line);
 		ins = ft_strsplit(line, ' ');
+		var->ins = ins;
 		if (!is_valid_mnemonic(ins[0]))
 		{
 			ft_putendl("\x1b[31mError: mnemonic is invalid");
 			ft_putstr(ins[0]);
 			ft_putstr(" is not a valid mnemonic - line: ");
 			ft_putnbr(ln);
+			ft_strdel(&no_spaces);
 			free(var->input);
 			// free split and list
 			exit(EXIT_FAILURE);
 		}
-		if (!args_are_valid(ins[1]))
-		{
-			ft_putendl("\x1b[31mError: the instruction's arguments are invalid");
-			ft_putendl(line);
-			ft_putstr(" - line: ");
-			ft_putnbr(ln);
-			// free split and list
-			exit(EXIT_FAILURE);
-		}
+		check_params(ins, var);
+		ft_strdel(&no_spaces);
 	}
-	return (TRUE);
 }

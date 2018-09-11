@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_check_data.c                                 :+:      :+:    :+:   */
+/*   remove_comment.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 15:21:38 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/11 13:26:31 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/11 13:27:45 by emaune            #+#    #+#             */
+/*   Updated: 2018/09/11 13:32:31 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		error_check_data(t_main *var)
+void			remove_comment(char *line)
 {
-	t_input *a;
+	int			i;
 
-	a = var->input;
-	while (a)
+	i = 0;
+	while (line[i])
 	{
-		error_check_line(var, a->line, a->line_no);
-		a = a->next;
-		var->temp_input = a;
+		if (line[i] == '#')
+		{
+			i--;
+			while ((line[i] == ' ' || line[i] == '\t' || line[i] == '\v')
+					&& i >= 0)
+				i--;
+			i++;
+			line[i] = '\0';
+			break ;
+		}
+		i++;
 	}
-	var->temp_input = var->input;
 }

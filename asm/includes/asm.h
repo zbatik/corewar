@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/10 15:32:01 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/11 14:40:00 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int					is_name(char *line);
 int					is_comment(char *line);
 int					is_valid_name(char *line);
 int					is_valid_comment(char *line);
+int					is_ignorable_line(char *line);
+void				remove_comment(char *line);
+char				*remove_spaces(char *line);
 /*
 ** Fred's fns
 */
@@ -99,8 +102,43 @@ typedef struct s_main
 {
 	t_input		*input;
 	t_input		*temp_input;
+	char		**ins;
 }				t_main;
 void				store_input(t_main *var, char *);
 void				error_check_data(t_main *var);
-int					error_check_line(t_main *var, char *line, int ln);
+void				error_check_line(t_main *var, char *line, int ln);
 int					args_are_valid(char *args);
+int					is_direct(char *arg, t_main *var);
+int					is_indirect(char *arg, t_main *var);
+int					is_register(char *arg, t_main *var);
+int					check_live(char **args, t_main *var);
+int					check_ld(char **args, t_main *var);
+int					check_st(char **args, t_main *var);
+int					check_add(char **args, t_main *var);
+int					check_sub(char **args, t_main *var);
+int					check_and(char **args, t_main *var);
+int					check_or(char **args, t_main *var);
+int					check_xor(char **args, t_main *var);
+int					check_zjmp(char **args, t_main *var);
+int					check_ldi(char **args, t_main *var);
+int					check_sti(char **args, t_main *var);
+int					check_fork(char **args, t_main *var);
+int					check_lld(char **args, t_main *var);
+int					check_lldi(char **args, t_main *var);
+int					check_lfork(char **args, t_main *var);
+int					check_aff(char **args, t_main *var);
+void				check_params(char **args, t_main *var);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

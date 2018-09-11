@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_check_data.c                                 :+:      :+:    :+:   */
+/*   check_xor_and_zjmp.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 15:21:38 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/11 13:26:31 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/11 12:30:31 by emaune            #+#    #+#             */
+/*   Updated: 2018/09/11 13:19:00 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		error_check_data(t_main *var)
-{
-	t_input *a;
+int			check_xor(char **args, t_main *var)
+{	var = NULL;
+	args = NULL;
 
-	a = var->input;
-	while (a)
-	{
-		error_check_line(var, a->line, a->line_no);
-		a = a->next;
-		var->temp_input = a;
-	}
-	var->temp_input = var->input;
+	return (1);
+}
+
+int			check_zjmp(char **args, t_main *var)
+{	var = NULL;
+	args = NULL;
+
+	return (1);	
 }
