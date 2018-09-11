@@ -29,7 +29,7 @@ int	arg_byte_count(char *str)
 	return (ret);
 }
 
-int string_to_encoding (char str[3])
+int string_to_encoding (char str[4])
 {
     if (ft_strncmp(str, "RRR", 3) == 0)
         return (RRR);
@@ -58,17 +58,16 @@ int string_to_encoding (char str[3])
     return(0);
 }
 
-int instruction_arg_size(t_opnum op, const char *instruction_line)
+void    instruction_arg_size(t_opnum op, t_input *input)
 {
     char    **split;
     int     num_args;
     char    *tmp;
     int     i;
-    char    arg_arr[4];
 
     i = 0;
-    tmp = (char *)instruction_line;
-    ft_bzero(&arg_arr, 4);
+    tmp = input->line;
+    ft_bzero(&input->args, 4);
     while(ft_isws(*tmp) == FALSE && *tmp != '\0')
         tmp++;
     while(ft_isws(*tmp) == TRUE && *tmp != '\0')
@@ -78,34 +77,34 @@ int instruction_arg_size(t_opnum op, const char *instruction_line)
     while(split != NULL && i < num_args)
     {
         if (split[i][0] == '%')
-            arg_arr[i] = 'I';
+            input->args[i] = 'I';
         else if (split[i][0] == 'r')
-            arg_arr[i] = 'R';
+            input->args[i] = 'R';
         else
-        	arg_arr[i] = 'D';
+        	input->args[i] = 'D';
         i++;
     }
-    arg_arr[i] = '\0';
-    return (arg_byte_count(arg_arr));
+    input->args[i] = '\0';
+    input->byte_count = arg_byte_count(input->args) + 1;
 }
 
-int instruction_byte_size(char *instruction_line)
+int    instruction_byte_size(t_input   *input)
 {
     t_opnum op;
     int     byte_size;
 
     byte_size = 0;
-    op = inst_to_enum((char*)instruction_line);
+    op = inst_to_enum((char*)input->line);
     if (DEBUG)
     {
         ft_putstr("Calculating byte lenght of: ");
-        ft_putendl((char*)instruction_line);
+        ft_putendl(input->line);
 		ft_putstr("Recognised as: ");
 		ft_putendl((index_opinfo(op)).instruction);
 		ft_putstr("Calculated byte size of: \n");
-		byte_size = instruction_arg_size(op, instruction_line) + 2; // the plus 2 is the size of the actual instruction
-		ft_putnbr(byte_size);
+        instruction_arg_size(op, input);
+		ft_putnbr(input->byte_count);
 		ft_putchar('\n');
     }
-    return (byte_size);
+    return (input->byte_count);
 }

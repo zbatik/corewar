@@ -26,7 +26,7 @@ t_bool	is_validfile(t_input *ahead)
 }
 /**
 **TODO:
-**Loop through the list and record the following:
+**	Loop through the list and record the following:
 **	if its a label assign the current byte count to byte_count
 ** 	if its an instruction generate its byte code and append the count
 **	if the total count at the end is larger than the max return FALSE
@@ -43,7 +43,8 @@ t_bool	parse_listinfo(t_input *ahead)
 		if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 			&& is_comment(tmp->line) == FALSE )
 		{
-			count += instruction_byte_size(tmp->line);
+			count += instruction_byte_size(tmp);
+			tmp->param_encoding = string_to_encoding(tmp->args);
 		}
 		if (is_label(tmp->line) == TRUE)
 		{
@@ -52,13 +53,13 @@ t_bool	parse_listinfo(t_input *ahead)
 		}
 		tmp = tmp->next;
 	}
-	/*printf("Going to print out the absolute positions of all my labels\n");
+	printf("Going to print out the absolute positions of all my labels\n");
 	tmp = ahead;
 	while (tmp != NULL)
 	{
 		if (is_label(tmp->line) == TRUE)
 			printf("Label: %s, has absolute position: %d\n",tmp->line ,tmp->byte_count);
 		tmp = tmp->next;
-	} */
+	}
 	return(TRUE);
 }

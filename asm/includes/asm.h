@@ -39,9 +39,6 @@ typedef struct	s_instruct
 ** Zack's fns
 */
 
-t_opnum				inst_to_enum(char *str);
-t_opinfo			index_opinfo(t_opnum op_index);
-int					instruction_byte_size(char *instuction_line);
 
 /*
 ** Eddie's fns
@@ -62,6 +59,7 @@ int					is_valid_comment(char *line);
 typedef struct		s_input
 {
 	char			*line;
+	char			args[4];
 	int				line_no;
 	int				byte_count;
 	t_byte			byte_code;
@@ -81,6 +79,12 @@ void				print_cor(t_input *head, char *fname);
 void				inlstadd(t_input **ahead, t_input *elem);
 t_input				*inlstnew(char	*line, int line_no, t_bool is_label);
 int					is_wsstring(const char *str);
+int 				string_to_encoding (char str[4]);
+
+t_opnum				inst_to_enum(char *str);
+t_opinfo			index_opinfo(t_opnum op_index);
+int					instruction_byte_size(t_input *input);
+
 
 /*
 typedef struct	s_label
