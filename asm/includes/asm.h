@@ -59,7 +59,7 @@ void				convert_spaces(char *line);
 typedef struct		s_input
 {
 	char			*line;
-	char			args[4];
+	char			args[MAX_ARGS_NUMBER];
 	int				line_no;
 	int				byte_count;
 	t_byte			*byte_code;
