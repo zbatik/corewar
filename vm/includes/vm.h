@@ -15,6 +15,8 @@
 
 #include "../../shared/includes/shared.h"
 
+# define DEBUG 1
+
 typedef	struct	s_player
 {
 	char	*file_name;
@@ -100,6 +102,7 @@ int update_cycles_to_execute(t_byte current, t_process *cursor);
 /*
 **	disp.c
 */
+void	print_instr_info(t_core *core, t_opnum op, int pc);
 void	print_cursor_info(t_process *cursor);
 void	print_cylce_info(t_core *core, int current);
 void	print_parsed_info(t_core *core);
@@ -117,7 +120,9 @@ void exit_on_error(char *error_msg);
 /*
 **	helpers.c 
 */
+int     byte_to_int(unsigned char *input, int len);
 t_bool  valid_reg(int rX);
+void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
 
 /*
 **	instructions/ 
