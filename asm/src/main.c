@@ -6,7 +6,7 @@
 /*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:39:32 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/09 16:09:21 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/10 15:35:55 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,18 @@ int main(int ac, char *av[])
 	if (ac > 1)
 	{
 		store_input(&var, av[1]);
-		/*while (var.temp_input != NULL)
+		while (var.temp_input != NULL)
+			error_check_data(&var);
+		while (var.temp_input != NULL)
 		{
 			ft_putnbr(var.temp_input->line_no);
 			ft_putchar('-');
 			ft_putendl(var.temp_input->line);
 			var.temp_input = var.temp_input->next;
-		} */
-		if (is_validfile(var.input) == TRUE)
+		}
+		if (parse_listinfo(var.input) == TRUE)
 		{
-
-			if (parse_listinfo(var.input) == TRUE)
-			{
-				print_cor(var.input, av[1]);
-			}
+			print_cor(var.input, av[1]);
 		}
 		else
 			ft_putendl("ERROR: error in file");
