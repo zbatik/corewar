@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 void recursive_putnum(int n, char *s, int base, int count)
 {
@@ -20,7 +19,10 @@ void recursive_putnum(int n, char *s, int base, int count)
 	s[count] = n % base + '0';
 	if (n > 9 && base > 10)
 	{
-		s[count] = s[count] - '0' + 'W';
+		if (s[count] - '0' == 0)
+			s[count] = '0';
+		else
+			s[count] = s[count] - '0' + 'W';
 	} 
 }
 void	reverse_str(char *s, int len,int is_minus)

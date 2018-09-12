@@ -30,18 +30,20 @@ char	*padded_itoa(int final_size, int to_convert)
 	char	*tmp;
 	int		i;
 
-	ret = ft_strnew(final_size);
+	ret = ft_strnew(final_size * 2);
 	tmp = ft_itoa_base(to_convert, 16);
 	i = 0;
 	while (i - ft_strlen(tmp) > 0)
-		ret[i++] = '0';
+	{
+		ft_strcpy(ret + i++, "00");
+	}
 	swapnfree(&ret, ft_strjoin(ret, tmp));
 	free(tmp);
 	return (ret);
 
 }
 
-void	gen_bytecode(t_input *elem)
+void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 {
 	char	code[elem->byte_count];
 	int 	i;
@@ -49,12 +51,15 @@ void	gen_bytecode(t_input *elem)
 	char	**split;
 	int		inter;
 	t_opnum op;
+	//t_input	*label;
 
 	op = inst_to_enum((char*)elem->line);
 	i = 0;
 	op_code_char((char *)code, op);
 	elem->byte_code = (unsigned char *) ft_strdup(code);
 	tmp = (char *)elem->line;
+	(void) curr_byte_count;
+	(void) ahead;
     while(ft_isws(*tmp) == FALSE && *tmp != '\0')
         tmp++;
     while(ft_isws(*tmp) == TRUE && *tmp != '\0')
@@ -65,7 +70,7 @@ void	gen_bytecode(t_input *elem)
 		if (elem->args[i] == 'D')
 		{
 			inter = ft_atoi(split[i]);
-			swapnfree((char **)&elem->byte_code, ft_strjoin((char *)elem->byte_code,padded_itoa(IND_SIZE, inter)));
+			swapnfree((char **)&elem->byte_code, ft_strjoin((char *)elem->byte_code,padded_itoa(DIR_SIZE, inter)));
 
 		}
 		else if (elem->args[i] == 'I')
@@ -73,7 +78,9 @@ void	gen_bytecode(t_input *elem)
 			//indirect parsing, check if its a label.
 			if (split[i][1] == ':')
 			{
-				printf("Arg label\n");
+				//printf("Arg label\n");
+				//label = get_label(ahead, split[i] + 2);
+				//printf("%s\n",label->line);
 			}
 			else
 			{

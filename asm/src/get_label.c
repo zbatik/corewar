@@ -23,8 +23,8 @@ t_input	*get_label(t_input *head, const char *str)
 		{
 			if (ft_strncmp(str, tmp->line, ft_strlen(str)) == 0)
 				return (tmp);
-			tmp = tmp->next;
 		}
+		tmp = tmp->next;
 	}
 	return (NULL);
 }

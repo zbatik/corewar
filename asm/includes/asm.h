@@ -70,7 +70,7 @@ typedef struct		s_input
 }					t_input;
 
 void				input_del(t_input **ahead);
-void				gen_bytecode(t_input *elem);
+void				gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count);
 t_input				*file_tolist(char *fname);
 t_bool				parse_listinfo(t_input *ahead);
 t_bool				is_validfile(t_input *ahead);

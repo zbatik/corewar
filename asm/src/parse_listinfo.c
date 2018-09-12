@@ -39,12 +39,25 @@ t_bool	parse_listinfo(t_input *ahead)
 		{
 			count += instruction_byte_size(tmp);
 			tmp->param_encoding = string_to_encoding(tmp->args);
-			gen_bytecode(tmp);
 		}
 		if (is_label(tmp->line) == TRUE)
 		{
 			tmp->byte_count = count;
 			tmp->is_label = TRUE;
+		}
+		tmp = tmp->next;
+	}
+	printf("============================================================\n");
+	printf("Runing gen_bytecode keeping track of the current byte_count\n");
+	tmp = ahead;
+	count = 0;
+	while (tmp != NULL)
+	{
+		if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
+			&& is_comment(tmp->line) == FALSE )
+		{
+			count += tmp->byte_count;
+			gen_bytecode(ahead, tmp, count);
 		}
 		tmp = tmp->next;
 	}

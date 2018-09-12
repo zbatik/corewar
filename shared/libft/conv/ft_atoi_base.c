@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/libft.h"
 
 char to_lower(char c)
 {
@@ -17,6 +18,7 @@ char to_lower(char c)
 		c += 32;
 	return (c);
 }
+
 int is_in(char c, int str_base)
 {
 	char *set;
@@ -34,12 +36,14 @@ int is_in(char c, int str_base)
 	return (result);
 
 }
+
 int recursive_power(int n, int pow)
 {
 	if (pow == 0)
 		return (1);
 	return (n * recursive_power(n, pow -1));
 }
+
 int	ft_atoi_base(const char *str, int str_base)
 {
 	int i;
