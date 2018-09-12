@@ -6,7 +6,7 @@
 /*   By: emaune <emaune@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 13:28:12 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/09 16:15:16 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/12 14:02:28 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,9 @@ static void		split_and_add(t_main *var, char *line)
 void            store_input(t_main *var, char *fname)
 {
 	int         fd;
-	//int         i;
 	char        *line;
 
 	fd = open(fname, O_RDONLY);
-	//i = 1;
 	var->input = NULL;
 	if (fd < 0)
 	{
@@ -114,15 +112,15 @@ void            store_input(t_main *var, char *fname)
 	}
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (is_wsstring(line) == FALSE)
-		{
+		//if (is_wsstring(line) == FALSE)
+	//	{
 			if (line_has_label(line) && !line_has_label_only(line))
 				split_and_add(var, line);
 			else
 				add_line(var, line, 0);
 			if(is_label(var->temp_input->line) ==  TRUE)
 				var->temp_input->is_label = TRUE;
-		}
+	//	}
 		ft_strdel(&line);
 	}
 	var->temp_input = var->input;

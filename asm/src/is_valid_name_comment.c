@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:10:23 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/10 14:49:11 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/12 13:36:49 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,31 @@ int			is_comment(char *line)
 	return (0);
 }
 
+int			count_inv(char *line)
+{
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	while (line[i])
+	{
+		if (line[i] == '\"')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 int			is_valid_name(char *line)
 {
 	int		i;
+	char	*t;
 	char	**str;
 
 	i = 0;
-	str = ft_strsplit(line, ' ');
+	convert_spaces(line);
+	str = ft_strsplit(line, '\t');
 	while (str[i])
 		i++;
 	if (i == 1 || i > 2)
@@ -40,11 +58,14 @@ int			is_valid_name(char *line)
 		ft_arrdel(&str, i);
 		return (0);	
 	}
-	if (str[1][0] == '\"' && str[1][ft_strlen(str[1]) - 1] == '\"' && ft_strlen(str[1]) > 2)
+	t = ft_strtrim(str[1]);
+	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"' && ft_strlen(t) > 2 && count_inv(t) == 2)
 	{
 		ft_arrdel(&str, i);
+		ft_strdel(&t);
 		return (1);
 	}
+	ft_strdel(&t);
 	ft_arrdel(&str, i);
 	return (0);
 }
@@ -53,6 +74,7 @@ int			is_valid_comment(char *line)
 {
 	int		i;
 	char	**str;
+	char	*t;
 
 	i = 0;
 	str = ft_strsplit(line, ' ');
@@ -63,11 +85,14 @@ int			is_valid_comment(char *line)
 		ft_arrdel(&str, i);
 		return (0);	
 	}
-	if (str[1][0] == '\"' && str[1][ft_strlen(str[1]) - 1] == '\"' && ft_strlen(str[1]) > 2)
+	t = ft_strtrim(str[1]);
+	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"' && ft_strlen(t) > 2 && count_inv(t) == 2)
 	{
 		ft_arrdel(&str, i);
+		ft_strdel(&t);
 		return (1);
 	}
+	ft_strdel(&t);
 	ft_arrdel(&str, i);
 	return (0);
 }
