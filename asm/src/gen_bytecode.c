@@ -46,6 +46,24 @@ char	*padded_itoa(int final_size, int to_convert)
 
 }
 
+int	convert_to_byte(int num, int size, t_byte *code, int index)
+{
+	int	count;
+	int	tmp;
+
+	tmp = num;
+	while (tmp > 0)
+	{
+		tmp /= 16;
+		count++;
+	}
+	while(count > 0)
+	{
+		code[index++] = num - ft_pow(16, count);
+		num -= ft_pow(16, count--);
+	}
+	return (index);
+}
 
 //*(t_byte*)&inter = ft_atoi(split[i]);
 void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
@@ -53,7 +71,8 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	int 	i;
 	char	*tmp;
 	char	**split;
-	//int		inter;
+	int		inter;
+	int		index;
 	t_opnum op;
 	//t_input	*label;
 
@@ -70,11 +89,14 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
     while(ft_isws(*tmp) == TRUE && *tmp != '\0')
         tmp++;
     split = ft_strsplit(tmp, ',');
+    index  = 1;
 	while (elem->args[i] != '\0')
 	{
 		if (elem->args[i] == 'D')
 		{
 			//direct parsing
+			inter = ft_atoi(split[i]);
+			index = convert_to_byte(inter, DIR_SIZE, elem->byte_code, index);
 		}
 		else if (elem->args[i] == 'I')
 		{
@@ -85,13 +107,16 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			}
 			else
 			{
-
+				inter = ft_atoi(split[i] + 1);
+				index = convert_to_byte(inter, IND_SIZE, elem->byte_code, index);
 			}
 			// if it is a label index it properly;
 		}
 		else
 		{
 			//register parsing
+			inter = ft_atoi(split[i] + 1);
+			index = convert_to_byte(inter, REG_SIZE, elem->byte_code, index);
 		}
 		i++;
 	}

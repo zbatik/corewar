@@ -17,5 +17,6 @@ int			args_are_valid(char *args)
 	char	**par;
 
 	par = ft_strsplit(args, ',');
+	(void) par;
 	return (1);
 }
