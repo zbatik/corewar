@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/shared.h"
-#include "../includes/op.h"
 
 t_opinfo	index_opinfo(t_opnum op_index)
 {
