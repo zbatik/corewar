@@ -38,6 +38,7 @@ void	print_cor(t_input *head, char *fname)
 	int	fd;
 	t_input	*tmp;
 	int	i;
+	int	j;
 	int	count;
 
 	tmp =  head;
@@ -45,29 +46,30 @@ void	print_cor(t_input *head, char *fname)
 	(void) fd;
 	(void) fname;
 	count  = 0;
+	(void) count;
+	(void) tmp;
+	(void) i;
 	while (tmp != NULL)
 	{
 		i = 0;
 		if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 			&& is_comment(tmp->line) == FALSE)
-		{
-			while (i < tmp->byte_count)
+		{	
+			print_hex(tmp->byte_code[0][0]);
+			(void) j;
+			/*while (tmp->args[i] != '\0')
 			{
-				if ((int )tmp->byte_code[i] < 16)
-					write(1, "0", 1);
-				print_hex((int )tmp->byte_code[i++]);
-				if (i % 2 == 0)
-				{
-					ft_putchar(' ');
-					count++;
-				}
-				if (count == 8)
-				{
-					write(1, "\n", 1);
-					count = 0;
-				}
-			}
-
+				if (tmp->args[i] == 'I')
+					j = IND_SIZE;
+				else if (tmp->args[i] == 'D')
+					j = DIR_SIZE;
+				else
+					j = REG_SIZE;
+				while (j >= 1)
+					print_hex(tmp->byte_code[i + 1][j--]);
+				i++;
+			}*/
+			write(1, "\n", 1);
 		}
 
 		tmp = tmp->next;

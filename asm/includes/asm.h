@@ -62,7 +62,7 @@ typedef struct		s_input
 	char			args[MAX_ARGS_NUMBER];
 	int				line_no;
 	int				byte_count;
-	t_byte			*byte_code;
+	t_byte			*byte_code[MAX_ARGS_NUMBER + 1];
 	t_byte			param_encoding;
 	t_bool			is_label;
 	t_opnum			instruction_type;

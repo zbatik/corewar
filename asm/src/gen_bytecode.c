@@ -46,23 +46,9 @@ char	*padded_itoa(int final_size, int to_convert)
 
 }
 
-int	convert_to_byte(int num, int size, t_byte *code, int index)
+void	convert_to_byte(unsigned int num, t_byte *code)
 {
-	int	count;
-	int	tmp;
-
-	tmp = num;
-	while (tmp > 0)
-	{
-		tmp /= 16;
-		count++;
-	}
-	while(count > 0)
-	{
-		code[index++] = num - ft_pow(16, count);
-		num -= ft_pow(16, count--);
-	}
-	return (index);
+	*code = num;
 }
 
 //*(t_byte*)&inter = ft_atoi(split[i]);
@@ -71,16 +57,15 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	int 	i;
 	char	*tmp;
 	char	**split;
-	int		inter;
-	int		index;
+	unsigned int	inter;
 	t_opnum op;
 	//t_input	*label;
 
 	op = inst_to_enum((char*)elem->line);
 	i = 0;
-	elem->byte_code = (t_byte *)malloc(sizeof(t_byte) * elem->byte_count);
+	elem->byte_code[0] = (t_byte *)malloc(sizeof(t_byte));
 	printf("Op translated: %d\n",(unsigned char) (index_opinfo(op)).op_number);
-	elem->byte_code[0] = (unsigned char) (index_opinfo(op)).op_number;
+	*elem->byte_code[0] = ((unsigned char) (index_opinfo(op)).op_number);
 	tmp = (char *)elem->line;
 	(void) curr_byte_count;
 	(void) ahead;
@@ -89,14 +74,16 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
     while(ft_isws(*tmp) == TRUE && *tmp != '\0')
         tmp++;
     split = ft_strsplit(tmp, ',');
-    index  = 1;
+   // (void) split;
+   // (void) inter;
 	while (elem->args[i] != '\0')
 	{
 		if (elem->args[i] == 'D')
 		{
 			//direct parsing
-			inter = ft_atoi(split[i]);
-			index = convert_to_byte(inter, DIR_SIZE, elem->byte_code, index);
+			inter = ft_atoui(split[i]);
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
+			convert_to_byte(inter, elem->byte_code[i + 1]);
 		}
 		else if (elem->args[i] == 'I')
 		{
@@ -107,8 +94,9 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			}
 			else
 			{
-				inter = ft_atoi(split[i] + 1);
-				index = convert_to_byte(inter, IND_SIZE, elem->byte_code, index);
+				inter = ft_atoui(split[i] + 1);
+				elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
+				convert_to_byte(inter,elem->byte_code[i + 1]);
 			}
 			// if it is a label index it properly;
 		}
@@ -116,11 +104,14 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		{
 			//register parsing
 			inter = ft_atoi(split[i] + 1);
-			index = convert_to_byte(inter, REG_SIZE, elem->byte_code, index);
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * REG_SIZE);
+			convert_to_byte(inter, elem->byte_code[i + 1]);
 		}
 		i++;
 	}
 	
-	printf("Current byte code: %s\n",elem->byte_code);
+	printf("Current byte code: %d %d",elem->byte_code[0][0], elem->byte_code[0][1]);
+	if (i > 1)
+		printf(" %d %d\n",elem->byte_code[1][0], elem->byte_code[1][1]);
 	printf("Param encoding: %d\n\n",elem->param_encoding);
 }
