@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 14:31:36 by mdilapi           #+#    #+#              #
-#    Updated: 2018/09/11 14:49:51 by emaune           ###   ########.fr        #
+#    Updated: 2018/09/12 11:45:23 by emaune           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRC_FILES		=	args_are_valid.c \
 					label.c \
 					main.c \
 					remove_comment.c \
-					remove_spaces.c \
+					convert_spaces.c \
 					parse_listinfo.c \
 					store_input.c \
 					

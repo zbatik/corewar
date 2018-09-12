@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 14:40:01 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/11 14:53:22 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/12 11:48:14 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,12 @@ int			is_instruction(t_main *var, char *line, int ln)
 void			error_check_line(t_main *var, char *line, int ln)
 {
 	char	**ins;
-	char	*no_spaces;
 
 	if (is_instruction(var, line, ln))
 	{
-		no_spaces = remove_spaces(line);
-		line = no_spaces;
+		convert_spaces(line);
 		remove_comment(line);
-		ins = ft_strsplit(line, ' ');
+		ins = ft_strsplit(line, '\t');
 		var->ins = ins;
 		if (!is_valid_mnemonic(ins[0]))
 		{
@@ -75,12 +73,10 @@ void			error_check_line(t_main *var, char *line, int ln)
 			ft_putstr(ins[0]);
 			ft_putstr(" is not a valid mnemonic - line: ");
 			ft_putnbr(ln);
-			ft_strdel(&no_spaces);
-			free(var->input);
+		//	free(var->input);
 			// free split and list
 			exit(EXIT_FAILURE);
 		}
 		check_params(ins, var);
-		ft_strdel(&no_spaces);
 	}
 }

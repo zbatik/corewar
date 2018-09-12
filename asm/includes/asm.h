@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/11 14:40:00 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/12 11:45:05 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int					is_valid_name(char *line);
 int					is_valid_comment(char *line);
 int					is_ignorable_line(char *line);
 void				remove_comment(char *line);
-char				*remove_spaces(char *line);
+void				convert_spaces(char *line);
 /*
 ** Fred's fns
 */
