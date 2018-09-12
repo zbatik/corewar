@@ -24,6 +24,23 @@ void	op_code_char(char	*code, t_opnum op)
 		ft_strcpy(code, "10");
 }
 
+char	*padded_itoa(int final_size, int to_convert)
+{
+	char	*ret;
+	char	*tmp;
+	int		i;
+
+	ret = ft_strnew(final_size);
+	tmp = ft_itoa_base(to_convert, 16);
+	i = 0;
+	while (i - ft_strlen(tmp) > 0)
+		ret[i++] = '0';
+	swapnfree(&ret, ft_strjoin(ret, tmp));
+	free(tmp);
+	return (ret);
+
+}
+
 void	gen_bytecode(t_input *elem)
 {
 	char	code[elem->byte_count];
@@ -47,7 +64,8 @@ void	gen_bytecode(t_input *elem)
 	{
 		if (elem->args[i] == 'D')
 		{
-			//Direct parsing
+			inter = ft_atoi(split[i]);
+			swapnfree((char **)&elem->byte_code, ft_strjoin((char *)elem->byte_code,padded_itoa(IND_SIZE, inter)));
 
 		}
 		else if (elem->args[i] == 'I')
@@ -60,7 +78,7 @@ void	gen_bytecode(t_input *elem)
 			else
 			{
 				inter = ft_atoi(split[i] + 1);
-				swapnfree((char **)&elem->byte_code, ft_strjoin((char *)elem->byte_code, ft_itoa_base(inter, 16)));
+				swapnfree((char **)&elem->byte_code, ft_strjoin((char *)elem->byte_code,padded_itoa(IND_SIZE, inter)));
 			}
 			// if it is a label index it properly;
 		}
