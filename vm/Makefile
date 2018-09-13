@@ -20,7 +20,8 @@ INCLUDES		=-I./includes/
 
 SHARED_DIR		= ../shared/src/
 SHARED_PATHS	= $(addprefix $(SHARED_DIR),$(SHARED_FILES))
-SHARED_FILES 	= op_info.c
+SHARED_FILES 	= op_info.c \
+				revendian.c
 
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))

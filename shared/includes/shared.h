@@ -23,30 +23,20 @@
 
 # define TRUE 1
 # define FALSE 0
-# define RRR 0b01010100
-# define RIR 0b01110100
-# define RDR 0b01100100
-# define RRD 0b1011100
-# define IRR 0b11010100
-# define IIR 0b11110100
-# define IDR 0b11100100
-# define DRR 0b10010100
-# define DIR 0b10110100
-# define DDR 0b10100100
-# define IR 0b11010000
-# define DR 0b10010000
 
-# define RRR 0b01010100
-# define RIR 0b01110100
-# define RDR 0b01100100
-# define IRR 0b11010100
-# define IIR 0b11110100
-# define IDR 0b11100100
-# define DRR 0b10010100
-# define DIR 0b10110100
-# define DDR 0b10100100
-# define IR 0b11010000
-# define DR 0b10010000
+# define RRR 0x54 // 0b01010100
+# define RIR 0x74 // 0b01110100
+# define RDR 0x64 // 0b01100100
+# define IRR 0xD4 // 0b11010100
+# define IIR 0xF4 // 0b11110100
+# define IDR 0xE4 // 0b11100100
+# define DRR 0x94 // 0b10010100
+# define DIR 0xB4 // 0b10110100
+# define DDR 0xA4 // 0b10100100
+# define IR  0xD0 // 0b11010000
+# define DR  0x90 // 0b10010000
+# define RI  0x70
+# define RR  0x50
 
 typedef unsigned char	t_byte;
 
@@ -83,5 +73,6 @@ typedef struct	s_opinfo
 }				t_opinfo;
 
 t_opinfo	index_opinfo(t_opnum op_index);
+unsigned int rev_endian(unsigned int num);
 
 #endif
