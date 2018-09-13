@@ -27,6 +27,7 @@
 # define RRR 0x54 // 0b01010100
 # define RIR 0x74 // 0b01110100
 # define RDR 0x64 // 0b01100100
+# define RRD 0xB8 // 0b10111000
 # define IRR 0xD4 // 0b11010100
 # define IIR 0xF4 // 0b11110100
 # define IDR 0xE4 // 0b11100100
@@ -37,6 +38,7 @@
 # define DR  0x90 // 0b10010000
 # define RI  0x70
 # define RR  0x50
+
 
 typedef unsigned char	t_byte;
 

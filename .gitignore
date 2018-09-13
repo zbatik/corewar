@@ -7,4 +7,5 @@ a.out
 .DS_Store
 .vscode
 vm/core
+asm/asm_us
 core.log
