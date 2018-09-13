@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:10:21 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/12 12:00:53 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/13 12:54:28 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static int	label_exists(char *label, t_main *var)
 	while (i)
 	{
 		if (ft_strnequ(i->line, label, ft_strlen(label)))
-				return (1);
+			return (1);
 		i = i->next;
 	}
-	ft_putendl("\x1b[31mError: Label does not exist");
+	ft_putendl("\x1b[31;1mError: Label does not exist");
 	ft_putstr(label);
-	ft_putstr(" - line: ");
+	ft_putstr(" - line #");
 	ft_putnbr(var->temp_input->line_no);
 	//free list and split;
 	exit(EXIT_FAILURE);
@@ -59,12 +59,13 @@ int			is_direct(char *arg, t_main *var)
 		ft_strdel(&t);
 		return (1);
 	}
-	if (*(t + 1) == ':' )
-		if (label_exists(t + 2, var))
-		{
-			ft_strdel(&t);
-			return (1);
-		}
+	if (*t == '%')
+		if (*(t + 1) == ':' )
+			if (label_exists(t + 2, var))
+			{
+				ft_strdel(&t);
+				return (1);
+			}
 	ft_strdel(&t);
 	return (0);
 }
@@ -95,23 +96,25 @@ int			is_register(char *arg, t_main *var)
 
 	t = ft_strtrim(arg);
 	if (*t == 'r')
-	{
-		if (ft_atoi(t + 1) >= 1 && ft_atoi(t + 1) <= 16)
+		if (is_number(t + 1))
 		{
-			ft_strdel(&t);
-			return (1);
+			if (ft_atoi(t + 1) >= 1 && ft_atoi(t + 1) <= 16)
+			{
+				ft_strdel(&t);
+				return (1);
+			}
+			else
+			{
+				ft_strdel(&t);
+				ft_putendl("\x1b[31;1mError: Register is out of scope i.e. there are only 16 registers (1-16).");
+				ft_putstr(var->temp_input->line);
+				ft_putstr(" - line #");
+				ft_putnbr(var->temp_input->line_no);
+				//freee split/list
+				free(var->ins);
+				exit(1);
+			}
 		}
-		else
-		{
-			ft_strdel(&t);
-			ft_putendl("Error: Register is out of scope i.e. there are only 16 registers (1-16).");
-			ft_putstr(var->temp_input->line);
-			ft_putstr(" - line: ");
-			ft_putnbr(var->temp_input->line_no);
-			//freee split/list
-			free(var->ins);
-		}
-	}
 	ft_strdel(&t);
 	return (0);
 }
