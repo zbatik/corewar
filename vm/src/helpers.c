@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_are_valid.c                                   :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 15:16:29 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/10 15:37:01 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/10 17:18:32 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
-
-int			args_are_valid(char *args)
+t_bool  valid_reg(int rX)
 {
-	char	**par;
-
-	par = ft_strsplit(args, ',');
-	(void) par;
-	return (1);
+    if (rX >= 0x01 && rX <= 0x10)
+        return (1);
+    else
+        return (0);
 }
+
+void    cpy_to_reg(t_byte *reg_entry, t_byte *cpy_from, int size);

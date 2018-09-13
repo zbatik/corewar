@@ -30,12 +30,15 @@ char	*padded_itoa(int final_size, int to_convert)
 	char	*tmp;
 	int		i;
 
-	ret = ft_strnew(final_size * 2);
+	ret = ft_strnew(final_size * 2 + 1);
 	tmp = ft_itoa_base(to_convert, 16);
 	i = 0;
 	while (i - ft_strlen(tmp) > 0)
 	{
-		ft_strcpy(ret + i++, "00");
+		ret[i] = '0';
+		ret[i + 1] = '0';
+		//ft_strcpy(ret + i, "00");
+		i ++;
 	}
 	swapnfree(&ret, ft_strjoin(ret, tmp));
 	free(tmp);
@@ -43,59 +46,74 @@ char	*padded_itoa(int final_size, int to_convert)
 
 }
 
+void	convert_to_byte(unsigned int num, t_byte *code)
+{
+	*code = num;
+}
+
+//*(t_byte*)&inter = ft_atoi(split[i]);
 void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 {
-	char	code[elem->byte_count];
 	int 	i;
 	char	*tmp;
 	char	**split;
-	int		inter;
+	int		*inter;
 	t_opnum op;
-	//t_input	*label;
+	t_input	*label;
+	//int j;
 
 	op = inst_to_enum((char*)elem->line);
 	i = 0;
-	op_code_char((char *)code, op);
-	elem->byte_code = (unsigned char *) ft_strdup(code);
+	elem->byte_code[0] = (t_byte *)malloc(sizeof(t_byte));
+	printf("Op translated: %d\n",(unsigned char) (index_opinfo(op)).op_number);
+	*elem->byte_code[0] = ((unsigned char) (index_opinfo(op)).op_number);
 	tmp = (char *)elem->line;
 	(void) curr_byte_count;
-	(void) ahead;
     while(ft_isws(*tmp) == FALSE && *tmp != '\0')
         tmp++;
     while(ft_isws(*tmp) == TRUE && *tmp != '\0')
         tmp++;
     split = ft_strsplit(tmp, ',');
+    inter = (int *)malloc(sizeof(int));
 	while (elem->args[i] != '\0')
 	{
 		if (elem->args[i] == 'D')
 		{
-			inter = ft_atoi(split[i]);
-			swapnfree((char **)&elem->byte_code, ft_strjoin((char *)elem->byte_code,padded_itoa(DIR_SIZE, inter)));
-
+			//direct parsing
+			*inter = ft_atoi(split[i]);
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
+			*elem->byte_code[i + 1] = (unsigned char) *inter;
 		}
 		else if (elem->args[i] == 'I')
 		{
 			//indirect parsing, check if its a label.
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
 			if (split[i][1] == ':')
 			{
-				//printf("Arg label\n");
-				//label = get_label(ahead, split[i] + 2);
-				//printf("%s\n",label->line);
+				//arg_label
+				label = get_label(ahead, split[i] + 2);
+				*inter = (unsigned int)label->byte_count;
+				*elem->byte_code[i + 1] = (unsigned char) *inter;
 			}
 			else
 			{
-				inter = ft_atoi(split[i] + 1);
-				swapnfree((char **)&elem->byte_code, ft_strjoin((char *)elem->byte_code,padded_itoa(IND_SIZE, inter)));
+				*inter = ft_atoi(split[i] + 1);
+				*(elem)->byte_code[i + 1] = (unsigned char) *inter;
 			}
 			// if it is a label index it properly;
 		}
 		else
 		{
 			//register parsing
+			*inter = ft_atoi(split[i] + 1);
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * REG_SIZE);
+			*elem->byte_code[i + 1] = (unsigned char) *inter;
 		}
 		i++;
 	}
-	
-	printf("Current byte code: %s\n",elem->byte_code);
+	free(inter);
+	printf("Current byte code: %x %x ",elem->byte_code[0][0], elem->byte_code[0][1]);
+	if (i > 1)
+		printf("%x %x \n",elem->byte_code[1][0], elem->byte_code[1][1]);
 	printf("Param encoding: %d\n\n",elem->param_encoding);
 }

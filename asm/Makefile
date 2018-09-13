@@ -12,7 +12,7 @@
 
 NAME			= asm_us
 CC				= gcc
-FLAGS			= -Wall -Werror -Wextra
+FLAGS			= -Wall -Werror 
 LIB_DIR			= ../shared/libft/
 LIB				= $(join $(LIB_DIR),libft.a)
 

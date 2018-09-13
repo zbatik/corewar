@@ -59,10 +59,10 @@ void				convert_spaces(char *line);
 typedef struct		s_input
 {
 	char			*line;
-	char			args[4];
+	char			args[MAX_ARGS_NUMBER];
 	int				line_no;
 	int				byte_count;
-	t_byte			*byte_code;
+	t_byte			*byte_code[MAX_ARGS_NUMBER + 1];
 	t_byte			param_encoding;
 	t_bool			is_label;
 	t_opnum			instruction_type;
@@ -86,6 +86,7 @@ t_opinfo			index_opinfo(t_opnum op_index);
 int					instruction_byte_size(t_input *input);
 t_input				*get_label(t_input *head, const char *str);
 void				swapnfree(char **var, char *new_val);
+void				print_hex(unsigned int num);
 
 /*
 typedef struct	s_label

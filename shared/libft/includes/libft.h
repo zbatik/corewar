@@ -88,6 +88,8 @@ int		ft_islower(int c);
 int		ft_max(int n, int m);
 int		ft_min(int n, int m);
 int		ft_abs(int n);
+unsigned int		ft_pow(int n, int pow);
+unsigned int		ft_atoui(const char *str);
 int		ft_element(char c, char const *str);
 int		ft_isws(int c);
 int		ft_countc(const char *s, char c);
