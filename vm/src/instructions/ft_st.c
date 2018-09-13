@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:59:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/12 15:27:01 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/13 16:18:36 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int ft_st(t_core *core, t_process *cursor)
     if (RR == core->mem[cursor->pc + 1])
     {
         r2 = core->mem[cursor->pc + 3];
-        ft_strncpy((char*)cursor->reg[2], (char*)cursor->reg[1], 4);
+        //write_to_reg(cursor, );
+        ft_bytencpy(cursor->reg[2], cursor->reg[1], 4);
         if (!valid_reg(r2))
             return (1);
         return (4);

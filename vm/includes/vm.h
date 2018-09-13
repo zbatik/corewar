@@ -120,6 +120,8 @@ void exit_on_error(char *error_msg);
 /*
 **	helpers.c 
 */
+unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len);
+void    write_to_reg(t_process *cursor, int reg, int input);
 int     byte_to_int(unsigned char *input, int len);
 t_bool  valid_reg(int rX);
 void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);

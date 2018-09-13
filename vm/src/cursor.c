@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cursor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 12:31:30 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/10 16:53:08 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/13 15:46:30 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    process_add(t_process *cursor, int pc, int player_num, int ind)
     cursor->id = ind;
     cursor->pc = pc;
     cursor->carry = 0;
-    ft_strncpy((char*)cursor->reg[0], (char*)&player_num, REG_SIZE);
+    write_to_reg(cursor, 0, player_num);
     i = 0;
     while (++i < REG_NUMBER)
     {

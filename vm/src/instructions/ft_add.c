@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:31:46 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/12 15:55:19 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/13 15:50:15 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int ft_add(t_core *core, t_process *cursor)
     r2_val = byte_to_int(cursor->reg[core->mem[cursor->pc + 3]], 4);
     r3 = core->mem[cursor->pc + 4];
     sum = r1_val + r2_val;
-    ft_strncpy((char*)cursor->reg[r3], (char*)&sum, 4);
+    write_to_reg(cursor, r3, sum);
     return (5);
 }
