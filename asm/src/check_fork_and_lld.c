@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:33:52 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/13 13:36:45 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/13 15:04:28 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ int			check_lld(char **args, t_main *var)
         exit(EXIT_FAILURE);
         //free  split and list and par
     }
-    return (1);}
+    return (1);
+}
