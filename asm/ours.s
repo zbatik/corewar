@@ -1,9 +1,9 @@
 .name "ours"
-.comment "fbjaf"
+.comment "check comments"
 
 entree: live %42
 fork	%:tir
-	ld	%0,r16
+	ld	%0 ,r16 #comment
 	zjmp	%:tir
 
 tir:	sti	r1,	%:tirf, %1
@@ -19,7 +19,7 @@ tirf:	live	%42
 	live	%742
 	sub	r3,r5,r3
 	zjmp	%:entree
-	lldi	%0,11, r3
+	lldi	%0,r11, r3
 	fork	%:tir
 	live	%42
 	sti	r10,%-510,%0

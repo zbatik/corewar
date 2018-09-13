@@ -53,29 +53,32 @@ void	print_cor(t_input *head, char *fname)
 //	(void) i;
 	while (tmp != NULL)
 	{
-		i = 0;
-		if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
-			&& is_comment(tmp->line) == FALSE)
-		{	
-			print_hex(tmp->byte_code[0][1]);
-			print_hex(tmp->byte_code[0][0]);
-			//(void) j;
-			while (tmp->args[i] != '\0')
-			{
-				j = 0;
-				if (tmp->args[i] == 'I')
-					max = IND_SIZE;
-				else if (tmp->args[i] == 'D')
-					max = DIR_SIZE;
-				else
-					max = REG_SIZE;
-				while (j  < max)
-					printf("%x", tmp->byte_code[i + 1][j++]);
-				i++;
+		if (is_wsstring(tmp->line) == FALSE)
+		{
+			i = 0;
+			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
+				&& is_comment(tmp->line) == FALSE)
+			{	
+				//print_hex(tmp->byte_code[0][1]);
+				//print_hex(tmp->byte_code[0][0]);
+				printf("%x %x ",tmp->byte_code[0][0],tmp->byte_code[0][1]);
+				//(void) j;
+				while (tmp->args[i] != '\0')
+				{
+					j = 0;
+					if (tmp->args[i] == 'I')
+						max = IND_SIZE;
+					else if (tmp->args[i] == 'D')
+						max = DIR_SIZE;
+					else
+						max = REG_SIZE;
+					while (j  < max)
+						printf("%x ", tmp->byte_code[i + 1][j++]);
+					i++;
+				}
+				printf("\n");
 			}
-			printf("\n");
 		}
-
 		tmp = tmp->next;
 	}
 }

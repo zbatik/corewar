@@ -112,8 +112,4 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		i++;
 	}
 	free(inter);
-	printf("Current byte code: %x %x ",elem->byte_code[0][0], elem->byte_code[0][1]);
-	if (i > 1)
-		printf("%x %x \n",elem->byte_code[1][0], elem->byte_code[1][1]);
-	printf("Param encoding: %d\n\n",elem->param_encoding);
 }

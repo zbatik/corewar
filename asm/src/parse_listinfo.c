@@ -34,16 +34,19 @@ t_bool	parse_listinfo(t_input *ahead)
 	count = 0;
 	while (tmp != NULL)
 	{
-		if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
-			&& is_comment(tmp->line) == FALSE )
+		if (is_wsstring(tmp->line) == FALSE)
 		{
-			count += instruction_byte_size(tmp);
-			tmp->param_encoding = string_to_encoding(tmp->args);
-		}
-		if (is_label(tmp->line) == TRUE)
-		{
-			tmp->byte_count = count;
-			tmp->is_label = TRUE;
+			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
+				&& is_comment(tmp->line) == FALSE )
+			{
+				count += instruction_byte_size(tmp);
+				tmp->param_encoding = string_to_encoding(tmp->args);
+			}
+			if (is_label(tmp->line) == TRUE)
+			{
+				tmp->byte_count = count;
+				tmp->is_label = TRUE;
+			}
 		}
 		tmp = tmp->next;
 	}
@@ -53,11 +56,14 @@ t_bool	parse_listinfo(t_input *ahead)
 	count = 0;
 	while (tmp != NULL)
 	{
-		if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
-			&& is_comment(tmp->line) == FALSE )
+		if (is_wsstring(tmp->line) == FALSE)
 		{
-			count += tmp->byte_count;
-			gen_bytecode(ahead, tmp, count);
+			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
+				&& is_comment(tmp->line) == FALSE )
+			{
+				count += tmp->byte_count;
+				gen_bytecode(ahead, tmp, count);
+			}
 		}
 		tmp = tmp->next;
 	}
@@ -65,8 +71,11 @@ t_bool	parse_listinfo(t_input *ahead)
 	tmp = ahead;
 	while (tmp != NULL)
 	{
-		if (is_label(tmp->line) == TRUE)
-			printf("Label: %s, has absolute position: %d\n",tmp->line ,tmp->byte_count);
+		if (is_wsstring(tmp->line) == FALSE)
+		{
+			if (is_label(tmp->line) == TRUE)
+				printf("Label: %s, has absolute position: %d\n",tmp->line ,tmp->byte_count);
+		}
 		tmp = tmp->next;
 	}
 	return(TRUE);
