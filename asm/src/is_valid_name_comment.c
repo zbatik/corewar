@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:10:23 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/12 13:36:49 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/13 14:03:50 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int			is_valid_comment(char *line)
 	char	*t;
 
 	i = 0;
-	str = ft_strsplit(line, ' ');
+	convert_spaces(line);
+	str = ft_strsplit(line, '\t');
 	while (str[i])
 		i++;
 	if (i == 1 || i > 2)
