@@ -79,6 +79,20 @@ void	print_processes(t_core *core)
 	}
 }
 
+void	print_instr_info(t_core *core, t_opnum op, int pc)
+{
+	t_opnum num;
+    t_opinfo info;
+
+	num = core->mem[pc];
+    info = index_opinfo(num);
+	ft_putstr("recieved intsruction: ");       
+    ft_putendl(info.instruction);
+    info = index_opinfo(op);
+	ft_putstr("expected intsruction: ");
+    ft_putendl(info.instruction);
+}
+
 void	print_parsed_info(t_core *core)
 {	
 	printf("___Parsed Data___\n");
