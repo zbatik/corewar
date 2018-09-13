@@ -20,7 +20,8 @@ INCLUDES		=-I./includes/
 
 SHARED_DIR		= ../shared/src/
 SHARED_PATHS	= $(addprefix $(SHARED_DIR),$(SHARED_FILES))
-SHARED_FILES 	= op_info.c \
+SHARED_FILES 	= 	op_info.c \
+					revendian.c
 
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
@@ -56,12 +57,12 @@ SRC_FILES		=	args_are_valid.c \
 					print.c \
 					print_cor.c \
 					store_input.c \
-					
+
 
 all: clean $(NAME)
 $(NAME):
 	make -s -C $(LIB_DIR)
-	gcc  -o $(NAME) $(FLAGS) $(SRC_PATH) $(SHARED_PATHS) $(LIB)
+	gcc  -o $(NAME) $(FLAGS) $(SRC_PATH)  $(SHARED_PATHS) $(LIB)
 
 clean:
 	rm -f $(NAME)

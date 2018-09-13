@@ -67,7 +67,7 @@ void    instruction_arg_size(t_opnum op, t_input *input)
 
     i = 0;
     tmp = input->line;
-    ft_bzero(&input->args, 4);
+    ft_bzero(&input->args, MAX_ARGS_NUMBER);
     while(ft_isws(*tmp) == FALSE && *tmp != '\0')
         tmp++;
     while(ft_isws(*tmp) == TRUE && *tmp != '\0')
@@ -77,11 +77,14 @@ void    instruction_arg_size(t_opnum op, t_input *input)
     while(split != NULL && i < num_args)
     {
         if (split[i][0] == '%')
-            input->args[i] = 'I';
+            input->args[i] = 'D';
         else if (split[i][0] == 'r')
             input->args[i] = 'R';
         else
-        	input->args[i] = 'D';
+        {
+        	// make tests to change between big i and small I
+        	input->args[i] = 'I';
+        }
         i++;
     }
     input->args[i] = '\0';

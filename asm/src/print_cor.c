@@ -61,7 +61,7 @@ void	print_cor(t_input *head, char *fname)
 			{	
 				//print_hex(tmp->byte_code[0][1]);
 				//print_hex(tmp->byte_code[0][0]);
-				printf("%x %x ",tmp->byte_code[0][0],tmp->byte_code[0][1]);
+				printf("%x ",*tmp->byte_code[0]);
 				//(void) j;
 				while (tmp->args[i] != '\0')
 				{

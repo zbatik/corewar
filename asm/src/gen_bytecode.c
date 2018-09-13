@@ -57,59 +57,63 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	int 	i;
 	char	*tmp;
 	char	**split;
-	int		*inter;
+	char	*curr;
+	int		inter;
 	t_opnum op;
 	t_input	*label;
-	//int j;
 
 	op = inst_to_enum((char*)elem->line);
-	i = 0;
 	elem->byte_code[0] = (t_byte *)malloc(sizeof(t_byte));
 	printf("Op translated: %d\n",(unsigned char) (index_opinfo(op)).op_number);
 	*elem->byte_code[0] = ((unsigned char) (index_opinfo(op)).op_number);
 	tmp = (char *)elem->line;
-	(void) curr_byte_count;
     while(ft_isws(*tmp) == FALSE && *tmp != '\0')
         tmp++;
     while(ft_isws(*tmp) == TRUE && *tmp != '\0')
         tmp++;
     split = ft_strsplit(tmp, ',');
-    inter = (int *)malloc(sizeof(int));
+    i = 0;
 	while (elem->args[i] != '\0')
 	{
+		curr = split[i];
+		while(ft_isws(*curr) == TRUE)
+			curr++; 
 		if (elem->args[i] == 'D')
 		{
-			//direct parsing
-			*inter = ft_atoi(split[i]);
+			inter = ft_atoi(curr + 1);
 			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
-			*elem->byte_code[i + 1] = (unsigned char) *inter;
+			ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * DIR_SIZE);
+			printf("%s has value %d and i is: %d\n", curr, inter, i);
 		}
 		else if (elem->args[i] == 'I')
 		{
-			//indirect parsing, check if its a label.
 			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
-			if (split[i][1] == ':')
+			if (curr[1] == ':')
 			{
-				//arg_label
-				label = get_label(ahead, split[i] + 2);
-				*inter = (unsigned int)label->byte_count;
-				*elem->byte_code[i + 1] = (unsigned char) *inter;
+				printf("Identified as label\n");
+				label = get_label(ahead, curr + 2);
+				printf("Label is: %s\n",label->line);
+				inter = label->byte_count;
+				if (inter < curr_byte_count)	
+				{	
+					inter = (curr_byte_count -  inter);
+				}
+				else
+					inter = (inter -  curr_byte_count);
 			}
 			else
-			{
-				*inter = ft_atoi(split[i] + 1);
-				*(elem)->byte_code[i + 1] = (unsigned char) *inter;
-			}
-			// if it is a label index it properly;
+				inter = ft_atoi(curr + 1);
+			printf("%s has value %x and i is: %d\n",curr, elem->byte_code[i + 1][1], i);
+			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * IND_SIZE);
 		}
 		else
 		{
-			//register parsing
-			*inter = ft_atoi(split[i] + 1);
+			inter = ft_atoi(curr + 1);
 			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * REG_SIZE);
-			*elem->byte_code[i + 1] = (unsigned char) *inter;
+			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * REG_SIZE);
+			printf("%s has value %x and i is: %d\n",curr, elem->byte_code[i + 1][0], i);
 		}
 		i++;
 	}
-	free(inter);
+	
 }
