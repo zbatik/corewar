@@ -6,7 +6,7 @@
 /*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:39:32 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/10 15:35:55 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/12 12:21:51 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ int main(int ac, char *av[])
 	{
 		store_input(&var, av[1]);
 		//while (var.temp_input != NULL)
-		//	error_check_data(&var);
+		error_check_data(&var);
 		/*while (var.temp_input != NULL)
+		error_check_data(&var);
+		while (var.temp_input != NULL)
 		{
 			ft_putnbr(var.temp_input->line_no);
-			ft_putchar('-');
+			ft_putstr(" - ");
 			ft_putendl(var.temp_input->line);
 			var.temp_input = var.temp_input->next;
 		}*/
