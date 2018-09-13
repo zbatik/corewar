@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_aff.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:32:26 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/12 16:06:40 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/13 14:02:30 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int ft_aff(t_core *core, t_process *cursor)
         ft_putendl("corrupted encoding byte");
         return (1);
     }
-    if (!valid_reg)
+    if (!valid_reg(r1))
         return (1);
     ft_putchar((char)cursor->reg[r1][REG_SIZE - 1]);
     return (3);
