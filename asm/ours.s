@@ -3,7 +3,7 @@
 
 entree: live %42
 fork	%:tir
-	ld	%0,r16
+	lld	%0,r16
 	zjmp	%:tir
 
 tir:	sti	r1,	%:tirf, %1
