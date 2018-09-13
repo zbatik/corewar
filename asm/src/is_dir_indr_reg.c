@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:10:21 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/12 14:10:52 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/13 12:54:28 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,24 +96,25 @@ int			is_register(char *arg, t_main *var)
 
 	t = ft_strtrim(arg);
 	if (*t == 'r')
-	{
-		if (ft_atoi(t + 1) >= 1 && ft_atoi(t + 1) <= 16)
+		if (is_number(t + 1))
 		{
-			ft_strdel(&t);
-			return (1);
+			if (ft_atoi(t + 1) >= 1 && ft_atoi(t + 1) <= 16)
+			{
+				ft_strdel(&t);
+				return (1);
+			}
+			else
+			{
+				ft_strdel(&t);
+				ft_putendl("\x1b[31;1mError: Register is out of scope i.e. there are only 16 registers (1-16).");
+				ft_putstr(var->temp_input->line);
+				ft_putstr(" - line #");
+				ft_putnbr(var->temp_input->line_no);
+				//freee split/list
+				free(var->ins);
+				exit(1);
+			}
 		}
-		else
-		{
-			ft_strdel(&t);
-			ft_putendl("\x1b[31;1mError: Register is out of scope i.e. there are only 16 registers (1-16).");
-			ft_putstr(var->temp_input->line);
-			ft_putstr(" - line #");
-			ft_putnbr(var->temp_input->line_no);
-			//freee split/list
-			free(var->ins);
-			exit(1);
-		}
-	}
 	ft_strdel(&t);
 	return (0);
 }

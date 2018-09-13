@@ -6,7 +6,7 @@
 /*   By: emaune <emaune@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 13:28:12 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/12 14:02:28 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/13 12:59:51 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int		line_has_label(char *line)
 		{
 			if (i > 0)
 			{
-				if (line[i - 1] == ' ' || line[i - 1] == '%')
+				if (line[i - 1] == ' ' || line[i - 1] == '%'
+						|| line[i - 1] == '\t')
 					return (0);	
 			}
 			break ;
@@ -61,6 +62,7 @@ static void     add_line(t_main *var, char *line, int is_split)
 	{ 
 		var->input = (t_input*)malloc(sizeof(t_input));
 		var->input->line = ft_strtrim(line);
+		remove_comment(var->input->line);
 		var->input->line_no = 1;
 		var->input->next = NULL;
 		var->input->prev = NULL;
@@ -76,6 +78,7 @@ static void     add_line(t_main *var, char *line, int is_split)
 		else
 			var->temp_input->line_no = var->temp_input->prev->line_no;
 		var->temp_input->line = ft_strtrim(line);
+		remove_comment(var->temp_input->line);
 		var->temp_input->next = NULL;
 	}
 }

@@ -6,19 +6,20 @@ fork	%:tir
 	ld	%0,r16
 	zjmp	%:tir
 
-tir:	sti	r1,%:tirf,%1
+tir:	sti	r1,	%:tirf, %1
 	st r1, 4
 	ld	%2304,r10
-	ld	%1,r5
+	lld	%2,r5
 	ld	%0,r11
-	and %3,r2,r3
-	ld	%4,r3
+	xor	:tir, r2, r3 #hfajsf	
+	ldi	r4,%3, r4
+	aff r3
 tirf:	live	%42
-	fork	%:tir
+	lfork	%:tirf
 	live	%742
 	sub	r3,r5,r3
 	zjmp	%:entree
-	ld	%0,r11
+	lldi	%0,11, r3
 	fork	%:tir
 	live	%42
 	sti	r10,%-510,%0
