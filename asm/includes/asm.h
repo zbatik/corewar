@@ -86,6 +86,7 @@ t_opinfo			index_opinfo(t_opnum op_index);
 int					instruction_byte_size(t_input *input);
 t_input				*get_label(t_input *head, const char *str);
 void				swapnfree(char **var, char *new_val);
+void				print_hex(unsigned int num);
 
 /*
 typedef struct	s_label

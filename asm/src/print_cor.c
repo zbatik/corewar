@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
+#include <stdio.h>
 
 /**TODO
 ** Take the fname and change it to .cor
@@ -20,7 +21,7 @@
 */
 
 
-void	print_hex(int num)
+void	print_hex(unsigned int num)
 {
 	char	c;
 
@@ -40,6 +41,7 @@ void	print_cor(t_input *head, char *fname)
 	int	i;
 	int	j;
 	int	count;
+	int max;
 
 	tmp =  head;
 	fd = 1;
@@ -47,29 +49,31 @@ void	print_cor(t_input *head, char *fname)
 	(void) fname;
 	count  = 0;
 	(void) count;
-	(void) tmp;
-	(void) i;
+//	(void) tmp;
+//	(void) i;
 	while (tmp != NULL)
 	{
 		i = 0;
 		if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 			&& is_comment(tmp->line) == FALSE)
 		{	
+			print_hex(tmp->byte_code[0][1]);
 			print_hex(tmp->byte_code[0][0]);
-			(void) j;
-			/*while (tmp->args[i] != '\0')
+			//(void) j;
+			while (tmp->args[i] != '\0')
 			{
+				j = 0;
 				if (tmp->args[i] == 'I')
-					j = IND_SIZE;
+					max = IND_SIZE;
 				else if (tmp->args[i] == 'D')
-					j = DIR_SIZE;
+					max = DIR_SIZE;
 				else
-					j = REG_SIZE;
-				while (j >= 1)
-					print_hex(tmp->byte_code[i + 1][j--]);
+					max = REG_SIZE;
+				while (j  < max)
+					printf("%x", tmp->byte_code[i + 1][j++]);
 				i++;
-			}*/
-			write(1, "\n", 1);
+			}
+			printf("\n");
 		}
 
 		tmp = tmp->next;

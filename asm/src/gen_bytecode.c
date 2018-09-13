@@ -57,9 +57,10 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	int 	i;
 	char	*tmp;
 	char	**split;
-	unsigned int	inter;
+	int		*inter;
 	t_opnum op;
-	//t_input	*label;
+	t_input	*label;
+	//int j;
 
 	op = inst_to_enum((char*)elem->line);
 	i = 0;
@@ -68,50 +69,51 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	*elem->byte_code[0] = ((unsigned char) (index_opinfo(op)).op_number);
 	tmp = (char *)elem->line;
 	(void) curr_byte_count;
-	(void) ahead;
     while(ft_isws(*tmp) == FALSE && *tmp != '\0')
         tmp++;
     while(ft_isws(*tmp) == TRUE && *tmp != '\0')
         tmp++;
     split = ft_strsplit(tmp, ',');
-   // (void) split;
-   // (void) inter;
+    inter = (int *)malloc(sizeof(int));
 	while (elem->args[i] != '\0')
 	{
 		if (elem->args[i] == 'D')
 		{
 			//direct parsing
-			inter = ft_atoui(split[i]);
+			*inter = ft_atoi(split[i]);
 			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
-			convert_to_byte(inter, elem->byte_code[i + 1]);
+			*elem->byte_code[i + 1] = (unsigned char) *inter;
 		}
 		else if (elem->args[i] == 'I')
 		{
 			//indirect parsing, check if its a label.
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
 			if (split[i][1] == ':')
 			{
 				//arg_label
+				label = get_label(ahead, split[i] + 2);
+				*inter = (unsigned int)label->byte_count;
+				*elem->byte_code[i + 1] = (unsigned char) *inter;
 			}
 			else
 			{
-				inter = ft_atoui(split[i] + 1);
-				elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
-				convert_to_byte(inter,elem->byte_code[i + 1]);
+				*inter = ft_atoi(split[i] + 1);
+				*(elem)->byte_code[i + 1] = (unsigned char) *inter;
 			}
 			// if it is a label index it properly;
 		}
 		else
 		{
 			//register parsing
-			inter = ft_atoi(split[i] + 1);
+			*inter = ft_atoi(split[i] + 1);
 			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * REG_SIZE);
-			convert_to_byte(inter, elem->byte_code[i + 1]);
+			*elem->byte_code[i + 1] = (unsigned char) *inter;
 		}
 		i++;
 	}
-	
-	printf("Current byte code: %d %d",elem->byte_code[0][0], elem->byte_code[0][1]);
+	free(inter);
+	printf("Current byte code: %x %x ",elem->byte_code[0][0], elem->byte_code[0][1]);
 	if (i > 1)
-		printf(" %d %d\n",elem->byte_code[1][0], elem->byte_code[1][1]);
+		printf("%x %x \n",elem->byte_code[1][0], elem->byte_code[1][1]);
 	printf("Param encoding: %d\n\n",elem->param_encoding);
 }
