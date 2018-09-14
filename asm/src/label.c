@@ -63,6 +63,7 @@ void    instruction_arg_size(t_opnum op, t_input *input)
     char    **split;
     int     num_args;
     char    *tmp;
+    char    *curr;
     int     i;
 
     i = 0;
@@ -76,9 +77,12 @@ void    instruction_arg_size(t_opnum op, t_input *input)
     num_args = (index_opinfo(op)).num_args;
     while(split != NULL && i < num_args)
     {
-        if (split[i][0] == '%')
+        curr = split[i];
+        while (ft_isws(*curr) == TRUE)
+            curr++;
+        if (curr[0] == '%')
             input->args[i] = 'D';
-        else if (split[i][0] == 'r')
+        else if (curr[0] == 'r')
             input->args[i] = 'R';
         else
         {

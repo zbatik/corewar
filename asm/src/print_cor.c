@@ -49,8 +49,6 @@ void	print_cor(t_input *head, char *fname)
 	(void) fname;
 	count  = 0;
 	(void) count;
-//	(void) tmp;
-//	(void) i;
 	while (tmp != NULL)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
@@ -61,8 +59,7 @@ void	print_cor(t_input *head, char *fname)
 			{	
 				//print_hex(tmp->byte_code[0][1]);
 				//print_hex(tmp->byte_code[0][0]);
-				printf("%x",tmp->byte_code[0][0]);
-				//(void) j;
+				printf("%x",*tmp->byte_code[0]);
 				while (tmp->args[i] != '\0')
 				{
 					j = 0;
