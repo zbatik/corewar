@@ -65,7 +65,8 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	op = inst_to_enum((char*)elem->line);
 	elem->byte_code[0] = (t_byte *)malloc(sizeof(t_byte));
 	printf("Op translated: %d\n",(unsigned char) (index_opinfo(op)).op_number);
-	*elem->byte_code[0] = ((unsigned char) (index_opinfo(op)).op_number);
+	inter = rev_endian((unsigned int)(index_opinfo(op)).op_number);
+	ft_memmove(elem->byte_code[0], &inter, sizeof(t_byte));
 	tmp = (char *)elem->line;
     while(ft_isws(*tmp) == FALSE && *tmp != '\0')
         tmp++;
@@ -80,14 +81,6 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			curr++; 
 		if (elem->args[i] == 'D')
 		{
-			inter = ft_atoi(curr + 1);
-			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
-			ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * DIR_SIZE);
-			printf("%s has value %d and i is: %d\n", curr, inter, i);
-		}
-		else if (elem->args[i] == 'I')
-		{
-			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
 			if (curr[1] == ':')
 			{
 				printf("Identified as label\n");
@@ -103,8 +96,19 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			}
 			else
 				inter = ft_atoi(curr + 1);
-			printf("%s has value %x and i is: %d\n",curr, elem->byte_code[i + 1][1], i);
+			inter = (int) rev_endian((unsigned int) inter);
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
+			ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * DIR_SIZE);
+			printf("%s has value %d and i is: %d\n", curr, inter, i);
+		}
+		else if (elem->args[i] == 'I')
+		{
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
+			inter = ft_atoi(curr);
+			inter = (int) rev_endian((unsigned int) inter);
 			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * IND_SIZE);
+			printf("%s has value %x and i is: %d\n",curr, elem->byte_code[i + 1][1], i);
+			
 		}
 		else
 		{
