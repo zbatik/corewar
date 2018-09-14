@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sti.c                                           :+:      :+:    :+:   */
+/*   end_cycle_checks.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 18:33:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/14 13:40:53 by zbatik           ###   ########.fr       */
+/*   Created: 2018/09/14 15:15:41 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/14 15:16:21 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/vm.h"
+#include "../includes/vm.h"
 
-int ft_sti(t_core *core, t_process *cursor)
+void	end_cycle_checks_checks(void)
 {
-    general_processing(core, cursor, e_sti);
-    return (5);
+
 }

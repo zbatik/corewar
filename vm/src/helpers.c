@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/13 17:33:37 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/14 10:25:51 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int corrupted_encoding_byte(void)
     return (1);
 }
 
+void            modify_carry(t_process *cursor, t_opnum op)
+{
+    if ((index_opinfo(op)).modifies_carry)
+        cursor->carry = !cursor->carry;
+}
 
 unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len)
 {

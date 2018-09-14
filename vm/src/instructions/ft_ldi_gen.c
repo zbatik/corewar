@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ldi.c                                           :+:      :+:    :+:   */
+/*   ft_ldi_gen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 18:33:38 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/10 11:34:18 by zbatik           ###   ########.fr       */
+/*   Created: 2018/09/14 14:46:56 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/14 15:19:45 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
+static int	ft_ldi_gen(t_core *core, t_process *cursor, t_opnum op)
+{
+	general_processing(core, cursor, op);
+	return (3);
+}
+
 int ft_ldi(t_core *core, t_process *cursor)
 {
-    t_opnum num;
-    t_opinfo info; 
+	return(ft_ldi_gen(core, cursor, e_ldi));
+}
 
-    num = core->mem[cursor->pc];
-    info = index_opinfo(num);
-    ft_putendl(info.instruction);
-    info = index_opinfo(e_ldi);
-    ft_putendl(info.instruction);
-    return (5);
+int ft_lldi(t_core *core, t_process *cursor)
+{
+	return(ft_ldi_gen(core, cursor, e_lldi));
 }

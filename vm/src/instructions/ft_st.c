@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:59:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/13 16:18:36 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/14 11:09:57 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,29 @@
 
 int ft_st(t_core *core, t_process *cursor)
 {
-    int r1;
-    int r2;
+    int r_cpy_from;
+    int r_cpy_to;
 
     if (DEBUG)
         print_instr_info(core, e_st, cursor->pc);
-    r1 = core->mem[cursor->pc + 2];
-    if (!valid_reg(r1))
+    r_cpy_from = core->mem[cursor->pc + 2];
+    if (!valid_reg(r_cpy_from))
         return (1);
     if (RR == core->mem[cursor->pc + 1])
     {
-        r2 = core->mem[cursor->pc + 3];
-        //write_to_reg(cursor, );
-        ft_bytencpy(cursor->reg[2], cursor->reg[1], 4);
-        if (!valid_reg(r2))
+        r_cpy_to = core->mem[cursor->pc + 3];
+        if (!valid_reg(r_cpy_to))
             return (1);
+        ft_bytencpy(cursor->reg[r_cpy_from], cursor->reg[r_cpy_to], 4);
         return (4);
     }
     else if (RI == core->mem[cursor->pc + 1])
     {
-        cpy_from_reg(core, cursor->reg[r1], 
-            cursor->pc + byte_to_int((unsigned char*)core->mem, 2));
+        cpy_from_reg(core, cursor->reg[r_cpy_from], 
+            cursor->pc + byte_to_int(core->mem, 2));
         return (5);
     }
     else
-    {
-        ft_putendl("corrupted uncoding byte"); 
-        return (1);
-    }
+        return (corrupted_encoding_byte());
     return (5);
 }

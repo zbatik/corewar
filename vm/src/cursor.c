@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 12:31:30 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/13 15:46:30 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/14 13:36:49 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void    process_add(t_process *cursor, int pc, int player_num, int ind)
 {
     int i;
-    int j;
     
     cursor->id = ind;
     cursor->pc = pc;
@@ -23,9 +22,25 @@ void    process_add(t_process *cursor, int pc, int player_num, int ind)
     write_to_reg(cursor, 0, player_num);
     i = 0;
     while (++i < REG_NUMBER)
-    {
-        j = -1;
-        while (++j < REG_SIZE)
-            cursor->reg[i][j] = 0;
-    }
+        write_to_reg(cursor, i, 0);
+}
+
+void	duplicate_process(t_core *core, t_process *cursor, int jump)
+{
+	int			i;
+	int			num_proc;
+	t_process	*new_cursor;
+
+	num_proc = core->num_processes;
+	if (num_proc < MEM_SIZE)
+	{
+		new_cursor = &(core->processes[num_proc]);
+		process_add(new_cursor, cursor->pc + jump, 0, num_proc);
+		i = -1;
+   		while (++i < REG_NUMBER)
+        	ft_bytencpy(new_cursor->reg[i] , cursor->reg[i], REG_SIZE);
+		new_cursor->carry = cursor->carry;
+	}
+	else
+		ft_putendl("process limit reached");
 }
