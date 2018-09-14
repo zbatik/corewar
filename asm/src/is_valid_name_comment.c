@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:10:23 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/13 14:03:50 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/14 12:54:54 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int			is_valid_name(char *line)
 		return (0);	
 	}
 	t = ft_strtrim(str[1]);
-	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"' && ft_strlen(t) > 2 && count_inv(t) == 2)
+	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"'
+			&& ft_strlen(t) > 2 && count_inv(t) == 2 & ft_strlen(t) <= 130)
 	{
 		ft_arrdel(&str, i);
 		ft_strdel(&t);
@@ -87,7 +88,8 @@ int			is_valid_comment(char *line)
 		return (0);	
 	}
 	t = ft_strtrim(str[1]);
-	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"' && ft_strlen(t) > 2 && count_inv(t) == 2)
+	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"' &&
+			ft_strlen(t) > 2 && count_inv(t) == 2 && ft_strlen(t) <= 2050)
 	{
 		ft_arrdel(&str, i);
 		ft_strdel(&t);
