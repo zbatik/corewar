@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:10:21 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/13 12:54:28 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/14 13:17:02 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	label_exists(char *label, t_main *var)
 	ft_putstr(label);
 	ft_putstr(" - line #");
 	ft_putnbr(var->temp_input->line_no);
-	//free list and split;
+	free_input(var->input);
+	ft_arrdel(&var->ins, arr_len(var->ins));
 	exit(EXIT_FAILURE);
 }
 
@@ -110,7 +111,8 @@ int			is_register(char *arg, t_main *var)
 				ft_putstr(var->temp_input->line);
 				ft_putstr(" - line #");
 				ft_putnbr(var->temp_input->line_no);
-				//freee split/list
+				free_input(var->input);
+				ft_arrdel(&var->ins, arr_len(var->ins));
 				free(var->ins);
 				exit(1);
 			}

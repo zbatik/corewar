@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/12 11:45:05 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/14 12:56:59 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int					is_valid_comment(char *line);
 int					is_ignorable_line(char *line);
 void				remove_comment(char *line);
 void				convert_spaces(char *line);
+int					check_commas(char *line);
+int					arr_len(char **arr);
 /*
 ** Fred's fns
 */
@@ -134,17 +136,6 @@ int					check_lldi(char **args, t_main *var);
 int					check_lfork(char **args, t_main *var);
 int					check_aff(char **args, t_main *var);
 void				check_params(char **args, t_main *var);
-
-
-
-
-
-
-
-
-
-
-
-
+void				free_input(t_input *input);
 
 

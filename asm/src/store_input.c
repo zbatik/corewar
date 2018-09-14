@@ -6,7 +6,7 @@
 /*   By: emaune <emaune@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 13:28:12 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/13 12:59:51 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/14 12:43:59 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ static int		line_has_label(char *line)
 			if (i > 0)
 			{
 				if (line[i - 1] == ' ' || line[i - 1] == '%'
-						|| line[i - 1] == '\t')
-					return (0);	
+						|| line[i - 1] == '\t' || line[i - 1] == ','
+						|| i - 1 == 0)
+					return (0);
 			}
 			break ;
 		}
@@ -56,10 +57,10 @@ static int		line_has_label_only(char *line)
 	return (1);
 }
 
-static void     add_line(t_main *var, char *line, int is_split)
+static void		add_line(t_main *var, char *line, int is_split)
 {
 	if (!var->input)
-	{ 
+	{
 		var->input = (t_input*)malloc(sizeof(t_input));
 		var->input->line = ft_strtrim(line);
 		remove_comment(var->input->line);
@@ -97,14 +98,12 @@ static void		split_and_add(t_main *var, char *line)
 		s++;
 	if (ft_isprint(*s))
 		add_line(var, s, 1);
-
 }
 
-
-void            store_input(t_main *var, char *fname)
+void			store_input(t_main *var, char *fname)
 {
-	int         fd;
-	char        *line;
+	int			fd;
+	char		*line;
 
 	fd = open(fname, O_RDONLY);
 	var->input = NULL;
@@ -115,15 +114,12 @@ void            store_input(t_main *var, char *fname)
 	}
 	while (get_next_line(fd, &line) > 0)
 	{
-		//if (is_wsstring(line) == FALSE)
-	//	{
-			if (line_has_label(line) && !line_has_label_only(line))
-				split_and_add(var, line);
-			else
-				add_line(var, line, 0);
-			if(is_label(var->temp_input->line) ==  TRUE)
-				var->temp_input->is_label = TRUE;
-	//	}
+		if (line_has_label(line) && !line_has_label_only(line))
+			split_and_add(var, line);
+		else
+			add_line(var, line, 0);
+		if (is_label(var->temp_input->line) == TRUE)
+			var->temp_input->is_label = TRUE;
 		ft_strdel(&line);
 	}
 	var->temp_input = var->input;
