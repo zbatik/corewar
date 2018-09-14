@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_check_data.c                                 :+:      :+:    :+:   */
+/*   arr_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 15:21:38 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/14 12:44:18 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/14 12:55:35 by emaune            #+#    #+#             */
+/*   Updated: 2018/09/14 13:02:00 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		error_check_data(t_main *var)
+int			arr_len(char **arr)
 {
-	t_input *a;
+	int		i;
 
-	a = var->input;
-	while (a)
-	{
-		error_check_line(var, a->line, a->line_no);
-		a = a->next;
-		var->temp_input = a;
-	}
-	var->temp_input = var->input;
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
+

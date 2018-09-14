@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_check_data.c                                 :+:      :+:    :+:   */
+/*   free_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 15:21:38 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/14 12:44:18 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/14 12:44:53 by emaune            #+#    #+#             */
+/*   Updated: 2018/09/14 13:08:47 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void		error_check_data(t_main *var)
+void			free_input(t_input *input)
 {
-	t_input *a;
+	t_input		*temp;
 
-	a = var->input;
-	while (a)
+	while (input->next)
 	{
-		error_check_line(var, a->line, a->line_no);
-		a = a->next;
-		var->temp_input = a;
+		ft_strdel(&input->line);
+		temp = input;
+		input = input->next;
+		free(temp);
 	}
-	var->temp_input = var->input;
+	ft_strdel(&input->line);
+	free(input);
 }
