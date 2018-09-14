@@ -65,8 +65,9 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	op = inst_to_enum((char*)elem->line);
 	elem->byte_code[0] = (t_byte *)malloc(sizeof(t_byte));
 	printf("Op translated: %d\n",(unsigned char) (index_opinfo(op)).op_number);
-	inter = rev_endian((unsigned int)(index_opinfo(op)).op_number);
-	ft_memmove(&elem->byte_code[0][0], &inter, sizeof(t_byte));
+	//inter = rev_endian((unsigned int)(index_opinfo(op)).op_number);
+	inter = (index_opinfo(op)).op_number;
+	ft_memmove(elem->byte_code[0], &inter, sizeof(t_byte));
 	tmp = (char *)elem->line;
     while(ft_isws(*tmp) == FALSE && *tmp != '\0')
         tmp++;

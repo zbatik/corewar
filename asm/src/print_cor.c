@@ -59,7 +59,7 @@ void	print_cor(t_input *head, char *fname)
 			{	
 				//print_hex(tmp->byte_code[0][1]);
 				//print_hex(tmp->byte_code[0][0]);
-				printf("%x",*tmp->byte_code[0]);
+				printf("%x",tmp->byte_code[0][0]);
 				while (tmp->args[i] != '\0')
 				{
 					j = 0;
