@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 13:26:03 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/14 13:41:48 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/14 13:53:34 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ static void			check_mnemonic_and_syntax(char **ins, t_main *var, int ln)
 		exit(EXIT_FAILURE);
 	}
 	if (ins[1])
-		if (ins[1][ft_strlen(ins[1]) - 1] == ',')
+		if (ins[1][0] == ',' || ins[1][ft_strlen(ins[1]) - 1] == ',')
 		{
-			ft_putendl("\x1b[31;1mSyntax Error: trailing comma");
+			ft_putendl("\x1b[31;1mSyntax Error: leading/trailing comma");
 			ft_putstr(ins[1]);
 			ft_putstr(" - line #");
 			ft_putnbr(ln);
