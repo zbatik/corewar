@@ -1,20 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_and.c                                           :+:      :+:    :+:   */
+/*   interactive.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 18:00:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/12 16:13:22 by zbatik           ###   ########.fr       */
+/*   Created: 2018/09/14 16:22:55 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/14 16:26:07 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/vm.h"
+#include "../includes/vm.h"
 
-int ft_and(t_core *core, t_process *cursor)
-{
-    if (DEBUG)
-        print_instr_info(core, e_and, cursor->pc);
-    return (5);
-}
+	int interactive(void);

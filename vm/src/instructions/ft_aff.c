@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:32:26 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/13 14:02:30 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/14 10:29:40 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 int ft_aff(t_core *core, t_process *cursor)
 {
     int r1;
-    if (DEBUG)
-        print_instr_info(core, e_aff, cursor->pc);
+    general_processing(core, cursor, e_aff);
     r1 = core->mem[cursor->pc + 2];
     if (core->mem[cursor->pc + 1] == 0x40)
-    {
-        ft_putendl("corrupted encoding byte");
-        return (1);
-    }
+        return (corrupted_encoding_byte());
     if (!valid_reg(r1))
         return (1);
     ft_putchar((char)cursor->reg[r1][REG_SIZE - 1]);
+    ft_putchar('\n');
     return (3);
 }
