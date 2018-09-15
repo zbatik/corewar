@@ -107,9 +107,17 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		}
 		else if (elem->args[i] == 'I')
 		{
-			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
-			inter = ft_atoi(curr);
+			if (curr[0] == ':')
+			{
+				printf("Identified as label\n");
+				label = get_label(ahead, curr + 1);
+				printf("Label is: %s :%d, %d\n",label->line, label->byte_count, curr_byte_count);
+				inter = label->byte_count;
+			}
+			else
+				inter = ft_atoi(curr);
 			inter = (int) rev_endian((unsigned int) inter);
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
 			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * IND_SIZE);
 			printf("%s has value %x and i is: %d\n",curr, elem->byte_code[i + 1][1], i);
 			

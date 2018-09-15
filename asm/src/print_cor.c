@@ -34,6 +34,118 @@ void	print_hex(unsigned int num)
 	write(1, &c, 1);
 }
 
+void	str_to_unstr(unsigned char *arr, char *str, int size)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0' && i < size)
+	{
+		arr[i] = (unsigned char) str[i];
+		i++;
+	}
+	while (i < size)
+		arr[i++] = 0;
+}
+
+void	print_name(t_input *head)
+{
+	t_input *tmp;
+	char	*in;
+	unsigned char	out[PROG_NAME_LENGTH];
+	int		i;
+	int		j;
+
+	tmp = head;
+	while (tmp != NULL)
+	{
+		in = tmp->line;
+		while(ft_isws(*in) == TRUE)
+			in++;
+		if (ft_strncmp(in, NAME_CMD_STRING, 5) == 0)
+		{
+			//printf("I found a name in str: %s", in);
+			in = in + 5;
+			while(ft_isws(*in) == TRUE)
+				in++;
+			str_to_unstr(out, in, PROG_NAME_LENGTH);
+			//printf("the unsinged str is :%s\n",out);
+			break;
+		}
+		tmp = tmp->next;
+	}
+	if (tmp == NULL)
+		ft_memset(&out, 0, PROG_NAME_LENGTH);
+	i = 0;
+	j = 0;
+	while (i < PROG_NAME_LENGTH)
+	{
+		if (i % 2 == 0)
+		{
+			if (j == 7)
+			{
+				j = 0;
+				printf("\n");
+			}
+			else
+			{
+				j++;
+				printf(" ");
+			}
+		}
+		printf("%x", out[i++]);
+	}
+}
+
+void	print_comment(t_input *head)
+{
+	t_input *tmp;
+	char	*in;
+	unsigned char	out[COMMENT_LENGTH];
+	int		i;
+	int		j;
+
+	tmp = head;
+	while (tmp != NULL)
+	{
+		in = tmp->line;
+		while(ft_isws(*in) == TRUE)
+			in++;
+		if (ft_strncmp(in, COMMENT_CMD_STRING, 8) == 0)
+		{
+			//printf("I found a comment in str: %s", in);
+			in = in + 8;
+			while(ft_isws(*in) == TRUE)
+				in++;
+			str_to_unstr(out, in, COMMENT_LENGTH);
+			//printf("the unsinged str is :%s\n",out);
+			break;
+		}
+		tmp = tmp->next;
+	}
+	if (tmp == NULL)
+		ft_memset(&out, 0, COMMENT_LENGTH);
+	i = 0;
+	j = 0;
+	while (i < COMMENT_LENGTH)
+	{
+		if (i % 2 == 0)
+		{
+			if (j == 7)
+			{
+				j = 0;
+				printf("\n");
+			}
+			else
+			{
+				j++;
+				printf(" ");
+			}
+		}
+		printf("%x", out[i++]);
+	}
+}
+
 void	print_cor(t_input *head, char *fname)
 {
 	int	fd;
@@ -49,6 +161,8 @@ void	print_cor(t_input *head, char *fname)
 	(void) fname;
 	count  = 0;
 	(void) count;
+	print_name(head);
+	print_comment(head);
 	while (tmp != NULL)
 	{
 		if (is_wsstring(tmp->line) == FALSE)

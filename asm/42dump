@@ -1,0 +1,1631 @@
+Calculating byte lenght of: live	%42
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: fork	%:tir
+Recognised as: fork
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%0,r5
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:bite
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: sti	r1,%:tirb,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%2304,r10
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%1,r5
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%0,r11
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%4,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: live	%42
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: fork	%:tirop
+Recognised as: fork
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%742
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: sub	r3,r5,r3
+Recognised as: sub
+Calculated byte size of: 
+13
+Calculating byte lenght of: zjmp	%:top
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%0,r11
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: fork	%:tirvd
+Recognised as: fork
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%42
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: sti	r10,%-510,%0
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r10,%-404,%0
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r10,%-303,%0
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r10,%-202,%0
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%0,r11
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:tirf
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%368,r2
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%0,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%4,r4
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: sti	r10,%-510,r2
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r10,%-510,r3
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r4,r5,r4
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r3,r4,r3
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: sub	r2,r4,r2
+Recognised as: sub
+Calculated byte size of: 
+13
+Calculating byte lenght of: zjmp	%:tirop
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%0,r11
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:tirb
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%:infi
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: sub	r6,r4,r6
+Recognised as: sub
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r6,r6,r11
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: ldi	%:p32deb,r6,r7
+Recognised as: ldi
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r7,%-510,r11
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%0,r10
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: sti	r7,%-250,r6
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: zjmp	%-192
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%:tirvd2
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: sti	    r1,%:copie,%2
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ldi	    %:copie,%3,r2
+Recognised as: ldi
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	    r2,%:entree,%-4
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ldi	    %:copie,%-1,r2
+Recognised as: ldi
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	    r2,%:entree,%-8
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:p32li,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:b0,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%0,r2
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%8,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%1,r4
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%0,r6
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: sub	r3,r4,r3
+Recognised as: sub
+Calculated byte size of: 
+13
+Calculating byte lenght of: zjmp	%:tart
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: fork	%:b1
+Recognised as: fork
+Calculated byte size of: 
+5
+Calculating byte lenght of: st	r5,r2
+Recognised as: st
+Calculated byte size of: 
+9
+Calculating byte lenght of: xor	r10,r10,r10
+Recognised as: xor
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r10,r10,r10
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r6,r6,r6
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%0,r10
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:b0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: add	r2,r4,r2
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r6,r6,r6
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r6,r4,r6
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%0,r10
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:b0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%42
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%9,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: sti	r3,%:p32deb,%-6
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%2,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: sti	r3,%:p32deb,%-16
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%0,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:topd
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: sti	r1,%:l0,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l1,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l2,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l3,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l4,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l5,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l6,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l7,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l8,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l9,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r1,%:l10,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%:l0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%:infi
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	   %0
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	     %1,r1
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: sti	r1,%:p64li,%1
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: or	r2,r2,r2
+Recognised as: or
+Calculated byte size of: 
+13
+Calculating byte lenght of: zjmp	%:p64
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: sub	r2,r4,r2
+Recognised as: sub
+Calculated byte size of: 
+13
+Calculating byte lenght of: zjmp	%:p32
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%0,r2
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:infi
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%:tirdow
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%9,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: sti	r3,%:fin,%-6
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%2,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: sti	r3,%:fin,%-16
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%0,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:infi
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%0
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%10,r8
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: sub	r6,r8,r6
+Recognised as: sub
+Calculated byte size of: 
+13
+Calculating byte lenght of: and	r6,%2147483648,r8
+Recognised as: and
+Calculated byte size of: 
+13
+Calculating byte lenght of: zjmp	%:cont
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%118,r8
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: add	r6,r8,r6
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r6,r6,r6
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: ld	%272,r8
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%29,r9
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ldi	%:p64deb,r6,r7
+Recognised as: ldi
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r7,r8,r6
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r7,r9,r6
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: live	%1
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%0,r10
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%186
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%425,r2
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%0,r3
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: ld	%4,r4
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: live	%42
+Recognised as: live
+Calculated byte size of: 
+5
+Calculating byte lenght of: sti	r10,%:fin,r2
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: sti	r10,%:fin,r3
+Recognised as: sti
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r4,r5,r4
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: add	r3,r4,r3
+Recognised as: add
+Calculated byte size of: 
+13
+Calculating byte lenght of: sub	r2,r4,r2
+Recognised as: sub
+Calculated byte size of: 
+13
+Calculating byte lenght of: zjmp	%:tirdow
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: ld	%0,r11
+Recognised as: ld
+Calculated byte size of: 
+9
+Calculating byte lenght of: zjmp	%:tird
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: zjmp	%:p1
+Recognised as: zjmp
+Calculated byte size of: 
+5
+Calculating byte lenght of: live	%633
+Recognised as: live
+Calculated byte size of: 
+5
+============================================================
+Runing gen_bytecode keeping track of the current byte_count
+Op translated: 1
+%42 has value 42 and i is: 0
+Op translated: 12
+%:tir has value 0 and i is: 0
+Op translated: 2
+%0 has value 0 and i is: 0
+r5 has value 5 and i is: 1
+Op translated: 9
+%:bite has value 0 and i is: 0
+Op translated: 11
+r1 has value 1 and i is: 0
+%:tirb has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 2
+%2304 has value 2304 and i is: 0
+r10 has value a and i is: 1
+Op translated: 2
+%1 has value 1 and i is: 0
+r5 has value 5 and i is: 1
+Op translated: 2
+%0 has value 0 and i is: 0
+r11 has value b and i is: 1
+Op translated: 2
+%4 has value 4 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 1
+%42 has value 42 and i is: 0
+Op translated: 12
+%:tirop has value 0 and i is: 0
+Op translated: 1
+%742 has value 742 and i is: 0
+Op translated: 5
+r3 has value 3 and i is: 0
+r5 has value 5 and i is: 1
+r3 has value 3 and i is: 2
+Op translated: 9
+%:top has value 0 and i is: 0
+Op translated: 2
+%0 has value 0 and i is: 0
+r11 has value b and i is: 1
+Op translated: 12
+%:tirvd has value 0 and i is: 0
+Op translated: 1
+%42 has value 42 and i is: 0
+Op translated: 11
+r10 has value a and i is: 0
+%-510 has value -510 and i is: 1
+%0 has value 0 and i is: 2
+Op translated: 11
+r10 has value a and i is: 0
+%-404 has value -404 and i is: 1
+%0 has value 0 and i is: 2
+Op translated: 11
+r10 has value a and i is: 0
+%-303 has value -303 and i is: 1
+%0 has value 0 and i is: 2
+Op translated: 11
+r10 has value a and i is: 0
+%-202 has value -202 and i is: 1
+%0 has value 0 and i is: 2
+Op translated: 2
+%0 has value 0 and i is: 0
+r11 has value b and i is: 1
+Op translated: 9
+%:tirf has value 0 and i is: 0
+Op translated: 2
+%368 has value 368 and i is: 0
+r2 has value 2 and i is: 1
+Op translated: 2
+%0 has value 0 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 2
+%4 has value 4 and i is: 0
+r4 has value 4 and i is: 1
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 11
+r10 has value a and i is: 0
+%-510 has value -510 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 11
+r10 has value a and i is: 0
+%-510 has value -510 and i is: 1
+r3 has value 3 and i is: 2
+Op translated: 4
+r4 has value 4 and i is: 0
+r5 has value 5 and i is: 1
+r4 has value 4 and i is: 2
+Op translated: 4
+r3 has value 3 and i is: 0
+r4 has value 4 and i is: 1
+r3 has value 3 and i is: 2
+Op translated: 5
+r2 has value 2 and i is: 0
+r4 has value 4 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 9
+%:tirop has value 0 and i is: 0
+Op translated: 2
+%0 has value 0 and i is: 0
+r11 has value b and i is: 1
+Op translated: 9
+%:tirb has value 0 and i is: 0
+Op translated: 9
+%:infi has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 5
+r6 has value 6 and i is: 0
+r4 has value 4 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 4
+r6 has value 6 and i is: 0
+r6 has value 6 and i is: 1
+r11 has value b and i is: 2
+Op translated: 10
+%:p32deb has value 0 and i is: 0
+r6 has value 6 and i is: 1
+r7 has value 7 and i is: 2
+Op translated: 11
+r7 has value 7 and i is: 0
+%-510 has value -510 and i is: 1
+r11 has value b and i is: 2
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 2
+%0 has value 0 and i is: 0
+r10 has value a and i is: 1
+Op translated: 11
+r7 has value 7 and i is: 0
+%-250 has value -250 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 9
+%-192 has value -192 and i is: 0
+Op translated: 9
+%:tirvd2 has value 0 and i is: 0
+Op translated: 11
+r1 has value 1 and i is: 0
+%:copie has value 0 and i is: 1
+%2 has value 2 and i is: 2
+Op translated: 10
+%:copie has value 0 and i is: 0
+%3 has value 3 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 11
+r2 has value 2 and i is: 0
+%:entree has value 0 and i is: 1
+%-4 has value -4 and i is: 2
+Op translated: 10
+%:copie has value 0 and i is: 0
+%-1 has value -1 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 11
+r2 has value 2 and i is: 0
+%:entree has value 0 and i is: 1
+%-8 has value -8 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:p32li has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:b0 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 2
+%0 has value 0 and i is: 0
+r2 has value 2 and i is: 1
+Op translated: 2
+%8 has value 8 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 2
+%1 has value 1 and i is: 0
+r4 has value 4 and i is: 1
+Op translated: 2
+%0 has value 0 and i is: 0
+r6 has value 6 and i is: 1
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 5
+r3 has value 3 and i is: 0
+r4 has value 4 and i is: 1
+r3 has value 3 and i is: 2
+Op translated: 9
+%:tart has value 0 and i is: 0
+Op translated: 12
+%:b1 has value 0 and i is: 0
+Op translated: 3
+r5 has value 5 and i is: 0
+r2 has value 2 and i is: 1
+Op translated: 8
+r10 has value a and i is: 0
+r10 has value a and i is: 1
+r10 has value a and i is: 2
+Op translated: 4
+r10 has value a and i is: 0
+r10 has value a and i is: 1
+r10 has value a and i is: 2
+Op translated: 4
+r6 has value 6 and i is: 0
+r6 has value 6 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 2
+%0 has value 0 and i is: 0
+r10 has value a and i is: 1
+Op translated: 9
+%:b0 has value 0 and i is: 0
+Op translated: 4
+r2 has value 2 and i is: 0
+r4 has value 4 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 4
+r6 has value 6 and i is: 0
+r6 has value 6 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 4
+r6 has value 6 and i is: 0
+r4 has value 4 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 2
+%0 has value 0 and i is: 0
+r10 has value a and i is: 1
+Op translated: 9
+%:b0 has value 0 and i is: 0
+Op translated: 1
+%42 has value 42 and i is: 0
+Op translated: 2
+%9 has value 9 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 11
+r3 has value 3 and i is: 0
+%:p32deb has value 0 and i is: 1
+%-6 has value -6 and i is: 2
+Op translated: 2
+%2 has value 2 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 11
+r3 has value 3 and i is: 0
+%:p32deb has value 0 and i is: 1
+%-16 has value -16 and i is: 2
+Op translated: 2
+%0 has value 0 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 9
+%:topd has value 0 and i is: 0
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l0 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l1 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l2 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l3 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l4 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l5 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l6 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l7 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l8 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l9 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 11
+r1 has value 1 and i is: 0
+%:l10 has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 9
+%:l0 has value 0 and i is: 0
+Op translated: 9
+%:infi has value 0 and i is: 0
+Op translated: 1
+%0 has value 0 and i is: 0
+Op translated: 2
+%1 has value 1 and i is: 0
+r1 has value 1 and i is: 1
+Op translated: 11
+r1 has value 1 and i is: 0
+%:p64li has value 0 and i is: 1
+%1 has value 1 and i is: 2
+Op translated: 7
+r2 has value 2 and i is: 0
+r2 has value 2 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 9
+%:p64 has value 0 and i is: 0
+Op translated: 5
+r2 has value 2 and i is: 0
+r4 has value 4 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 9
+%:p32 has value 0 and i is: 0
+Op translated: 2
+%0 has value 0 and i is: 0
+r2 has value 2 and i is: 1
+Op translated: 9
+%:infi has value 0 and i is: 0
+Op translated: 9
+%:tirdow has value 0 and i is: 0
+Op translated: 2
+%9 has value 9 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 11
+r3 has value 3 and i is: 0
+%:fin has value 0 and i is: 1
+%-6 has value -6 and i is: 2
+Op translated: 2
+%2 has value 2 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 11
+r3 has value 3 and i is: 0
+%:fin has value 0 and i is: 1
+%-16 has value -16 and i is: 2
+Op translated: 2
+%0 has value 0 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 9
+%:infi has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 9
+%0 has value 0 and i is: 0
+Op translated: 2
+%10 has value 10 and i is: 0
+r8 has value 8 and i is: 1
+Op translated: 5
+r6 has value 6 and i is: 0
+r8 has value 8 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 6
+r6 has value 6 and i is: 0
+%2147483648 has value -2147483648 and i is: 1
+r8 has value 8 and i is: 2
+Op translated: 9
+%:cont has value 0 and i is: 0
+Op translated: 2
+%118 has value 118 and i is: 0
+r8 has value 8 and i is: 1
+Op translated: 4
+r6 has value 6 and i is: 0
+r8 has value 8 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 4
+r6 has value 6 and i is: 0
+r6 has value 6 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 2
+%272 has value 272 and i is: 0
+r8 has value 8 and i is: 1
+Op translated: 2
+%29 has value 29 and i is: 0
+r9 has value 9 and i is: 1
+Op translated: 10
+%:p64deb has value 0 and i is: 0
+r6 has value 6 and i is: 1
+r7 has value 7 and i is: 2
+Op translated: 11
+r7 has value 7 and i is: 0
+r8 has value 8 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 11
+r7 has value 7 and i is: 0
+r9 has value 9 and i is: 1
+r6 has value 6 and i is: 2
+Op translated: 1
+%1 has value 1 and i is: 0
+Op translated: 2
+%0 has value 0 and i is: 0
+r10 has value a and i is: 1
+Op translated: 9
+%186 has value 186 and i is: 0
+Op translated: 2
+%425 has value 425 and i is: 0
+r2 has value 2 and i is: 1
+Op translated: 2
+%0 has value 0 and i is: 0
+r3 has value 3 and i is: 1
+Op translated: 2
+%4 has value 4 and i is: 0
+r4 has value 4 and i is: 1
+Op translated: 1
+%42 has value 42 and i is: 0
+Op translated: 11
+r10 has value a and i is: 0
+%:fin has value 0 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 11
+r10 has value a and i is: 0
+%:fin has value 0 and i is: 1
+r3 has value 3 and i is: 2
+Op translated: 4
+r4 has value 4 and i is: 0
+r5 has value 5 and i is: 1
+r4 has value 4 and i is: 2
+Op translated: 4
+r3 has value 3 and i is: 0
+r4 has value 4 and i is: 1
+r3 has value 3 and i is: 2
+Op translated: 5
+r2 has value 2 and i is: 0
+r4 has value 4 and i is: 1
+r2 has value 2 and i is: 2
+Op translated: 9
+%:tirdow has value 0 and i is: 0
+Op translated: 2
+%0 has value 0 and i is: 0
+r11 has value b and i is: 1
+Op translated: 9
+%:tird has value 0 and i is: 0
+Op translated: 9
+%:p1 has value 0 and i is: 0
+Op translated: 1
+%633 has value 633 and i is: 0
+Going to print out the absolute positions of all my labels
+Label: entree:, has absolute position: 0
+Label: tir:, has absolute position: 24
+Label: tirf:, has absolute position: 73
+Label: tirop:, has absolute position: 191
+Label: tirb:, has absolute position: 218
+Label: p32deb:, has absolute position: 312
+Label: p32:, has absolute position: 402
+Label: p32li:, has absolute position: 454
+Label: tirvd:, has absolute position: 486
+Label: bite:, has absolute position: 491
+Label: b0:, has absolute position: 618
+Label: b1:, has absolute position: 708
+Label: top:, has absolute position: 761
+Label: infi:, has absolute position: 824
+Label: l0:, has absolute position: 967
+Label: l1:, has absolute position: 972
+Label: l2:, has absolute position: 977
+Label: l3:, has absolute position: 982
+Label: l4:, has absolute position: 987
+Label: l5:, has absolute position: 992
+Label: l6:, has absolute position: 997
+Label: l7:, has absolute position: 1002
+Label: l8:, has absolute position: 1007
+Label: l9:, has absolute position: 1012
+Label: l10:, has absolute position: 1017
+Label: p1:, has absolute position: 1027
+Label: copie:, has absolute position: 1037
+Label: tart:, has absolute position: 1046
+Label: tirvd2:, has absolute position: 1109
+Label: topd:, has absolute position: 1114
+Label: p64deb:, has absolute position: 1172
+Label: p64:, has absolute position: 1372
+Label: cont:, has absolute position: 1434
+Label: p64li:, has absolute position: 1504
+Label: tirdow:, has absolute position: 1523
+Label: tird:, has absolute position: 1550
+Label: fin:, has absolute position: 1644
+1 2a 0 0 0 
+c 0 0 0 0 
+2 0 0 0 0 5 0 0 0 
+9 0 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+2 0 9 0 0 a 0 0 0 
+2 1 0 0 0 5 0 0 0 
+2 0 0 0 0 b 0 0 0 
+2 4 0 0 0 3 0 0 0 
+1 2a 0 0 0 
+c 0 0 0 0 
+1 e6 2 0 0 
+5 3 0 0 0 5 0 0 0 3 0 0 0 
+9 0 0 0 0 
+2 0 0 0 0 b 0 0 0 
+c 0 0 0 0 
+1 2a 0 0 0 
+b a 0 0 0 2 fe ff ff 0 0 0 0 
+b a 0 0 0 6c fe ff ff 0 0 0 0 
+b a 0 0 0 d1 fe ff ff 0 0 0 0 
+b a 0 0 0 36 ff ff ff 0 0 0 0 
+2 0 0 0 0 b 0 0 0 
+9 0 0 0 0 
+2 70 1 0 0 2 0 0 0 
+2 0 0 0 0 3 0 0 0 
+2 4 0 0 0 4 0 0 0 
+1 1 0 0 0 
+b a 0 0 0 2 fe ff ff 2 0 0 0 
+b a 0 0 0 2 fe ff ff 3 0 0 0 
+4 4 0 0 0 5 0 0 0 4 0 0 0 
+4 3 0 0 0 4 0 0 0 3 0 0 0 
+5 2 0 0 0 4 0 0 0 2 0 0 0 
+9 0 0 0 0 
+2 0 0 0 0 b 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+5 6 0 0 0 4 0 0 0 6 0 0 0 
+4 6 0 0 0 6 0 0 0 b 0 0 0 
+a 0 0 0 0 6 0 0 0 7 0 0 0 
+b 7 0 0 0 2 fe ff ff b 0 0 0 
+1 1 0 0 0 
+2 0 0 0 0 a 0 0 0 
+b 7 0 0 0 6 ff ff ff 6 0 0 0 
+9 40 ff ff ff 
+9 0 0 0 0 
+b 1 0 0 0 0 0 0 0 2 0 0 0 
+a 0 0 0 0 3 0 0 0 2 0 0 0 
+b 2 0 0 0 0 0 0 0 fc ff ff ff 
+a 0 0 0 0 ff ff ff ff 2 0 0 0 
+b 2 0 0 0 0 0 0 0 f8 ff ff ff 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+2 0 0 0 0 2 0 0 0 
+2 8 0 0 0 3 0 0 0 
+2 1 0 0 0 4 0 0 0 
+2 0 0 0 0 6 0 0 0 
+1 1 0 0 0 
+5 3 0 0 0 4 0 0 0 3 0 0 0 
+9 0 0 0 0 
+c 0 0 0 0 
+3 5 0 0 0 2 0 0 0 
+8 a 0 0 0 a 0 0 0 a 0 0 0 
+4 a 0 0 0 a 0 0 0 a 0 0 0 
+4 6 0 0 0 6 0 0 0 6 0 0 0 
+2 0 0 0 0 a 0 0 0 
+9 0 0 0 0 
+4 2 0 0 0 4 0 0 0 2 0 0 0 
+4 6 0 0 0 6 0 0 0 6 0 0 0 
+4 6 0 0 0 4 0 0 0 6 0 0 0 
+2 0 0 0 0 a 0 0 0 
+9 0 0 0 0 
+1 2a 0 0 0 
+2 9 0 0 0 3 0 0 0 
+b 3 0 0 0 0 0 0 0 fa ff ff ff 
+2 2 0 0 0 3 0 0 0 
+b 3 0 0 0 0 0 0 0 f0 ff ff ff 
+2 0 0 0 0 3 0 0 0 
+9 0 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+1 1 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+1 0 0 0 0 
+2 1 0 0 0 1 0 0 0 
+b 1 0 0 0 0 0 0 0 1 0 0 0 
+7 2 0 0 0 2 0 0 0 2 0 0 0 
+9 0 0 0 0 
+5 2 0 0 0 4 0 0 0 2 0 0 0 
+9 0 0 0 0 
+2 0 0 0 0 2 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+2 9 0 0 0 3 0 0 0 
+b 3 0 0 0 0 0 0 0 fa ff ff ff 
+2 2 0 0 0 3 0 0 0 
+b 3 0 0 0 0 0 0 0 f0 ff ff ff 
+2 0 0 0 0 3 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+2 a 0 0 0 8 0 0 0 
+5 6 0 0 0 8 0 0 0 6 0 0 0 
+6 6 0 0 0 0 0 0 80 8 0 0 0 
+9 0 0 0 0 
+2 76 0 0 0 8 0 0 0 
+4 6 0 0 0 8 0 0 0 6 0 0 0 
+4 6 0 0 0 6 0 0 0 6 0 0 0 
+2 10 1 0 0 8 0 0 0 
+2 1d 0 0 0 9 0 0 0 
+a 0 0 0 0 6 0 0 0 7 0 0 0 
+b 7 0 0 0 8 0 0 0 6 0 0 0 
+b 7 0 0 0 9 0 0 0 6 0 0 0 
+1 1 0 0 0 
+2 0 0 0 0 a 0 0 0 
+9 ba 0 0 0 
+2 a9 1 0 0 2 0 0 0 
+2 0 0 0 0 3 0 0 0 
+2 4 0 0 0 4 0 0 0 
+1 2a 0 0 0 
+b a 0 0 0 0 0 0 0 2 0 0 0 
+b a 0 0 0 0 0 0 0 3 0 0 0 
+4 4 0 0 0 5 0 0 0 4 0 0 0 
+4 3 0 0 0 4 0 0 0 3 0 0 0 
+5 2 0 0 0 4 0 0 0 2 0 0 0 
+9 0 0 0 0 
+2 0 0 0 0 b 0 0 0 
+9 0 0 0 0 
+9 0 0 0 0 
+1 79 2 0 0 
