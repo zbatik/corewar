@@ -189,6 +189,24 @@ void	print_cor(t_input *head, char *fname)
 				}
 				printf("%02x",tmp->byte_code[0][0]);
 				count++;
+				if (tmp->param_encoding != 0)
+				{
+					if (count % 2 == 0)
+					{
+						if (count2 == 7)
+						{
+							count2 = 0;
+							printf("\n");
+						}
+						else
+						{
+							count2++;
+							printf(" ");
+						}
+					}
+					printf("%02x", tmp->param_encoding);
+					count++;
+				}
 				while (tmp->args[i] != '\0')
 				{
 					j = 0;

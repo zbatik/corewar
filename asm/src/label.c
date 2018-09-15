@@ -55,6 +55,10 @@ int string_to_encoding (char str[4])
         return (IR);
     else if (ft_strncmp(str, "DR", 2) == 0)
         return (DR);
+    else if (ft_strncmp(str, "RI", 2) == 0)
+        return(RI);
+    else if (ft_strncmp(str,  "RR", 2) == 0)
+        return(RR);
     return(0);
 }
 
