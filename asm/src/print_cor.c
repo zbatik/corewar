@@ -67,12 +67,10 @@ void	print_name(t_input *head)
 			in++;
 		if (ft_strncmp(in, NAME_CMD_STRING, 5) == 0)
 		{
-			//printf("I found a name in str: %s", in);
 			in = in + 5;
 			while(ft_isws(*in) == TRUE)
 				in++;
 			str_to_unstr(out, in, PROG_NAME_LENGTH);
-			//printf("the unsinged str is :%s\n",out);
 			break;
 		}
 		tmp = tmp->next;
@@ -96,7 +94,7 @@ void	print_name(t_input *head)
 				printf(" ");
 			}
 		}
-		printf("%x", out[i++]);
+		printf("%02x", out[i++]);
 	}
 }
 
@@ -145,7 +143,7 @@ void	print_comment(t_input *head)
 				printf(" ");
 			}
 		}
-		printf("%x", out[i++]);
+		printf("%02x", out[i++]);
 	}
 }
 
@@ -155,15 +153,17 @@ void	print_cor(t_input *head, char *fname)
 	t_input	*tmp;
 	int	i;
 	int	j;
-	int	count;
+	static int	count = 0;
+	static int	count2 = 0;
 	int max;
 
 	tmp =  head;
 	fd = 1;
 	(void) fd;
 	(void) fname;
-	count  = 0;
-	(void) count;
+//	count  = 0;
+//	count2 = 0;
+//	(void) count;
 	print_name(head);
 	print_comment(head);
 	while (tmp != NULL)
@@ -174,9 +174,21 @@ void	print_cor(t_input *head, char *fname)
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE)
 			{	
-				//print_hex(tmp->byte_code[0][1]);
-				//print_hex(tmp->byte_code[0][0]);
-				printf("%x",tmp->byte_code[0][0]);
+				if (count % 2 == 0)
+				{
+					if (count2 == 7)
+					{
+						count2 = 0;
+						printf("\n");
+					}
+					else
+					{
+						count2++;
+						printf(" ");
+					}
+				}
+				printf("%02x",tmp->byte_code[0][0]);
+				count++;
 				while (tmp->args[i] != '\0')
 				{
 					j = 0;
@@ -187,10 +199,25 @@ void	print_cor(t_input *head, char *fname)
 					else
 						max = REG_SIZE;
 					while (j  < max)
-						printf("%x ", tmp->byte_code[i + 1][j++]);
+					{
+						if (count % 2 == 0)
+						{
+							if (count2 == 7)
+							{
+								count2 = 0;
+								printf("\n");
+							}
+							else
+							{
+								count2++;
+								printf(" ");
+							}
+						}
+						printf("%02x", tmp->byte_code[i + 1][j++]);
+						count++;
+					}
 					i++;
 				}
-				printf("\n");
 			}
 		}
 		tmp = tmp->next;

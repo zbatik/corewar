@@ -12,12 +12,6 @@
 
 #include "../includes/asm.h"
 #include <stdio.h>
-
-t_bool	is_validfile(t_input *ahead)
-{
-	(void) ahead;
-	return (TRUE);
-}
 /**
 **TODO:
 **	Loop through the list and record the following:
@@ -50,8 +44,6 @@ t_bool	parse_listinfo(t_input *ahead)
 		}
 		tmp = tmp->next;
 	}
-	printf("============================================================\n");
-	printf("Runing gen_bytecode keeping track of the current byte_count\n");
 	tmp = ahead;
 	count = 0;
 	while (tmp != NULL)
@@ -64,17 +56,6 @@ t_bool	parse_listinfo(t_input *ahead)
 				count += tmp->byte_count;
 				gen_bytecode(ahead, tmp, count);
 			}
-		}
-		tmp = tmp->next;
-	}
-	printf("Going to print out the absolute positions of all my labels\n");
-	tmp = ahead;
-	while (tmp != NULL)
-	{
-		if (is_wsstring(tmp->line) == FALSE)
-		{
-			if (is_label(tmp->line) == TRUE)
-				printf("Label: %s, has absolute position: %d\n",tmp->line ,tmp->byte_count);
 		}
 		tmp = tmp->next;
 	}
