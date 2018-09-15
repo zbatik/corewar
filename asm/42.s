@@ -1,5 +1,4 @@
 .name           "42"
-.comment        "hamster powa"
 .comment		"hello world"
 
 entree: live	%42

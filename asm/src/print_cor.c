@@ -41,7 +41,10 @@ void	str_to_unstr(unsigned char *arr, char *str, int size)
 	i = 0;
 	while (str[i] != '\0' && i < size)
 	{
-		arr[i] = (unsigned char) str[i];
+		if (str[i] != '"')
+			arr[i] = (unsigned char) str[i];
+		else
+			arr[i] = 0;
 		i++;
 	}
 	while (i < size)
