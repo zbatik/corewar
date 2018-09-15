@@ -35,11 +35,17 @@ t_bool	parse_listinfo(t_input *ahead)
 			{
 				count += instruction_byte_size(tmp);
 				tmp->param_encoding = string_to_encoding(tmp->args);
+				if (tmp->param_encoding != 0)
+					count++;
 			}
 			if (is_label(tmp->line) == TRUE)
 			{
 				tmp->byte_count = count;
 				tmp->is_label = TRUE;
+				if (ft_strncmp(tmp->line, "bite", 4) == 0)
+				{
+					printf("tmp->line has position %d\n", tmp->byte_count);
+				}
 			}
 		}
 		tmp = tmp->next;
@@ -54,6 +60,8 @@ t_bool	parse_listinfo(t_input *ahead)
 				&& is_comment(tmp->line) == FALSE )
 			{
 				count += tmp->byte_count;
+				if (tmp->param_encoding != 0)
+					count++;
 				gen_bytecode(ahead, tmp, count);
 			}
 		}

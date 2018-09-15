@@ -88,10 +88,13 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 				inter = label->byte_count;
 				if (inter < curr_byte_count)	
 				{	
-					inter = (curr_byte_count -  inter - elem->byte_count);
+					if (elem->param_encoding != 0)
+						inter = (curr_byte_count -  inter - (elem->byte_count + 1));
+					else
+						inter = (curr_byte_count -  inter - elem->byte_count);
 				}
 				else
-					inter = (inter -  curr_byte_count -1);
+					inter = (inter -  curr_byte_count -2);
 			}
 			else
 				inter = ft_atoi(curr + 1);

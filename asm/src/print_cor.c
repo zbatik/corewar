@@ -114,12 +114,10 @@ void	print_comment(t_input *head)
 			in++;
 		if (ft_strncmp(in, COMMENT_CMD_STRING, 8) == 0)
 		{
-			//printf("I found a comment in str: %s", in);
 			in = in + 8;
 			while(ft_isws(*in) == TRUE)
 				in++;
 			str_to_unstr(out, in, COMMENT_LENGTH);
-			//printf("the unsinged str is :%s\n",out);
 			break;
 		}
 		tmp = tmp->next;
@@ -161,9 +159,6 @@ void	print_cor(t_input *head, char *fname)
 	fd = 1;
 	(void) fd;
 	(void) fname;
-//	count  = 0;
-//	count2 = 0;
-//	(void) count;
 	print_name(head);
 	print_comment(head);
 	while (tmp != NULL)
