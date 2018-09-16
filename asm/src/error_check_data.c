@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 15:21:38 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/14 12:44:18 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/16 13:49:53 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,7 @@ void		error_check_data(t_main *var)
 		var->temp_input = a;
 	}
 	var->temp_input = var->input;
+	check_multiple_name(var);
+	check_multiple_comment(var);
+	check_duplicate_label(var);
 }
