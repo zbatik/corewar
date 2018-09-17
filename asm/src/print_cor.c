@@ -34,21 +34,133 @@ void	print_hex(unsigned int num)
 	write(1, &c, 1);
 }
 
+void	str_to_unstr(unsigned char *arr, char *str, int size)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0' && i < size)
+	{
+		if (str[i] != '"')
+			arr[i] = (unsigned char) str[i];
+		else
+			arr[i] = 0;
+		i++;
+	}
+	while (i < size)
+		arr[i++] = 0;
+}
+
+void	print_name(t_input *head)
+{
+	t_input *tmp;
+	char	*in;
+	unsigned char	out[PROG_NAME_LENGTH];
+	int		i;
+	int		j;
+
+	tmp = head;
+	while (tmp != NULL)
+	{
+		in = tmp->line;
+		while(ft_isws(*in) == TRUE)
+			in++;
+		if (ft_strncmp(in, NAME_CMD_STRING, 5) == 0)
+		{
+			in = in + 5;
+			while(ft_isws(*in) == TRUE)
+				in++;
+			str_to_unstr(out, in, PROG_NAME_LENGTH);
+			break;
+		}
+		tmp = tmp->next;
+	}
+	if (tmp == NULL)
+		ft_memset(&out, 0, PROG_NAME_LENGTH);
+	i = 0;
+	j = 0;
+	while (i < PROG_NAME_LENGTH)
+	{
+		if (i % 2 == 0)
+		{
+			if (j == 7)
+			{
+				j = 0;
+				printf("\n");
+			}
+			else
+			{
+				j++;
+				printf(" ");
+			}
+		}
+		printf("%02x", out[i++]);
+	}
+}
+
+void	print_comment(t_input *head)
+{
+	t_input *tmp;
+	char	*in;
+	unsigned char	out[COMMENT_LENGTH];
+	int		i;
+	int		j;
+
+	tmp = head;
+	while (tmp != NULL)
+	{
+		in = tmp->line;
+		while(ft_isws(*in) == TRUE)
+			in++;
+		if (ft_strncmp(in, COMMENT_CMD_STRING, 8) == 0)
+		{
+			in = in + 8;
+			while(ft_isws(*in) == TRUE)
+				in++;
+			str_to_unstr(out, in, COMMENT_LENGTH);
+			break;
+		}
+		tmp = tmp->next;
+	}
+	if (tmp == NULL)
+		ft_memset(&out, 0, COMMENT_LENGTH);
+	i = 0;
+	j = 0;
+	while (i < COMMENT_LENGTH)
+	{
+		if (i % 2 == 0)
+		{
+			if (j == 7)
+			{
+				j = 0;
+				printf("\n");
+			}
+			else
+			{
+				j++;
+				printf(" ");
+			}
+		}
+		printf("%02x", out[i++]);
+	}
+}
+
 void	print_cor(t_input *head, char *fname)
 {
 	int	fd;
 	t_input	*tmp;
 	int	i;
 	int	j;
-	int	count;
+	static int	count = 0;
+	static int	count2 = 0;
 	int max;
 
 	tmp =  head;
 	fd = 1;
 	(void) fd;
 	(void) fname;
-	count  = 0;
-	(void) count;
+	print_name(head);
+	print_comment(head);
 	while (tmp != NULL)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
@@ -57,9 +169,39 @@ void	print_cor(t_input *head, char *fname)
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE)
 			{	
-				//print_hex(tmp->byte_code[0][1]);
-				//print_hex(tmp->byte_code[0][0]);
-				printf("%x",tmp->byte_code[0][0]);
+				if (count % 2 == 0)
+				{
+					if (count2 == 7)
+					{
+						count2 = 0;
+						printf("\n");
+					}
+					else
+					{
+						count2++;
+						printf(" ");
+					}
+				}
+				printf("%02x",tmp->byte_code[0][0]);
+				count++;
+				if (tmp->param_encoding != 0)
+				{
+					if (count % 2 == 0)
+					{
+						if (count2 == 7)
+						{
+							count2 = 0;
+							printf("\n");
+						}
+						else
+						{
+							count2++;
+							printf(" ");
+						}
+					}
+					printf("%02x", tmp->param_encoding);
+					count++;
+				}
 				while (tmp->args[i] != '\0')
 				{
 					j = 0;
@@ -70,10 +212,25 @@ void	print_cor(t_input *head, char *fname)
 					else
 						max = REG_SIZE;
 					while (j  < max)
-						printf("%x ", tmp->byte_code[i + 1][j++]);
+					{
+						if (count % 2 == 0)
+						{
+							if (count2 == 7)
+							{
+								count2 = 0;
+								printf("\n");
+							}
+							else
+							{
+								count2++;
+								printf(" ");
+							}
+						}
+						printf("%02x", tmp->byte_code[i + 1][j++]);
+						count++;
+					}
 					i++;
 				}
-				printf("\n");
 			}
 		}
 		tmp = tmp->next;

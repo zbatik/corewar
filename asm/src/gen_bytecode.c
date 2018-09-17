@@ -64,7 +64,7 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 
 	op = inst_to_enum((char*)elem->line);
 	elem->byte_code[0] = (t_byte *)malloc(sizeof(t_byte));
-	printf("Op translated: %d\n",(unsigned char) (index_opinfo(op)).op_number);
+	//printf("Op translated: %d\n",(unsigned char) (index_opinfo(op)).op_number);
 	//inter = rev_endian((unsigned int)(index_opinfo(op)).op_number);
 	inter = (index_opinfo(op)).op_number;
 	ft_memmove(elem->byte_code[0], &inter, sizeof(t_byte));
@@ -84,42 +84,39 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		{
 			if (curr[1] == ':')
 			{
-				printf("Identified as label\n");
 				label = get_label(ahead, curr + 2);
-				printf("Label is: %s :%d, %d\n",label->line, label->byte_count, curr_byte_count);
 				inter = label->byte_count;
 				if (inter < curr_byte_count)	
 				{	
-					inter = (curr_byte_count -  inter);
+					if (elem->param_encoding != 0)
+						inter = (curr_byte_count -  inter - (elem->byte_count + 1));
+					else
+						inter = (curr_byte_count -  inter - elem->byte_count);
 				}
 				else
-					inter = (inter -  curr_byte_count);
+					inter = (inter -  curr_byte_count -2);
 			}
 			else
-			{
 				inter = ft_atoi(curr + 1);
-				printf("it wasnt a label and atoi of %s returned %d\n",(curr + 1), inter);
-			}
 			inter = (int) rev_endian((unsigned int) inter);
 			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
 			ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * DIR_SIZE);
-			printf("%s has value %x and i is: %d\n", curr, inter, i);
 		}
 		else if (elem->args[i] == 'I')
 		{
-			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
-			inter = ft_atoi(curr);
+			if (curr[0] == ':')
+				inter = get_label(ahead, curr + 1)->byte_count;
+			else
+				inter = ft_atoi(curr);
 			inter = (int) rev_endian((unsigned int) inter);
-			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * IND_SIZE);
-			printf("%s has value %x and i is: %d\n",curr, elem->byte_code[i + 1][1], i);
-			
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
+			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * IND_SIZE);			
 		}
 		else
 		{
 			inter = ft_atoi(curr + 1);
 			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * REG_SIZE);
 			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * REG_SIZE);
-			printf("%s has value %x and i is: %d\n",curr, elem->byte_code[i + 1][0], i);
 		}
 		i++;
 	}

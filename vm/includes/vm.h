@@ -16,6 +16,11 @@
 #include "../../shared/includes/shared.h"
 
 # define DEBUG 1
+# define PARA_ENCODE_BYTE (core->mem[(cursor->pc + 1) % MEM_SIZE])
+# define MEM_VAL_PC_RELATIVE(x) (core->mem[(cursor->pc + x) % MEM_SIZE])
+# define MEM_PNT_PC_RELATIVE(x) (core->mem + ((cursor->pc + x) % MEM_SIZE))
+# define MEM_VAL_PC_REL_MOD(x) (core->mem[((cursor->pc + x) % IDX_MOD) % MEM_SIZE])
+# define MEM_PNT_PC_REL_MOD(x) (core->mem + ((cursor->pc + x) % IDX_MOD) % MEM_SIZE)
 
 typedef	struct	s_player
 {
@@ -45,6 +50,7 @@ typedef struct	s_core
 	t_process	processes[MEM_SIZE];
 	int			num_processes;
 	t_bool		dump;
+	int			last_alive;
 	int			cycles_to_die;
 	int			cycles_to_dump;
 	int			num_players;
@@ -55,6 +61,7 @@ typedef struct	s_core
 	int			fd;
 }				t_core;
 
+/*
 typedef enum {
 	rrr,
 	rir,
@@ -67,6 +74,7 @@ typedef enum {
 	ir,
 	dr,
 }		t_para_comb;
+*/
 
 /*
 **	init.c
@@ -91,6 +99,7 @@ int load(t_core *core);
 /*
 **	cursor.c
 */
+void	duplicate_process(t_core *core, t_process *cursor, int jump);
 void    process_add(t_process *cursor, int pc, int player_num, int ind);
 
 /*
@@ -120,6 +129,10 @@ void exit_on_error(char *error_msg);
 /*
 **	helpers.c 
 */
+void            modify_carry(t_process *cursor, t_opnum op);
+int corrupted_encoding_byte(void);
+unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len);
+void    write_to_reg(t_process *cursor, int reg, int input);
 int     byte_to_int(unsigned char *input, int len);
 t_bool  valid_reg(int rX);
 void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
@@ -127,6 +140,10 @@ void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
 /*
 **	instructions/ 
 */
+void general_processing(t_core *core, t_process *cursor, t_opnum op);
+int ft_op(t_core *core, t_process *cursor, int *param1, int *param2);
+
+int ft_op(t_core *core, t_process *cursor, int *param1, int *param2);
 int ft_live(t_core *core, t_process *cursor);
 int ft_ld(t_core *core, t_process *cursor);
 int ft_st(t_core *core, t_process *cursor);

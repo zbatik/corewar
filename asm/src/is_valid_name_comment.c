@@ -60,7 +60,7 @@ int			is_valid_name(char *line)
 	}
 	t = ft_strtrim(str[1]);
 	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"'
-			&& ft_strlen(t) > 2 && count_inv(t) == 2 & ft_strlen(t) <= 130)
+			&& ft_strlen(t) > 2 && count_inv(t) == 2 && ft_strlen(t) <= 130)
 	{
 		ft_arrdel(&str, i);
 		ft_strdel(&t);

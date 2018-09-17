@@ -55,6 +55,10 @@ int string_to_encoding (char str[4])
         return (IR);
     else if (ft_strncmp(str, "DR", 2) == 0)
         return (DR);
+    else if (ft_strncmp(str, "RI", 2) == 0)
+        return(RI);
+    else if (ft_strncmp(str,  "RR", 2) == 0)
+        return(RR);
     return(0);
 }
 
@@ -102,14 +106,14 @@ int    instruction_byte_size(t_input   *input)
     op = inst_to_enum((char*)input->line);
     if (DEBUG)
     {
-        ft_putstr("Calculating byte lenght of: ");
-        ft_putendl(input->line);
-		ft_putstr("Recognised as: ");
-		ft_putendl((index_opinfo(op)).instruction);
-		ft_putstr("Calculated byte size of: \n");
+        //ft_putstr("Calculating byte lenght of: ");
+        //ft_putendl(input->line);
+		//ft_putstr("Recognised as: ");
+		//ft_putendl((index_opinfo(op)).instruction);
+		//ft_putstr("Calculated byte size of: \n");
         instruction_arg_size(op, input);
-		ft_putnbr(input->byte_count);
-		ft_putchar('\n');
+		//ft_putnbr(input->byte_count);
+		//ft_putchar('\n');
     }
     return (input->byte_count);
 }

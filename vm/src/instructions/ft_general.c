@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_or.c                                            :+:      :+:    :+:   */
+/*   ft_general.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 18:34:11 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/10 11:34:56 by zbatik           ###   ########.fr       */
+/*   Created: 2018/09/14 10:21:05 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/14 10:27:13 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-int ft_or(t_core *core, t_process *cursor)
+void general_processing(t_core *core, t_process *cursor, t_opnum op)
 {
-    t_opnum num;
-    t_opinfo info; 
-
-    num = core->mem[cursor->pc];
-    info = index_opinfo(num);
-    ft_putendl(info.instruction);
-    info = index_opinfo(e_or);
-    ft_putendl(info.instruction);
-    return (5);
+    if (DEBUG)
+        print_instr_info(core, op, cursor->pc);
+    modify_carry(cursor, op);
 }
