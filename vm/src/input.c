@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:10:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/08 18:14:19 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/17 18:35:01 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,31 @@ static int  ft_isposint(char *num)
 	return (n);
 }
 
-static int  parse_dump(t_core *core, int c, char **v)
+static int  parse_flags(t_core *core, int c, char **v)
 {
-	if (c > 2)
+	int skip;
+
+	skip = 0;
+	if (ft_strequ(v[0 + skip], "-pbp"))
 	{
-		if (ft_strequ(v[0], "-dump"))
+		core->pbp = 1;
+		skip += 1;
+	}
+	if (ft_strequ(v[0 + skip], "-i"))
+	{
+		core->interactive = 1;
+		skip += 1;
+	}
+	if (c > 2 + skip)
+	{
+		if (ft_strequ(v[0 + skip], "-dump"))
 		{
 			core->dump = 1;
-			core->cycles_to_dump = ft_isposint(v[1]);
+			core->cycles_to_dump = ft_isposint(v[1 + skip]);
+			skip += 2;
 		}
 	}
-	return (1);
+	return (skip);
 }
 
 static int  parse_players(t_core *core, int c, char **v)
@@ -80,12 +94,11 @@ static int  parse_players(t_core *core, int c, char **v)
 
 int         parse_input(t_core *core, int c, char **v)
 {
-	parse_dump(core, c, v);
-	if (1 == core->dump)
-	{
-		v = v + 2;
-		c = c - 2;
-	}
+	int skip;
+
+	skip = parse_flags(core, c, v);
+	v = v + skip;
+	c = c - skip;
 	parse_players(core, c, v);
 	return (1);
 }

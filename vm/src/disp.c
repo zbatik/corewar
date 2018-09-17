@@ -85,12 +85,12 @@ void	print_instr_info(t_core *core, t_opnum op, int pc)
     t_opinfo info;
 
 	num = core->mem[pc];
-    info = index_opinfo(num);
+	info = index_opinfo(num);
 	ft_putstr("recieved intsruction: ");       
-    ft_putendl(info.instruction);
-    info = index_opinfo(op);
+	ft_putendl(info.instruction);
+	info = index_opinfo(op);
 	ft_putstr("expected intsruction: ");
-    ft_putendl(info.instruction);
+	ft_putendl(info.instruction);
 }
 
 void	print_parsed_info(t_core *core)
@@ -108,20 +108,23 @@ void	print_parsed_info(t_core *core)
 	printf("_____________\n");
 }
 
-void	print_cursor_info(t_process *cursor)
+void	print_cursor_info(t_core *core, t_process *cursor)
 {
-	ft_putstr("carry: ");
-	ft_putnbr(cursor->carry);
-	ft_putchar('\n');
-	ft_putstr("cycles_to_execute: ");
-	ft_putnbr(cursor->cycles_to_execute);
-	ft_putchar('\n');
 	ft_putstr("id: ");
 	ft_putnbr(cursor->id);
 	ft_putchar('\n');
-	ft_putstr("pc: ");
+	ft_putstr("carry: ");
+	ft_putnbr(cursor->carry);
+	ft_putchar('\n');
+	ft_putstr("pc location: ");
 	ft_putnbr(cursor->pc);
 	ft_putchar('\n');
+	ft_putstr("instruction to execute: ");
+ 	ft_putendl((index_opinfo(MEM_VAL_PC_RELATIVE(0))).instruction);
+	ft_putstr("cycles_to_execute: ");
+	ft_putnbr(cursor->cycles_to_execute);
+	ft_putchar('\n');
+	
 }
 
 void	print_cylce_info(t_core *core, int current)
@@ -136,14 +139,16 @@ void	print_cylce_info(t_core *core, int current)
 void	print_players(t_core *core)
 {
 	int i;
+	int fd;
 
+	fd = 0;
 	i = -1;
-	ft_putendl_fd("\tPLAYER_BREAKDOWN:", core->fd);
-	ft_putstr_fd("Number Players: ", core->fd);
-	ft_putnbr_fd(core->num_players, core->fd);
-	ft_putchar_fd('\n', core->fd);
+	ft_putendl_fd("\tPLAYER_BREAKDOWN:", fd);
+	ft_putstr_fd("Number Players: ", fd);
+	ft_putnbr_fd(core->num_players, fd);
+	ft_putchar_fd('\n', fd);
 	while (++i < core->num_players)
-		print_player(&core->players[i], core->fd);
+		print_player(&core->players[i], fd);
 }
 
 void	print_player(t_player *player, int fd)
@@ -161,10 +166,7 @@ void	print_player(t_player *player, int fd)
 		ft_putstr_fd("Player Size: ", fd);
 		ft_putnbr_fd(player->size, fd);
 		ft_putchar_fd('\n', fd);
-	//	ft_putstr_fd("Program:", fd);
-	//	for (int i = 0; i < player->size; i++)
-	//		fprintf(fd, "%x ", player->program[i]); 
-		ft_putstr_fd("Start Pos: ", fd);
+		ft_putstr_fd("Start PC: ", fd);
 		ft_putnbr_fd(player->start_pos, fd);
 		ft_putchar_fd('\n', fd);
 }
