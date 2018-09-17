@@ -64,8 +64,6 @@ t_bool	parse_listinfo(t_input *ahead)
 			{
 				gen_bytecode(ahead, tmp, count);
 				count += tmp->byte_count;
-				if (tmp->param_encoding != 0)
-					count++;
 			}
 		}
 		tmp = tmp->next;

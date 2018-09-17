@@ -61,7 +61,6 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	t_opnum op;
 
 	op = inst_to_enum((char*)elem->line);
-	printf("The current byte count is: %d, with instruction: %d and it has byte size: %d\n",curr_byte_count, (index_opinfo(op)).op_number, elem->byte_count);
 	elem->byte_code[0] = (t_byte *)malloc(sizeof(t_byte));
 	inter = (index_opinfo(op)).op_number;
 	ft_memmove(elem->byte_code[0], &inter, sizeof(t_byte));
@@ -82,11 +81,18 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			if (curr[1] == ':')
 			{
 				inter = get_label(ahead, curr + 2)->byte_count;
+				if (get_label(ahead, curr + 2) != NULL)
+					printf("I found a label: %d\n", get_label(ahead, curr + 2)->byte_count);
 				inter = (inter - curr_byte_count);
 			}
 			else
 				inter = ft_atoi(curr + 1);
+			printf("value of inter after the minus: %d\n",inter );
+			unsigned char *x;
+			x = (unsigned char *)&inter;
+			printf("%x %x %x %x\n",x[0], x[1], x[2], x[3]);
 			inter = (int) rev_endian((unsigned int) inter);
+			printf("%x %x %x %x\n",x[0], x[1], x[2], x[3]);
 			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
 			ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * DIR_SIZE);
 		}
@@ -97,30 +103,12 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			{
 				inter = get_label(ahead, curr + 1)->byte_count;
 				inter = (inter - curr_byte_count);
-				printf("Inter after the minus %d\n",inter);
 			}
 			else
 				inter = ft_atoi(curr);
-			printf("%d\n", inter);
-			unsigned int try = 0;
-			if (inter < 0)
-			{
-				try = inter;
-				//try = rev_endian((unsigned int) inter);
-				printf("%x\n", *(&try));				
-				try = try<<16 | try >> 16;
-				try = try<<8 | try >> 8;
-				printf("%x\n", *(&try));
-
-				//printf("%x\n", *(&(try)));
-			}
-			unsigned int *x;
-
-			x = &try;
-			printf("%x	%x\n", x[0], x[1]);
 			inter = (int) rev_endian((unsigned int) inter);
-			ft_memmove(elem->byte_code[i + 1], &(try), sizeof(t_byte) * IND_SIZE);
-			printf("%x\n",(elem->byte_code[i + 1][0]));			
+			inter = inter << 16 | inter >> 16;
+			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * IND_SIZE);		
 		}
 		else
 		{
