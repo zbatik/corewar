@@ -102,17 +102,19 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			else
 				inter = ft_atoi(curr);
 			printf("%d\n", inter);
-			unsigned int try;
+			unsigned int try = 0;
 			if (inter < 0)
 			{
-				try = rev_endian((unsigned int) inter);
-				printf("%x\n", *(&(try)));
-				//try = rev_endian(try);
+				try = inter;
+				//try = rev_endian((unsigned int) inter);
+				printf("%x\n", *(&try));				
+				try = try<<16;
+				printf("%x\n", *(&try));
 				//printf("%x\n", *(&(try)));
 			}
 			inter = (int) rev_endian((unsigned int) inter);
-			//printf("%x\n", *(&(try)));
-			ft_memmove(elem->byte_code[i + 1], &(try), sizeof(t_byte) * IND_SIZE);			
+			ft_memmove(elem->byte_code[i + 1], &(try), sizeof(t_byte) * IND_SIZE);
+			printf("%x\n",(elem->byte_code[i + 1][1]));			
 		}
 		else
 		{
