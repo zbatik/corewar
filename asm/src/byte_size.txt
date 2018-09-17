@@ -1,0 +1,4 @@
+All registers have size 1
+live - 5 bytes
+ld - Indirect of 2, Direct of 4
+st - Indirect of 2 // for some reason you're losing the info at the end I am not registering the indirect vibes for some reason

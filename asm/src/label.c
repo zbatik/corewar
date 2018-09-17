@@ -21,9 +21,11 @@ int	arg_byte_count(char *str)
 	while (*str != '\0')
 	{
 		if (*str == 'I')
-			ret += 2;
-		else
-			ret += 4;
+			ret += IND_SIZE;
+		else if(*str == 'R')
+			ret += ASM_REG;
+        else
+            ret += DIR_SIZE;
 		str++;
 	}
 	return (ret);

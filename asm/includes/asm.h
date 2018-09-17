@@ -20,6 +20,7 @@
 
 # define DEBUG 1
 # define IND_DBL 4;
+# define ASM_REG 1
 
 /*
 */

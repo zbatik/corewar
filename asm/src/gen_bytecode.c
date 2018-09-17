@@ -37,7 +37,6 @@ char	*padded_itoa(int final_size, int to_convert)
 	{
 		ret[i] = '0';
 		ret[i + 1] = '0';
-		//ft_strcpy(ret + i, "00");
 		i ++;
 	}
 	swapnfree(&ret, ft_strjoin(ret, tmp));
@@ -51,7 +50,7 @@ void	convert_to_byte(unsigned int num, t_byte *code)
 	*code = num;
 }
 
-//*(t_byte*)&inter = ft_atoi(split[i]);
+
 void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 {
 	int 	i;
@@ -60,12 +59,10 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	char	*curr;
 	int		inter;
 	t_opnum op;
-	t_input	*label;
 
 	op = inst_to_enum((char*)elem->line);
+	printf("The current byte count is: %d, with instruction: %d and it has byte size: %d\n",curr_byte_count, (index_opinfo(op)).op_number, elem->byte_count);
 	elem->byte_code[0] = (t_byte *)malloc(sizeof(t_byte));
-	//printf("Op translated: %d\n",(unsigned char) (index_opinfo(op)).op_number);
-	//inter = rev_endian((unsigned int)(index_opinfo(op)).op_number);
 	inter = (index_opinfo(op)).op_number;
 	ft_memmove(elem->byte_code[0], &inter, sizeof(t_byte));
 	tmp = (char *)elem->line;
@@ -84,17 +81,8 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		{
 			if (curr[1] == ':')
 			{
-				label = get_label(ahead, curr + 2);
-				inter = label->byte_count;
-				if (inter < curr_byte_count)	
-				{	
-					if (elem->param_encoding != 0)
-						inter = (curr_byte_count -  inter - (elem->byte_count + 1));
-					else
-						inter = (curr_byte_count -  inter - elem->byte_count);
-				}
-				else
-					inter = (inter -  curr_byte_count -2);
+				inter = get_label(ahead, curr + 2)->byte_count;
+				inter = (inter - curr_byte_count);
 			}
 			else
 				inter = ft_atoi(curr + 1);
@@ -104,19 +92,33 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		}
 		else if (elem->args[i] == 'I')
 		{
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
 			if (curr[0] == ':')
+			{
 				inter = get_label(ahead, curr + 1)->byte_count;
+				inter = (inter - curr_byte_count);
+				printf("Inter after the minus %d\n",inter);
+			}
 			else
 				inter = ft_atoi(curr);
+			printf("%d\n", inter);
+			unsigned int try;
+			if (inter < 0)
+			{
+				try = rev_endian((unsigned int) inter);
+				printf("%x\n", *(&(try)));
+				//try = rev_endian(try);
+				//printf("%x\n", *(&(try)));
+			}
 			inter = (int) rev_endian((unsigned int) inter);
-			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * IND_SIZE);
-			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * IND_SIZE);			
+			//printf("%x\n", *(&(try)));
+			ft_memmove(elem->byte_code[i + 1], &(try), sizeof(t_byte) * IND_SIZE);			
 		}
 		else
 		{
 			inter = ft_atoi(curr + 1);
-			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * REG_SIZE);
-			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * REG_SIZE);
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * ASM_REG);
+			ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * ASM_REG);
 		}
 		i++;
 	}

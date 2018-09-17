@@ -97,6 +97,13 @@ void	print_name(t_input *head)
 		printf("%02x", out[i++]);
 	}
 }
+void	print_magic()
+{
+	unsigned int	x;
+
+	x = COREWAR_EXEC_MAGIC;
+	printf("%02x", x);
+}
 
 void	print_comment(t_input *head)
 {
@@ -151,7 +158,7 @@ void	print_cor(t_input *head, char *fname)
 	t_input	*tmp;
 	int	i;
 	int	j;
-	static int	count = 0;
+	static int	count = 1;
 	static int	count2 = 0;
 	int max;
 
@@ -159,8 +166,9 @@ void	print_cor(t_input *head, char *fname)
 	fd = 1;
 	(void) fd;
 	(void) fname;
-	print_name(head);
-	print_comment(head);
+	//print_magic();
+	//print_name(head);
+	//print_comment(head);
 	while (tmp != NULL)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
@@ -169,9 +177,9 @@ void	print_cor(t_input *head, char *fname)
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE)
 			{	
-				if (count % 2 == 0)
+				if (count % 1 == 0)
 				{
-					if (count2 == 7)
+					if (count2 == 16)
 					{
 						count2 = 0;
 						printf("\n");
@@ -186,9 +194,9 @@ void	print_cor(t_input *head, char *fname)
 				count++;
 				if (tmp->param_encoding != 0)
 				{
-					if (count % 2 == 0)
+					if (count % 1 == 0)
 					{
-						if (count2 == 7)
+						if (count2 == 16)
 						{
 							count2 = 0;
 							printf("\n");
@@ -210,12 +218,12 @@ void	print_cor(t_input *head, char *fname)
 					else if (tmp->args[i] == 'D')
 						max = DIR_SIZE;
 					else
-						max = REG_SIZE;
+						max = ASM_REG;
 					while (j  < max)
 					{
-						if (count % 2 == 0)
+						if (count % 1 == 0)
 						{
-							if (count2 == 7)
+							if (count2 == 16)
 							{
 								count2 = 0;
 								printf("\n");
@@ -232,7 +240,10 @@ void	print_cor(t_input *head, char *fname)
 					i++;
 				}
 			}
+		//	printf("Byte size of this instruction: %d\n",tmp->byte_count);
 		}
+
 		tmp = tmp->next;
 	}
+
 }

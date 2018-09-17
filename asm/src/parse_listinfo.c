@@ -36,7 +36,10 @@ t_bool	parse_listinfo(t_input *ahead)
 				count += instruction_byte_size(tmp);
 				tmp->param_encoding = string_to_encoding(tmp->args);
 				if (tmp->param_encoding != 0)
+				{
+					tmp->byte_count++;
 					count++;
+				}
 			}
 			if (is_label(tmp->line) == TRUE)
 			{
@@ -59,10 +62,10 @@ t_bool	parse_listinfo(t_input *ahead)
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE )
 			{
+				gen_bytecode(ahead, tmp, count);
 				count += tmp->byte_count;
 				if (tmp->param_encoding != 0)
 					count++;
-				gen_bytecode(ahead, tmp, count);
 			}
 		}
 		tmp = tmp->next;
