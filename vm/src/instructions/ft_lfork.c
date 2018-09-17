@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:31:24 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/10 11:34:28 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/14 13:36:12 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 int ft_lfork(t_core *core, t_process *cursor)
 {    
-    t_opnum num;
-    t_opinfo info; 
+	int jump;
 
-    num = core->mem[cursor->pc];
-    info = index_opinfo(num);
-    ft_putendl(info.instruction);
-    info = index_opinfo(e_lfork);
-    ft_putendl(info.instruction);
-    return (5);
+    general_processing(core, cursor, e_lfork);
+	jump = (byte_to_int(MEM_PNT_PC_RELATIVE(1) ,2)) % MEM_SIZE;
+	duplicate_process(core, cursor, jump);
+	return (3);
 }
