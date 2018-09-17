@@ -3,3 +3,6 @@ live - 5 bytes
 ld - Indirect of 2, Direct of 4
 st - Indirect of 2
 fork -direct of 2. Maybe Directs are the ones with funny sizes (corrobarated by 2 files)
+
+tomorrow go through all the instructions. The size of the instructions is messing with your indexing for the labels.
+Fix that and you're done with all.

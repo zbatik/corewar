@@ -81,12 +81,13 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			if (curr[1] == ':')
 			{
 				inter = get_label(ahead, curr + 2)->byte_count;
-				if (get_label(ahead, curr + 2) != NULL)
-					printf("I found a label: %d\n", get_label(ahead, curr + 2)->byte_count);
-				inter = (inter - curr_byte_count);
+				printf("label: %s, has position: %d\n",get_label(ahead, curr + 2)->line, inter);
+				inter = (inter - (curr_byte_count + elem->byte_count)) + 1;
 			}
 			else
+			{
 				inter = ft_atoi(curr + 1);
+			}
 			printf("value of inter after the minus: %d\n",inter );
 			unsigned char *x;
 			x = (unsigned char *)&inter;
