@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_check_data.c                                 :+:      :+:    :+:   */
+/*   print_output.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 15:21:38 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/16 13:49:53 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/18 13:30:40 by emaune            #+#    #+#             */
+/*   Updated: 2018/09/18 13:33:00 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "ft_printf.h"
 
-void		error_check_data(t_main *var)
+void			print_output(const char *s, t_var *var, int fd)
 {
-	t_input *a;
+	int			i;
 
-	a = var->input;
-	while (a)
+	i = 0;
+	var->temp = var->conv;
+	while (s[i])
 	{
-		error_check_line(var, a->line, a->line_no);
-		a = a->next;
-		var->temp_input = a;
+		if (s[i] == '%')
+		{
+			i++;
+			if (is_conversion_char(s[i]) && var->temp)
+			{
+				ft_putstr_fd(var->temp->str, fd);
+				var->temp = var->temp->next;
+			}
+		}
+		else
+			ft_putchar_fd(s[i], fd);
+		i++;
 	}
-	var->temp_input = var->input;
-	check_multiple_name(var);
-	check_multiple_comment(var);
-	check_duplicate_label(var);
 }
