@@ -30,8 +30,6 @@ void	str_to_unstr(unsigned char *arr, char *str, int size)
 	{
 		if (str[i] != '"')
 			arr[i] = (unsigned char) str[i];
-		else
-			arr[i] = 0;
 		i++;
 	}
 	while (i < size)
@@ -73,16 +71,16 @@ void	print_name(t_input *head, int fd)
 			if (j == 7)
 			{
 				j = 0;
-				printf("\n");
+				//printf("\n");
 			}
 			else
 			{
 				j++;
-				printf(" ");
+				//printf(" ");
 			}
 		}
-		write(1, &out[i], sizeof(unsigned char));
-		printf("%02x", out[i++]);
+		write(fd, &out[i++], sizeof(unsigned char));
+		//printf("%02x", out[i++]);
 	}
 }
 void	print_magic(int fd)
@@ -90,11 +88,12 @@ void	print_magic(int fd)
 	unsigned int	x;
 
 	x = COREWAR_EXEC_MAGIC;
+	x = rev_endian(x);
 	if (fd > 0)
 	{
 		write(fd, &x, sizeof(unsigned int));
 	}
-	printf("%02x", x);
+	//printf("%02x", x);
 }
 
 void	print_comment(t_input *head, int fd)
@@ -132,20 +131,20 @@ void	print_comment(t_input *head, int fd)
 			if (j == 7)
 			{
 				j = 0;
-				printf("\n");
+				//printf("\n");
 			}
 			else
 			{
 				j++;
-				printf(" ");
+				//printf(" ");
 			}
 		}
-		printf("%02x", out[i]);
+		//printf("%02x", out[i]);
 		write(fd, &out[i++], sizeof(unsigned char));
 	}
 }
 
-void	print_cor(t_input *head, char *fname)
+void	print_cor(t_main	*var, char *fname)
 {
 	int	fd;
 	t_input	*tmp;
@@ -156,13 +155,15 @@ void	print_cor(t_input *head, char *fname)
 	int max;
 	char	*new_name;
 
-	tmp =  head;
+	tmp =  var->input;
 	new_name = ft_strsub(fname, 0, ft_indexcin(fname, '.'));
 	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
 	fd = open (new_name, O_RDWR | O_CREAT, 0777);
 	print_magic(fd);
-	print_name(head, fd);
-	print_comment(head, fd);
+	print_name(var->input, fd);
+	rev_endian(var->total_player_size);
+	write(fd, &var->total_player_size, sizeof(unsigned int));
+	print_comment(var->input, fd);
 	while (tmp != NULL)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
@@ -176,15 +177,15 @@ void	print_cor(t_input *head, char *fname)
 					if (count2 == 16)
 					{
 						count2 = 0;
-						printf("\n");
+						//printf("\n");
 					}
 					else
 					{
 						count2++;
-						printf(" ");
+						//printf(" ");
 					}
 				}
-				printf("%02x",tmp->byte_code[0][0]);
+				//printf("%02x",tmp->byte_code[0][0]);
 				write(fd, &tmp->byte_code[0][0], sizeof(unsigned char));
 				count++;
 				if (tmp->param_encoding != 0)
@@ -194,15 +195,15 @@ void	print_cor(t_input *head, char *fname)
 						if (count2 == 16)
 						{
 							count2 = 0;
-							printf("\n");
+							//printf("\n");
 						}
 						else
 						{
 							count2++;
-							printf(" ");
+							//printf(" ");
 						}
 					}
-					printf("%02x", tmp->param_encoding);
+					//printf("%02x", tmp->param_encoding);
 					write(fd, &tmp->param_encoding, sizeof(unsigned char));
 					count++;
 				}
@@ -224,22 +225,22 @@ void	print_cor(t_input *head, char *fname)
 							if (count2 == 16)
 							{
 								count2 = 0;
-								printf("\n");
+								//printf("\n");
 							}
 							else
 							{
 								count2++;
-								printf(" ");
+								//printf(" ");
 							}
 						}
-						printf("%02x", tmp->byte_code[i + 1][j]);
+						//printf("%02x", tmp->byte_code[i + 1][j]);
 						write(fd, &tmp->byte_code[i + 1][j++], sizeof(unsigned char));
 						count++;
 					}
 					i++;
 				}
 			}
-		//	printf("Byte size of this instruction: %d\n",tmp->byte_count);
+		//	//printf("Byte size of this instruction: %d\n",tmp->byte_count);
 		}
 
 		tmp = tmp->next;

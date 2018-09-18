@@ -13,7 +13,16 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
-static int	g_smalldir[] = {9, 10, 11, 12, 13, 15, 16};
+
+
+static int	g_smalldir[] = {9, 10, 11, 12, 13, 15};
+/*
+** 10 always 2
+** 11 always 2
+** 12 always 2
+** 13 always 2
+** Remember to encode the total plater size 
+*/
 
 void	op_code_char(char	*code, t_opnum op)
 {

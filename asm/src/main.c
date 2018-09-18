@@ -22,27 +22,65 @@
 ** 			popuates the input with byte_size instuction_code etc 
 **	Write to file which will take all the info in in_head and print its bytes
 */
-int main(int ac, char *av[])
+
+void	print_name_main(t_input *head)
+{
+	t_input	*value;
+	char	*tmp;
+
+	value = head;
+	while (value != NULL)
+	{
+		if (ft_strncmp(value->line, NAME_CMD_STRING, 5) == 0)
+		{
+			tmp = value->line + 5;
+			while (ft_isws(*tmp))
+				tmp++;
+			ft_putchar('\t');
+			ft_putendl(tmp);
+			break ;
+		}
+		value = value->next;
+	}
+}
+
+void	print_comment_main(t_input *head)
+{
+	t_input	*value;
+	char	*tmp;
+
+	value = head;
+	while (value != NULL)
+	{
+		if (ft_strncmp(value->line, COMMENT_CMD_STRING, 8) == 0)
+		{
+			tmp = value->line + 8;
+			while (ft_isws(*tmp))
+				tmp++;
+			ft_putchar('\t');
+			ft_putendl(tmp);
+			break ;
+		}
+		value = value->next;
+	}
+}
+
+int 	main(int ac, char *av[])
 {
 	t_main var;
 
 	if (ac > 1)
 	{
 		store_input(&var, av[1]);
-		//while (var.temp_input != NULL)
 		error_check_data(&var);
-		/*while (var.temp_input != NULL)
-		error_check_data(&var);
-		while (var.temp_input != NULL)
+		if (parse_listinfo(&var) == TRUE)
 		{
-			ft_putnbr(var.temp_input->line_no);
-			ft_putstr(" - ");
-			ft_putendl(var.temp_input->line);
-			var.temp_input = var.temp_input->next;
-		}*/
-		if (parse_listinfo(var.input) == TRUE)
-		{
-			print_cor(var.input, av[1]);
+			ft_putstr("Assembling: ");
+			ft_putstr(av[1]);
+			ft_putendl(":");
+			print_name_main(var.input);
+			print_comment_main(var.input);
+			print_cor(&var, av[1]);
 		}
 		else
 			ft_putendl("ERROR: error in file");
