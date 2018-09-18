@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 16:22:55 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/17 18:39:51 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 11:35:51 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	info_mode(t_core *core)
 			else
 				print_cursor_info(core, &core->processes[pc_num]);
 		}
-		else if (ft_strequ(line, "exit"))
+		else if (ft_strequ(line, "info off"))
 			break ;
 		else if (*line == 0)
 			;
