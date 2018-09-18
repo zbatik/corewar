@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 14:31:36 by mdilapi           #+#    #+#              #
-#    Updated: 2018/09/14 12:57:56 by emaune           ###   ########.fr        #
+#    Updated: 2018/09/16 13:50:30 by emaune           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
 SRC_FILES		=	args_are_valid.c \
 					arr_len.c \
+					check_duplicates.c \
 					check_commas.c \
 					check_params.c \
 					check_and_or.c \

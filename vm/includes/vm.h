@@ -50,7 +50,11 @@ typedef struct	s_core
 	t_process	processes[MEM_SIZE];
 	int			num_processes;
 	t_bool		dump;
+	t_bool		interactive;
+	t_bool		pbp;
 	int			last_alive;
+	int			cycle_count;
+	int			cycle_number;
 	int			cycles_to_die;
 	int			cycles_to_dump;
 	int			num_players;
@@ -103,6 +107,11 @@ void	duplicate_process(t_core *core, t_process *cursor, int jump);
 void    process_add(t_process *cursor, int pc, int player_num, int ind);
 
 /*
+**	byte_count.c
+*/
+int byte_count(t_core *core, t_process *cursor, t_opnum op);
+
+/*
 **	game.c
 */
 int game_loop(t_core *core);
@@ -112,7 +121,7 @@ int update_cycles_to_execute(t_byte current, t_process *cursor);
 **	disp.c
 */
 void	print_instr_info(t_core *core, t_opnum op, int pc);
-void	print_cursor_info(t_process *cursor);
+void	print_cursor_info(t_core *core, t_process *cursor);
 void	print_cylce_info(t_core *core, int current);
 void	print_parsed_info(t_core *core);
 void	print_players(t_core *core);
@@ -122,6 +131,16 @@ void	print_mem(t_byte *reg, t_byte *colouring, t_byte *cursor);
 void	print_processes(t_core *core);
 
 /*
+**	interactive.c
+*/
+void	interactive(t_core *core);
+
+/*
+**	end_cycle_checks.c
+*/
+void	end_cycle_checks_checks(t_core *core);
+
+/*
 **	exit.c 
 */
 void exit_on_error(char *error_msg);
@@ -129,7 +148,6 @@ void exit_on_error(char *error_msg);
 /*
 **	helpers.c 
 */
-void            modify_carry(t_process *cursor, t_opnum op);
 int corrupted_encoding_byte(void);
 unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len);
 void    write_to_reg(t_process *cursor, int reg, int input);

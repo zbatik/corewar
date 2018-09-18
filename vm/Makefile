@@ -35,7 +35,9 @@ SRC_FILES		=	main.c \
 				cursor.c \
 				game.c \
 				helpers.c \
-				end_cycle_checks.c
+				end_cycle_checks.c \
+				interactive.c \
+				byte_count.c
 
 INST_DIR		= ./src/instructions/
 INST_PATHS		= $(addprefix $(INST_DIR),$(INST_FILES))

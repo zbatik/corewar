@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_zjmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:33:47 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/14 11:37:42 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 13:23:43 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	ft_zjmp(t_core *core, t_process *cursor)
 	}
 	else
 	{
-		ft_putendl("carry off, no action");
+		if (core->pbp)
+			ft_putendl("carry off, no action");
 		return (3);
 	}
+	
 }

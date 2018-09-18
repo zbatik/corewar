@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 15:43:52 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/10 17:07:13 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/17 13:24:26 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int update_cycles_to_execute(t_byte current, t_process *cursor)
 static int execute_pc(t_core *core, t_process *cursor)
 {
     int move;
-    print_cursor_info(cursor);
+//    print_cursor_info(cursor);
     if (cursor->cycles_to_execute == 0)
     {
         if (core->mem[cursor->pc] >= 0x01 && core->mem[cursor->pc] <= 0x10)
@@ -58,19 +58,17 @@ static int execute_pcs(t_core *core)
 int game_loop(t_core *core)
 {
     int i;
-    char *line;
 
-    i = -1;
-    while (core->cycles_to_die > 0)
+    while (1)
     {
+        i = -1;
         while (++i < core->cycles_to_die)
         {
-            get_next_line(0, &line);
-            ft_strdel(&line);
-            execute_pcs(core);
-            print_cylce_info(core, i);
-            print_mem(core->mem, core->colouring, core->cursor);
+            interactive(core);
+            execute_pcs(core); 
+            core->cycle_count += 1;
         }
+        end_cycle_checks_checks(core);
         core->cycles_to_die -= CYCLE_DELTA;
     }
     return (1);
