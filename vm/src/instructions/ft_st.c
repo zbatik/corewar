@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:59:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/14 11:09:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/17 18:03:41 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int ft_st(t_core *core, t_process *cursor)
     int r_cpy_from;
     int r_cpy_to;
 
-    if (DEBUG)
-        print_instr_info(core, e_st, cursor->pc);
+    general_processing(core, cursor, e_st);
     r_cpy_from = core->mem[cursor->pc + 2];
     if (!valid_reg(r_cpy_from))
         return (1);

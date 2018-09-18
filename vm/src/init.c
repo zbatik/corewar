@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:12:42 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/10 11:21:36 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/17 17:56:15 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,13 @@ int init_core(t_core *core)
 	init_fnptr(core);
 	core->num_processes = 0;
 	core->dump = 0;
-	core->cycles_to_die = CYCLE_TO_DIE;
+	core->interactive = 0;
+	core->pbp = 0;
+	core->last_alive = 0;
+	core->cycle_count = 0;
+	core->cycle_number = 0;
 	core->cycles_to_dump = -1;
+	core->cycles_to_die = CYCLE_TO_DIE;
 	core->num_players = 0;
 	ft_bzero(core->mem, MEM_SIZE);
 	ft_bzero(core->colouring, MEM_SIZE);
