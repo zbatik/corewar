@@ -1,4 +1,4 @@
-.name "42"
+.name           "42"
 .comment		"hello world"
 
 entree: live	%42

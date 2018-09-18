@@ -14,3 +14,23 @@ lldi - Direct of 2
 fork - Direct of 2
 lfork - Direct of 2
 aff - has a parameter encoding byte 
+
+i say move back 47 bytes
+they say move back 52 bytes
+
+tird:
+	live	%42			#5bytes
+	sti	r10,%:fin,r2	#6bytes
+	sti	r10,%:fin,r3	#6bytes
+	add	r4,r5,r4		#5bytes		
+	add	r3,r4,r3		#5bytes
+	sub	r2,r4,r2		#5bytes
+	zjmp	%:tirdow 	#3bytes
+	ld	%0,r11 			#7bytes
+	zjmp	%:tird 		#3bytes
+	zjmp	%:p1 		#3bytes
+			
+fin:	live	%633	#5bytes
+
+-- This entire block is 54 bytes
+From zjmp tird

@@ -21,6 +21,22 @@
 **
 */
 
+void	str_to_str(char *arr, char *str, int size)
+{
+	int	i;
+
+	i = 0;
+	while (*str != '\0' && i < size)
+	{
+		if (*str != '"')
+			arr[i++] = (char) *str++;
+		else
+			str++;
+	}
+	while (i < size)
+		arr[i++] = 0;
+}
+
 void	str_to_unstr(unsigned char *arr, char *str, int size)
 {
 	int	i;
@@ -37,13 +53,10 @@ void	str_to_unstr(unsigned char *arr, char *str, int size)
 		arr[i++] = 0;
 }
 
-void	print_name(t_input *head, int fd)
+void	print_name(header_t *header, t_input *head)
 {
 	t_input *tmp;
 	char	*in;
-	unsigned char	out[PROG_NAME_LENGTH + 1];
-	int		i;
-	int		j;
 
 	tmp = head;
 	while (tmp != NULL)
@@ -56,39 +69,18 @@ void	print_name(t_input *head, int fd)
 			in = in + 5;
 			while(ft_isws(*in) == TRUE)
 				in++;
-			str_to_unstr(out, in, PROG_NAME_LENGTH);
+			str_to_str(header->prog_name, in, PROG_NAME_LENGTH);
+			header->prog_name[PROG_NAME_LENGTH] = '\0';
 			break;
 		}
 		tmp = tmp->next;
 	}
-	if (tmp == NULL)
-		ft_memset(&out, 0, PROG_NAME_LENGTH);
-	i = 0;
-	j = 0;
-	while (i < PROG_NAME_LENGTH + 1)
-	{
-		write(fd, &out[i++], sizeof(unsigned char));
-	}
-}
-void	print_magic(int fd)
-{
-	unsigned int	x;
-
-	x = COREWAR_EXEC_MAGIC;
-	x = rev_endian(x);
-	if (fd > 0)
-	{
-		write(fd, &x, sizeof(unsigned int));
-	}
 }
 
-void	print_comment(t_input *head, int fd)
+void	print_comment(header_t *header, t_input *head)
 {
 	t_input *tmp;
 	char	*in;
-	unsigned char	out[COMMENT_LENGTH + 1];
-	int		i;
-	int		j;
 
 	tmp = head;
 	while (tmp != NULL)
@@ -101,18 +93,11 @@ void	print_comment(t_input *head, int fd)
 			in = in + 8;
 			while(ft_isws(*in) == TRUE)
 				in++;
-			str_to_unstr(out, in, COMMENT_LENGTH);
+			str_to_str(header->comment, in, COMMENT_LENGTH);
+			header->comment[COMMENT_LENGTH] = '\0';
 			break;
 		}
 		tmp = tmp->next;
-	}
-	if (tmp == NULL)
-		ft_memset(&out, 0, COMMENT_LENGTH);
-	i = 0;
-	j = 0;
-	while (i < COMMENT_LENGTH + 1)
-	{
-		write(fd, &out[i++], sizeof(unsigned char));
 	}
 }
 
@@ -124,16 +109,19 @@ void	print_cor(t_main	*var, char *fname)
 	int	j;
 	int max;
 	char	*new_name;
+	header_t	header;
 
 	tmp =  var->input;
 	new_name = ft_strsub(fname, 0, ft_indexcin(fname, '.'));
 	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
-	fd = open (new_name, O_RDWR | O_CREAT, 0777);
-	print_magic(fd);
-	print_name(var->input, fd);
+	fd = open (new_name, O_RDWR | O_CREAT, 7777);
+	header.magic = COREWAR_EXEC_MAGIC;
+	header.magic = rev_endian(header.magic);
+	print_name(&header, var->input);
 	var->total_player_size = rev_endian(var->total_player_size);
-	write(fd, &var->total_player_size, sizeof(unsigned int));
-	print_comment(var->input, fd);
+	header.prog_size = var->total_player_size;
+	print_comment(&header, var->input);
+	write(fd, &header, sizeof(header_t));
 	while (tmp != NULL)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
@@ -155,7 +143,7 @@ void	print_cor(t_main	*var, char *fname)
 					else if (tmp->args[i] == 'd')
 						max = ASM_DIR;
 					else
-						max = REG_SIZE;
+						max = ASM_REG;
 					while (j  < max)
 						write(fd, &tmp->byte_code[i + 1][j++], sizeof(unsigned char));
 					i++;

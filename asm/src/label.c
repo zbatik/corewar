@@ -15,53 +15,68 @@
 
 int	arg_byte_count(char *str)
 {
-	int	ret;
-
+	int		ret;
+    char    *tmp;
 	ret = 0;
-	while (*str != '\0')
+	tmp = str;
+	while (*tmp != '\0')
 	{
-		if (*str == 'I')
+		if (*tmp == 'I')
 			ret += IND_SIZE;
-		else if(*str == 'R')
+		else if(*tmp == 'R')
 			ret += ASM_REG;
-        else if(*str == 'd')
+        else if(*tmp == 'd')
             ret += ASM_DIR;
         else
             ret += DIR_SIZE;
-		str++;
+		tmp++;
 	}
 	return (ret);
 }
 
 int string_to_encoding (char str[4])
 {
-    if (ft_strncmp(str, "RRR", 3) == 0)
+    char    tmp[4];
+    int     i;
+
+    i = 0;
+    while (i < 4)
+    {
+        tmp[i] = ft_toupper(str[i]);
+        i++;
+    }
+    tmp[i] = '\0';
+    if (ft_strncmp(tmp, "RRR", 3) == 0)
         return (RRR);
-    else if (ft_strncmp(str, "RIR", 3) == 0)
+    else if (ft_strncmp(tmp, "RIR", 3) == 0)
         return (RIR);
-    else if (ft_strncmp(str, "RDR", 3) == 0)
+    else if (ft_strncmp(tmp, "RDR", 3) == 0)
         return (RDR);
-    else if (ft_strncmp(str, "RRD", 3) == 0)
+    else if (ft_strncmp(tmp, "RRD", 3) == 0)
     	return (RRD);
-    else if (ft_strncmp(str, "IRR", 3) == 0)
+    else if (ft_strncmp(tmp, "RDD", 3) == 0)
+        return (RDD);
+    else if (ft_strncmp(tmp, "RID", 3) == 0)
+        return (RID);
+    else if (ft_strncmp(tmp, "IRR", 3) == 0)
         return (IRR);
-    else if (ft_strncmp(str, "IIR", 3) == 0)
+    else if (ft_strncmp(tmp, "IIR", 3) == 0)
         return (IIR);
-    else if (ft_strncmp(str, "IDR", 3) == 0)
+    else if (ft_strncmp(tmp, "IDR", 3) == 0)
         return (IDR);
-    else if (ft_strncmp(str, "DRR", 3) == 0)
-        return (DRR);
-    else if (ft_strncmp(str, "DIR", 3) == 0)
-        return (DIR);
-    else if (ft_strncmp(str, "DDR", 3) == 0)
+    else if (ft_strncmp(tmp, "DRR", 3) == 0)
+        return(DRR);
+    else if (ft_strncmp(tmp, "DIR", 3) == 0)
+        return(DIR);
+    else if (ft_strncmp(tmp, "DDR", 3) == 0)
         return(DDR);
-    else if (ft_strncmp(str, "IR", 2) == 0)
+    else if (ft_strncmp(tmp, "IR", 2) == 0)
         return (IR);
-    else if (ft_strncmp(str, "DR", 2) == 0)
+    else if (ft_strncmp(tmp, "DR", 2) == 0)
         return (DR);
-    else if (ft_strncmp(str, "RI", 2) == 0)
+    else if (ft_strncmp(tmp, "RI", 2) == 0)
         return(RI);
-    else if (ft_strncmp(str,  "RR", 2) == 0)
+    else if (ft_strncmp(tmp,  "RR", 2) == 0)
         return(RR);
     return(0);
 }

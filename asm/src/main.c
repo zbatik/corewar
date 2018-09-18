@@ -23,6 +23,19 @@
 **	Write to file which will take all the info in in_head and print its bytes
 */
 
+void	putstr_ignore(const char *str, char c)
+{
+	char	*tmp;
+
+	tmp = (char *)str;
+	while (*tmp != '\0')
+	{
+		if (*tmp != c)
+			write(1, &*tmp, 1);
+		tmp++;
+	}
+}
+
 void	print_name_main(t_input *head)
 {
 	t_input	*value;
@@ -37,7 +50,8 @@ void	print_name_main(t_input *head)
 			while (ft_isws(*tmp))
 				tmp++;
 			ft_putchar('\t');
-			ft_putendl(tmp);
+			putstr_ignore(tmp, '"');
+			ft_putchar('\n');
 			break ;
 		}
 		value = value->next;
@@ -58,7 +72,8 @@ void	print_comment_main(t_input *head)
 			while (ft_isws(*tmp))
 				tmp++;
 			ft_putchar('\t');
-			ft_putendl(tmp);
+			putstr_ignore(tmp, '"');
+			ft_putchar('\n');
 			break ;
 		}
 		value = value->next;
