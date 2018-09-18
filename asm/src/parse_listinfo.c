@@ -53,11 +53,11 @@ t_bool	parse_listinfo(t_main *var)
 	}
 	tmp = var->input;
 	var->total_player_size = count;
-	if(count > CHAMP_MAX_SIZE)
+	/*if(count > CHAMP_MAX_SIZE)
 	{
 		ft_putstr("ERROR: TOO big a player\n");
 		exit (1);
-	}
+	}*/
 	count = 0;
 	while (tmp != NULL)
 	{

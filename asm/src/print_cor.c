@@ -26,11 +26,12 @@ void	str_to_unstr(unsigned char *arr, char *str, int size)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0' && i < size)
+	while (*str != '\0' && i < size)
 	{
-		if (str[i] != '"')
-			arr[i] = (unsigned char) str[i];
-		i++;
+		if (*str != '"')
+			arr[i++] = (unsigned char) *str++;
+		else
+			str++;
 	}
 	while (i < size)
 		arr[i++] = 0;
@@ -40,7 +41,7 @@ void	print_name(t_input *head, int fd)
 {
 	t_input *tmp;
 	char	*in;
-	unsigned char	out[PROG_NAME_LENGTH];
+	unsigned char	out[PROG_NAME_LENGTH + 1];
 	int		i;
 	int		j;
 
@@ -64,23 +65,9 @@ void	print_name(t_input *head, int fd)
 		ft_memset(&out, 0, PROG_NAME_LENGTH);
 	i = 0;
 	j = 0;
-	while (i < PROG_NAME_LENGTH)
+	while (i < PROG_NAME_LENGTH + 1)
 	{
-		if (i % 2 == 0)
-		{
-			if (j == 7)
-			{
-				j = 0;
-				//printf("\n");
-			}
-			else
-			{
-				j++;
-				//printf(" ");
-			}
-		}
 		write(fd, &out[i++], sizeof(unsigned char));
-		//printf("%02x", out[i++]);
 	}
 }
 void	print_magic(int fd)
@@ -93,14 +80,13 @@ void	print_magic(int fd)
 	{
 		write(fd, &x, sizeof(unsigned int));
 	}
-	//printf("%02x", x);
 }
 
 void	print_comment(t_input *head, int fd)
 {
 	t_input *tmp;
 	char	*in;
-	unsigned char	out[COMMENT_LENGTH];
+	unsigned char	out[COMMENT_LENGTH + 1];
 	int		i;
 	int		j;
 
@@ -124,22 +110,8 @@ void	print_comment(t_input *head, int fd)
 		ft_memset(&out, 0, COMMENT_LENGTH);
 	i = 0;
 	j = 0;
-	while (i < COMMENT_LENGTH)
+	while (i < COMMENT_LENGTH + 1)
 	{
-		if (i % 2 == 0)
-		{
-			if (j == 7)
-			{
-				j = 0;
-				//printf("\n");
-			}
-			else
-			{
-				j++;
-				//printf(" ");
-			}
-		}
-		//printf("%02x", out[i]);
 		write(fd, &out[i++], sizeof(unsigned char));
 	}
 }
@@ -150,8 +122,6 @@ void	print_cor(t_main	*var, char *fname)
 	t_input	*tmp;
 	int	i;
 	int	j;
-	static int	count = 1;
-	static int	count2 = 0;
 	int max;
 	char	*new_name;
 
@@ -161,7 +131,7 @@ void	print_cor(t_main	*var, char *fname)
 	fd = open (new_name, O_RDWR | O_CREAT, 0777);
 	print_magic(fd);
 	print_name(var->input, fd);
-	rev_endian(var->total_player_size);
+	var->total_player_size = rev_endian(var->total_player_size);
 	write(fd, &var->total_player_size, sizeof(unsigned int));
 	print_comment(var->input, fd);
 	while (tmp != NULL)
@@ -172,41 +142,9 @@ void	print_cor(t_main	*var, char *fname)
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE)
 			{	
-				if (count % 1 == 0)
-				{
-					if (count2 == 16)
-					{
-						count2 = 0;
-						//printf("\n");
-					}
-					else
-					{
-						count2++;
-						//printf(" ");
-					}
-				}
-				//printf("%02x",tmp->byte_code[0][0]);
 				write(fd, &tmp->byte_code[0][0], sizeof(unsigned char));
-				count++;
 				if (tmp->param_encoding != 0)
-				{
-					if (count % 1 == 0)
-					{
-						if (count2 == 16)
-						{
-							count2 = 0;
-							//printf("\n");
-						}
-						else
-						{
-							count2++;
-							//printf(" ");
-						}
-					}
-					//printf("%02x", tmp->param_encoding);
 					write(fd, &tmp->param_encoding, sizeof(unsigned char));
-					count++;
-				}
 				while (tmp->args[i] != '\0')
 				{
 					j = 0;
@@ -219,30 +157,11 @@ void	print_cor(t_main	*var, char *fname)
 					else
 						max = REG_SIZE;
 					while (j  < max)
-					{
-						if (count % 1 == 0)
-						{
-							if (count2 == 16)
-							{
-								count2 = 0;
-								//printf("\n");
-							}
-							else
-							{
-								count2++;
-								//printf(" ");
-							}
-						}
-						//printf("%02x", tmp->byte_code[i + 1][j]);
 						write(fd, &tmp->byte_code[i + 1][j++], sizeof(unsigned char));
-						count++;
-					}
 					i++;
 				}
 			}
-		//	//printf("Byte size of this instruction: %d\n",tmp->byte_count);
 		}
-
 		tmp = tmp->next;
 	}
 	close (fd);
