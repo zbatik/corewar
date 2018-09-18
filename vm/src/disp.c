@@ -85,7 +85,11 @@ void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
     t_opinfo info;
 
 	num = MEM_VAL_PC_RELATIVE(0);
-	printf("process id %d with cursor at %d about to execute", cursor->id, cursor->pc);
+	ft_putstr("process id ");
+	ft_putnbr(cursor->id);
+	ft_putstr(" with cursor at ");
+	ft_putnbr(cursor->pc);
+	ft_putstr(" about to execute\n");
 	info = index_opinfo(num);
 	ft_putstr("recieved intsruction: ");       
 	ft_putendl(info.instruction);
@@ -130,6 +134,8 @@ void	print_cursor_info(t_core *core, t_process *cursor)
 
 void	print_cylce_info(t_core *core)
 {
+	printf("END OF CYCLE BREAKDOWN\n");
+	printf("number of processes: %d\n", core->num_processes);
 	printf("round number:\t\t%d\n", core->count.cycles);
 	printf("totol executed turns:\t%d\n", core->count.total_turns);
 	printf("cycles to die: %d\n", core->count.cycles_to_die);

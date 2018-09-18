@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 15:15:41 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 16:32:44 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 17:32:12 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,8 @@ static void	check_alive(t_core *core)
 void	end_cycle_checks_checks(t_core *core)
 {
 	check_alive(core);
-		print_cylce_info(core);
 	if (core->pbp)
-	{
 		print_cylce_info(core);
-	}
 	if (num_alive(core) == 0 || core->count.cycles_to_die <= 0)
 	{
 		ft_putstr_cl("player ", g);

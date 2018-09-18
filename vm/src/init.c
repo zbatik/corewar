@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:12:42 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 16:25:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:55:16 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	init_player(t_player *player)
 	player->file_name = NULL;
 	ft_bzero(player->name, PROG_NAME_LENGTH + 1);
 	ft_bzero(player->comment, COMMENT_LENGTH + 1);
-	player->alive = 1;
+	player->alive = 0;
 	player->dead = 0;
 //	player->live_count = 0;
 	player->size = 0;

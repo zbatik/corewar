@@ -116,7 +116,7 @@ void    process_add(t_process *cursor, int pc, int player_num, int ind);
 /*
 **	byte_count.c
 */
-int byte_counter(t_core *core, t_process *cursor, t_opnum op);
+int byte_counter(t_core *core, int pc, t_opnum op);
 
 /*
 **	game.c
