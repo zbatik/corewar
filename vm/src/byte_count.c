@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 14:40:43 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 15:12:48 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int ld_gen(t_byte eb)
 			return (1);
 }
 
-int byte_count(t_core *core, t_process *cursor, t_opnum op)
+int byte_counter(t_core *core, t_process *cursor, t_opnum op)
 {
 	t_byte eb;
 

@@ -109,7 +109,7 @@ void    process_add(t_process *cursor, int pc, int player_num, int ind);
 /*
 **	byte_count.c
 */
-int byte_count(t_core *core, t_process *cursor, t_opnum op);
+int byte_counter(t_core *core, t_process *cursor, t_opnum op);
 
 /*
 **	game.c
@@ -158,7 +158,7 @@ void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
 /*
 **	instructions/ 
 */
-void general_processing(t_core *core, t_process *cursor, t_opnum op);
+int general_processing(t_core *core, t_process *cursor, t_opnum op);
 int ft_op(t_core *core, t_process *cursor, int *param1, int *param2);
 
 int ft_op(t_core *core, t_process *cursor, int *param1, int *param2);

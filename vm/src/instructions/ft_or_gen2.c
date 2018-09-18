@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_generic.c                                       :+:      :+:    :+:   */
+/*   ft_or_gen2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 09:41:53 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/14 10:10:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 15:51:01 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,14 @@ int ft_op(t_core *core, t_process *cursor, int *param1, int *param2)
 {
     int jump;
 
-    if (core->mem[cursor->pc] == RRR)
+    jump = 1;
+    if (MEM_VAL_PC_RELATIVE(1) == RRR)
         jump =  op_rrr(core, cursor, param1, param2);
-    else if (core->mem[cursor->pc] == RIR)
+    else if (MEM_VAL_PC_RELATIVE(1) == RIR)
         jump = op_rir(core, cursor, param1, param2);
-    else if (core->mem[cursor->pc] == DIR)
+    else if (MEM_VAL_PC_RELATIVE(1) == DIR)
         jump = op_dir(core, cursor, param1, param2);
-    else if (core->mem[cursor->pc] == DRR)
+    else if (MEM_VAL_PC_RELATIVE(1) == DRR)
         jump = op_drr(core, cursor, param1, param2);
-    else
-        return (corrupted_encoding_byte());
     return (jump);
 }

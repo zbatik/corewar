@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_or_gen1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 14:25:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/14 14:31:09 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 15:48:06 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ static int ft_or_gen(t_core *core, t_process *cursor, t_opnum op)
     int param2;
     int r3;
     int jump;
+    int byte_count;
 
-    general_processing(core, cursor, op);
+    byte_count = general_processing(core, cursor, op);
+    if (byte_count == 1)
+        return (byte_count);
     param1 = 0;
     param2 = 0;
     jump = ft_op(core, cursor, &param1, &param2);
