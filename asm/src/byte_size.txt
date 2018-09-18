@@ -13,4 +13,4 @@ lld - Direct of 4
 lldi - Direct of 2
 fork - Direct of 2
 lfork - Direct of 2
-aff - has a parameter encoding byte
+aff - has a parameter encoding byte 

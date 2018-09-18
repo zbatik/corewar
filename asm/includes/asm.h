@@ -17,12 +17,13 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <unistd.h>
 
 # define DEBUG 1
 # define IND_DBL 4;
 # define ASM_REG 1
 # define ASM_DIR 2
-# define NUM_SMALL_DIR 6
+# define NUM_SMALL_DIR 7
 
 /*
 */

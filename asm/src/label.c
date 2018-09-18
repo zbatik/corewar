@@ -90,7 +90,7 @@ void    instruction_arg_size(t_opnum op, t_input *input)
             curr++;
         if (curr[0] == '%')
         {
-            if (is_smalldir(op) == TRUE)
+            if (is_smalldir(op, i) == TRUE)
                 input->args[i] = 'd';
             else
                 input->args[i] = 'D';

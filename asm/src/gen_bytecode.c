@@ -26,7 +26,7 @@ void	op_code_char(char	*code, t_opnum op)
 		ft_strcpy(code, "10");
 }
 
-int		is_smalldir(int opnum)
+int		is_smalldir(int opnum, int arg_num)
 {
 	int i;
 

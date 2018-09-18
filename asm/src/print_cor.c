@@ -13,26 +13,13 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
+
 /**TODO
 ** Take the fname and change it to .cor
 ** Find if theres a name and comment section write those first
 ** Write everything else that is in byte_code in the head
 **
 */
-
-
-void	print_hex(unsigned int num)
-{
-	char	c;
-
-	if(num > 15)
-		print_hex(num / 16);
-	if (num > 9)
-		c = num + 'W';
-	else
-		c = num  + '0';
-	write(1, &c, 1);
-}
 
 void	str_to_unstr(unsigned char *arr, char *str, int size)
 {
@@ -51,7 +38,7 @@ void	str_to_unstr(unsigned char *arr, char *str, int size)
 		arr[i++] = 0;
 }
 
-void	print_name(t_input *head)
+void	print_name(t_input *head, int fd)
 {
 	t_input *tmp;
 	char	*in;
@@ -94,18 +81,23 @@ void	print_name(t_input *head)
 				printf(" ");
 			}
 		}
+		write(1, &out[i], sizeof(unsigned char));
 		printf("%02x", out[i++]);
 	}
 }
-void	print_magic()
+void	print_magic(int fd)
 {
 	unsigned int	x;
 
 	x = COREWAR_EXEC_MAGIC;
+	if (fd > 0)
+	{
+		write(fd, &x, sizeof(unsigned int));
+	}
 	printf("%02x", x);
 }
 
-void	print_comment(t_input *head)
+void	print_comment(t_input *head, int fd)
 {
 	t_input *tmp;
 	char	*in;
@@ -148,7 +140,8 @@ void	print_comment(t_input *head)
 				printf(" ");
 			}
 		}
-		printf("%02x", out[i++]);
+		printf("%02x", out[i]);
+		write(fd, &out[i++], sizeof(unsigned char));
 	}
 }
 
@@ -161,14 +154,15 @@ void	print_cor(t_input *head, char *fname)
 	static int	count = 1;
 	static int	count2 = 0;
 	int max;
+	char	*new_name;
 
 	tmp =  head;
-	fd = 1;
-	(void) fd;
-	(void) fname;
-	//print_magic();
-	//print_name(head);
-	//print_comment(head);
+	new_name = ft_strsub(fname, 0, ft_indexcin(fname, '.'));
+	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
+	fd = open (new_name, O_RDWR | O_CREAT, 0777);
+	print_magic(fd);
+	print_name(head, fd);
+	print_comment(head, fd);
 	while (tmp != NULL)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
@@ -191,6 +185,7 @@ void	print_cor(t_input *head, char *fname)
 					}
 				}
 				printf("%02x",tmp->byte_code[0][0]);
+				write(fd, &tmp->byte_code[0][0], sizeof(unsigned char));
 				count++;
 				if (tmp->param_encoding != 0)
 				{
@@ -208,6 +203,7 @@ void	print_cor(t_input *head, char *fname)
 						}
 					}
 					printf("%02x", tmp->param_encoding);
+					write(fd, &tmp->param_encoding, sizeof(unsigned char));
 					count++;
 				}
 				while (tmp->args[i] != '\0')
@@ -236,7 +232,8 @@ void	print_cor(t_input *head, char *fname)
 								printf(" ");
 							}
 						}
-						printf("%02x", tmp->byte_code[i + 1][j++]);
+						printf("%02x", tmp->byte_code[i + 1][j]);
+						write(fd, &tmp->byte_code[i + 1][j++], sizeof(unsigned char));
 						count++;
 					}
 					i++;
@@ -247,5 +244,5 @@ void	print_cor(t_input *head, char *fname)
 
 		tmp = tmp->next;
 	}
-
+	close (fd);
 }
