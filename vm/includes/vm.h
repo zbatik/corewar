@@ -107,6 +107,11 @@ void	duplicate_process(t_core *core, t_process *cursor, int jump);
 void    process_add(t_process *cursor, int pc, int player_num, int ind);
 
 /*
+**	byte_count.c
+*/
+int byte_count(t_core *core, t_process *cursor, t_opnum op);
+
+/*
 **	game.c
 */
 int game_loop(t_core *core);

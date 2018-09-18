@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 13:24:18 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 14:40:43 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int or_gen(t_byte eb)
 		return (1);
 }
 
-static int ldi_gen(t_byte en)
+static int ldi_gen(t_byte eb)
 {
 	if (eb == RRR)
 		return (B_RRR);
@@ -43,6 +43,15 @@ static int ldi_gen(t_byte en)
 	else
 		return (1);
 }
+static int ld_gen(t_byte eb)
+{
+		if (eb == DR)
+			return (B_DR);
+		else if (eb == IR)
+			return (B_IR);
+		else
+			return (1);
+}
 
 int byte_count(t_core *core, t_process *cursor, t_opnum op)
 {
@@ -52,14 +61,7 @@ int byte_count(t_core *core, t_process *cursor, t_opnum op)
     if (op == e_live)
         return (5);
 	else if (op == e_ld)
-    {
-		if (eb == DR)
-			return (B_DR);
-		else if (eb == IR)
-			return (B_IR);
-		else
-			return (1)
-    }
+		return(ld_gen(eb));
 	else if (op == e_st)
 	{
 		if (eb == RI)
@@ -82,15 +84,19 @@ int byte_count(t_core *core, t_process *cursor, t_opnum op)
 	else if (op == e_zjmp)
 		return (3);
 	else if (op == e_ldi)
-		return (ldi_gen(en));
+		return (ldi_gen(eb));
 	else if (op == e_sti)
+		return (7); 		// change this: this is WRONG!!!
 	else if (op == e_fork)
 		return (3);
 	else if (op == e_lld)
+		return(ld_gen(eb));
 	else if (op == e_lldi)
-		return (ldi_gen(en));
+		return (ldi_gen(eb));
 	else if (op == e_lfork)
 		return (3);
 	else if (op == e_aff)
 		return (3);
+	else
+		return (1);
 }

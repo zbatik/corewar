@@ -48,10 +48,10 @@
 # define B_RDD 7	// checked with sti
 # define B_RID 7	// checked with sti
 # define B_IRR 6	// checked with ldi
-# define B_IIR 
+# define B_IIR 1 // WRONG PLEASE CHANGE!!!
 # define B_IDR 7	// checked with ldi
 # define B_DRR 6  	// checked with ldi
-# define B_DIR 
+# define B_DIR 1 // WRONG PLEASE CHANGE!!!
 # define B_DDR 7
 # define B_IR  7	// checked with ldi
 # define B_DR  5	// checked with ldi

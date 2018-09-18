@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:21:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 13:23:40 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 14:44:47 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ static void    modify_carry(t_process *cursor, t_opnum op)
         cursor->carry = !cursor->carry;
 }
 
-void            general_processing(t_core *core, t_process *cursor, t_opnum op)
+int            general_processing(t_core *core, t_process *cursor, t_opnum op)
 {
+    int byte_count;
+
     if (core->pbp)
         print_instr_info(core, op, cursor->pc);
+    byte_count(core, cursor, op);
     modify_carry(cursor, op);
 }
 
