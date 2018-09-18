@@ -16,7 +16,7 @@ t_opinfo	index_opinfo(t_opnum op_index)
 {
 	t_opinfo  op_tab[18] =
 	{
-		{"", 0, {0}, 0, 0, "", 0, 0},
+		{"null", 0, {0}, 0, 0, "", 0, 0},
 		{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 		{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
 		{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0},
@@ -39,7 +39,7 @@ t_opinfo	index_opinfo(t_opnum op_index)
 			"long load index", 1, 1},
 		{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1},
 		{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
-		{"", 0, {0}, 0, 0, "", 0, 0}
+		{"null", 0, {0}, 0, 0, "", 0, 0}
 	};
 	return (op_tab[op_index]);
 }
