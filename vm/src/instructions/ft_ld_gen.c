@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 13:58:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 15:37:53 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:21:18 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@ static int ft_ld_gen(t_core *core, t_process *cursor, t_opnum op)
     byte_count = general_processing(core, cursor, op);
     if (byte_count == 1)
         return (byte_count);
+    param_add_byte = 0;
     if (DR == PARA_ENCODE_BYTE)
         param_add_byte = 2;
     else if (IR == PARA_ENCODE_BYTE)
         param_add_byte = 0;
-    else
-        return (corrupted_encoding_byte());
 	ld_ind = byte_to_int(MEM_PNT_PC_RELATIVE(2), 2 + param_add_byte);
 	if (op == e_ld)
 		ld_val = MEM_VAL_PC_REL_MOD(ld_ind);
@@ -42,7 +41,7 @@ static int ft_ld_gen(t_core *core, t_process *cursor, t_opnum op)
     if (!valid_reg(rX))
         return (1);
     write_to_reg(cursor, rX, ld_val);
-    return (5 + param_add_byte);
+    return (byte_count);
 }
 
 int ft_ld(t_core *core, t_process *cursor)

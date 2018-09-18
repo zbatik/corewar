@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 15:12:48 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:02:40 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static int ldi_gen(t_byte eb)
 	else
 		return (1);
 }
+
 static int ld_gen(t_byte eb)
 {
 		if (eb == DR)

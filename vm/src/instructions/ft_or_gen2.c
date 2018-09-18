@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 09:41:53 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 15:51:01 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:02:36 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ int ft_op(t_core *core, t_process *cursor, int *param1, int *param2)
     int jump;
 
     jump = 1;
-    if (MEM_VAL_PC_RELATIVE(1) == RRR)
+    if (PARA_ENCODE_BYTE == RRR)
         jump =  op_rrr(core, cursor, param1, param2);
-    else if (MEM_VAL_PC_RELATIVE(1) == RIR)
+    else if (PARA_ENCODE_BYTE == RIR)
         jump = op_rir(core, cursor, param1, param2);
-    else if (MEM_VAL_PC_RELATIVE(1) == DIR)
+    else if (PARA_ENCODE_BYTE == DIR)
         jump = op_dir(core, cursor, param1, param2);
-    else if (MEM_VAL_PC_RELATIVE(1) == DRR)
+    else if (PARA_ENCODE_BYTE == DRR)
         jump = op_drr(core, cursor, param1, param2);
     return (jump);
 }

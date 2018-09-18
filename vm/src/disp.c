@@ -79,12 +79,13 @@ void	print_processes(t_core *core)
 	}
 }
 
-void	print_instr_info(t_core *core, t_opnum op, int pc)
+void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 {
 	t_opnum num;
     t_opinfo info;
 
-	num = core->mem[pc];
+	num = MEM_VAL_PC_RELATIVE(0);
+	printf("process id %d with cursor at %d about to execute", cursor->id, cursor->pc);
 	info = index_opinfo(num);
 	ft_putstr("recieved intsruction: ");       
 	ft_putendl(info.instruction);
@@ -127,13 +128,12 @@ void	print_cursor_info(t_core *core, t_process *cursor)
 	
 }
 
-void	print_cylce_info(t_core *core, int current)
+void	print_cylce_info(t_core *core)
 {
-	ft_putstr("cycles to die: ");
-	ft_putnbr(current);
-	ft_putstr(" of ");
-	ft_putnbr(core->cycles_to_die);
-	ft_putchar('\n');
+	printf("round number:\t\t%d\n", core->count.cycles);
+	printf("totol executed turns:\t%d\n", core->count.total_turns);
+	printf("cycles to die: %d\n", core->count.cycles_to_die);
+	printf("current live count:\t%d\n", core->count.lives);
 }
 
 void	print_players(t_core *core)

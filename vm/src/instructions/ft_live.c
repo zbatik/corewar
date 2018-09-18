@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:58:10 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/17 18:10:30 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:33:02 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int ft_live(t_core *core, t_process *cursor)
 {    
     int player_num;
     t_player *player;
-
-    general_processing(core, cursor, e_live);
+    int byte_count;
+ 
+    byte_count = general_processing(core, cursor, e_live);
     player_num = byte_to_int(MEM_PNT_PC_RELATIVE(1), 4);
     player = get_player_from_num(core, player_num);
     if (player == NULL)
@@ -38,7 +39,7 @@ int ft_live(t_core *core, t_process *cursor)
         ft_putendl("corrupted player number");
         return (1);
     }
-    if (core->pbp || 1)
+    if (core->pbp || 1) // HELLO PLEASE REMOVE THE 1
     {
         ft_putstr_cl("player number: ", g);
         ft_putnbr_cl(player_num, g);
@@ -46,10 +47,11 @@ int ft_live(t_core *core, t_process *cursor)
         ft_putstr_cl(player->name, g);
         ft_putstr_cl(") is alive!\n", g);
     }
-    if (player->alive)
-    {
-        player->live_count += 1;
+    player->alive = 1;
+    if (!player->dead)
+    { 
+        core->count.lives += 1;
         core->last_alive = player_num;
     }
-    return (5);
+    return (byte_count);
 }

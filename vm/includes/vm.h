@@ -26,8 +26,8 @@ typedef	struct	s_player
 {
 	char	*file_name;
 	int		num;
+	t_bool	dead;
 	t_bool	alive;
-	int		live_count;
 	char	name[PROG_NAME_LENGTH + 1];
 	char	comment[COMMENT_LENGTH + 1];
 	int		size;
@@ -44,6 +44,14 @@ typedef struct	s_process
 	t_bool 				carry;
 }				t_process;
 
+typedef struct	s_count
+{
+	int			lives;
+	int			cycles;
+	int			total_turns;
+	int			cycles_to_die;
+}				t_count;
+
 typedef struct	s_core
 {
 	int 		(*instructon_fn[16]) (struct s_core *core, t_process *cursor);
@@ -52,10 +60,9 @@ typedef struct	s_core
 	t_bool		dump;
 	t_bool		interactive;
 	t_bool		pbp;
+	int			checks;
+	t_count		count;
 	int			last_alive;
-	int			cycle_count;
-	int			cycle_number;
-	int			cycles_to_die;
 	int			cycles_to_dump;
 	int			num_players;
 	t_player	players[MAX_PLAYERS];
@@ -120,9 +127,9 @@ int update_cycles_to_execute(t_byte current, t_process *cursor);
 /*
 **	disp.c
 */
-void	print_instr_info(t_core *core, t_opnum op, int pc);
+void	print_instr_info(t_core *core, t_process *cursor, t_opnum op);
 void	print_cursor_info(t_core *core, t_process *cursor);
-void	print_cylce_info(t_core *core, int current);
+void	print_cylce_info(t_core *core);
 void	print_parsed_info(t_core *core);
 void	print_players(t_core *core);
 void	print_player(t_player *player, int fd);
