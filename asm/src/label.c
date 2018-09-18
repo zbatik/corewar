@@ -24,6 +24,8 @@ int	arg_byte_count(char *str)
 			ret += IND_SIZE;
 		else if(*str == 'R')
 			ret += ASM_REG;
+        else if(*str == 'd')
+            ret += ASM_DIR;
         else
             ret += DIR_SIZE;
 		str++;
@@ -87,14 +89,16 @@ void    instruction_arg_size(t_opnum op, t_input *input)
         while (ft_isws(*curr) == TRUE)
             curr++;
         if (curr[0] == '%')
-            input->args[i] = 'D';
+        {
+            if (is_smalldir(op) == TRUE)
+                input->args[i] = 'd';
+            else
+                input->args[i] = 'D';
+        }
         else if (curr[0] == 'r')
             input->args[i] = 'R';
         else
-        {
-        	// make tests to change between big i and small I
         	input->args[i] = 'I';
-        }
         i++;
     }
     input->args[i] = '\0';

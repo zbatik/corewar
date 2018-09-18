@@ -21,6 +21,8 @@
 # define DEBUG 1
 # define IND_DBL 4;
 # define ASM_REG 1
+# define ASM_DIR 2
+# define NUM_SMALL_DIR 6
 
 /*
 */
@@ -91,6 +93,7 @@ int					instruction_byte_size(t_input *input);
 t_input				*get_label(t_input *head, const char *str);
 void				swapnfree(char **var, char *new_val);
 void				print_hex(unsigned int num);
+int					is_smalldir(int opnum);
 
 /*
 typedef struct	s_label

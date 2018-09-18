@@ -13,6 +13,8 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
+static int	g_smalldir[] = {9, 10, 11, 12, 13, 15, 16};
+
 void	op_code_char(char	*code, t_opnum op)
 {
 	if (op < 16)
@@ -22,6 +24,17 @@ void	op_code_char(char	*code, t_opnum op)
 	}
 	else
 		ft_strcpy(code, "10");
+}
+
+int		is_smalldir(int opnum)
+{
+	int i;
+
+	i = 0;
+	while (i < NUM_SMALL_DIR)
+		if (g_smalldir[i++] == opnum)
+			return(TRUE);
+	return (FALSE);
 }
 
 char	*padded_itoa(int final_size, int to_convert)
@@ -58,6 +71,8 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	char	**split;
 	char	*curr;
 	int		inter;
+	int		tmp_size;
+
 	t_opnum op;
 
 	op = inst_to_enum((char*)elem->line);
@@ -76,26 +91,24 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		curr = split[i];
 		while(ft_isws(*curr) == TRUE)
 			curr++; 
-		if (elem->args[i] == 'D')
+		if (elem->args[i] == 'D' || elem->args[i] == 'd')
 		{
+			if (elem->args[i] == 'D')
+				tmp_size = DIR_SIZE;
+			else
+				tmp_size = ASM_DIR;
 			if (curr[1] == ':')
 			{
 				inter = get_label(ahead, curr + 2)->byte_count;
-				printf("label: %s, has position: %d\n",get_label(ahead, curr + 2)->line, inter);
 				inter = (inter - (curr_byte_count + elem->byte_count)) + 1;
 			}
 			else
-			{
 				inter = ft_atoi(curr + 1);
-			}
-			printf("value of inter after the minus: %d\n",inter );
-			unsigned char *x;
-			x = (unsigned char *)&inter;
-			printf("%x %x %x %x\n",x[0], x[1], x[2], x[3]);
 			inter = (int) rev_endian((unsigned int) inter);
-			printf("%x %x %x %x\n",x[0], x[1], x[2], x[3]);
-			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * DIR_SIZE);
-			ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * DIR_SIZE);
+			if (tmp_size == ASM_DIR)
+				inter = inter << 16 | inter >> 16;
+			elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * tmp_size);
+			ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * tmp_size);
 		}
 		else if (elem->args[i] == 'I')
 		{

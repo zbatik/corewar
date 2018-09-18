@@ -217,8 +217,10 @@ void	print_cor(t_input *head, char *fname)
 						max = IND_SIZE;
 					else if (tmp->args[i] == 'D')
 						max = DIR_SIZE;
+					else if (tmp->args[i] == 'd')
+						max = ASM_DIR;
 					else
-						max = ASM_REG;
+						max = REG_SIZE;
 					while (j  < max)
 					{
 						if (count % 1 == 0)
