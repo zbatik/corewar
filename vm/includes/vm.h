@@ -101,6 +101,7 @@ int parse_input(t_core *core, int c, char **v);
 **	players.c
 */
 int creat_players(t_core *core);
+t_player *get_player_from_num(t_core *core, int player_num);
 
 /*
 **	load.c
@@ -145,6 +146,7 @@ void	interactive(t_core *core);
 /*
 **	end_cycle_checks.c
 */
+int	num_alive(t_core *core);
 void	end_cycle_checks_checks(t_core *core);
 
 /*
@@ -166,7 +168,6 @@ void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
 **	instructions/ 
 */
 int general_processing(t_core *core, t_process *cursor, t_opnum op);
-int ft_op(t_core *core, t_process *cursor, int *param1, int *param2);
 
 int ft_op(t_core *core, t_process *cursor, int *param1, int *param2);
 int ft_live(t_core *core, t_process *cursor);

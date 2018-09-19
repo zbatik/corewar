@@ -82,23 +82,15 @@ void	print_processes(t_core *core)
 void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 {
 	t_opnum num;
-    t_opinfo info;
 
 	num = MEM_VAL_PC_RELATIVE(0);
-
-	ft_putstr("process id ");
-	ft_putnbr(cursor->id);
-	ft_putstr(" with cursor at ");
-	ft_putnbr(cursor->pc);
-	ft_putstr(" about to execute\n");
-	//ft_printf(1, c, "recieved instruction: %s\n", index_opinfo(num).instruction);
-	//ft_printf(1, c, "expected intsruction: %s\n", index_opinfo(op).instruction);
-	info = index_opinfo(num);
-	ft_putstr("recieved intsruction: ");       
-	ft_putendl(info.instruction);
-	info = index_opinfo(op);
-	ft_putstr("expected intsruction: ");
-	ft_putendl(info.instruction);
+	ft_putstr_cl("process id ", b);
+	ft_putnbr_cl(cursor->id, c);
+	ft_putstr_cl(" with cursor at ", b);
+	ft_putnbr_cl(cursor->pc, c);
+	ft_putstr_cl(" about to execute\n", b);
+	ft_printf(1, c, "recieved instruction: %s\n", index_opinfo(num).instruction);
+	ft_printf(1, c, "expected intsruction: %s\n", index_opinfo(op).instruction);
 }
 
 void	print_parsed_info(t_core *core)
@@ -137,12 +129,13 @@ void	print_cursor_info(t_core *core, t_process *cursor)
 
 void	print_cylce_info(t_core *core)
 {
-	printf("END OF CYCLE BREAKDOWN\n");
-	printf("number of processes: %d\n", core->num_processes);
-	printf("round number:\t\t%d\n", core->count.cycles);
-	printf("totol executed turns:\t%d\n", core->count.total_turns);
-	printf("cycles to die: %d\n", core->count.cycles_to_die);
-	printf("current live count:\t%d\n", core->count.lives);
+	ft_printf(1, y, "END OF CYCLE BREAKDOWN\n");
+	ft_printf(1, m, "number of processes:\t%d\n", core->num_processes);
+	ft_printf(1, m, "round number:\t\t%d\n", core->count.cycles);
+	ft_printf(1, m, "totol executed turns:\t%d\n", core->count.total_turns);
+	ft_printf(1, m, "cycles to die:\t\t%d\n", core->count.cycles_to_die);
+	ft_printf(1, m, "live count this cycle:\t%d\n", core->count.lives);
+	ft_printf(1, m, "number players alive:\t%d\n", num_alive(core));
 }
 
 void	print_players(t_core *core)

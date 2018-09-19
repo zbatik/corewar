@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:33:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/14 13:40:53 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 16:25:08 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int ft_sti(t_core *core, t_process *cursor)
 {
-    general_processing(core, cursor, e_sti);
-    return (5);
+    int byte_count;
+
+    byte_count = general_processing(core, cursor, e_sti);
+    return (byte_count);
 }
