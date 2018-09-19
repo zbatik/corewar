@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ldi_gen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 14:46:56 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/14 15:19:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:02:35 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 static int	ft_ldi_gen(t_core *core, t_process *cursor, t_opnum op)
 {
-	general_processing(core, cursor, op);
+	int byte_count;
+	byte_count = general_processing(core, cursor, op);
+	if (byte_count == 1)
+        return (byte_count);
 	return (3);
 }
 

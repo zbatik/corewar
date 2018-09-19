@@ -6,11 +6,55 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:14:32 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/10 15:02:20 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 18:18:57 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
+
+static void set_player_nums(t_core *core, t_player *player)
+{
+	int		i;
+	t_opnum	op;
+	int 	pos;
+	t_byte	*player_num;
+
+	i = -1;
+	ft_putendl(player->name);
+	pos = player->start_pos;
+	while (pos < player->size)
+    {
+	//	print_mem(core->mem, core->colouring, core->cursor);
+		op = core->mem[pos];
+		ft_putstr("op: ");
+		ft_putnbr(op);
+		ft_putchar('\n');
+			ft_putstr("pos: ");
+		ft_putnbr(pos);
+		ft_putchar('\n');
+		if (op == e_live)
+		{
+			ft_putendl_cl(index_opinfo(op).instruction, g);
+			player_num = (t_byte*)&player->name; 
+			ft_bytencpy(core->mem + pos + 1, player_num, 4);
+			pos = pos + 5;
+		}
+		else if (op >= 0x02 && op <= 0x10)
+		{	
+			ft_putendl_cl(index_opinfo(op).instruction, g);
+			ft_putstr("skip: ");
+			ft_putnbr(byte_counter(core, pos, core->mem[pos]));
+			ft_putchar('\n');
+			pos += byte_counter(core, pos, core->mem[pos]);
+		}
+		else
+		{
+			ft_puterror("Error: Oops problem copying in player numbers");
+			pos++;
+		}
+		ft_putendl("");
+    }
+}
 
 static int load_players(t_core *core)
 {
@@ -28,7 +72,9 @@ static int load_players(t_core *core)
             core->mem[(player.start_pos + j) % MEM_SIZE] = player.program[j];
             core->colouring[player.start_pos + j] = i + 1;
         }
+        set_player_nums(core, &player);
     }
+	exit(0);
     return (1);
 }
 

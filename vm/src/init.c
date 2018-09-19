@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:12:42 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/17 17:56:15 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:55:16 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ static int	init_player(t_player *player)
 	player->file_name = NULL;
 	ft_bzero(player->name, PROG_NAME_LENGTH + 1);
 	ft_bzero(player->comment, COMMENT_LENGTH + 1);
-	player->alive = 1;
-	player->live_count = 0;
+	player->alive = 0;
+	player->dead = 0;
+//	player->live_count = 0;
 	player->size = 0;
 	player->num = -1;
 	ft_bzero(player->program, CHAMP_MAX_SIZE);
@@ -55,11 +56,13 @@ int init_core(t_core *core)
 	core->dump = 0;
 	core->interactive = 0;
 	core->pbp = 0;
+	core->checks = 0;
+	core->count.lives = 0;
 	core->last_alive = 0;
-	core->cycle_count = 0;
-	core->cycle_number = 0;
+	core->count.cycles = 0;
+	core->count.total_turns = 0;
 	core->cycles_to_dump = -1;
-	core->cycles_to_die = CYCLE_TO_DIE;
+	core->count.cycles_to_die = CYCLE_TO_DIE;
 	core->num_players = 0;
 	ft_bzero(core->mem, MEM_SIZE);
 	ft_bzero(core->colouring, MEM_SIZE);

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 15:15:41 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/17 13:05:49 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 17:32:12 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,39 +31,47 @@ static int	num_alive(t_core *core)
 
 static void	check_alive(t_core *core)
 {
-	int i;
-	t_player *player;
+	int			i;
+	t_player	*player;
 
 	i = -1;
 	while (++i < core->num_players)
 	{
 		player = &core->players[i];
-		if (player->live_count >= NBR_LIVE)
+		if (!player->dead)
 		{
-			ft_putstr_cl("player ", g);
-			ft_putnbr_cl(player->num, g);
-			ft_putendl_cl("is still alive", g);
+			if (player->alive)
+			{
+				ft_putstr_cl("player ", g);
+				ft_putnbr_cl(player->num, g);
+				ft_putendl_cl("is still alive", g);
+			}
+			else
+			{
+				ft_putstr_cl("player ", r);
+				ft_putnbr_cl(player->num, r);
+				ft_putendl_cl(" died this round", r);
+				player->dead = 1;
+			}
 		}
-		else
-		{
-			ft_putstr_cl("player ", r);
-			ft_putnbr_cl(player->num, r);
-			ft_putendl_cl(" died", r);
-			player->alive = 0;
-		}
-		player->live_count = 0;
+		player->alive = 0;
 	}
 }
 
 void	end_cycle_checks_checks(t_core *core)
 {
 	check_alive(core);
-	if (num_alive(core) == 0 || core->cycles_to_die <= 0)
+	if (core->pbp)
+		print_cylce_info(core);
+	if (num_alive(core) == 0 || core->count.cycles_to_die <= 0)
 	{
 		ft_putstr_cl("player ", g);
 		ft_putnbr_cl(core->last_alive, g);
 		ft_putendl_cl(" is the winner!", g);
 		exit(0);
 	}
-	core->cycle_number += 1;
+	if (core->checks >= MAX_CHECKS || core->count.lives >= NBR_LIVE)
+		core->count.cycles_to_die -= CYCLE_DELTA;
+	else
+		core->checks += 1;
 }

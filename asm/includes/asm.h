@@ -23,7 +23,7 @@
 # define IND_DBL 4;
 # define ASM_REG 1
 # define ASM_DIR 2
-# define NUM_SMALL_DIR 7
+# define NUM_SMALL_DIR 6
 
 /*
 */
@@ -63,6 +63,10 @@ int					arr_len(char **arr);
 /*
 ** Fred's fns
 */
+
+
+
+
 typedef struct		s_input
 {
 	char			*line;
@@ -77,12 +81,20 @@ typedef struct		s_input
 	struct s_input	*prev;
 }					t_input;
 
+typedef struct s_main 
+{
+	t_input			*input;
+	t_input			*temp_input;
+	unsigned int	total_player_size;
+	char			**ins;
+}				t_main;
+
 void				input_del(t_input **ahead);
 void				gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count);
 t_input				*file_tolist(char *fname);
-t_bool				parse_listinfo(t_input *ahead);
+t_bool				parse_listinfo(t_main *var);
 t_bool				is_validfile(t_input *ahead);
-void				print_cor(t_input *head, char *fname);
+void				print_cor(t_main *var, char *fname);
 void				inlstadd(t_input **ahead, t_input *elem);
 t_input				*inlstnew(char	*line, int line_no, t_bool is_label);
 int					is_wsstring(const char *str);
@@ -94,7 +106,7 @@ int					instruction_byte_size(t_input *input);
 t_input				*get_label(t_input *head, const char *str);
 void				swapnfree(char **var, char *new_val);
 void				print_hex(unsigned int num);
-int					is_smalldir(int opnum);
+int					is_smalldir(int opnum, int arg_num);
 
 /*
 typedef struct	s_label
@@ -112,12 +124,8 @@ indexing of labels starts from 256
 /*
 ** Eddie's tdef
 */
-typedef struct s_main 
-{
-	t_input		*input;
-	t_input		*temp_input;
-	char		**ins;
-}				t_main;
+
+
 void				store_input(t_main *var, char *);
 void				error_check_data(t_main *var);
 void				error_check_line(t_main *var, char *line, int ln);

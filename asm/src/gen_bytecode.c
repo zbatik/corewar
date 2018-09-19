@@ -13,18 +13,16 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
-static int	g_smalldir[] = {9, 10, 11, 12, 13, 15, 16};
 
-void	op_code_char(char	*code, t_opnum op)
-{
-	if (op < 16)
-	{
-		code[0] = '0';
-		code[1] = ft_itoa_base(op, 16)[0];
-	}
-	else
-		ft_strcpy(code, "10");
-}
+
+static int	g_smalldir[] = {9, 10, 11, 12, 13, 15};
+/*
+** 10 always 2
+** 11 always 2
+** 12 always 2
+** 13 always 2
+** Remember to encode the total plater size 
+*/
 
 int		is_smalldir(int opnum, int arg_num)
 {
@@ -36,33 +34,6 @@ int		is_smalldir(int opnum, int arg_num)
 			return(TRUE);
 	return (FALSE);
 }
-
-char	*padded_itoa(int final_size, int to_convert)
-{
-	char	*ret;
-	char	*tmp;
-	int		i;
-
-	ret = ft_strnew(final_size * 2 + 1);
-	tmp = ft_itoa_base(to_convert, 16);
-	i = 0;
-	while (i - ft_strlen(tmp) > 0)
-	{
-		ret[i] = '0';
-		ret[i + 1] = '0';
-		i ++;
-	}
-	swapnfree(&ret, ft_strjoin(ret, tmp));
-	free(tmp);
-	return (ret);
-
-}
-
-void	convert_to_byte(unsigned int num, t_byte *code)
-{
-	*code = num;
-}
-
 
 void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 {
@@ -100,7 +71,7 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			if (curr[1] == ':')
 			{
 				inter = get_label(ahead, curr + 2)->byte_count;
-				inter = (inter - (curr_byte_count + elem->byte_count)) + 1;
+				inter = (inter - (curr_byte_count));
 			}
 			else
 				inter = ft_atoi(curr + 1);
@@ -132,5 +103,4 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		}
 		i++;
 	}
-	
 }

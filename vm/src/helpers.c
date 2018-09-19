@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/17 18:02:58 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 17:53:16 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,9 @@ void    write_to_reg(t_process *cursor, int reg_num, int input)
 
 int    byte_to_int(unsigned char *input, int len)
 {
-    return (input[len - 1]);
+    int ret;
+
+    len = 5;
+    ret = *(int*)input;
+    return (ret);
 }

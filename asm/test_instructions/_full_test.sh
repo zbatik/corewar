@@ -1,22 +1,30 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    compare_cor.sh                                     :+:      :+:    :+:    #
+#    _full_test.sh                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/18 14:47:15 by zbatik            #+#    #+#              #
-#    Updated: 2018/09/18 15:04:44 by zbatik           ###   ########.fr        #
+#    Updated: 2018/09/18 21:07:32 by zack             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-#bin!
-ASM_US=./asm_us
-ASM_BASE=./asm
-COR_FILE=$(basename "$1" .s).cor
-$ASM_US $1
-hexdump $COR_FILE > dump_us
-$ASM_BASE $1
-hexdump $COR_FILE > dump_base
-diff dump_base dump_us > dif
-cat dif
-rm dif dump_base dump_us
+
+ASM_US=../asm_us
+ASM_BASE=../asm
+S_FILES=$(find . -name "*.s")
+for S_FILE in $S_FILES
+do
+	COR_FILE=$(basename "$S_FILE" .s).cor
+	$ASM_US $S_FILE
+	hexdump COR_FILE > dump_us
+	$ASM_BASE $S_FILE
+	hexdump COR_FILE > dump_base
+	diff dump_base dump_us > dif
+	echo __________________________
+	echo $S_FILE
+	echo __________________________
+	cat dif
+	echo
+	rm dif dump_base dump_us
+done

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 15:43:52 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/17 13:24:26 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:26:21 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,13 @@ int game_loop(t_core *core)
     while (1)
     {
         i = -1;
-        while (++i < core->cycles_to_die)
+        while (++i < core->count.cycles_to_die)
         {
             interactive(core);
             execute_pcs(core); 
-            core->cycle_count += 1;
+            core->count.total_turns += 1;
         }
         end_cycle_checks_checks(core);
-        core->cycles_to_die -= CYCLE_DELTA;
     }
     return (1);
 }
