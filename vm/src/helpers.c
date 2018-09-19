@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 14:57:21 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 15:04:37 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ int    byte_to_int(unsigned char *input, int len)
         store[3] = 0;
     }
     ret = *(int*)store;
+    if (*input > 127)
+        ret = ret - 65536;
     return (ret);
 }
