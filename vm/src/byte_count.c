@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 14:40:43 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 17:32:45 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static int ldi_gen(t_byte eb)
 	else
 		return (1);
 }
+
 static int ld_gen(t_byte eb)
 {
 		if (eb == DR)
@@ -53,11 +54,11 @@ static int ld_gen(t_byte eb)
 			return (1);
 }
 
-int byte_count(t_core *core, t_process *cursor, t_opnum op)
+int byte_counter(t_core *core, int pc, t_opnum op)
 {
 	t_byte eb;
 
-	eb = MEM_VAL_PC_RELATIVE(1);
+	eb = core->mem[pc + 1];
     if (op == e_live)
         return (5);
 	else if (op == e_ld)

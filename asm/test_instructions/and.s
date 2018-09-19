@@ -1,6 +1,8 @@
-#and r1,r2,r3    # RRR
-#and r1,%10,r3   # RDR
-#and r1,11,r3    # RIR
-#and %50,r2,r3    # DRR
-#and %40,%10,r3   # DDR
-#and %50,11,r3    # DIR
+
+and r1,r2,r3	# RRR
+and r1,42,r3	# RIR
+and %10,r2,r3	# IRR
+and 11,12,r3	# IIR
+and %13,r2,r3	# DRR
+and %14,15,r3	# DIR
+

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:59:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/17 18:03:41 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:02:43 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int ft_st(t_core *core, t_process *cursor)
     r_cpy_from = core->mem[cursor->pc + 2];
     if (!valid_reg(r_cpy_from))
         return (1);
-    if (RR == core->mem[cursor->pc + 1])
+    if (RR == PARA_ENCODE_BYTE)
     {
         r_cpy_to = core->mem[cursor->pc + 3];
         if (!valid_reg(r_cpy_to))
@@ -29,7 +29,7 @@ int ft_st(t_core *core, t_process *cursor)
         ft_bytencpy(cursor->reg[r_cpy_from], cursor->reg[r_cpy_to], 4);
         return (4);
     }
-    else if (RI == core->mem[cursor->pc + 1])
+    else if (RI == PARA_ENCODE_BYTE)
     {
         cpy_from_reg(core, cursor->reg[r_cpy_from], 
             cursor->pc + byte_to_int(core->mem, 2));
