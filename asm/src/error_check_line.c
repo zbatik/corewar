@@ -25,6 +25,7 @@ static int			check_label_commas(t_main *var, char *line, int ln)
 			ft_putstr(" - line #");
 			ft_putnbr(ln);
 			free_input(var->input);
+			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 		return (0);
@@ -36,6 +37,7 @@ static int			check_label_commas(t_main *var, char *line, int ln)
 		ft_putstr(" - line #");
 		ft_putnbr(ln);
 		free_input(var->input);
+		ft_putstr("\e[97m");
 		exit(EXIT_FAILURE);
 	}
 	return (1);
@@ -52,6 +54,7 @@ static int			is_instruction(t_main *var, char *line, int ln)
 			ft_putstr(" - line #");
 			ft_putnbr(ln);
 			free_input(var->input);
+			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 		if (!is_valid_comment(line) && is_comment(line))
@@ -61,6 +64,7 @@ static int			is_instruction(t_main *var, char *line, int ln)
 			ft_putstr(" - line #");
 			ft_putnbr(ln);
 			free_input(var->input);
+			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 		return (0);
@@ -78,6 +82,7 @@ static void			check_mnemonic_and_syntax(char **ins, t_main *var, int ln)
 		ft_putnbr(ln);
 		free_input(var->input);
 		ft_arrdel(&var->ins, arr_len(var->ins));
+		ft_putstr("\e[97m");
 		exit(EXIT_FAILURE);
 	}
 	if (ins[1])
@@ -89,6 +94,7 @@ static void			check_mnemonic_and_syntax(char **ins, t_main *var, int ln)
 			ft_putnbr(ln);
 			free_input(var->input);
 			ft_arrdel(&var->ins, arr_len(var->ins));
+			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 }

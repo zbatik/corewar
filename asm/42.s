@@ -1,5 +1,5 @@
-.name           "42"
-.comment		"hello world"
+.name			"42"
+.comment        "hamster powa"
 
 entree: live	%42
 fork	%:tir
@@ -247,5 +247,3 @@ tird:	live	%42
 	zjmp	%:p1
 			
 fin:	live	%633
-
-
