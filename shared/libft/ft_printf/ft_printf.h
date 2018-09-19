@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 12:32:58 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/19 14:02:04 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:38:54 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void				ft_printf(int fd, t_colour c,
 char				*ft_itoa_base(int value, int base);
 int					is_conversion_char(char c);
 void				print_output(const char *s, t_var *var, int fd);
+void				free_conv(t_conv *c);
 
 #endif

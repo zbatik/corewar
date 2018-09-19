@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:10:21 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/19 14:14:36 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:21:03 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	label_exists(char *label, t_main *var)
 			return (1);
 		i = i->next;
 	}
-	ft_printf(2, na, "\x1b[31;1mError: Label does not exist %s - line %d\n",
+	ft_printf(2, lr, "Error: Label does not exist %s - line %d\n",
 			label, var->temp_input->line_no);
 	free_input(var->input);
 	ft_arrdel(&var->ins, arr_len(var->ins));
@@ -104,7 +104,7 @@ int			is_register(char *arg, t_main *var)
 		else
 		{
 			ft_strdel(&t);
-			ft_printf(2, na, "\x1b[31;1mError: Register is out of scope i.e.");
+			ft_printf(2, lr, "Error: Register is out of scope i.e.");
 			ft_printf(2, lr, "	there are only 16 registers (1-16). - line #%d",
 					var->temp_input->line_no);
 			ft_putchar_fd('\n', 2);

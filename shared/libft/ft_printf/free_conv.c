@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_check_data.c                                 :+:      :+:    :+:   */
+/*   free_conv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 15:21:38 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/19 14:56:53 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/19 14:34:55 by emaune            #+#    #+#             */
+/*   Updated: 2018/09/19 14:56:13 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "ft_printf.h"
 
-void		error_check_data(t_main *var)
+void		free_conv(t_conv *c)
 {
-	t_input *a;
+	t_conv *temp;
 
-	a = var->input;
-	while (a)
+	while (c)
 	{
-		error_check_line(var, a->line, a->line_no);
-		a = a->next;
-		var->temp_input = a;
+		temp = c;
+		ft_strdel(&c->str);
+		c = c->next;
+		free(temp);
 	}
-	var->temp_input = var->input;
-	check_multiple_name(var);
-	check_multiple_comment(var);
-	check_duplicate_label(var);
 }
