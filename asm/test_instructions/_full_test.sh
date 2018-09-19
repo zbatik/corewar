@@ -17,9 +17,9 @@ for S_FILE in $S_FILES
 do
 	COR_FILE=$(basename "$S_FILE" .s).cor
 	$ASM_US $S_FILE
-	hexdump COR_FILE > dump_us
+	hexdump $COR_FILE > dump_us
 	$ASM_BASE $S_FILE
-	hexdump COR_FILE > dump_base
+	hexdump $COR_FILE > dump_base
 	diff dump_base dump_us > dif
 	echo __________________________
 	echo $S_FILE
