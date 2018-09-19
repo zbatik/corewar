@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:14:32 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 12:16:16 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:10:51 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,46 @@
 
 static void set_player_nums(t_core *core, t_player *player)
 {
-	int		i;
+//	int		i;
 	t_opnum	op;
 	int 	pos;
 	t_byte	*player_num;
+	unsigned int player_num_int;
 	int skip;
 
-	i = -1;
-	ft_putendl(player->name);
+	//i = -1;
+	//ft_putendl(player->name);
 	pos = player->start_pos;
-	while (pos < player->size)
+//	ft_putnbr(player->start_pos);
+//	ft_putnbr(player->size);
+	while (pos < (int)player->start_pos + player->size)
     {
-	//	print_mem(core->mem, core->colouring, core->cursor);
+		//print_mem(core->mem, core->colouring, core->cursor);
 		op = core->mem[pos];
-		ft_putstr("op: ");
+	/*	ft_putstr("op: ");
 		ft_putnbr(op);
 		ft_putchar('\n');
-			ft_putstr("pos: ");
+		ft_putstr("pos: ");
 		ft_putnbr(pos);
-		ft_putchar('\n');
+		ft_putchar('\n');*/
 		if (op == e_live)
-		{
-			player_num = (t_byte*)&player->num; 
+		{	
+			player_num_int = rev_endian(player->num);
+			player_num = (t_byte*)&player_num_int; 
 			ft_bytencpy(core->mem + pos + 1, player_num, 4);
 		}
 		skip = byte_counter(core, pos, core->mem[pos]);
 		if (skip == 1)
 			ft_puterror("Error: Oops problem copying in player numbers");
-		else
+	/*	else
 		{
 			ft_putendl_cl(index_opinfo(op).instruction, g);
 			ft_putstr("skip: ");
 			ft_putnbr(skip);
 			ft_putchar('\n');
-		}
+		}*/
 		pos += skip;
-		ft_putendl("");
+//		ft_putendl("");
     }
 }
 
@@ -60,6 +64,7 @@ static int load_players(t_core *core)
     t_player    player;
 
     i = -1;
+	
     while (++i < core->num_players)
     {
         player = core->players[i];
@@ -71,7 +76,6 @@ static int load_players(t_core *core)
         }
         set_player_nums(core, &player);
     }
-	exit(0);
     return (1);
 }
 
