@@ -1,20 +1,23 @@
-Assembling: ./42.s:
+Assembling ./42.s:
 	42
 	hamster powa
+removed the first COR_FILE
 Assembling ./42.s:
 __________________________
 ./42.s
 __________________________
 
 [31;1mError: Label does not exist
-l1+1 - line #4Assembling ./Backward.s:
+l1+1 - line #4removed the first COR_FILE
+Assembling ./Backward.s:
 __________________________
 ./Backward.s
 __________________________
 
-Assembling: ./barriere.s:
+Assembling ./barriere.s:
 	Barriere
 	Envoie des torpilles a l'avant et se protege avec des barrieres a l'avant et a l'arriere
+removed the first COR_FILE
 Assembling ./barriere.s:
 __________________________
 ./barriere.s
@@ -22,298 +25,341 @@ __________________________
 
 [31;1mError: invalid arguments.
 Expected: sti [T_REG], [T_REG | T_DIR | T_IND], [T_REG | T_DIR].
-Got: "sti	r1, %:live, %1   ;change live by the right value" - line #4Assembling ./bee_gees.s:
+Got: "sti	r1, %:live, %1   ;change live by the right value" - line #4removed the first COR_FILE
+Assembling ./bee_gees.s:
 __________________________
 ./bee_gees.s
 __________________________
 
-Assembling: ./bigzork.s:
+Assembling ./bigzork.s:
 	bigzork
 	I know i cant win
+removed the first COR_FILE
 Assembling ./bigzork.s:
 __________________________
 ./bigzork.s
 __________________________
 
 [31;1mError: player comment is invalid
-.comment	"" - line #3[97mAssembling ./Car.s:
+.comment	"" - line #3[97mremoved the first COR_FILE
+Assembling ./Car.s:
 __________________________
 ./Car.s
 __________________________
 
 [31;1mError: Label does not exist
-l1+1 - line #5Assembling ./Death.s:
+l1+1 - line #5removed the first COR_FILE
+Assembling ./Death.s:
 __________________________
 ./Death.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./ex.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./ex.s:
 __________________________
 ./ex.s
 __________________________
 
-Assembling: ./examp.s:
+Assembling ./examp.s:
 	zork
 	just a basic living prog
+removed the first COR_FILE
 Assembling ./examp.s:
 __________________________
 ./examp.s
 __________________________
 
-Assembling: ./fluttershy.s:
+Assembling ./fluttershy.s:
 	fluttershy
 	oh, my, what a scary project
+removed the first COR_FILE
 Assembling ./fluttershy.s:
 __________________________
 ./fluttershy.s
 __________________________
 
-Assembling: ./fluttershy_speedy.s:
+Assembling ./fluttershy_speedy.s:
 	fluttershy speedy
 	oh, my, what a speedy project
+removed the first COR_FILE
 Assembling ./fluttershy_speedy.s:
 __________________________
 ./fluttershy_speedy.s
 __________________________
 
+removed the first COR_FILE
 Assembling ./Gagnant.s:
 __________________________
 ./Gagnant.s
 __________________________
 
-Assembling: ./helltrain.s:
+Assembling ./helltrain.s:
 	helltrain
 	choo-choo, motherf*****s !
+removed the first COR_FILE
 Assembling ./helltrain.s:
 __________________________
 ./helltrain.s
 __________________________
 
 [31;1mError: Label does not exist
-wait - line #124Assembling ./jumper.s:
+wait - line #124removed the first COR_FILE
+Assembling ./jumper.s:
 __________________________
 ./jumper.s
 __________________________
 
-Assembling: ./lde.s:
+Assembling ./lde.s:
 	LDE LDE LDE
+removed the first COR_FILE
 Assembling ./lde.s:
 __________________________
 ./lde.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./leeloo.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./leeloo.s:
 __________________________
 ./leeloo.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./mat.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./mat.s:
 __________________________
 ./mat.s
 __________________________
 
-Assembling: ./maxidef.s:
+Assembling ./maxidef.s:
 	 maxidef 
 	 module de defense
+removed the first COR_FILE
 Assembling ./maxidef.s:
 __________________________
 ./maxidef.s
 __________________________
 
-Assembling: ./mortel.s:
+Assembling ./mortel.s:
 	Booster !
 	Alors la, si ca marche, trop content !  :)
+removed the first COR_FILE
 Assembling ./mortel.s:
 __________________________
 ./mortel.s
 __________________________
 
-Assembling: ./moutmout.s:
+Assembling ./moutmout.s:
 	Le MoutMout de Corenouaille
 	PINAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGE !!!!
+removed the first COR_FILE
 Assembling ./moutmout.s:
 __________________________
 ./moutmout.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./moutmout_old.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./moutmout_old.s:
 __________________________
 ./moutmout_old.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./new.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./new.s:
 __________________________
 ./new.s
 __________________________
 
-Assembling: ./Octobre_Rouge_V4.2.s:
+Assembling ./Octobre_Rouge_V4.2.s:
 	Octobre Rouge V4.2
 	And the winner is ...
+removed the first COR_FILE
 Assembling ./Octobre_Rouge_V4.2.s:
 __________________________
 ./Octobre_Rouge_V4.2.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./pas_taper.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./pas_taper.s:
 __________________________
 ./pas_taper.s
 __________________________
 
 [31;1mError: invalid arguments.
 Expected: st [T_REG], [T_IND | T_REG].
-Got: "st	r5, -4   ;5" - line #19Assembling ./phibonacci.s:
+Got: "st	r5, -4   ;5" - line #19removed the first COR_FILE
+Assembling ./phibonacci.s:
 __________________________
 ./phibonacci.s
 __________________________
 
-Assembling: ./s-ex.s:
+Assembling ./s-ex.s:
 	s-ex
 	this is s-ex
+removed the first COR_FILE
 Assembling ./s-ex.s:
 __________________________
 ./s-ex.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./sebc.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./sebc.s:
 __________________________
 ./sebc.s
 __________________________
 
-Assembling: ./slider2.s:
+Assembling ./slider2.s:
 	Sliders
 	And the winner is ...
+removed the first COR_FILE
 Assembling ./slider2.s:
 __________________________
 ./slider2.s
 __________________________
 
-Assembling: ./star.s:
+Assembling ./star.s:
 	*
 	blowjob tits fuck bitch deepthroat ass
+removed the first COR_FILE
 Assembling ./star.s:
 __________________________
 ./star.s
 __________________________
 
 [31;1mError: player name is invalid
-.name	   'Survivor' - line #1[97mAssembling ./Survivor.s:
+.name	   'Survivor' - line #1[97mremoved the first COR_FILE
+Assembling ./Survivor.s:
 __________________________
 ./Survivor.s
 __________________________
 
+removed the first COR_FILE
 Assembling ./t1.s:
 __________________________
 ./t1.s
 __________________________
 
 [31;1mError: Register is out of scope i.e. there are only 16 registers (1-16).
-sti	r42,%:live,%1 - line #10Assembling ./t2.s:
+sti	r42,%:live,%1 - line #10removed the first COR_FILE
+Assembling ./t2.s:
 __________________________
 ./t2.s
 __________________________
 
 [31;1mError: too many/too few arguments.
 Expected: and [T_REG | T_DIR | T_IND], [T_REG | T_DIR | T_IND], [T_REG].
-Got: "and	r1,%0" - line #11Assembling ./t3.s:
+Got: "and	r1,%0" - line #11removed the first COR_FILE
+Assembling ./t3.s:
 __________________________
 ./t3.s
 __________________________
 
-Assembling: ./t4.s:
+Assembling ./t4.s:
 	s-ex
 	ta mere en slip
+removed the first COR_FILE
 Assembling ./t4.s:
 __________________________
 ./t4.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-stit is not a valid mnemonic - line #10[97mAssembling ./t5.s:
+stit is not a valid mnemonic - line #10[97mremoved the first COR_FILE
+Assembling ./t5.s:
 __________________________
 ./t5.s
 __________________________
 
 [31;1mError: invalid arguments.
 Expected: and [T_REG | T_DIR | T_IND], [T_REG | T_DIR | T_IND], [T_REG].
-Got: "and	r1,r1,%42" - line #11Assembling ./t6.s:
+Got: "and	r1,r1,%42" - line #11removed the first COR_FILE
+Assembling ./t6.s:
 __________________________
 ./t6.s
 __________________________
 
-Assembling: ./t7.s:
+Assembling ./t7.s:
 	s-ex
 	this is s-ex
+removed the first COR_FILE
 Assembling ./t7.s:
 __________________________
 ./t7.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./tdc2.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./tdc2.s:
 __________________________
 ./tdc2.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./tdc3.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./tdc3.s:
 __________________________
 ./tdc3.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./tdc4.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./tdc4.s:
 __________________________
 ./tdc4.s
 __________________________
 
-Assembling: ./temp.s:
+Assembling ./temp.s:
 	temp
 	fichier de test
+removed the first COR_FILE
 Assembling ./temp.s:
 __________________________
 ./temp.s
 __________________________
 
-Assembling: ./test.s:
+Assembling ./test.s:
 	test
 	this doesn't work very well
+removed the first COR_FILE
 Assembling ./test.s:
 __________________________
 ./test.s
 __________________________
 
 [31;1mError: mnemonic is invalid
-.extend is not a valid mnemonic - line #3[97mAssembling ./Torpille.s:
+.extend is not a valid mnemonic - line #3[97mremoved the first COR_FILE
+Assembling ./Torpille.s:
 __________________________
 ./Torpille.s
 __________________________
 
-Assembling: ./toto.s:
+Assembling ./toto.s:
 	Celebration Funebre v0.99pl42
 	Jour J
+removed the first COR_FILE
 Assembling ./toto.s:
 __________________________
 ./toto.s
 __________________________
 
-Assembling: ./turtle.s:
+Assembling ./turtle.s:
 	turtle
 	TURTLE FFS U LAMA
+removed the first COR_FILE
 Assembling ./turtle.s:
 __________________________
 ./turtle.s
 __________________________
 
-Assembling: ./zork.s:
+Assembling ./zork.s:
 	zork
 	I'M ALIIIIVE
+removed the first COR_FILE
 Assembling ./zork.s:
 __________________________
 ./zork.s

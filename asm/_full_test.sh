@@ -18,6 +18,10 @@ do
 	COR_FILE=$(basename "$S_FILE" .s).cor
 	$ASM_US $S_FILE
 	hexdump $COR_FILE > dump_us
+	sleep .5s
+	rm $COR_FILE
+	echo removed $COR_FILE 
+	sleep .5s
 	$ASM_BASE $S_FILE
 	hexdump $COR_FILE > dump_base
 	diff dump_base dump_us > dif

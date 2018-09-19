@@ -134,7 +134,8 @@ void	print_cor(t_main	*var, char *fname)
 	tmp =  var->input;
 	new_name = ft_strsub(fname, 0, ft_indexcin(fname, '.'));
 	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
-	fd = open (new_name, O_RDWR | O_CREAT, 777);
+	fd = open (new_name, O_RDWR | O_CREAT);
+	chmod(new_name, 0777);
 	header.magic = COREWAR_EXEC_MAGIC;
 	header.magic = rev_endian(header.magic);
 	print_name(&header, var->input);

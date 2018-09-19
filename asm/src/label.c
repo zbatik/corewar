@@ -85,6 +85,22 @@ int string_to_encoding (char str[4])
     return(string_to_encoding_help(str));
 }
 
+char    arg_type_def(char *curr, t_opnum op, int i)
+{
+	while (ft_isws(*curr) == TRUE)
+		curr++;
+	if (curr[0] == '%')
+	{
+	    if (is_smalldir(op, i) == TRUE)
+	        return('d');
+	    else
+	        return('D');
+	}
+	else if (curr[0] == 'r')
+	    return('R');
+    return('I');
+}
+
 void    instruction_arg_size(t_opnum op, t_input *input)
 {
     char    **split;
@@ -105,8 +121,7 @@ void    instruction_arg_size(t_opnum op, t_input *input)
     while(split != NULL && i < num_args)
     {
         curr = split[i];
-        while (ft_isws(*curr) == TRUE)
-            curr++;
+       	//input->args[i] = arg_type_def(curr, op, i);
         if (curr[0] == '%')
         {
             if (is_smalldir(op, i) == TRUE)

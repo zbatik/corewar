@@ -90,7 +90,7 @@ int 	main(int ac, char *av[])
 		error_check_data(&var);
 		if (parse_listinfo(&var) == TRUE)
 		{
-			ft_putstr("Assembling: ");
+			ft_putstr("Assembling ");
 			ft_putstr(av[1]);
 			ft_putendl(":");
 			print_name_main(var.input);
