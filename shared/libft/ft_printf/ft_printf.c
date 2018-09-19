@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 11:03:56 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/18 13:30:58 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:03:51 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			store_args(t_var *var)
 		var->temp = var->temp->next;
 	}
 }
-
+/*
 void			print_output(const char *s, t_var *var, int fd)
 {
 	int			i;
@@ -109,9 +109,9 @@ void			print_output(const char *s, t_var *var, int fd)
 			ft_putchar_fd(s[i], fd);
 		i++;
 	}
-}
+}*/
 
-void			ft_printf(int fd, const char *control_string, ...)
+void			ft_printf(int fd, t_colour c,  const char *control_string, ...)
 {
 	t_var		var;
 
@@ -120,5 +120,7 @@ void			ft_printf(int fd, const char *control_string, ...)
 	init_conv(&var, control_string);
 	store_args(&var);
 	va_end(var.args);
+	ft_putstr(select_colour(c));
 	print_output(control_string, &var, fd);
+	ft_putstr("\x1b[0m");
 }

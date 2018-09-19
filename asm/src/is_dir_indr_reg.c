@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:10:21 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/14 13:17:02 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:14:36 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ static int	label_exists(char *label, t_main *var)
 			return (1);
 		i = i->next;
 	}
-	ft_putendl("\x1b[31;1mError: Label does not exist");
-	ft_putstr(label);
-	ft_putstr(" - line #");
-	ft_putnbr(var->temp_input->line_no);
+	ft_printf(2, na, "\x1b[31;1mError: Label does not exist %s - line %d\n",
+			label, var->temp_input->line_no);
 	free_input(var->input);
 	ft_arrdel(&var->ins, arr_len(var->ins));
 	exit(EXIT_FAILURE);
@@ -61,7 +59,7 @@ int			is_direct(char *arg, t_main *var)
 		return (1);
 	}
 	if (*t == '%')
-		if (*(t + 1) == ':' )
+		if (*(t + 1) == ':')
 			if (label_exists(t + 2, var))
 			{
 				ft_strdel(&t);
@@ -76,7 +74,7 @@ int			is_indirect(char *arg, t_main *var)
 	char	*t;
 
 	t = ft_strtrim(arg);
-	if (*t == ':' ) 
+	if (*t == ':')
 		if (label_exists(t + 1, var))
 		{
 			ft_strdel(&t);
@@ -96,27 +94,26 @@ int			is_register(char *arg, t_main *var)
 	char	*t;
 
 	t = ft_strtrim(arg);
-	if (*t == 'r')
-		if (is_number(t + 1))
+	if (*t == 'r' && is_number(t + 1))
+	{
+		if (ft_atoi(t + 1) >= 1 && ft_atoi(t + 1) <= 16)
 		{
-			if (ft_atoi(t + 1) >= 1 && ft_atoi(t + 1) <= 16)
-			{
-				ft_strdel(&t);
-				return (1);
-			}
-			else
-			{
-				ft_strdel(&t);
-				ft_putendl("\x1b[31;1mError: Register is out of scope i.e. there are only 16 registers (1-16).");
-				ft_putstr(var->temp_input->line);
-				ft_putstr(" - line #");
-				ft_putnbr(var->temp_input->line_no);
-				free_input(var->input);
-				ft_arrdel(&var->ins, arr_len(var->ins));
-				free(var->ins);
-				exit(1);
-			}
+			ft_strdel(&t);
+			return (1);
 		}
+		else
+		{
+			ft_strdel(&t);
+			ft_printf(2, na, "\x1b[31;1mError: Register is out of scope i.e.");
+			ft_printf(2, lr, "	there are only 16 registers (1-16). - line #%d",
+					var->temp_input->line_no);
+			ft_putchar_fd('\n', 2);
+			free_input(var->input);
+			ft_arrdel(&var->ins, arr_len(var->ins));
+			free(var->ins);
+			exit(1);
+		}
+	}
 	ft_strdel(&t);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 10:31:39 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 13:48:20 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:01:26 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ char	*ft_strcdrop(char const *str, char c);
 char	*ft_strreplace(char **replace, char *with);
 char	**ft_arrnew(size_t x, size_t y);
 void	ft_arrdel(char ***arr, int x);
-void	ft_printf(int fd, const char *control_string, ...);
+void	ft_printf(int fd, t_colour c, const char *control_string, ...);
 
 #endif

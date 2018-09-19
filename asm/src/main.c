@@ -6,7 +6,7 @@
 /*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:39:32 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/18 13:51:42 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:06:04 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int 	main(int ac, char *av[])
 	}
 	else
 	{
-		ft_printf(1, "Usage:\n./asm file_name[.s] ...");
+		ft_printf(1, na, "Usage:\n./asm file_name[.s] ...");
 		return (0);
 	}
 }
