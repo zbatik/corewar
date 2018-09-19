@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 17:53:16 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:57:21 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,15 @@ void    write_to_reg(t_process *cursor, int reg_num, int input)
 
 int    byte_to_int(unsigned char *input, int len)
 {
-    int ret;
+    int             ret;
+    unsigned char   store[4];
 
-    len = 5;
-    ret = *(int*)input;
+    ft_bytencpy(store, input, 4);
+    if (len == 2)
+    {
+        store[2] = 0;
+        store[3] = 0;
+    }
+    ret = *(int*)store;
     return (ret);
 }
