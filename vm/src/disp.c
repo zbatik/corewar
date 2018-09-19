@@ -85,11 +85,14 @@ void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
     t_opinfo info;
 
 	num = MEM_VAL_PC_RELATIVE(0);
+
 	ft_putstr("process id ");
 	ft_putnbr(cursor->id);
 	ft_putstr(" with cursor at ");
 	ft_putnbr(cursor->pc);
 	ft_putstr(" about to execute\n");
+	//ft_printf(1, c, "recieved instruction: %s\n", index_opinfo(num).instruction);
+	//ft_printf(1, c, "expected intsruction: %s\n", index_opinfo(op).instruction);
 	info = index_opinfo(num);
 	ft_putstr("recieved intsruction: ");       
 	ft_putendl(info.instruction);
