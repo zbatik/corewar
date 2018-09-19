@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:14:32 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 18:18:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 12:16:16 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void set_player_nums(t_core *core, t_player *player)
 	t_opnum	op;
 	int 	pos;
 	t_byte	*player_num;
+	int skip;
 
 	i = -1;
 	ft_putendl(player->name);
@@ -34,24 +35,20 @@ static void set_player_nums(t_core *core, t_player *player)
 		ft_putchar('\n');
 		if (op == e_live)
 		{
-			ft_putendl_cl(index_opinfo(op).instruction, g);
-			player_num = (t_byte*)&player->name; 
+			player_num = (t_byte*)&player->num; 
 			ft_bytencpy(core->mem + pos + 1, player_num, 4);
-			pos = pos + 5;
 		}
-		else if (op >= 0x02 && op <= 0x10)
-		{	
-			ft_putendl_cl(index_opinfo(op).instruction, g);
-			ft_putstr("skip: ");
-			ft_putnbr(byte_counter(core, pos, core->mem[pos]));
-			ft_putchar('\n');
-			pos += byte_counter(core, pos, core->mem[pos]);
-		}
+		skip = byte_counter(core, pos, core->mem[pos]);
+		if (skip == 1)
+			ft_puterror("Error: Oops problem copying in player numbers");
 		else
 		{
-			ft_puterror("Error: Oops problem copying in player numbers");
-			pos++;
+			ft_putendl_cl(index_opinfo(op).instruction, g);
+			ft_putstr("skip: ");
+			ft_putnbr(skip);
+			ft_putchar('\n');
 		}
+		pos += skip;
 		ft_putendl("");
     }
 }
