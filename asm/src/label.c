@@ -82,7 +82,26 @@ int string_to_encoding (char str[4])
         return (RID);
     else if (ft_strncmp(tmp, "IRR", 3) == 0)
         return (IRR);
-    return(string_to_encoding_help(str));
+    else if (ft_strncmp(tmp, "IIR", 3) == 0)
+        return (IIR);
+    else if (ft_strncmp(tmp, "IDR", 3) == 0)
+        return (IDR);
+    else if (ft_strncmp(tmp, "DRR", 3) == 0)
+        return(DRR);
+    else if (ft_strncmp(tmp, "DIR", 3) == 0)
+        return(DIR);
+    else if (ft_strncmp(tmp, "DDR", 3) == 0)
+        return(DDR);
+    else if (ft_strncmp(tmp, "IR", 2) == 0)
+        return (IR);
+    else if (ft_strncmp(tmp, "DR", 2) == 0)
+        return (DR);
+    else if (ft_strncmp(tmp, "RI", 2) == 0)
+        return(RI);
+    else if (ft_strncmp(tmp,  "RR", 2) == 0)
+        return(RR);
+    return (0);
+    //return(string_to_encoding_help(str));
 }
 
 char    arg_type_def(char *curr, t_opnum op, int i)

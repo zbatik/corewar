@@ -38,9 +38,11 @@ void	print_name(header_t *header, t_input *head)
 {
 	t_input *tmp;
 	char	*in;
+	int		set;
 
 	tmp = head;
-	while (tmp != NULL)
+	set = 0;
+	while (tmp != NULL && set == 0)
 	{
 		in = tmp->line;
 		while(ft_isws(*in) == TRUE)
@@ -52,10 +54,40 @@ void	print_name(header_t *header, t_input *head)
 				in++;
 			str_to_str(header->prog_name, in, PROG_NAME_LENGTH);
 			header->prog_name[PROG_NAME_LENGTH] = '\0';
-			break;
+			set = 1;
 		}
 		tmp = tmp->next;
 	}
+	if (set == 0)
+		ft_memset(&header->prog_name, 0, PROG_NAME_LENGTH + 1);
+}
+
+void	print_comment(header_t *header, t_input *head)
+{
+	t_input *tmp;
+	char	*in;
+	int		set;
+
+	tmp = head;
+	set = 0;
+	while (tmp != NULL && set == 0)
+	{
+		in = tmp->line;
+		while(ft_isws(*in) == TRUE)
+			in++;
+		if (ft_strncmp(in, COMMENT_CMD_STRING, 8) == 0)
+		{
+			in = in + 8;
+			while(ft_isws(*in) == TRUE)
+				in++;
+			str_to_str(header->comment, in, COMMENT_LENGTH);
+			header->comment[COMMENT_LENGTH] = '\0';
+			set = 1;
+		}
+		tmp = tmp->next;
+	}
+	if (set == 0)
+		ft_memset(&header->comment, 0, COMMENT_LENGTH + 1);
 }
 
 int		get_size(char arg)
@@ -100,29 +132,7 @@ void	print_rest(t_input *tmp, int fd)
 	}
 }
 
-void	print_comment(header_t *header, t_input *head)
-{
-	t_input *tmp;
-	char	*in;
 
-	tmp = head;
-	while (tmp != NULL)
-	{
-		in = tmp->line;
-		while(ft_isws(*in) == TRUE)
-			in++;
-		if (ft_strncmp(in, COMMENT_CMD_STRING, 8) == 0)
-		{
-			in = in + 8;
-			while(ft_isws(*in) == TRUE)
-				in++;
-			str_to_str(header->comment, in, COMMENT_LENGTH);
-			header->comment[COMMENT_LENGTH] = '\0';
-			break;
-		}
-		tmp = tmp->next;
-	}
-}
 
 void	print_cor(t_main	*var, char *fname)
 {
