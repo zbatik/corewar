@@ -126,6 +126,7 @@ void    instruction_arg_size(t_opnum op, t_input *input)
 	}
 	input->args[i] = '\0';
 	input->byte_count = arg_byte_count(input->args) + 1;
+	free_split(split);
 }
 
 int    instruction_byte_size(t_input   *input)

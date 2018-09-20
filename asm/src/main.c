@@ -81,7 +81,7 @@ void	print_comment_main(t_input *head)
 }
 /** TODO
 ** Code the exit function
-**
+** Mem leaks
 */
 int 	main(int ac, char *av[])
 {
@@ -109,7 +109,5 @@ int 	main(int ac, char *av[])
 		return (0);
 	}
 	exit_function(&var);
-	//while (1)
-	//	;
 	return (0);
 }

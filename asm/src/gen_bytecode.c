@@ -25,6 +25,17 @@ int		is_smalldir(int opnum, int arg_num)
 	return (FALSE);
 }
 
+void	free_split(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != 0)
+		free(s[i++]);
+	free(s[i]);
+	free(s);
+}
+
 void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 {
 	int 	i;
@@ -73,4 +84,5 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 		ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * tmp_size);
 		i++;
 	}
+	free_split(split);
 }
