@@ -11,18 +11,8 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-#include <stdio.h>
 
-
-
-static int	g_smalldir[] = {9, 10, 11, 12, 13, 15};
-/*
-** 10 always 2
-** 11 always 2
-** 12 always 2
-** 13 always 2
-** Remember to encode the total plater size 
-*/
+static int	g_smalldir[] = {9, 10, 11, 12, 14, 15};
 
 int		is_smalldir(int opnum, int arg_num)
 {
@@ -43,7 +33,6 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	char	*curr;
 	int		inter;
 	int		tmp_size;
-
 	t_opnum op;
 
 	op = inst_to_enum((char*)elem->line);
@@ -51,12 +40,12 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	inter = (index_opinfo(op)).op_number;
 	ft_memmove(elem->byte_code[0], &inter, sizeof(t_byte));
 	tmp = (char *)elem->line;
-    while(ft_isws(*tmp) == FALSE && *tmp != '\0')
-        tmp++;
-    while(ft_isws(*tmp) == TRUE && *tmp != '\0')
-        tmp++;
-    split = ft_strsplit(tmp, ',');
-    i = 0;
+	while(ft_isws(*tmp) == FALSE && *tmp != '\0')
+		tmp++;
+	while(ft_isws(*tmp) == TRUE && *tmp != '\0')
+		tmp++;
+	split = ft_strsplit(tmp, ',');
+	i = 0;
 	while (elem->args[i] != '\0')
 	{
 		curr = split[i];
@@ -64,10 +53,11 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 			curr++; 
 		if (elem->args[i] == 'D' || elem->args[i] == 'd')
 		{
-			if (elem->args[i] == 'D')
+			tmp_size = (elem->args[i] == 'D') ? DIR_SIZE : ASM_DIR;
+			/*if (elem->args[i] == 'D')
 				tmp_size = DIR_SIZE;
 			else
-				tmp_size = ASM_DIR;
+				tmp_size = ASM_DIR;*/
 			if (curr[1] == ':')
 			{
 				inter = get_label(ahead, curr + 2)->byte_count;
