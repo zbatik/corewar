@@ -108,6 +108,8 @@ void				swapnfree(char **var, char *new_val);
 void				print_hex(unsigned int num);
 int					is_smalldir(int opnum, int arg_num);
 int					exit_function(t_main *var);
+int					get_size(char arg);
+void				free_split(char **s);
 /*
 typedef struct	s_label
 {
