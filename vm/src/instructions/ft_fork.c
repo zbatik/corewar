@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:32:02 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 16:02:38 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/20 12:08:29 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int ft_fork(t_core *core, t_process *cursor)
     byte_count = general_processing(core, cursor, e_fork);
     if (byte_count == 1)
         return (byte_count);
-	jump = (byte_to_int(MEM_PNT_PC_RELATIVE(1) ,2) % IDX_MOD) % MEM_SIZE;
+	jump = convert_2b_to_int(core, cursor->pc + 1) % IDX_MOD;
+	//jump = (byte_to_int(MEM_PNT_PC_RELATIVE(1) ,2) % IDX_MOD) % MEM_SIZE;
 	duplicate_process(core, cursor, jump);
 	return (byte_count);
-}
+} 

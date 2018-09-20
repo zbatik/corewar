@@ -57,6 +57,20 @@ void	print_mem(t_byte *reg, t_byte *colouring, t_byte *cursor)
 	}
 	ft_putendl("");
 }
+
+void print_reg(t_process *cursor)
+{
+	int i;
+
+	i = -1;
+	while (++i < REG_NUMBER)
+	{
+		ft_printf(1, na, "r%d: %x (or %d)\n", i + 1, 
+		*(int*)cursor->reg[i],
+			*(int*)cursor->reg[i]);
+	}
+}
+
 void	print_processes(t_core *core)
 {
 	int j;
@@ -70,12 +84,7 @@ void	print_processes(t_core *core)
 		printf("PC: %d\n", core->processes[j].pc);
 		printf("Carry: %d\n", core->processes[j].carry);
 		i = -1;
-		while (++i < REG_NUMBER)
-		{
-			printf("r%d: %x (or %d)\n", i + 1, 
-			*(int*)core->processes[j].reg[i],
-			 *(int*)core->processes[j].reg[i]);
-		}
+		print_reg(&core->processes[j]);
 	}
 }
 
@@ -124,8 +133,11 @@ void	print_cursor_info(t_core *core, t_process *cursor)
 	ft_putstr("cycles_to_execute: ");
 	ft_putnbr(cursor->cycles_to_execute);
 	ft_putchar('\n');
+	print_reg(cursor);
 	
 }
+
+
 
 void	print_cylce_info(t_core *core)
 {

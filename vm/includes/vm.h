@@ -128,6 +128,7 @@ int update_cycles_to_execute(t_byte current, t_process *cursor);
 /*
 **	disp.c
 */
+void 	print_reg(t_process *cursor);
 void	print_instr_info(t_core *core, t_process *cursor, t_opnum op);
 void	print_cursor_info(t_core *core, t_process *cursor);
 void	print_cylce_info(t_core *core);
@@ -155,8 +156,20 @@ void	end_cycle_checks_checks(t_core *core);
 void exit_on_error(char *error_msg);
 
 /*
+**	copy.c 
+*/
+int cpy_mem_to_reg(t_core *core, t_process *cursor, int reg, int start_ind);
+int cpy_reg_to_reg(t_process *cursor, int dst, int src);
+int cpy_reg_to_mem(t_core *core, t_process *cursor, int reg, int start_ind);
+int cpy_straight_to_mem(t_core *core, t_byte *info, int start_ind);
+int    cpy_straight_to_reg(t_process *cursor, t_byte *info, int reg);
+/*
 **	helpers.c 
 */
+int convert_bytes_to_int(t_core *core, int start, int len);
+
+int convert_reg_to_int(t_byte *reg);
+int convert_2b_to_int(t_core *core, int start);
 int corrupted_encoding_byte(void);
 unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len);
 void    write_to_reg(t_process *cursor, int reg, int input);

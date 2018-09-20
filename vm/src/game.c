@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 15:43:52 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 16:26:21 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/20 14:06:46 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ int game_loop(t_core *core)
             interactive(core);
             execute_pcs(core); 
             core->count.total_turns += 1;
+            if (core->dump)
+            {
+                if (0 == core->count.total_turns % core->cycles_to_dump)
+                    print_mem(core->mem, core->colouring, core->cursor);
+            }
         }
         end_cycle_checks_checks(core);
     }

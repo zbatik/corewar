@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 15:15:41 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 17:23:31 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/20 14:24:31 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,19 @@ static void	check_alive(t_core *core)
 		if (!player->dead)
 		{
 			if (player->alive)
-				ft_printf(1, g, "player %d (%s) is still alive\n", player->num, player->name);
+			{
+				if (core->pbp)
+					ft_printf(1, g, "player %d (%s) is still alive\n", player->num, player->name);
+			}
 			else
 			{
-				ft_printf(1, r, "player %d (%s) died this round\n", player->num, player->name);
+				if (core->pbp)
+					ft_printf(1, r, "player %d (%s) died this round\n", player->num, player->name);
 				player->dead = 1;
 				player->alive = 0;
 			}
 		}
-		//player->alive = 0;
+		player->alive = 0;
 	}
 }
 

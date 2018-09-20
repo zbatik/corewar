@@ -37,7 +37,8 @@ SRC_FILES		=	main.c \
 				helpers.c \
 				end_cycle_checks.c \
 				interactive.c \
-				byte_count.c
+				byte_count.c \
+				copy.c
 
 INST_DIR		= ./src/instructions/
 INST_PATHS		= $(addprefix $(INST_DIR),$(INST_FILES))

@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:58:10 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 17:09:33 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/20 14:08:14 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ int ft_live(t_core *core, t_process *cursor)
     player = get_player_from_num(core, player_num);
     if (player == NULL)
     { 
-        ft_printf(1, lr, "corrupted player number\n");
+        if (core->pbp)
+            ft_printf(1, lr, "corrupted player number\n");
         return (1);
     }
     if (!player->dead)
     {
-        ft_printf(1, g,"player %d (%s), is alive\n", player_num, player->name);
+        if (core->pbp)
+            ft_printf(1, g,"player %d (%s), is alive\n", player_num, player->name);
         player->alive = 1;
         core->count.lives += 1;
         core->last_alive = player_num;
