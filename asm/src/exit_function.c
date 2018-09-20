@@ -38,6 +38,18 @@ typedef struct s_main
 }				t_main;
 */
 
+void	free_input_min(t_input **input)
+{
+	t_input *tmp;
+
+	if (input != NULL && (tmp = *input) != NULL)
+	{
+		ft_memdel((void **)&tmp->line);
+		free(tmp);
+		input = NULL;
+	}
+}
+
 void	free_input_whole(t_input **input)
 {
 	t_input *tmp;
@@ -72,10 +84,12 @@ int		exit_function(t_main *var)
 	{
 		prev = curr;
 		curr = prev->next;
-		if (is_wsstring(prev->line) == FALSE)
-			if (is_label(prev->line) == FALSE && is_name(prev->line) == FALSE
-					&& is_comment(prev->line) == FALSE)
-				free_input_whole(&prev);
+		if (is_wsstring(prev->line) == TRUE || is_label(prev->line) == TRUE 
+			|| is_name(prev->line) == TRUE || is_comment(prev->line) == TRUE)
+				free_input_min(&prev);
+		else
+			free_input_whole(&prev);
+
 	}
 	return (0);
 }

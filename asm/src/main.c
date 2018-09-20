@@ -108,6 +108,8 @@ int 	main(int ac, char *av[])
 		ft_printf(1, "Usage:\n./asm file_name[.s] ...");
 		return (0);
 	}
-	//exit_function(&var);
+	exit_function(&var);
+	//while (1)
+	//	;
 	return (0);
 }
