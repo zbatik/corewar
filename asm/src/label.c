@@ -82,26 +82,7 @@ int string_to_encoding (char str[4])
         return (RID);
     else if (ft_strncmp(tmp, "IRR", 3) == 0)
         return (IRR);
-    else if (ft_strncmp(tmp, "IIR", 3) == 0)
-        return (IIR);
-    else if (ft_strncmp(tmp, "IDR", 3) == 0)
-        return (IDR);
-    else if (ft_strncmp(tmp, "DRR", 3) == 0)
-        return(DRR);
-    else if (ft_strncmp(tmp, "DIR", 3) == 0)
-        return(DIR);
-    else if (ft_strncmp(tmp, "DDR", 3) == 0)
-        return(DDR);
-    else if (ft_strncmp(tmp, "IR", 2) == 0)
-        return (IR);
-    else if (ft_strncmp(tmp, "DR", 2) == 0)
-        return (DR);
-    else if (ft_strncmp(tmp, "RI", 2) == 0)
-        return(RI);
-    else if (ft_strncmp(tmp,  "RR", 2) == 0)
-        return(RR);
-    return (0);
-    //return(string_to_encoding_help(str));
+    return(string_to_encoding_help(tmp));
 }
 
 char    arg_type_def(char *curr, t_opnum op, int i)
@@ -140,18 +121,7 @@ void    instruction_arg_size(t_opnum op, t_input *input)
     while(split != NULL && i < num_args)
     {
         curr = split[i];
-       	//input->args[i] = arg_type_def(curr, op, i);
-        if (curr[0] == '%')
-        {
-            if (is_smalldir(op, i) == TRUE)
-                input->args[i] = 'd';
-            else
-                input->args[i] = 'D';
-        }
-        else if (curr[0] == 'r')
-            input->args[i] = 'R';
-        else
-        	input->args[i] = 'I';
+       	input->args[i] = arg_type_def(curr, op, i);
         i++;
     }
     input->args[i] = '\0';

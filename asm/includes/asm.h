@@ -107,7 +107,7 @@ t_input				*get_label(t_input *head, const char *str);
 void				swapnfree(char **var, char *new_val);
 void				print_hex(unsigned int num);
 int					is_smalldir(int opnum, int arg_num);
-
+int					exit_function(t_main *var);
 /*
 typedef struct	s_label
 {

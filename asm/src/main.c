@@ -79,7 +79,10 @@ void	print_comment_main(t_input *head)
 		value = value->next;
 	}
 }
-
+/** TODO
+** Code the exit function
+**
+*/
 int 	main(int ac, char *av[])
 {
 	t_main var;
@@ -105,4 +108,6 @@ int 	main(int ac, char *av[])
 		ft_printf(1, "Usage:\n./asm file_name[.s] ...");
 		return (0);
 	}
+	//exit_function(&var);
+	return (0);
 }

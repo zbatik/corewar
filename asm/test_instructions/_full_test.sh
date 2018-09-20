@@ -15,10 +15,10 @@ ASM_BASE=../asm
 S_FILES=$(find . -name "*.s")
 for S_FILE in $S_FILES
 do
-	#COR_FILE=$(basename "$S_FILE" .s).cor
+	COR_FILE=$(basename "$S_FILE" .s).cor
 	$ASM_US $S_FILE
 	sleep 1s
-	COR_FILE=$(basename "$S_FILE" .s).cor
+	#COR_FILE=$(basename "$S_FILE" .s).cor
 	hexdump $COR_FILE > dump_us
 	sleep .5s
 	rm $COR_FILE
