@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:32:26 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/20 14:11:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 22:46:13 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int ft_aff(t_core *core, t_process *cursor)
 {
-    int r1;
+    int reg;
     int byte_count;
 
     byte_count = general_processing(core, cursor, e_aff);
     if (byte_count == 1)
         return (byte_count);
-    r1 = MEM_VAL_PC_REL_MOD(2); 
-    if (!valid_reg(r1))
+    reg = CORE_VAL(2);
+    if (!valid_reg(reg))
         return (1);
-    ft_putchar((char)cursor->reg[r1][REG_SIZE - 1]);
+    ft_putchar((char)cursor->reg[reg][REG_SIZE - 1]);
     ft_putchar('\n');
     return (byte_count);
 }

@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 14:25:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 21:14:07 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 23:12:06 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int ft_or_gen(t_core *core, t_process *cursor, t_opnum op)
 		return (1);
 	val = do_or_op(param1, param2, op);
 	reg = CORE_VAL(byte_count - 1);
+	modify_carry(core, cursor, val);
     cpy_int_to_reg(cursor, val, reg);
 	if (core->pbp)
 		ft_printf(1, na, "doing a '%s' operation on %d and %d storing result %d in r%d\n", 

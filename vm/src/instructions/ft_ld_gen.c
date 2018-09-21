@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 13:58:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/20 18:31:51 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 01:10:45 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,55 @@
 **	applies to both ld and lld
 */
 
+static int ld_dr(t_core *core, t_process *cursor, int *reg)
+{
+	int val;
+	int dir;
+
+	dir = PC(2);
+	*reg = CORE_VAL(6);
+	val = convert_bytes_to_int(core, dir, 4);
+	if (core->pbp)
+		ft_printf(1, na, "DR: %x: load dir %d in r%d\n", IR, val, reg);
+	return (val);
+}
+
+static int ld_ir(t_core *core, t_process *cursor, int *reg, t_opnum op)
+{
+	int val;
+	int load_from;
+	int indir;
+
+	indir = PC(2);
+	*reg = CORE_VAL(4);
+	if (op == e_ld)
+		load_from = PC(convert_bytes_to_int(core, indir, 2) % IDX_MOD);
+	else
+		load_from = PC(convert_bytes_to_int(core, indir, 2));
+	val = convert_bytes_to_int(core, load_from, 4);
+	if (core->pbp)
+		ft_printf(1, na, "IR: %x: load indir %x, from %d to r%d\n", IR, val, load_from, reg);
+	return (val);
+}
+
 static int ft_ld_gen(t_core *core, t_process *cursor, t_opnum op)
 {
-    int reg;
-    int param_add_byte;
-    int start_ind;
     int byte_count;
+	int load_val;
+	int reg;
 
     byte_count = general_processing(core, cursor, op);
     if (byte_count == 1)
         return (byte_count);
-    param_add_byte = 0;
-    if (DR == PARA_ENCODE_BYTE)
-        param_add_byte = 2;
+	if (DR == PARA_ENCODE_BYTE)
+		load_val = ld_dr(core, cursor, &reg);
     else if (IR == PARA_ENCODE_BYTE)
-        param_add_byte = 0;
-    reg = MEM_VAL_PC_RELATIVE(4 + param_add_byte);
-	start_ind = convert_bytes_to_int(core, 2, 2 + param_add_byte);
-	if (op == e_ld)
-		start_ind = start_ind % IDX_MOD;
-    cpy_mem_to_reg(core, cursor, reg, start_ind);
+		load_val = ld_ir(core, cursor, &reg, op);
+	else
+		return(corrupted_encoding_byte());
+	modify_carry(core, cursor, reg);
+	if (0 == cpy_int_to_reg(cursor, load_val, reg))
+		return (1);
     return (byte_count);
 }
 
@@ -46,5 +75,5 @@ int ft_ld(t_core *core, t_process *cursor)
 
 int ft_lld(t_core *core, t_process *cursor)
 {
-	return(ft_ld_gen(core, cursor, e_ld));
+	return(ft_ld_gen(core, cursor, e_lld));
 }
