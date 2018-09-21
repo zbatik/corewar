@@ -79,7 +79,10 @@ void	print_comment_main(t_input *head)
 		value = value->next;
 	}
 }
-
+/** TODO
+** Code the exit function
+** Mem leaks
+*/
 int 	main(int ac, char *av[])
 {
 	t_main var;
@@ -90,7 +93,7 @@ int 	main(int ac, char *av[])
 		error_check_data(&var);
 		if (parse_listinfo(&var) == TRUE)
 		{
-			ft_putstr("Assembling: ");
+			ft_putstr("Assembling ");
 			ft_putstr(av[1]);
 			ft_putendl(":");
 			print_name_main(var.input);
@@ -105,4 +108,6 @@ int 	main(int ac, char *av[])
 		ft_printf(1, na, "Usage:\n./asm file_name[.s] ...");
 		return (0);
 	}
+	exit_function(&var);
+	return (0);
 }

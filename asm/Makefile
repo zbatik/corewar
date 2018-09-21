@@ -40,6 +40,7 @@ SRC_FILES		=	args_are_valid.c \
 					check_xor_and_zjmp.c \
 					error_check_data.c \
 					error_check_line.c \
+					exit_function.c \
 					file_tolist.c \
 					free_input.c \
 					gen_bytecode.c \

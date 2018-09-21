@@ -19,6 +19,44 @@
 ** 	if its an instruction generate its byte code and append the count
 **	if the total count at the end is larger than the max return FALSE
 */
+
+
+t_bool	run_bytecode(t_input **var)
+{
+	t_input *tmp;
+	int		count;
+
+	tmp = *var;
+	count = 0;
+	while (tmp != NULL)
+	{
+		if (is_wsstring(tmp->line) == FALSE)
+		{
+			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
+				&& is_comment(tmp->line) == FALSE )
+			{
+				gen_bytecode(*var, tmp, count);
+				count += tmp->byte_count;
+			}
+		}
+		tmp = tmp->next;
+	}
+	return(TRUE);
+}
+
+void	run_bytesize(t_input **tmp, int *count)
+{
+	*count = *count + instruction_byte_size(*tmp);
+	tmp[0]->param_encoding = string_to_encoding(tmp[0]->args);
+	if (inst_to_enum(tmp[0]->line) == 16)
+		tmp[0]->param_encoding = 64;
+	if (tmp[0]->param_encoding != 0)
+	{
+		tmp[0]->byte_count++;
+		*count = *count + 1;
+	}
+}
+
 t_bool	parse_listinfo(t_main *var)
 {
 	t_input *tmp;
@@ -32,17 +70,7 @@ t_bool	parse_listinfo(t_main *var)
 		{
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE )
-			{
-				count += instruction_byte_size(tmp);
-				tmp->param_encoding = string_to_encoding(tmp->args);
-				if (inst_to_enum(tmp->line) == 16)
-					tmp->param_encoding = 64;
-				if (tmp->param_encoding != 0)
-				{
-					tmp->byte_count++;
-					count++;
-				}
-			}
+				run_bytesize(&tmp, &count);
 			if (is_label(tmp->line) == TRUE)
 			{
 				tmp->byte_count = count;
@@ -51,26 +79,11 @@ t_bool	parse_listinfo(t_main *var)
 		}
 		tmp = tmp->next;
 	}
-	tmp = var->input;
 	var->total_player_size = count;
-	/*if(count > CHAMP_MAX_SIZE)
+	if (count > CHAMP_MAX_SIZE)
 	{
-		ft_putstr("ERROR: TOO big a player\n");
-		exit (1);
-	}*/
-	count = 0;
-	while (tmp != NULL)
-	{
-		if (is_wsstring(tmp->line) == FALSE)
-		{
-			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
-				&& is_comment(tmp->line) == FALSE )
-			{
-				gen_bytecode(var->input, tmp, count);
-				count += tmp->byte_count;
-			}
-		}
-		tmp = tmp->next;
+		ft_putendl("Error: Champion to big");
+		exit(exit_function(var));
 	}
-	return(TRUE);
+	return(run_bytecode(&var->input));
 }

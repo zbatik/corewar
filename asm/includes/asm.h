@@ -107,7 +107,9 @@ t_input				*get_label(t_input *head, const char *str);
 void				swapnfree(char **var, char *new_val);
 void				print_hex(unsigned int num);
 int					is_smalldir(int opnum, int arg_num);
-
+int					exit_function(t_main *var);
+int					get_size(char arg);
+void				free_split(char **s);
 /*
 typedef struct	s_label
 {
@@ -116,7 +118,6 @@ typedef struct	s_label
 	
 }				t_label;
 */
-#endif
 
 /**
 indexing of labels starts from 256
@@ -154,5 +155,6 @@ void				free_input(t_input *input);
 void				check_duplicate_label(t_main *var);
 void				check_multiple_name(t_main *var);
 void				check_multiple_comment(t_main *var);
+#endif
 
 
