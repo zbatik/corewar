@@ -122,5 +122,6 @@ void			store_input(t_main *var, char *fname)
 			var->temp_input->is_label = TRUE;
 		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	var->temp_input = var->input;
 }
