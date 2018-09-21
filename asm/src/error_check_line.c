@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 13:26:03 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/16 13:28:47 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:32:24 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ static int			check_label_commas(t_main *var, char *line, int ln)
 	{
 		if (!is_valid_label(line))
 		{
-			ft_putendl("\x1b[31;1mError: label is invalid");
-			ft_putstr(line);
-			ft_putstr(" - line #");
-			ft_putnbr(ln);
+			ft_printf(2, lr, "Error: label is invalid\n%s - line #%d\n",
+					line, ln);
 			free_input(var->input);
 			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
@@ -32,10 +30,8 @@ static int			check_label_commas(t_main *var, char *line, int ln)
 	}
 	if (check_commas(line))
 	{
-		ft_putendl("\x1b[31;1mSyntax Error: check commas");
-		ft_putstr(line);
-		ft_putstr(" - line #");
-		ft_putnbr(ln);
+		ft_printf(2, lr, "Syntax Error: check commas\n%s - line #%d\n",
+				line, ln);
 		free_input(var->input);
 		ft_putstr("\e[97m");
 		exit(EXIT_FAILURE);
@@ -49,20 +45,16 @@ static int			is_instruction(t_main *var, char *line, int ln)
 	{
 		if (!is_valid_name(line) && is_name(line))
 		{
-			ft_putendl("\x1b[31;1mError: player name is invalid");
-			ft_putstr(line);
-			ft_putstr(" - line #");
-			ft_putnbr(ln);
+			ft_printf(2, lr, "Error: player name is invalid\n%s - line #%d\n",
+					line, ln);
 			free_input(var->input);
 			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 		if (!is_valid_comment(line) && is_comment(line))
 		{
-			ft_putendl("\x1b[31;1mError: player comment is invalid");
-			ft_putstr(line);
-			ft_putstr(" - line #");
-			ft_putnbr(ln);
+			ft_printf(2, lr, "Error: player comment is invalid\n%s - line #%d\n",
+					line, ln);
 			free_input(var->input);
 			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
@@ -76,10 +68,10 @@ static void			check_mnemonic_and_syntax(char **ins, t_main *var, int ln)
 {
 	if (!is_valid_mnemonic(ins[0]))
 	{
-		ft_putendl("\x1b[31;1mError: mnemonic is invalid");
-		ft_putstr(ins[0]);
-		ft_putstr(" is not a valid mnemonic - line #");
-		ft_putnbr(ln);
+		ft_printf(2,
+				lr, "Error: mnemonic is invalid\n%s is not a valid mnemonic",
+				ins[0]);
+		ft_printf(2, lr, " - line #%d\n", ln);
 		free_input(var->input);
 		ft_arrdel(&var->ins, arr_len(var->ins));
 		ft_putstr("\e[97m");
@@ -88,10 +80,8 @@ static void			check_mnemonic_and_syntax(char **ins, t_main *var, int ln)
 	if (ins[1])
 		if (ins[1][0] == ',' || ins[1][ft_strlen(ins[1]) - 1] == ',')
 		{
-			ft_putendl("\x1b[31;1mSyntax Error: leading/trailing comma");
-			ft_putstr(ins[1]);
-			ft_putstr(" - line #");
-			ft_putnbr(ln);
+			ft_printf(2, lr, "Syntax Error: leading/trailing comma\n");
+			ft_printf(2, lr, "%s - line #%d\n", ins[1], ln);
 			free_input(var->input);
 			ft_arrdel(&var->ins, arr_len(var->ins));
 			ft_putstr("\e[97m");

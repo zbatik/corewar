@@ -43,16 +43,16 @@
 
 # define B_RRR 5    // checked with ldi
 # define B_RIR 6	// checked with sti
-# define B_RDR 6	// checked with ldi
-# define B_RRD 6	// checked with sti	
-# define B_RDD 7	// checked with sti
-# define B_RID 7	// checked with sti
+# define B_RDR 8	// checked with ldi
+# define B_RRD 8	// checked with sti	
+# define B_RDD 11	// checked with sti
+# define B_RID 9	// checked with sti
 # define B_IRR 6	// checked with ldi
-# define B_IIR 1 // WRONG PLEASE CHANGE!!!
-# define B_IDR 7	// checked with ldi
+# define B_IIR 7 // WRONG PLEASE CHANGE!!!
+# define B_IDR 9	// checked with ldi
 # define B_DRR 8  	// checked with ldi
 # define B_DIR 9    // checked with and
-# define B_DDR 8
+# define B_DDR 11
 # define B_IR  5	// checked with ldi
 # define B_DR  7	// checked with ldi
 # define B_RI  5	// checked with st
@@ -88,8 +88,8 @@ typedef struct	s_opinfo
 	short		op_number;
 	int			cycles;
 	char		description[128];
-	t_bool		arg_encoding_byte;		/* could be wrong */
-	t_bool		modifies_carry;   		/* could be wrong */
+	t_bool		modifies_carry;		/* could be wrong */
+	t_bool		arg_encoding_byte;   		/* could be wrong */
 }				t_opinfo;
 
 t_opinfo	index_opinfo(t_opnum op_index);

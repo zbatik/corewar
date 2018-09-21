@@ -19,7 +19,7 @@ int	main(int c, char **v)
 	if (c == 1)
 	{
 		ft_putstr("./corewar [-pbp play_by_play] [-i interactive_mode] ");
-		ft_putstr("[-dump nbr_cycles] [[-n number] champion1.cor] ... ]");
+		ft_putstr("[-dump nbr_cycles] [[-n number] champion1.cor] ... ]\n");
 		return (1);
 	}
 	core.fd = open("core.log", O_WRONLY | O_APPEND | O_CREAT, 7777);
