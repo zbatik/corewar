@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:53:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 15:48:18 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 21:15:15 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int    cpy_int_to_reg(t_process *cursor, int n, int reg)
 	i = -1;
 	while (++i < REG_SIZE)
 		cursor->reg[reg - 1][i] = byte_n[i];
-	ft_putendl("");
 	return (1);
 }
 

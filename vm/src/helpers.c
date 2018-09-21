@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 16:56:28 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 22:10:54 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,21 +98,18 @@ int convert_reg_to_int(t_process *cursor, int reg, int *output)
 int convert_bytes_to_int(t_core *core, int start, int len)
 {
 	t_byte	int_bytes[4];
-	int		i;
-	int		j;
 	int		ind;
+	int		i;
 	int		ret;
 
 	ft_bzero(int_bytes, 4);
-	i = 0;
-	j = len;
-	while (i < len)
+	i = len - 1;
+	while (i >= 0)
 	{
-		ind = (start + j) % MEM_SIZE;
+	 	ind = (start + len - 1 - i) % MEM_SIZE;
 		ind = (ind < 0 ? MEM_SIZE + ind : ind);
-		int_bytes[i] = core->mem[(start + j--) % MEM_SIZE];
-		j--;
-		i++;
+		int_bytes[i] = core->mem[ind];
+		i--;
 	}
 	ret = *(int*)int_bytes;
 	if (ret > 32768) // make these number varibale

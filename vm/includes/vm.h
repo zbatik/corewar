@@ -18,6 +18,7 @@
 # define DEBUG 1
 # define PARA_ENCODE_BYTE (core->mem[(cursor->pc + 1) % MEM_SIZE])
 # define CORE_VAL(x)(core->mem[(cursor->pc + x) % MEM_SIZE])
+# define PC(x) (cursor->pc + x)
 # define MEM_VAL_PC_RELATIVE(x) (core->mem[(cursor->pc + x) % MEM_SIZE])
 # define MEM_PNT_PC_RELATIVE(x) (core->mem + ((cursor->pc + x) % MEM_SIZE))
 # define MEM_VAL_PC_REL_MOD(x) (core->mem[((cursor->pc + x) % IDX_MOD) % MEM_SIZE])

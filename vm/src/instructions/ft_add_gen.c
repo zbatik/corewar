@@ -41,7 +41,7 @@ static int ft_add_gen(t_core *core, t_process *cursor, t_opnum op)
         return (1);
     val = do_add_op(r1_val, r2_val, op);
     if (core->pbp)
-        ft_printf(1, na, "%s %d from r%d to %d from r%d and store in r%d", 
+        ft_printf(1, na, "%s %d from r%d to %d from r%d and store in r%d\n", 
             index_opinfo(op).instruction, 
                 r1_val, CORE_VAL(2), r2_val, CORE_VAL(3), CORE_VAL(4));
     modify_carry(core, cursor, val);

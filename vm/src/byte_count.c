@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 12:26:46 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 20:51:29 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,20 @@ int or_gen(t_byte eb)
 		return (B_RRR);
 	else if (eb == RIR)
 		return (B_RIR);
+	else if	(eb == RDR)
+		return (B_RDR);
 	else if (eb == IRR)
 		return (B_IRR);
 	else if (eb == IIR)
 		return (B_IIR);
+	else if (eb == IDR)
+		return (B_IDR);
 	else if (eb == DIR)
 		return (B_DIR);
 	else if (eb == DRR)
 		return (B_DRR);
+	else if (eb == DDR)
+		return (B_DDR);
 	else
 		return (1);
 }
