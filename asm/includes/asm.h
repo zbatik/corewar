@@ -118,7 +118,6 @@ typedef struct	s_label
 	
 }				t_label;
 */
-#endif
 
 /**
 indexing of labels starts from 256
@@ -156,5 +155,6 @@ void				free_input(t_input *input);
 void				check_duplicate_label(t_main *var);
 void				check_multiple_name(t_main *var);
 void				check_multiple_comment(t_main *var);
+#endif
 
 

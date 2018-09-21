@@ -52,16 +52,15 @@ void	free_input_min(t_input **input)
 
 void	free_input_whole(t_input **input)
 {
-	t_input *tmp;
 	int		i;
 
 	i = 1;
-	if (input != NULL && (tmp = *input) != NULL)
+	if (input != NULL)
 	{
-		ft_memdel((void **)&tmp->line);
-		ft_memdel((void **)&tmp->byte_code[0]);
-		while (i < MAX_ARGS_NUMBER && tmp->args[i - 1] != '\0')
-			free(tmp->byte_code[i++]);
+		free(input[0]->line);
+		free(input[0]->byte_code[0]);
+		while (i < MAX_ARGS_NUMBER && input[0]->args[i - 1] != '\0')
+			free(input[0]->byte_code[i++]);
 		free(*input);
 		input = NULL;
 	}
@@ -82,6 +81,7 @@ int		exit_function(t_main *var)
 				free_input_min(&prev);
 		else
 			free_input_whole(&prev);
+		prev = NULL;
 	}
 	free(var->ins);
 	return (0);

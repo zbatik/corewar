@@ -80,5 +80,10 @@ t_bool	parse_listinfo(t_main *var)
 		tmp = tmp->next;
 	}
 	var->total_player_size = count;
+	if (count > CHAMP_MAX_SIZE)
+	{
+		ft_putendl("Error: Champion to big");
+		exit(exit_function(var));
+	}
 	return(run_bytecode(&var->input));
 }
