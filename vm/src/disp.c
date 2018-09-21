@@ -61,13 +61,13 @@ void	print_mem(t_byte *reg, t_byte *colouring, t_byte *cursor)
 void print_reg(t_process *cursor)
 {
 	int i;
+	int rev;
 
 	i = -1;
 	while (++i < REG_NUMBER)
 	{
-		ft_printf(1, na, "r%d: %x (or %d)\n", i + 1, 
-		*(int*)cursor->reg[i],
-			*(int*)cursor->reg[i]);
+		rev = rev_endian(*(int*)cursor->reg[i]);
+		ft_printf(1, na, "r%d: %x (or %d)\n", i + 1, rev, rev);
 	}
 }
 

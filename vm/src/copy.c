@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:53:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/20 18:59:24 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 15:48:18 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,20 @@ int    cpy_straight_to_mem(t_core *core, t_byte *info, int start_ind)
 	return (1);
 }
 
-int    cpy_straight_to_reg(t_process *cursor, t_byte *info, int reg)
+int    cpy_int_to_reg(t_process *cursor, int n, int reg)
 {
-	int i;
+	int		i;
+	int		rev_n;
+	t_byte	*byte_n;
 
 	if (!valid_reg(reg))
         return (0);
+	rev_n = rev_endian(n);
+	byte_n = (t_byte*)&rev_n;
 	i = -1;
 	while (++i < REG_SIZE)
-		cursor->reg[i] = info[i];
+		cursor->reg[reg - 1][i] = byte_n[i];
+	ft_putendl("");
 	return (1);
 }
 
@@ -75,3 +80,4 @@ int cpy_mem_to_reg(t_core *core, t_process *cursor, int reg, int start_ind)
 	}
 	return (1);
 }
+

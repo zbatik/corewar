@@ -3,22 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_general.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:21:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 16:37:48 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 16:56:21 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-static void    modify_carry(t_core *core, t_process *cursor, t_opnum op)
+void    modify_carry(t_core *core, t_process *cursor, int val)
 {
-    if ((index_opinfo(op)).modifies_carry)
+    if (val == 0)
     {   
-        if (core->pbp)
-            ft_printf(1, y, "carry modified from %d to %d\n", cursor->carry, !cursor->carry);
-        cursor->carry = !cursor->carry;
+        if (core->pbp && cursor->carry == 1)
+            ft_putendl_cl("carry unchanged at 1", y);
+        else if (core->pbp && cursor->carry == 0)
+            ft_putendl_cl("carry flipped from 0 to 1", y);
+        cursor->carry = 1;
+    }
+    else
+    {
+        if (core->pbp && cursor->carry == 0)
+            ft_putendl_cl("carry unchanged at 0", y);
+        else if (core->pbp && cursor->carry == 1)
+            ft_putendl_cl("carry flipped from 1 to 0", y);
+        cursor->carry = 0;
     }
 }
 
@@ -31,6 +41,6 @@ int            general_processing(t_core *core, t_process *cursor, t_opnum op)
     byte_count = byte_counter(core, cursor->pc, op);
     if (core->pbp && byte_count == 1)
         ft_putendl("corrupted encoding byte");
-    modify_carry(core, cursor, op);
+//    modify_carry(core, cursor, op);
     return (byte_count);
 }

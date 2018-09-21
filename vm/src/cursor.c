@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cursor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 12:31:30 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/20 16:21:11 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 15:47:20 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void    process_add(t_process *cursor, int pc, int player_num, int ind)
 {
-    int i;
+    int		i;
     
     cursor->id = ind;
     cursor->pc = pc;
     cursor->carry = 0;
-    write_to_reg(cursor, 0, rev_endian(player_num));
-    i = 0;
-    while (++i < REG_NUMBER)
-        write_to_reg(cursor, i, 0);
+    cpy_int_to_reg(cursor, player_num, 1);
+    i = 1;
+    while (++i <= REG_NUMBER)
+		cpy_int_to_reg(cursor, 0, i);
 }
 
 void	duplicate_process(t_core *core, t_process *cursor, int jump)

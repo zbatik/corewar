@@ -17,6 +17,7 @@
 
 # define DEBUG 1
 # define PARA_ENCODE_BYTE (core->mem[(cursor->pc + 1) % MEM_SIZE])
+# define CORE_VAL(x)(core->mem[(cursor->pc + x) % MEM_SIZE])
 # define MEM_VAL_PC_RELATIVE(x) (core->mem[(cursor->pc + x) % MEM_SIZE])
 # define MEM_PNT_PC_RELATIVE(x) (core->mem + ((cursor->pc + x) % MEM_SIZE))
 # define MEM_VAL_PC_REL_MOD(x) (core->mem[((cursor->pc + x) % IDX_MOD) % MEM_SIZE])
@@ -162,13 +163,12 @@ int cpy_mem_to_reg(t_core *core, t_process *cursor, int reg, int start_ind);
 int cpy_reg_to_reg(t_process *cursor, int dst, int src);
 int cpy_reg_to_mem(t_core *core, t_process *cursor, int reg, int start_ind);
 int cpy_straight_to_mem(t_core *core, t_byte *info, int start_ind);
-int    cpy_straight_to_reg(t_process *cursor, t_byte *info, int reg);
+int    cpy_int_to_reg(t_process *cursor, int n, int reg);
 /*
 **	helpers.c 
 */
 int convert_bytes_to_int(t_core *core, int start, int len);
-
-int convert_reg_to_int(t_byte *reg);
+int convert_reg_to_int(t_process *cursor, int reg, int *output);
 int convert_2b_to_int(t_core *core, int start);
 int corrupted_encoding_byte(void);
 unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len);
@@ -180,7 +180,8 @@ void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
 /*
 **	instructions/ 
 */
-int general_processing(t_core *core, t_process *cursor, t_opnum op);
+int		general_processing(t_core *core, t_process *cursor, t_opnum op);
+void    modify_carry(t_core *core, t_process *cursor, int val);
 
 int ft_op(t_core *core, t_process *cursor, int *param1, int *param2);
 int ft_live(t_core *core, t_process *cursor);

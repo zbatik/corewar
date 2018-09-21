@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/20 18:55:08 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 16:56:28 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,17 @@ int    byte_to_int(unsigned char *input, int len)
 	return (ret);
 }
 
-int convert_reg_to_int(t_byte *reg)
+/*
+** convert_reg_to_int
+** correct 
+*/
+
+int convert_reg_to_int(t_process *cursor, int reg, int *output)
 {
-	return(rev_endian(*(int*)reg));
+	if (!valid_reg(reg))
+		return (0);
+	*output = rev_endian(*(int*)cursor->reg[reg - 1]);
+	return (1);
 }
 
 int convert_bytes_to_int(t_core *core, int start, int len)

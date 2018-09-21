@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 14:25:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 15:48:06 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/21 15:28:06 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static int ft_or_gen(t_core *core, t_process *cursor, t_opnum op)
     if (jump == 1)
         return (jump);
     r3 = MEM_VAL_PC_RELATIVE(jump - 1);
-	if (op == e_or)
+/*	if (op == e_or)
     	write_to_reg(cursor, r3, param1 | param2);
 	else if (op == e_and)
 		write_to_reg(cursor, r3, param1 & param2);
 	else if (op == e_xor)
-		write_to_reg(cursor, r3, param1 ^ param2);
+		write_to_reg(cursor, r3, param1 ^ param2);*/
     return (jump);
 }
 
