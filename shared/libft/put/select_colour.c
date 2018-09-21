@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/27 12:34:59 by zbatik            #+#    #+#             */
-/*   Updated: 2018/08/04 15:15:07 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:13:53 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*select_colour(t_colour colour)
 		return (ANSI_COLOUR_MAGENTA);
 	else if (colour == c)
 		return (ANSI_COLOUR_CYAN);
+	else if (colour == lr)
+		return (ANSI_COLOUR_LIGHTRED);
 	else
 		return ("");
 }
