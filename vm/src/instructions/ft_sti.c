@@ -3,80 +3,108 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:33:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 15:11:47 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 07:30:07 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-/*
-static void sti_rrr(t_core *core, t_process *cursor, int *para2, int *para3)
+static int sti_rrr(t_core *core, t_process *cursor)
 {
-    int r2;
-    int r3;
+    int input1;
+    int input2;
+    int ret1;
+    int ret2;
 
-    r2 = MEM_VAL_PC_RELATIVE(3);
-    r3 = MEM_VAL_PC_RELATIVE(4);
-    convert_reg_to_int(cursor, r2, para2);
-    convert_reg_to_int(cursor, r3, para3);
+    ret1 = convert_reg_to_int(cursor, CORE_VAL(3), &input1);
+    ret2 = convert_reg_to_int(cursor, CORE_VAL(4), &input2);
+    if ((ret1 == 0) || (ret2 == 0))
+        return (0);
+    if (0 == cpy_int_to_reg(cursor, input1 + input2, CORE_VAL(5)))
+        return (0);
+    return (1);
 }
 
-static void sti_rdr_rir(t_core *core, t_process *cursor, int *para2, int *para3)
+static int sti_rdr_rir(t_core *core, t_process *cursor)
 {
-    int r3;
+    int input1;
+    int input2;
+    int param2;
 
-    *para2 = convert_2b_to_int(core, 3);
-    r3 = MEM_VAL_PC_RELATIVE(5);
-    convert_reg_to_int(cursor, r3, para3);
-}
-
-static void sti_rid_rdd(t_core *core, int *para2, int *para3)
-{
-    *para2 = convert_2b_to_int(core, 3);
-    *para3 = convert_2b_to_int(core, 5);
-}
-
-static void sti_rrd(t_core *core, t_process *cursor, int *para2, int *para3)
-{
-    int r2;
-
-    *para2 = convert_2b_to_int(core, 3);
-    r2 = MEM_VAL_PC_RELATIVE(3);
-    convert_reg_to_int(cursor, r2, );
-    if (!valid_reg(r2))
-        *para3 = 0;
+    if (0 == convert_reg_to_int(cursor, CORE_VAL(3), &input1))
+        return (0);
+    param2 = convert_bytes_to_int(core, PC(4), 2);
+    if (PARA_ENCODE_BYTE == RIR)
+        input2 = convert_bytes_to_int(core, PC(param2), 4);
+    else if (PARA_ENCODE_BYTE == RDR)
+        input2 = param2;
     else
-        *para3 = convert_reg_to_int(cursor->reg[r2]);
+        return (0);
+    if (0 == cpy_int_to_reg(cursor, input1 + input2, CORE_VAL(5)))
+        return (0);
+    return (1);
 }
-*/
+
+static int sti_rid_rdd(t_core *core, t_process *cursor)
+{
+    int input1;
+    int input2;
+    int param2;
+    int input;
+    int cpy_location;
+
+    if (0 == convert_reg_to_int(cursor, CORE_VAL(3), &input1))
+        return (0);
+    param2 = convert_bytes_to_int(core, PC(4), 2);
+    if (PARA_ENCODE_BYTE == RIR)
+        input2 = convert_bytes_to_int(core, PC(param2), 4);
+    else if (PARA_ENCODE_BYTE == RDR)
+        input2 = param2;
+    else
+        return (0);
+    cpy_location = convert_bytes_to_int(core, PC(6), 2);
+    input = input1 + input2;
+    cpy_straight_to_mem(core, (t_byte*)&input, cpy_location);
+    return (1);
+}
+
+static int sti_rrd(t_core *core, t_process *cursor)
+{
+    int input1;
+    int input2;
+    int input;
+    int cpy_location;
+
+    if (0 == convert_reg_to_int(cursor, CORE_VAL(3), &input1))
+        return (0);
+    if (0 == convert_reg_to_int(cursor, CORE_VAL(4), &input2))
+        return (0);
+    cpy_location = convert_bytes_to_int(core, PC(5), 2);
+    input = input1 + input2;
+    cpy_straight_to_mem(core, (t_byte*)&input, cpy_location);
+    return (1);
+}
+
 int ft_sti(t_core *core, t_process *cursor)
 {
-   int byte_count;
-    /*int cpy_to;
-    int para2;
-    int para3;
-    int copy;
+    int byte_count;
+    int ret;
 
-    para2 = 0;
-    para3 = 0;*/
     byte_count = general_processing(core, cursor, e_sti);
-    /*if (!convert_reg_to_int(cursor, MEM_VAL_PC_RELATIVE(2), &cpy_to))
-        return (1);
 	if (PARA_ENCODE_BYTE == RRR)
-		sti_rrr(core, cursor, &para2, &para3);
-	else if (PARA_ENCODE_BYTE  == RDR || PARA_ENCODE_BYTE  == RIR)
-		sti_rdr_rir(core, cursor, &para2, &para3);
+		ret = sti_rrr(core, cursor);
+	else if (PARA_ENCODE_BYTE == RDR || PARA_ENCODE_BYTE  == RIR)
+		ret = sti_rdr_rir(core, cursor);
 	else if (PARA_ENCODE_BYTE  == RRD)
-		sti_rrd(core, cursor, &para2, &para3);
+		ret = sti_rrd(core, cursor);
 	else if (PARA_ENCODE_BYTE == RDD || PARA_ENCODE_BYTE  == RID)
-		sti_rid_rdd(core, &para2, &para3);
+		ret = sti_rid_rdd(core, cursor);
     else
-        corrupted_encoding_byte();
-    rev_endian(para2 + para3);
-    copy = rev_endian(para2 + para3);
-    cpy_straight_to_mem(core, (t_byte*)&copy, cpy_to);*/
+        return(corrupted_encoding_byte());
+    if (ret == 0)
+        return (1);
     return (byte_count);
 }

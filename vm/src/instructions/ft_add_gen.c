@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_gen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 14:33:33 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 16:32:59 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 05:34:38 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int ft_add_gen(t_core *core, t_process *cursor, t_opnum op)
     if (!convert_reg_to_int(cursor, CORE_VAL(3), &r2_val))
         return (1);
     val = do_add_op(r1_val, r2_val, op);
-    if (core->pbp)
+    if (PBP)
         ft_printf(1, na, "%s %d from r%d to %d from r%d and store in r%d\n", 
             index_opinfo(op).instruction, 
                 r1_val, CORE_VAL(2), r2_val, CORE_VAL(3), CORE_VAL(4));

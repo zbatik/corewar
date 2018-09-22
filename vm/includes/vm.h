@@ -20,10 +20,10 @@
 # define CORE_VAL(x)(core->mem[(cursor->pc + x) % MEM_SIZE])
 # define PC(x) ((cursor->pc + x) % MEM_SIZE)
 # define PBP (core->pbp)
-# define MEM_VAL_PC_RELATIVE(x) (core->mem[(cursor->pc + x) % MEM_SIZE])
-# define MEM_PNT_PC_RELATIVE(x) (core->mem + ((cursor->pc + x) % MEM_SIZE))
-# define MEM_VAL_PC_REL_MOD(x) (core->mem[((cursor->pc + x) % IDX_MOD) % MEM_SIZE])
-# define MEM_PNT_PC_REL_MOD(x) (core->mem + ((cursor->pc + x) % IDX_MOD) % MEM_SIZE)
+//# define MEM_VAL_PC_RELATIVE(x) (core->mem[(cursor->pc + x) % MEM_SIZE])
+//# define MEM_PNT_PC_RELATIVE(x) (core->mem + ((cursor->pc + x) % MEM_SIZE))
+//# define MEM_VAL_PC_REL_MOD(x) (core->mem[((cursor->pc + x) % IDX_MOD) % MEM_SIZE])
+//# define MEM_PNT_PC_REL_MOD(x) (core->mem + ((cursor->pc + x) % IDX_MOD) % MEM_SIZE)
 
 typedef	struct	s_player
 {
@@ -156,13 +156,13 @@ int    cpy_int_to_reg(t_process *cursor, int n, int reg);
 */
 int convert_bytes_to_int(t_core *core, int start, int len);
 int convert_reg_to_int(t_process *cursor, int reg, int *output);
-int convert_2b_to_int(t_core *core, int start);
+//int convert_2b_to_int(t_core *core, int start);
 int corrupted_encoding_byte(void);
 unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len);
-void    write_to_reg(t_process *cursor, int reg, int input);
-int     byte_to_int(unsigned char *input, int len);
+//void    write_to_reg(t_process *cursor, int reg, int input);
+//int     byte_to_int(unsigned char *input, int len);
 t_bool  valid_reg(int rX);
-void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
+//void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
 
 /*
 **	+++++++++++/instructions/+++++++++++++++ 
@@ -231,6 +231,14 @@ int ft_sti(t_core *core, t_process *cursor);
 **	ft_ldi_gen.c 
 */
 int ft_zjmp(t_core *core, t_process *cursor);
+
+/*
+**	ft_ldi_ops.c 
+*/
+int ld_idr(t_core *core, t_process *cursor, int *param1, int *param2);
+int ld_drr(t_core *core, t_process *cursor, int *param1, int *param2);
+int ld_ddr(t_core *core, t_process *cursor, int *param1, int *param2);
+int ld_rdr(t_core *core, t_process *cursor, int *param1, int *param2);
 
 /*
 **	ft_general_ops1.c 

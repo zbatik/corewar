@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:58:10 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/20 14:08:14 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 07:29:16 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int ft_live(t_core *core, t_process *cursor)
     int byte_count;
  
     byte_count = general_processing(core, cursor, e_live);
-    player_num = rev_endian(byte_to_int(MEM_PNT_PC_RELATIVE(1), 4));
+  //  player_num = rev_endian(byte_to_int(CORE_VAL(1), 4)); // changed while sleepy
+    player_num = convert_bytes_to_int(core, PC(1), 4);
     player = get_player_from_num(core, player_num);
     if (player == NULL)
     { 

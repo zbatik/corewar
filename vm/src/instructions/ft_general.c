@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:21:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 01:21:14 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 05:34:30 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ int            general_processing(t_core *core, t_process *cursor, t_opnum op)
     byte_count = byte_counter(core, cursor->pc, op);
     if (PBP && byte_count == 1)
         ft_putendl("corrupted encoding byte");
-//    modify_carry(core, cursor, op);
     return (byte_count);
 }

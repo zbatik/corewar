@@ -1,5 +1,5 @@
 .name "fork it"
 
-fork %10
 fork %700
-lfork %700
+fork %10
+fork %-10

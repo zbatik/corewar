@@ -143,7 +143,7 @@ void	print_cursor_info(t_core *core, t_process *cursor)
 	ft_putnbr(cursor->pc);
 	ft_putchar('\n');
 	ft_putstr("instruction to execute: ");
- 	ft_putendl((index_opinfo(MEM_VAL_PC_RELATIVE(0))).instruction);
+ 	ft_putendl((index_opinfo(CORE_VAL(0))).instruction);
 	ft_putstr("cycles_to_execute: ");
 	ft_putnbr(cursor->cycles_to_execute);
 	ft_putchar('\n');
