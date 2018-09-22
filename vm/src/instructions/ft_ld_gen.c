@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 13:58:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 01:10:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 01:25:50 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static int ld_dr(t_core *core, t_process *cursor, int *reg)
 	dir = PC(2);
 	*reg = CORE_VAL(6);
 	val = convert_bytes_to_int(core, dir, 4);
-	if (core->pbp)
-		ft_printf(1, na, "DR: %x: load dir %d in r%d\n", IR, val, reg);
+	if (PBP)
+		ft_printf(1, na, "DR: %x: load dir %d in r%d\n", IR, val, *reg);
 	return (val);
 }
 
@@ -42,8 +42,8 @@ static int ld_ir(t_core *core, t_process *cursor, int *reg, t_opnum op)
 	else
 		load_from = PC(convert_bytes_to_int(core, indir, 2));
 	val = convert_bytes_to_int(core, load_from, 4);
-	if (core->pbp)
-		ft_printf(1, na, "IR: %x: load indir %x, from %d to r%d\n", IR, val, load_from, reg);
+	if (PBP)
+		ft_printf(1, na, "IR: %x: load indir %x, from %d to r%d\n", IR, val, load_from, *reg);
 	return (val);
 }
 
@@ -62,7 +62,7 @@ static int ft_ld_gen(t_core *core, t_process *cursor, t_opnum op)
 		load_val = ld_ir(core, cursor, &reg, op);
 	else
 		return(corrupted_encoding_byte());
-	modify_carry(core, cursor, reg);
+	modify_carry(core, cursor, load_val);
 	if (0 == cpy_int_to_reg(cursor, load_val, reg))
 		return (1);
     return (byte_count);

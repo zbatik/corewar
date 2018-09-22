@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 20:51:29 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 03:31:16 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,12 @@ int byte_counter(t_core *core, int pc, t_opnum op)
 		return (ldi_gen(eb));
 	else if (op == e_sti)
 		return (sti_gen(eb)); 		// change this: this is WRONG!!!
-	else if (op == e_fork)
+	else if (op == e_fork || op == e_lfork)
 		return (3);
 	else if (op == e_lld)
 		return(ld_gen(eb));
 	else if (op == e_lldi)
 		return (ldi_gen(eb));
-	else if (op == e_lfork)
-		return (3);
 	else if (op == e_aff)
 		return (3);
 	else

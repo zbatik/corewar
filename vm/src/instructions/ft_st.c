@@ -6,40 +6,55 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:59:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/20 17:45:46 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 04:10:37 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
+static int st_rr(t_core *core, t_process *cursor, int src_reg)
+{
+    int dst_reg;
+
+    dst_reg = CORE_VAL(3);
+    if (0 == cpy_reg_to_reg(cursor, dst_reg, src_reg))
+        return (0);
+    if (PBP)
+        ft_printf(1, na, "RR %x: r%d copied to r%d\n", RR, src_reg, dst_reg);
+    return (1);
+}
+
+static int st_ri(t_core *core, t_process *cursor, int src_reg)
+{
+    int ind;
+    int indir;
+    int read_from;
+
+    indir = PC(3);
+    read_from = PC(convert_bytes_to_int(core, indir, 2) % IDX_MOD);
+    ind = convert_bytes_to_int(core, read_from, 4);
+	if (0 == cpy_reg_to_mem(core, cursor, src_reg, ind))
+        return (0);
+    if (PBP)
+		ft_printf(1, na, "RI: %x r%d copied to index %d\n", RI, src_reg, ind);
+    return (1);
+}
 
 int ft_st(t_core *core, t_process *cursor)
 {
-    int src;
-    int dst;
-    int start_ind;
+    int src_reg;
+    int ret;
     int byte_count;
-    int indir;
 
     byte_count = general_processing(core, cursor, e_st);
-    src = MEM_VAL_PC_RELATIVE(2);
+    src_reg = CORE_VAL(2);
     if (RR == PARA_ENCODE_BYTE)
-    {
-        dst = MEM_VAL_PC_RELATIVE(3);
-        ft_printf(1, na, "RR, src %d, dst %d\n", src, dst);
-        if (0 == cpy_reg_to_reg(cursor, dst, src))
-            return (1);
-    }
+        ret = st_rr(core, cursor, src_reg);
     else if (RI == PARA_ENCODE_BYTE)
-    {
-        // problems !
-        indir = convert_2b_to_int(core, MEM_VAL_PC_RELATIVE(3));
-        start_ind = cursor->pc + indir;
-        ft_printf(1, na, "RR, src %d, start_ind %d, indir %d\n", src, start_ind, indir);
-        if (0 == cpy_reg_to_mem(core, cursor, src, start_ind))
-            return (1);
-    }
+    	ret = st_ri(core, cursor, src_reg);
     else
         return (corrupted_encoding_byte());
+	if (ret == 0)
+		return (1);
     return (byte_count);
 }

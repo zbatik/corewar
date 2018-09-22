@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_general.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:21:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 16:56:21 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 01:21:14 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void    modify_carry(t_core *core, t_process *cursor, int val)
 {
     if (val == 0)
     {   
-        if (core->pbp && cursor->carry == 1)
+        if (PBP && cursor->carry == 1)
             ft_putendl_cl("carry unchanged at 1", y);
         else if (core->pbp && cursor->carry == 0)
             ft_putendl_cl("carry flipped from 0 to 1", y);
@@ -24,7 +24,7 @@ void    modify_carry(t_core *core, t_process *cursor, int val)
     }
     else
     {
-        if (core->pbp && cursor->carry == 0)
+        if (PBP && cursor->carry == 0)
             ft_putendl_cl("carry unchanged at 0", y);
         else if (core->pbp && cursor->carry == 1)
             ft_putendl_cl("carry flipped from 1 to 0", y);
@@ -36,10 +36,10 @@ int            general_processing(t_core *core, t_process *cursor, t_opnum op)
 {
     int byte_count;
 
-    if (core->pbp)
+    if (PBP)
         print_instr_info(core, cursor, op);
     byte_count = byte_counter(core, cursor->pc, op);
-    if (core->pbp && byte_count == 1)
+    if (PBP && byte_count == 1)
         ft_putendl("corrupted encoding byte");
 //    modify_carry(core, cursor, op);
     return (byte_count);

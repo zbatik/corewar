@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 15:43:52 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/20 14:06:46 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 03:13:47 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static int execute_pcs(t_core *core)
     while (++i < core->num_processes)
     {
         move = execute_pc(core, &core->processes[i]);
-        core->cursor[core->processes[i].pc - move] = 0;
-        core->cursor[core->processes[i].pc] = 1;
+        //core->cursor[core->processes[i].pc - move] = 0;
+        //core->cursor[core->processes[i].pc] = 1;
     }
     return (1);
 }
@@ -70,7 +70,9 @@ int game_loop(t_core *core)
             if (core->dump)
             {
                 if (0 == core->count.total_turns % core->cycles_to_dump)
-                    print_mem(core->mem, core->colouring, core->cursor);
+                   print_mem(core);
+                   // core->interactive = 1;
+                    
             }
         }
         end_cycle_checks_checks(core);

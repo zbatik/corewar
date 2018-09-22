@@ -39,19 +39,33 @@ void	print_hex(int n, int cl)
 		ft_putchar_cl(out[i--], cl);
 }
 
-void	print_mem(t_byte *reg, t_byte *colouring, t_byte *cursor)
+static int	highlight_pc(t_core *core, int pc)
 {
 	int i;
-	//int cl;
+
+	i = -1;
+	while (++i < core->num_processes)
+	{
+		if (core->processes[i].pc == pc)
+			return (1);
+	}
+	return (0);
+}
+
+void	print_mem(t_core *core)
+{
+	int i;
+	int highlight;
 
 	i = 0;
 	while (i < MEM_SIZE)
 	{
 		if (i % 64 == 0 && i != 0)
 			ft_putchar('\n');
-		ft_putstr(cursor[i] ? "\033[7m" : "");
-		print_hex(reg[i], colouring[i]);
-		ft_putstr(cursor[i] ? "\033[m": "");
+		highlight = highlight_pc(core, i);
+		ft_putstr(highlight ? "\033[7m" : "");
+		print_hex(core->mem[i], core->colouring[i]);
+		ft_putstr(highlight ? "\033[m": "");
 		ft_putchar(' ');
 		i++;
 	}
@@ -92,7 +106,7 @@ void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 {
 	t_opnum num;
 
-	num = MEM_VAL_PC_RELATIVE(0);
+	num = CORE_VAL(0);
 	ft_putstr_cl("process id ", b);
 	ft_putnbr_cl(cursor->id, c);
 	ft_putstr_cl(" with cursor at ", b);

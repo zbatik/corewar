@@ -51,10 +51,11 @@ INST_FILES		= ft_live.c \
 				ft_zjmp.c \
 				ft_ldi_gen.c \
 				ft_sti.c \
-				ft_fork.c \
-				ft_lfork.c \
+				ft_fork_gen.c \
 				ft_aff.c \
-				ft_general.c 
+				ft_general.c \
+				ft_general_ops1.c \
+				ft_general_ops2.c 
 
 ALL_FILES		= $(SRC_PATH) $(SHARED_PATHS) $(INST_PATHS)
 

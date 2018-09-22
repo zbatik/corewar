@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:14:32 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 15:48:07 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 03:11:38 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int init_cursors(t_core *core)
         r1 = core->players[core->num_players - i - 1].num;
         process_add(&core->processes[i], pc, r1, i);
         update_cycles_to_execute(core->mem[pc], &core->processes[i]);
-        core->cursor[core->players[i].start_pos] = 1;
+       // core->cursor[core->players[i].start_pos] = 1;
         core->num_processes += 1;
         i++;
     }
