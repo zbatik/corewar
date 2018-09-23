@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:44:00 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/06 18:35:42 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 15:29:39 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,10 @@ void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 	ft_putstr(" with cursor at ");
 	ft_putnbr(cursor->pc);
 	ft_putstr(" about to execute\n");
-	//ft_printf(1, c, "recieved instruction: %s\n", index_opinfo(num).instruction);
-	//ft_printf(1, c, "expected intsruction: %s\n", index_opinfo(op).instruction);
+	ft_putendl("ok\n");
+	ft_printf(1, g, "ok");
+	ft_printf(1, c, "recieved instruction: %s\n", index_opinfo(num).instruction);
+	ft_printf(1, c, "expected intsruction: %s\n", index_opinfo(op).instruction);
 	info = index_opinfo(num);
 	ft_putstr("recieved intsruction: ");       
 	ft_putendl(info.instruction);

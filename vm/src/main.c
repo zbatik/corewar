@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:55:44 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/06 17:17:00 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 15:27:10 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int c, char **v)
 		ft_putstr("[-dump nbr_cycles] [[-n number] champion1.cor] ... ]\n");
 		return (1);
 	}
+	ft_printf(1, na, "%s\n", "EISH");
 	core.fd = open("core.log", O_WRONLY | O_APPEND | O_CREAT, 7777);
 	//ft_putendl_fd("Init data", core.fd);
 	init_core(&core);
