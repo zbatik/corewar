@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_general_ops1.c                                  :+:      :+:    :+:   */
+/*   ft_or_ops1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 01:38:26 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 01:55:33 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 17:09:45 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int op_ddr(t_core *core, t_process *cursor, int *param1, int *param2)
 	dir2 = PC(6);
     *param1 = convert_bytes_to_int(core, dir1, 4);
 	*param2 = convert_bytes_to_int(core, dir2, 4);
-	if (core->pbp)
+	if (PBP)
 		ft_printf(1, na, "DDR: %x recieved dir1 %d dir2 %d\n", DDR, *param1, *param2);
 	return (1);
 }

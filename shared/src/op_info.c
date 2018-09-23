@@ -30,10 +30,10 @@ t_opinfo	index_opinfo(t_opnum op_index)
 			"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0},
 		{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1},
 		{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
-			"load index", 1, 1},
+			"load index", 1, 1}, // make 25 again
 		{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
-			"store index", 1, 1},
-		{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1},
+			"store index", 1, 1}, // make 25 again
+		{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1}, // make 800 again
 		{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0},
 		{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
 			"long load index", 1, 1},

@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:59:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 04:10:37 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 16:07:06 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int ft_st(t_core *core, t_process *cursor)
     else if (RI == PARA_ENCODE_BYTE)
     	ret = st_ri(core, cursor, src_reg);
     else
-        return (corrupted_encoding_byte());
+        return (corrupted_encoding_byte(core));
 	if (ret == 0)
 		return (1);
     return (byte_count);

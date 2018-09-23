@@ -15,7 +15,7 @@
 
 #include "../../shared/includes/shared.h"
 
-# define DEBUG 1
+//# define DEBUG 1
 # define PARA_ENCODE_BYTE (core->mem[(cursor->pc + 1) % MEM_SIZE])
 # define CORE_VAL(x)(core->mem[(cursor->pc + x) % MEM_SIZE])
 # define PC(x) ((cursor->pc + x) % MEM_SIZE)
@@ -149,7 +149,7 @@ void exit_on_error(char *error_msg);
 int cpy_mem_to_reg(t_core *core, t_process *cursor, int reg, int start_ind);
 int cpy_reg_to_reg(t_process *cursor, int dst, int src);
 int cpy_reg_to_mem(t_core *core, t_process *cursor, int reg, int start_ind);
-int cpy_straight_to_mem(t_core *core, t_byte *info, int start_ind);
+int cpy_straight_to_mem(t_core *core, t_process *cursor, t_byte *info, int start_ind);
 int    cpy_int_to_reg(t_process *cursor, int n, int reg);
 /*
 **	helpers.c 
@@ -157,11 +157,11 @@ int    cpy_int_to_reg(t_process *cursor, int n, int reg);
 int convert_bytes_to_int(t_core *core, int start, int len);
 int convert_reg_to_int(t_process *cursor, int reg, int *output);
 //int convert_2b_to_int(t_core *core, int start);
-int corrupted_encoding_byte(void);
+int corrupted_encoding_byte(t_core *core);
 unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len);
 //void    write_to_reg(t_process *cursor, int reg, int input);
 //int     byte_to_int(unsigned char *input, int len);
-t_bool  valid_reg(int rX);
+t_bool  valid_reg(int reg);
 //void    cpy_from_reg(t_core *core, t_byte *reg_entry, int cpy_from);
 
 /*

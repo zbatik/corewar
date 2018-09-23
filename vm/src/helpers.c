@@ -6,27 +6,27 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/21 22:10:54 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 17:08:39 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-t_bool  valid_reg(int rX)
+t_bool  valid_reg(int reg)
 {
-	if (rX >= 0x01 && rX <= 0x10)
+	if (reg >= 0x01 && reg <= 0x10)
 		return (1);
 	else
 	{
+		ft_putendl_cl("corrupted register", lr);
 		return (0);
-		if (DEBUG)     // fix this
-			ft_putendl("corrupted register");
 	}
 }
 
-int corrupted_encoding_byte(void)
+int corrupted_encoding_byte(t_core *core)
 {
-	ft_putendl("corrupted parameter encoding byte");
+	if (PBP)
+		ft_putendl_cl("corrupted parameter encoding byte", lr);
 	return (1);
 }
 
@@ -39,33 +39,6 @@ unsigned char	*ft_bytencpy(unsigned char *dst, const unsigned char *src, int len
 		dst[i] = src[i];
 	return (dst);
 }
-
-/*
-**  cpy_from_reg
-**  copy REG_SIZE (ie [4]) bytes from a reg to the active memory
-*/
-
-/*
-
-*/
-/*
-void    write_to_reg(t_process *cursor, int reg_num, int input)
-{
-	int             rev;
-	unsigned char   *reg;
-	unsigned char   *input_conv;
-
-	rev = rev_endian(input);
-	input_conv = (unsigned char*)&rev;
-	reg = (unsigned char*)cursor->reg[reg_num];
-	ft_bytencpy(reg, input_conv, 4);
-}
-*/
-/*
-**  byte_to_int
-**  take either an unsigned char[2] or unsigned char[4]
-**  and convert it to an int
-*/
 
 int    byte_to_int(unsigned char *input, int len)
 {
@@ -81,11 +54,6 @@ int    byte_to_int(unsigned char *input, int len)
 	ret = *(int*)store;
 	return (ret);
 }
-
-/*
-** convert_reg_to_int
-** correct 
-*/
 
 int convert_reg_to_int(t_process *cursor, int reg, int *output)
 {
@@ -116,7 +84,7 @@ int convert_bytes_to_int(t_core *core, int start, int len)
 		ret -= 65536;
 	return (ret);
 }
-
+/*
 int convert_2b_to_int(t_core *core, int start)
 {
 	t_byte	jump_bytes[4];
@@ -135,4 +103,4 @@ int convert_2b_to_int(t_core *core, int start)
 	if (jump > 32768)
 		jump -= 65536;
 	return (jump);
-}
+}*/

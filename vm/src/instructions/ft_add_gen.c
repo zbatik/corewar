@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 14:33:33 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 05:34:38 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 17:09:22 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static int ft_add_gen(t_core *core, t_process *cursor, t_opnum op)
     r1_val = 0;
     r2_val = 0;
     byte_count = general_processing(core, cursor, op);
+    if (PARA_ENCODE_BYTE != RRR)
+        return(corrupted_encoding_byte(core));
     if (!convert_reg_to_int(cursor, CORE_VAL(2), &r1_val))
         return (1);
     if (!convert_reg_to_int(cursor, CORE_VAL(3), &r2_val))

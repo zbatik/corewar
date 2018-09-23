@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 13:58:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 01:25:50 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 16:05:35 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int ft_ld_gen(t_core *core, t_process *cursor, t_opnum op)
     else if (IR == PARA_ENCODE_BYTE)
 		load_val = ld_ir(core, cursor, &reg, op);
 	else
-		return(corrupted_encoding_byte());
+		return(corrupted_encoding_byte(core));
 	modify_carry(core, cursor, load_val);
 	if (0 == cpy_int_to_reg(cursor, load_val, reg))
 		return (1);

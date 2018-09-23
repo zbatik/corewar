@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 09:41:53 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 01:45:29 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 16:06:28 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int ft_or_type(t_core *core, t_process *cursor, int *param1, int *param2)
         success = op_iir(core, cursor, param1, param2);
     else
     {
-        corrupted_encoding_byte();
+        corrupted_encoding_byte(core);
         success = 0;
     }
     return (success);
@@ -76,7 +76,7 @@ int ft_or_gen(t_core *core, t_process *cursor, t_opnum op)
 	reg = CORE_VAL(byte_count - 1);
 	modify_carry(core, cursor, val);
     cpy_int_to_reg(cursor, val, reg);
-	if (core->pbp)
+	if (PBP)
 		ft_printf(1, na, "doing a '%s' operation on %d and %d storing result %d in r%d\n", 
 		index_opinfo(op).instruction, param1, param2, val, reg);
     return (byte_count);

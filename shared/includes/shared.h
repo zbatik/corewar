@@ -40,6 +40,7 @@
 # define DR  0x90 // 0b10010000 // checked with ld
 # define RI  0x70 // checked with st
 # define RR  0x50 // checked with st
+# define R   0x40
 
 # define B_RRR 5    // checked with ldi
 # define B_RIR 6	// checked with sti
@@ -57,6 +58,7 @@
 # define B_DR  7	// checked with ldi
 # define B_RI  5	// checked with st
 # define B_RR  4	// checked with
+# define B_R   3
 
 typedef unsigned char	t_byte;
 	

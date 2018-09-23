@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 18:53:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 05:29:20 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 17:23:00 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,18 @@ int cpy_reg_to_mem(t_core *core, t_process *cursor, int reg, int start_ind)
 	return (1);
 }
 
-int    cpy_straight_to_mem(t_core *core, t_byte *info, int start_ind)
+int    cpy_straight_to_mem(t_core *core, t_process *cursor, t_byte *info, int start_ind)
 {
 	int i;
+	int colour;
 
+	colour = core->colouring[cursor->pc];
 	i = -1;
 	while (++i < REG_SIZE)
+	{
 		core->mem[(start_ind + i) % MEM_SIZE] = info[i];
+		core->colouring[(start_ind + i) % MEM_SIZE] = colour;
+	}
 	return (1);
 }
 
