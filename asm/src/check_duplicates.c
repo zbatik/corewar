@@ -27,6 +27,7 @@ void			check_multiple_name(t_main *var)
 			{
 				ft_putendl("\x1b[31;1mError: Multiple player name detected");
 				free_input(var->input);
+				ft_putstr("\e[97m");
 				exit(EXIT_FAILURE);
 			}
 			b = b->next;
@@ -50,6 +51,7 @@ void			check_multiple_comment(t_main *var)
 			{
 				ft_putendl("\x1b[31;1mError: Multiple player comment detected");
 				free_input(var->input);
+				ft_putstr("\e[97m");
 				exit(EXIT_FAILURE);
 			}
 			b = b->next;
@@ -74,6 +76,7 @@ void			check_duplicate_label(t_main *var)
 				{
 					ft_putendl("\x1b[31;1mError: Duplicate label detected");
 					free_input(var->input);
+					ft_putstr("\e[97m");
 					exit(EXIT_FAILURE);
 				}
 			b = b->next;
