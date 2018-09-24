@@ -12,7 +12,7 @@
 
 #include "../includes/vm.h"
 
-void	print_hex(int n, int cl)
+void		print_hex(int n, int cl)
 {
 	char	out[12];
 	char	*hex;
@@ -52,7 +52,7 @@ static int	highlight_pc(t_core *core, int pc)
 	return (0);
 }
 
-void	print_mem(t_core *core)
+void		print_mem(t_core *core)
 {
 	int i;
 	int highlight;
@@ -65,14 +65,14 @@ void	print_mem(t_core *core)
 		highlight = highlight_pc(core, i);
 		ft_putstr(highlight ? "\033[7m" : "");
 		print_hex(core->mem[i], core->colouring[i]);
-		ft_putstr(highlight ? "\033[m": "");
+		ft_putstr(highlight ? "\033[m" : "");
 		ft_putchar(' ');
 		i++;
 	}
 	ft_putendl("");
 }
 
-void print_reg(t_process *cursor)
+void		print_reg(t_process *cursor)
 {
 	int i;
 	int rev;
@@ -85,7 +85,7 @@ void print_reg(t_process *cursor)
 	}
 }
 
-void	print_processes(t_core *core)
+void		print_processes(t_core *core)
 {
 	int j;
 	int i;
@@ -102,7 +102,7 @@ void	print_processes(t_core *core)
 	}
 }
 
-void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
+void		print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 {
 	t_opnum num;
 
@@ -116,7 +116,7 @@ void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 	ft_printf(1, c, "expected intsruction: %s\n", index_opinfo(op).instruction);
 }
 
-void	print_parsed_info(t_core *core)
+void		print_parsed_info(t_core *core)
 {	
 	printf("___Parsed Data___\n");
 	printf("Dump core: %d\n", core->dump);
@@ -131,7 +131,7 @@ void	print_parsed_info(t_core *core)
 	printf("_____________\n");
 }
 
-void	print_cursor_info(t_core *core, t_process *cursor)
+void		print_cursor_info(t_core *core, t_process *cursor)
 {
 	ft_putstr("id: ");
 	ft_putnbr(cursor->id);
@@ -143,7 +143,7 @@ void	print_cursor_info(t_core *core, t_process *cursor)
 	ft_putnbr(cursor->pc);
 	ft_putchar('\n');
 	ft_putstr("instruction to execute: ");
- 	ft_putendl((index_opinfo(CORE_VAL(0))).instruction);
+	ft_putendl((index_opinfo(CORE_VAL(0))).instruction);
 	ft_putstr("cycles_to_execute: ");
 	ft_putnbr(cursor->cycles_to_execute);
 	ft_putchar('\n');
@@ -151,9 +151,7 @@ void	print_cursor_info(t_core *core, t_process *cursor)
 	
 }
 
-
-
-void	print_cylce_info(t_core *core)
+void		print_cylce_info(t_core *core)
 {
 	ft_printf(1, y, "END OF CYCLE BREAKDOWN\n");
 	ft_printf(1, m, "number of processes:\t%d\n", core->num_processes);
@@ -164,7 +162,7 @@ void	print_cylce_info(t_core *core)
 	ft_printf(1, m, "number players alive:\t%d\n", num_alive(core));
 }
 
-void	print_players(t_core *core)
+void		print_players(t_core *core)
 {
 	int i;
 	int fd;
@@ -179,22 +177,22 @@ void	print_players(t_core *core)
 		print_player(&core->players[i], fd);
 }
 
-void	print_player(t_player *player, int fd)
+void		print_player(t_player *player, int fd)
 {
-		ft_putendl_fd("___Player_Info___", fd);
-		ft_putstr_fd("Player Number", fd); 
-		ft_putnbr_fd(player->num, fd);
-		ft_putchar_fd('\n', fd);
-		ft_putstr_fd("Player Name: ", fd);
-		ft_putendl_fd(player->name, fd);
-		ft_putstr_fd("Player File name: ", fd);
-		ft_putendl_fd(player->file_name, fd);
-		ft_putstr_fd("Comment: ", fd);
-		ft_putendl_fd(player->comment, fd);
-		ft_putstr_fd("Player Size: ", fd);
-		ft_putnbr_fd(player->size, fd);
-		ft_putchar_fd('\n', fd);
-		ft_putstr_fd("Start PC: ", fd);
-		ft_putnbr_fd(player->start_pos, fd);
-		ft_putchar_fd('\n', fd);
+	ft_putendl_fd("___Player_Info___", fd);
+	ft_putstr_fd("Player Number", fd); 
+	ft_putnbr_fd(player->num, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("Player Name: ", fd);
+	ft_putendl_fd(player->name, fd);
+	ft_putstr_fd("Player File name: ", fd);
+	ft_putendl_fd(player->file_name, fd);
+	ft_putstr_fd("Comment: ", fd);
+	ft_putendl_fd(player->comment, fd);
+	ft_putstr_fd("Player Size: ", fd);
+	ft_putnbr_fd(player->size, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd("Start PC: ", fd);
+	ft_putnbr_fd(player->start_pos, fd);
+	ft_putchar_fd('\n', fd);
 }

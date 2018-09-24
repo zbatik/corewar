@@ -1,5 +1,5 @@
 live %32
-st r1,r2
+ld %42,r2
 add r1,r2,r3
 sub r3,r1,r4
 sub r1,r3,r5

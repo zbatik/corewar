@@ -91,7 +91,7 @@ typedef struct	s_opinfo
 	int			cycles;
 	char		description[128];
 	t_bool		modifies_carry;		/* could be wrong */
-	t_bool		arg_encoding_byte;   		/* could be wrong */
+	t_bool		funky_dir_size;   		/* could be wrong */
 }				t_opinfo;
 
 t_opinfo	index_opinfo(t_opnum op_index);

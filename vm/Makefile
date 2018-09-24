@@ -56,7 +56,8 @@ INST_FILES		= ft_live.c \
 				ft_general.c \
 				ft_or_ops1.c \
 				ft_or_ops2.c \
-				ft_ldi_ops.c
+				ft_ldi_ops.c \
+				ft_sti_ops.c
 
 ALL_FILES		= $(SRC_PATH) $(SHARED_PATHS) $(INST_PATHS)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 12:50:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/07 12:56:21 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/24 15:46:07 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 void    exit_on_error(char *error_msg)
 {
     ft_puterror(error_msg);
-    //clean()
     exit(-1);
 }

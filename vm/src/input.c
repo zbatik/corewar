@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:10:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/17 18:35:01 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/24 16:08:13 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static void check_duplicate(t_core *core, int player_num)
+static void	check_duplicate(t_core *core, int player_num)
 {
 	int i;
 
@@ -24,7 +24,7 @@ static void check_duplicate(t_core *core, int player_num)
 	}
 }
 
-static int  ft_isposint(char *num)
+static int	ft_isposint(char *num)
 {
 	int n;
 
@@ -38,7 +38,7 @@ static int  ft_isposint(char *num)
 	return (n);
 }
 
-static int  parse_flags(t_core *core, int c, char **v)
+static int	parse_flags(t_core *core, int c, char **v)
 {
 	int skip;
 
@@ -65,7 +65,7 @@ static int  parse_flags(t_core *core, int c, char **v)
 	return (skip);
 }
 
-static int  parse_players(t_core *core, int c, char **v)
+static int	parse_players(t_core *core, int c, char **v)
 {
 	int i;
 	int player_num;
@@ -92,7 +92,7 @@ static int  parse_players(t_core *core, int c, char **v)
 	return (1);
 }
 
-int         parse_input(t_core *core, int c, char **v)
+int			parse_input(t_core *core, int c, char **v)
 {
 	int skip;
 

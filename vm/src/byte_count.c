@@ -6,13 +6,13 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 03:31:16 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/24 15:54:08 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int or_gen(t_byte eb)
+static int	or_gen(t_byte eb)
 {
 	if (eb == RRR)
 		return (B_RRR);
@@ -36,7 +36,7 @@ int or_gen(t_byte eb)
 		return (1);
 }
 
-static int ldi_gen(t_byte eb)
+static int	ldi_gen(t_byte eb)
 {
 	if (eb == RRR)
 		return (B_RRR);
@@ -54,7 +54,7 @@ static int ldi_gen(t_byte eb)
 		return (1);
 }
 
-static int sti_gen(t_byte eb)
+static int	sti_gen(t_byte eb)
 {
 	if (eb == RRR)
 		return (B_RRR);
@@ -72,25 +72,25 @@ static int sti_gen(t_byte eb)
 		return (1);
 }
 
-static int ld_gen(t_byte eb)
+static int	ld_gen(t_byte eb)
 {
-		if (eb == DR)
-			return (B_DR);
-		else if (eb == IR)
-			return (B_IR);
-		else
-			return (1);
+	if (eb == DR)
+		return (B_DR);
+	else if (eb == IR)
+		return (B_IR);
+	else
+		return (1);
 }
 
-int byte_counter(t_core *core, int pc, t_opnum op)
+int			byte_counter(t_core *core, int pc, t_opnum op)
 {
 	t_byte eb;
 
 	eb = core->mem[pc + 1];
-    if (op == e_live)
-        return (5);
+	if (op == e_live)
+		return (5);
 	else if (op == e_ld)
-		return(ld_gen(eb));
+		return (ld_gen(eb));
 	else if (op == e_st)
 	{
 		if (eb == RI)
@@ -108,18 +108,18 @@ int byte_counter(t_core *core, int pc, t_opnum op)
 		return (or_gen(eb));
 	else if (op == e_or)
 		return (or_gen(eb));
-    else if (op == 	e_xor)
+	else if (op == e_xor)
 		return (or_gen(eb));
 	else if (op == e_zjmp)
 		return (3);
 	else if (op == e_ldi)
 		return (ldi_gen(eb));
 	else if (op == e_sti)
-		return (sti_gen(eb)); 		// change this: this is WRONG!!!
+		return (sti_gen(eb));
 	else if (op == e_fork || op == e_lfork)
 		return (3);
 	else if (op == e_lld)
-		return(ld_gen(eb));
+		return (ld_gen(eb));
 	else if (op == e_lldi)
 		return (ldi_gen(eb));
 	else if (op == e_aff)
