@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/17 12:01:17 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/24 15:25:06 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,13 @@ void				free_input(t_input *input);
 void				check_duplicate_label(t_main *var);
 void				check_multiple_name(t_main *var);
 void				check_multiple_comment(t_main *var);
+void				print_error_and_no_par(t_main *var, char **args);
+void				print_error_and_2(t_main *var,  char **par);
+void				print_or_error_1(t_main *var, char **args);
+void				print_or_error_2(t_main *var, char **args);
+void				print_fork_error_1(t_main *var, char **args);
+void				print_fork_error_2(t_main *var, char **par);
+void				print_lld_error_1(t_main *var, char **args);
 #endif
 
 
