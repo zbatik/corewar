@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:14:32 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 14:10:51 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 03:11:38 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,16 @@
 
 static void set_player_nums(t_core *core, t_player *player)
 {
-//	int		i;
 	t_opnum	op;
 	int 	pos;
 	t_byte	*player_num;
-	unsigned int player_num_int;
+	unsigned int    player_num_int;
 	int skip;
 
-	//i = -1;
-	//ft_putendl(player->name);
 	pos = player->start_pos;
-//	ft_putnbr(player->start_pos);
-//	ft_putnbr(player->size);
 	while (pos < (int)player->start_pos + player->size)
     {
-		//print_mem(core->mem, core->colouring, core->cursor);
 		op = core->mem[pos];
-	/*	ft_putstr("op: ");
-		ft_putnbr(op);
-		ft_putchar('\n');
-		ft_putstr("pos: ");
-		ft_putnbr(pos);
-		ft_putchar('\n');*/
 		if (op == e_live)
 		{	
 			player_num_int = rev_endian(player->num);
@@ -45,15 +33,7 @@ static void set_player_nums(t_core *core, t_player *player)
 		skip = byte_counter(core, pos, core->mem[pos]);
 		if (skip == 1)
 			ft_puterror("Error: Oops problem copying in player numbers");
-	/*	else
-		{
-			ft_putendl_cl(index_opinfo(op).instruction, g);
-			ft_putstr("skip: ");
-			ft_putnbr(skip);
-			ft_putchar('\n');
-		}*/
 		pos += skip;
-//		ft_putendl("");
     }
 }
 
@@ -99,7 +79,7 @@ static int init_cursors(t_core *core)
         r1 = core->players[core->num_players - i - 1].num;
         process_add(&core->processes[i], pc, r1, i);
         update_cycles_to_execute(core->mem[pc], &core->processes[i]);
-        core->cursor[core->players[i].start_pos] = 1;
+       // core->cursor[core->players[i].start_pos] = 1;
         core->num_processes += 1;
         i++;
     }

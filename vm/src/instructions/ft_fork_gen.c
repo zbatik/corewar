@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fork.c                                          :+:      :+:    :+:   */
+/*   ft_fork_gen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:32:02 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 16:02:38 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 02:41:43 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-int ft_fork(t_core *core, t_process *cursor)
+static int ft_fork_gen(t_core *core, t_process *cursor, t_opnum op)
 {
 	int jump;
 	int	byte_count;
 
-    byte_count = general_processing(core, cursor, e_fork);
+    byte_count = general_processing(core, cursor, op);
     if (byte_count == 1)
         return (byte_count);
-	jump = (byte_to_int(MEM_PNT_PC_RELATIVE(1) ,2) % IDX_MOD) % MEM_SIZE;
+	if (op == e_fork)
+		jump = convert_bytes_to_int(core, PC(1), 2) % IDX_MOD;
+	else
+		jump = convert_bytes_to_int(core, PC(1), 2);
 	duplicate_process(core, cursor, jump);
+	if (PBP)
+		ft_printf(1, na, "jump to location %d\n", jump);
 	return (byte_count);
+}
+
+int ft_fork(t_core *core, t_process *cursor)
+{
+	return(ft_fork_gen(core, cursor, e_fork));
+}
+
+int ft_lfork(t_core *core, t_process *cursor)
+{
+	return(ft_fork_gen(core, cursor, e_lfork));
 }

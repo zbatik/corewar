@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interactive.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 16:22:55 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 11:35:51 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 03:08:53 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,12 @@ static void	info_mode(t_core *core)
 	while (1)
 	{
 		get_next_line(0, &line);
-		if (ft_strequ(line, "print info"))
-		{
-			//print_cursor_info();
-		}
-		else if (ft_strequ(line, "print players"))
+		if (ft_strequ(line, "print players"))
 			print_players(core);
 		else if (ft_strnequ(line, "print pc ", 8))
 		{
 			pc_num = ft_atoi(line + 8);
-			if (pc_num > core->num_processes)
+			if (pc_num >= core->num_processes)
 				ft_putendl("no such process");
 			else
 				print_cursor_info(core, &core->processes[pc_num]);
@@ -53,9 +49,11 @@ void interactive(t_core *core)
 
 	if (core->interactive)
 	{
-		print_mem(core->mem, core->colouring, core->cursor);
+		print_mem(core);
 		get_next_line(0, &line);
-		if (ft_strequ(line, "info on"))
+		if (ft_strequ(line, "interactive off"))
+			core->interactive = 0;
+		else if (ft_strequ(line, "info on"))
 			info_mode(core);
 		else if (*line == 0)
 			;

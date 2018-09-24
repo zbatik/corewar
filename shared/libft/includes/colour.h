@@ -28,12 +28,12 @@ typedef enum
 {
 	na,
 	r,
-	lr,
 	g,
 	y,
 	b,
 	m,
 	c,
+	lr,
 }	t_colour;
 
 char	*select_colour(t_colour colour);

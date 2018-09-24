@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 12:38:34 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/13 14:01:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/19 16:33:07 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,17 @@ int                 creat_players(t_core *core)
         read_player_file(&core->players[i]);
     }
     return (1);
+}
+
+t_player *get_player_from_num(t_core *core, int player_num)
+{
+    int i;
+
+    i = -1;
+    while (++i < MAX_PLAYERS)
+    {
+        if (core->players[i].num == player_num)
+            return (&core->players[i]);
+    }
+    return (NULL);
 }
