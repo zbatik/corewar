@@ -138,10 +138,7 @@ void	print_cor(t_main *var, char *fname)
 	char	*new_name;
 	header_t	header;
 
-	if (fname[0] == '.')
-		while(*fname == '.' || *fname == '/')
-			fname++;
-	new_name = ft_strsub(fname, 0, ft_indexcin(fname, '.'));
+	new_name = ft_strsub(fname, 0, ft_indexrcin(fname, '.'));
 	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
 	fd = open (new_name, O_RDWR | O_CREAT);
 	chmod(new_name, 0777);
