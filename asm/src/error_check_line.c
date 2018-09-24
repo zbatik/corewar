@@ -23,6 +23,7 @@ static int			check_label_commas(t_main *var, char *line, int ln)
 			ft_printf(2, lr, "Error: label is invalid\n%s - line #%d\n",
 					line, ln);
 			free_input(var->input);
+			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 		return (0);
@@ -32,6 +33,7 @@ static int			check_label_commas(t_main *var, char *line, int ln)
 		ft_printf(2, lr, "Syntax Error: check commas\n%s - line #%d\n",
 				line, ln);
 		free_input(var->input);
+		ft_putstr("\e[97m");
 		exit(EXIT_FAILURE);
 	}
 	return (1);
@@ -46,6 +48,7 @@ static int			is_instruction(t_main *var, char *line, int ln)
 			ft_printf(2, lr, "Error: player name is invalid\n%s - line #%d\n",
 					line, ln);
 			free_input(var->input);
+			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 		if (!is_valid_comment(line) && is_comment(line))
@@ -53,6 +56,7 @@ static int			is_instruction(t_main *var, char *line, int ln)
 			ft_printf(2, lr, "Error: player comment is invalid\n%s - line #%d\n",
 					line, ln);
 			free_input(var->input);
+			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 		return (0);
@@ -70,6 +74,7 @@ static void			check_mnemonic_and_syntax(char **ins, t_main *var, int ln)
 		ft_printf(2, lr, " - line #%d\n", ln);
 		free_input(var->input);
 		ft_arrdel(&var->ins, arr_len(var->ins));
+		ft_putstr("\e[97m");
 		exit(EXIT_FAILURE);
 	}
 	if (ins[1])
@@ -79,6 +84,7 @@ static void			check_mnemonic_and_syntax(char **ins, t_main *var, int ln)
 			ft_printf(2, lr, "%s - line #%d\n", ins[1], ln);
 			free_input(var->input);
 			ft_arrdel(&var->ins, arr_len(var->ins));
+			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);
 		}
 }

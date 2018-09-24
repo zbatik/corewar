@@ -1,0 +1,96 @@
+Assembling: ./add.s:
+Assembling ./add.s:
+__________________________
+./add.s
+__________________________
+
+Assembling: ./aff.s:
+Assembling ./aff.s:
+__________________________
+./aff.s
+__________________________
+
+Assembling: ./and.s:
+Assembling ./and.s:
+__________________________
+./and.s
+__________________________
+
+Assembling: ./fork.s:
+Assembling ./fork.s:
+__________________________
+./fork.s
+__________________________
+
+Assembling: ./ld.s:
+Assembling ./ld.s:
+__________________________
+./ld.s
+__________________________
+
+Assembling: ./ldi.s:
+Assembling ./ldi.s:
+__________________________
+./ldi.s
+__________________________
+
+Assembling: ./lfork.s:
+Assembling ./lfork.s:
+__________________________
+./lfork.s
+__________________________
+
+Assembling: ./live.s:
+Assembling ./live.s:
+__________________________
+./live.s
+__________________________
+
+Assembling: ./lld.s:
+Assembling ./lld.s:
+__________________________
+./lld.s
+__________________________
+
+Assembling: ./lldi.s:
+Assembling ./lldi.s:
+__________________________
+./lldi.s
+__________________________
+
+Assembling: ./or.s:
+Assembling ./or.s:
+__________________________
+./or.s
+__________________________
+
+Assembling: ./st.s:
+Assembling ./st.s:
+__________________________
+./st.s
+__________________________
+
+Assembling: ./sti.s:
+Assembling ./sti.s:
+__________________________
+./sti.s
+__________________________
+
+Assembling: ./sub.s:
+Assembling ./sub.s:
+__________________________
+./sub.s
+__________________________
+
+Assembling: ./xor.s:
+Assembling ./xor.s:
+__________________________
+./xor.s
+__________________________
+
+Assembling: ./zjmp.s:
+Assembling ./zjmp.s:
+__________________________
+./zjmp.s
+__________________________
+

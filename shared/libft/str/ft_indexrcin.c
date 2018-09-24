@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_are_valid.c                                   :+:      :+:    :+:   */
+/*   ft_indexrcin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mdilapi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 15:16:29 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/24 13:29:55 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/24 12:40:25 by mdilapi           #+#    #+#             */
+/*   Updated: 2018/09/24 12:41:07 by mdilapi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "../includes/libft.h"
 
-int			args_are_valid(char *args)
+int	ft_indexrcin(char const *str, int c)
 {
-	char	**par;
+	int		i;
 
-	par = ft_strsplit(args, ',');
-	(void) par;
-	return (1);
+	i = (int) ft_strlen(str);
+	while (i >= 0)
+	{
+		if (str[i] == c)
+			return (i);
+		i--;
+	}
+	return (-1);
 }
