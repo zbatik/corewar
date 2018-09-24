@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 15:52:45 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/24 16:56:03 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ int		convert_bytes_to_int(t_core *core, int start, int len)
 	i = len - 1;
 	while (i >= 0)
 	{
-	 	ind = (start + len - 1 - i) % MEM_SIZE;
+		ind = (start + len - 1 - i) % MEM_SIZE;
 		ind = (ind < 0 ? MEM_SIZE + ind : ind);
 		int_bytes[i] = core->mem[ind];
 		i--;
 	}
 	ret = *(int*)int_bytes;
-	if (ret > 32768) // make these number varibale
+	if (ret > 32768)
 		ret -= 65536;
 	return (ret);
 }
