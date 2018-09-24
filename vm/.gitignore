@@ -1,4 +1,4 @@
 asm
 .DS_Store
-zack.s
-zack.cor
+/*.dSYM
+vm_base

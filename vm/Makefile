@@ -37,7 +37,8 @@ SRC_FILES		=	main.c \
 				helpers.c \
 				end_cycle_checks.c \
 				interactive.c \
-				byte_count.c
+				byte_count.c \
+				copy.c
 
 INST_DIR		= ./src/instructions/
 INST_PATHS		= $(addprefix $(INST_DIR),$(INST_FILES))
@@ -50,10 +51,12 @@ INST_FILES		= ft_live.c \
 				ft_zjmp.c \
 				ft_ldi_gen.c \
 				ft_sti.c \
-				ft_fork.c \
-				ft_lfork.c \
+				ft_fork_gen.c \
 				ft_aff.c \
-				ft_general.c 
+				ft_general.c \
+				ft_or_ops1.c \
+				ft_or_ops2.c \
+				ft_ldi_ops.c
 
 ALL_FILES		= $(SRC_PATH) $(SHARED_PATHS) $(INST_PATHS)
 

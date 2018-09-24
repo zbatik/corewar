@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:12:42 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 16:55:16 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/22 03:11:36 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int init_core(t_core *core)
 	core->num_players = 0;
 	ft_bzero(core->mem, MEM_SIZE);
 	ft_bzero(core->colouring, MEM_SIZE);
-	ft_bzero(core->cursor, MEM_SIZE);
+	//ft_bzero(core->cursor, MEM_SIZE);
 	i = -1;
 	while (++i < MAX_PLAYERS)
 		init_player(&(core->players[i]));

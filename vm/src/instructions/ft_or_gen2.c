@@ -3,85 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_or_gen2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 09:41:53 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 16:02:36 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 16:06:28 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
-static int op_rrr(t_core *core, t_process *cursor, int *param1, int *param2)
+static int ft_or_type(t_core *core, t_process *cursor, int *param1, int *param2)
 {
-    int i;
+    int success;
 
-    i = -1;
-    while (++i < 3)
-    {
-        if (!valid_reg(core->mem[cursor->pc + 2 + i]))
-            return (1);
-    }
-    *param1 = byte_to_int(cursor->reg[cursor->pc + 2], 4);
-    *param2 = byte_to_int(cursor->reg[cursor->pc + 3], 4);
-    return (5);
-}
-
-static int op_rir(t_core *core, t_process *cursor, int *param1, int *param2)
-{
-    int i;
-    int ret;
-
-    i = -1;
-    while (++i < 3)
-    ret = valid_reg(core->mem[cursor->pc + 2]);
-    ret = ret && valid_reg(core->mem[cursor->pc + 5]);
-    if (!ret)
-        return (1);
-    *param1 = byte_to_int(cursor->reg[cursor->pc + 2], 4);
-    *param2 = byte_to_int(core->mem + cursor->pc + 3, 4);
-    return (6);
-}
-
-static int op_dir(t_core *core, t_process *cursor, int *param1, int *param2)
-{
-    int i;
-    
-    if (!valid_reg(core->mem[cursor->pc + 5]))
-        return (1);
-    i = -1;
-    *param1 = byte_to_int(cursor->reg[cursor->pc + 2], 4);
-    *param2 = byte_to_int(core->mem + cursor->pc + 6, 2);
-    return (9);
-}
-
-static int op_drr(t_core *core, t_process *cursor, int *param1, int *param2)
-{
-        int i;
-
-    i = -1;
-    while (++i < 2)
-    {
-        if (!valid_reg(core->mem[cursor->pc + 2 + i]))
-            return (1);
-    }
-    *param1 = byte_to_int(core->mem + cursor->pc + 2, 4);
-    *param2 = byte_to_int(cursor->reg[cursor->pc + 6], 4);
-    return (8);
-}
-
-int ft_op(t_core *core, t_process *cursor, int *param1, int *param2)
-{
-    int jump;
-
-    jump = 1;
     if (PARA_ENCODE_BYTE == RRR)
-        jump =  op_rrr(core, cursor, param1, param2);
+        success = op_rrr(core, cursor, param1, param2);
     else if (PARA_ENCODE_BYTE == RIR)
-        jump = op_rir(core, cursor, param1, param2);
+        success = op_rir(core, cursor, param1, param2);
+	else if (PARA_ENCODE_BYTE == RDR)
+        success = op_rdr(core, cursor, param1, param2);
     else if (PARA_ENCODE_BYTE == DIR)
-        jump = op_dir(core, cursor, param1, param2);
+        success = op_dir(core, cursor, param1, param2);
     else if (PARA_ENCODE_BYTE == DRR)
-        jump = op_drr(core, cursor, param1, param2);
-    return (jump);
+        success = op_drr(core, cursor, param1, param2);
+	else if (PARA_ENCODE_BYTE == DDR)
+        success = op_ddr(core, cursor, param1, param2);
+	else if (PARA_ENCODE_BYTE == IDR)
+        success = op_idr(core, cursor, param1, param2);
+	else if (PARA_ENCODE_BYTE == IRR)
+        success = op_irr(core, cursor, param1, param2);
+	else if (PARA_ENCODE_BYTE == IIR)
+        success = op_iir(core, cursor, param1, param2);
+    else
+    {
+        corrupted_encoding_byte(core);
+        success = 0;
+    }
+    return (success);
+}
+
+static int do_or_op(int param1, int param2, t_opnum op)
+{
+	int val;
+
+	if (op == e_or)
+        val = param1 | param2;        
+	else if (op == e_and)
+        val = param1 & param2;
+	else if (op == e_xor)
+        val = param1 ^ param2;
+	else
+		val = 0;
+	return (val);
+}
+
+int ft_or_gen(t_core *core, t_process *cursor, t_opnum op)
+{
+    int param1;
+    int param2;
+    int val;
+    int byte_count;
+	int reg;
+
+    byte_count = general_processing(core, cursor, op);
+    if (byte_count == 1)
+        return (byte_count);
+    param1 = 0;
+    param2 = 0;
+    if (0 == ft_or_type(core, cursor, &param1, &param2))
+		return (1);
+	val = do_or_op(param1, param2, op);
+	reg = CORE_VAL(byte_count - 1);
+	modify_carry(core, cursor, val);
+    cpy_int_to_reg(cursor, val, reg);
+	if (PBP)
+		ft_printf(1, na, "doing a '%s' operation on %d and %d storing result %d in r%d\n", 
+		index_opinfo(op).instruction, param1, param2, val, reg);
+    return (byte_count);
 }
