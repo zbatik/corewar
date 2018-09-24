@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/17 12:01:17 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/24 15:41:42 by mdilapi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct		s_input
 	struct s_input	*prev;
 }					t_input;
 
-typedef struct 		s_main 
+typedef struct		s_main
 {
 	t_input			*input;
 	t_input			*temp_input;
@@ -61,7 +61,8 @@ typedef struct 		s_main
 }					t_main;
 
 void				input_del(t_input **ahead);
-void				gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count);
+void				gen_bytecode(t_input *ahead, t_input *elem,
+					int curr_byte_count);
 t_input				*file_tolist(char *fname);
 t_bool				parse_listinfo(t_main *var);
 t_bool				is_validfile(t_input *ahead);
@@ -69,7 +70,8 @@ void				print_cor(t_main *var, char *fname);
 void				inlstadd(t_input **ahead, t_input *elem);
 t_input				*inlstnew(char	*line, int line_no, t_bool is_label);
 int					is_wsstring(const char *str);
-int 				string_to_encoding (char str[4]);
+int					string_to_encoding(char str[4]);
+int					arg_byte_count(char *str);
 
 t_opnum				inst_to_enum(char *str);
 t_opinfo			index_opinfo(t_opnum op_index);
@@ -82,7 +84,7 @@ int					exit_function(t_main *var);
 int					get_size(char arg);
 void				free_split(char **s);
 
-void				store_input(t_main *var, char *);
+void				store_input(t_main *var, char *fname);
 void				error_check_data(t_main *var);
 void				error_check_line(t_main *var, char *line, int ln);
 int					args_are_valid(char *args);
@@ -111,5 +113,3 @@ void				check_duplicate_label(t_main *var);
 void				check_multiple_name(t_main *var);
 void				check_multiple_comment(t_main *var);
 #endif
-
-
