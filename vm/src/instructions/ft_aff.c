@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_aff.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:32:26 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/18 16:02:39 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/23 17:06:57 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 int ft_aff(t_core *core, t_process *cursor)
 {
-    int r1;
+    int reg;
     int byte_count;
 
     byte_count = general_processing(core, cursor, e_aff);
     if (byte_count == 1)
         return (byte_count);
-    r1 = MEM_VAL_PC_REL_MOD(2); 
-    if (!valid_reg(r1))
+    if (PARA_ENCODE_BYTE != R)
+        return(corrupted_encoding_byte(core));
+    reg = CORE_VAL(2);
+    if (!valid_reg(reg))
         return (1);
-    ft_putchar((char)cursor->reg[r1][REG_SIZE - 1]);
-    ft_putchar('\n');
+    ft_putchar(cursor->reg[reg - 1][REG_SIZE - 1]);
     return (byte_count);
 }

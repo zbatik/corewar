@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:44:00 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 15:29:39 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/24 11:41:10 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,52 @@ void	print_hex(int n, int cl)
 		ft_putchar_cl(out[i--], cl);
 }
 
-void	print_mem(t_byte *reg, t_byte *colouring, t_byte *cursor)
+static int	highlight_pc(t_core *core, int pc)
 {
 	int i;
-	//int cl;
+
+	i = -1;
+	while (++i < core->num_processes)
+	{
+		if (core->processes[i].pc == pc)
+			return (1);
+	}
+	return (0);
+}
+
+void	print_mem(t_core *core)
+{
+	int i;
+	int highlight;
 
 	i = 0;
 	while (i < MEM_SIZE)
 	{
 		if (i % 64 == 0 && i != 0)
 			ft_putchar('\n');
-		ft_putstr(cursor[i] ? "\033[7m" : "");
-		print_hex(reg[i], colouring[i]);
-		ft_putstr(cursor[i] ? "\033[m": "");
+		highlight = highlight_pc(core, i);
+		ft_putstr(highlight ? "\033[7m" : "");
+		print_hex(core->mem[i], core->colouring[i]);
+		ft_putstr(highlight ? "\033[m": "");
 		ft_putchar(' ');
 		i++;
 	}
 	ft_putendl("");
 }
+
+void print_reg(t_process *cursor)
+{
+	int i;
+	int rev;
+
+	i = -1;
+	while (++i < REG_NUMBER)
+	{
+		rev = rev_endian(*(int*)cursor->reg[i]);
+		ft_printf(1, na, "r%d: %x (or %d)\n", i + 1, rev, rev);
+	}
+}
+
 void	print_processes(t_core *core)
 {
 	int j;
@@ -70,37 +98,22 @@ void	print_processes(t_core *core)
 		printf("PC: %d\n", core->processes[j].pc);
 		printf("Carry: %d\n", core->processes[j].carry);
 		i = -1;
-		while (++i < REG_NUMBER)
-		{
-			printf("r%d: %x (or %d)\n", i + 1, 
-			*(int*)core->processes[j].reg[i],
-			 *(int*)core->processes[j].reg[i]);
-		}
+		print_reg(&core->processes[j]);
 	}
 }
 
 void	print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 {
 	t_opnum num;
-    t_opinfo info;
 
-	num = MEM_VAL_PC_RELATIVE(0);
-
-	ft_putstr("process id ");
-	ft_putnbr(cursor->id);
-	ft_putstr(" with cursor at ");
-	ft_putnbr(cursor->pc);
-	ft_putstr(" about to execute\n");
-	ft_putendl("ok\n");
-	ft_printf(1, g, "ok");
+	num = CORE_VAL(0);
+	ft_putstr_cl("process id ", b);
+	ft_putnbr_cl(cursor->id, c);
+	ft_putstr_cl(" with cursor at ", b);
+	ft_putnbr_cl(cursor->pc, c);
+	ft_putstr_cl(" about to execute\n", b);
 	ft_printf(1, c, "recieved instruction: %s\n", index_opinfo(num).instruction);
 	ft_printf(1, c, "expected intsruction: %s\n", index_opinfo(op).instruction);
-	info = index_opinfo(num);
-	ft_putstr("recieved intsruction: ");       
-	ft_putendl(info.instruction);
-	info = index_opinfo(op);
-	ft_putstr("expected intsruction: ");
-	ft_putendl(info.instruction);
 }
 
 void	print_parsed_info(t_core *core)
@@ -130,21 +143,25 @@ void	print_cursor_info(t_core *core, t_process *cursor)
 	ft_putnbr(cursor->pc);
 	ft_putchar('\n');
 	ft_putstr("instruction to execute: ");
- 	ft_putendl((index_opinfo(MEM_VAL_PC_RELATIVE(0))).instruction);
+ 	ft_putendl((index_opinfo(CORE_VAL(0))).instruction);
 	ft_putstr("cycles_to_execute: ");
 	ft_putnbr(cursor->cycles_to_execute);
 	ft_putchar('\n');
+	print_reg(cursor);
 	
 }
 
+
+
 void	print_cylce_info(t_core *core)
 {
-	printf("END OF CYCLE BREAKDOWN\n");
-	printf("number of processes: %d\n", core->num_processes);
-	printf("round number:\t\t%d\n", core->count.cycles);
-	printf("totol executed turns:\t%d\n", core->count.total_turns);
-	printf("cycles to die: %d\n", core->count.cycles_to_die);
-	printf("current live count:\t%d\n", core->count.lives);
+	ft_printf(1, y, "END OF CYCLE BREAKDOWN\n");
+	ft_printf(1, m, "number of processes:\t%d\n", core->num_processes);
+	ft_printf(1, m, "round number:\t\t%d\n", core->count.cycles);
+	ft_printf(1, m, "totol executed turns:\t%d\n", core->count.total_turns);
+	ft_printf(1, m, "cycles to die:\t\t%d\n", core->count.cycles_to_die);
+	ft_printf(1, m, "live count this cycle:\t%d\n", core->count.lives);
+	ft_printf(1, m, "number players alive:\t%d\n", num_alive(core));
 }
 
 void	print_players(t_core *core)

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:55:44 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 15:27:10 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/24 11:39:58 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,10 @@ int	main(int c, char **v)
 		ft_putstr("[-dump nbr_cycles] [[-n number] champion1.cor] ... ]\n");
 		return (1);
 	}
-	ft_printf(1, na, "%s\n", "EISH");
-	core.fd = open("core.log", O_WRONLY | O_APPEND | O_CREAT, 7777);
-	//ft_putendl_fd("Init data", core.fd);
 	init_core(&core);
-	//ft_putendl_fd("Parse input", core.fd);
 	parse_input(&core, c - 1, v + 1);
-	//ft_putendl_fd("Set players", core.fd);
 	creat_players(&core);
-	//print_players(&core);
-	//ft_putendl_fd("Load players & init cursors", core.fd);
 	load(&core);
 	game_loop(&core);
-//	print_processes(&core);
 	return (1);
 }

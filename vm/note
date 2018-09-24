@@ -1,0 +1,16 @@
+* st
+st takes whatever it finds in param1 reg and copies it to the index interpreted
+by the second arg
+
+* sti
+take the contents of reg1 and copy it to the player of param1 + param2
+(where the params are interpreted as indexs)
+
+* llid
+* sort out lldi - the IDX mod needs to be removed
+
+* worry about the double free (well maybe don't...)
+
+* norm
+
+
