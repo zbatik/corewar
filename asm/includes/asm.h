@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -118,5 +119,3 @@ void				print_fork_error_1(t_main *var, char **args);
 void				print_fork_error_2(t_main *var, char **par);
 void				print_lld_error_1(t_main *var, char **args);
 #endif
-
-

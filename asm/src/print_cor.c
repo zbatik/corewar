@@ -11,12 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-#include <stdio.h>
-
-
-/**TODO
-** Nothing
-*/
 
 void	str_to_str(char *arr, char *str, int size)
 {
@@ -26,7 +20,7 @@ void	str_to_str(char *arr, char *str, int size)
 	while (*str != '\0' && i < size)
 	{
 		if (*str != '"')
-			arr[i++] = (char) *str++;
+			arr[i++] = (char)*str++;
 		else
 			str++;
 	}
@@ -36,7 +30,7 @@ void	str_to_str(char *arr, char *str, int size)
 
 void	print_name(header_t *header, t_input *head)
 {
-	t_input *tmp;
+	t_input	*tmp;
 	char	*in;
 	int		set;
 
@@ -45,12 +39,12 @@ void	print_name(header_t *header, t_input *head)
 	while (tmp != NULL && set == 0)
 	{
 		in = tmp->line;
-		while(ft_isws(*in) == TRUE)
+		while (ft_isws(*in) == TRUE)
 			in++;
 		if (ft_strncmp(in, NAME_CMD_STRING, 5) == 0)
 		{
 			in = in + 5;
-			while(ft_isws(*in) == TRUE)
+			while (ft_isws(*in) == TRUE)
 				in++;
 			str_to_str(header->prog_name, in, PROG_NAME_LENGTH);
 			header->prog_name[PROG_NAME_LENGTH] = '\0';
@@ -64,7 +58,7 @@ void	print_name(header_t *header, t_input *head)
 
 void	print_comment(header_t *header, t_input *head)
 {
-	t_input *tmp;
+	t_input	*tmp;
 	char	*in;
 	int		set;
 
@@ -73,12 +67,12 @@ void	print_comment(header_t *header, t_input *head)
 	while (tmp != NULL && set == 0)
 	{
 		in = tmp->line;
-		while(ft_isws(*in) == TRUE)
+		while (ft_isws(*in) == TRUE)
 			in++;
 		if (ft_strncmp(in, COMMENT_CMD_STRING, 8) == 0)
 		{
 			in = in + 8;
-			while(ft_isws(*in) == TRUE)
+			while (ft_isws(*in) == TRUE)
 				in++;
 			str_to_str(header->comment, in, COMMENT_LENGTH);
 			header->comment[COMMENT_LENGTH] = '\0';
@@ -90,23 +84,10 @@ void	print_comment(header_t *header, t_input *head)
 		ft_memset(&header->comment, 0, COMMENT_LENGTH + 1);
 }
 
-int		get_size(char arg)
-{
-	if (arg == 'I')
-		return (IND_SIZE);
-	else if (arg == 'D')
-		return (DIR_SIZE);
-	else if (arg == 'd')
-		return (ASM_DIR);
-	else
-		return (ASM_REG);
-	return (0);
-}
-
 void	print_rest(t_input *tmp, int fd)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	while (tmp != NULL)
 	{
@@ -115,14 +96,14 @@ void	print_rest(t_input *tmp, int fd)
 			i = 0;
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE)
-			{	
+			{
 				write(fd, &tmp->byte_code[0][0], sizeof(unsigned char));
 				if (tmp->param_encoding != 0)
 					write(fd, &tmp->param_encoding, sizeof(unsigned char));
 				while (tmp->args[i] != '\0')
 				{
 					j = 0;
-					while (j  < get_size(tmp->args[i]))
+					while (j < get_size(tmp->args[i]))
 						write(fd, &tmp->byte_code[i + 1][j++], sizeof(unsigned char));
 					i++;
 				}
@@ -134,13 +115,13 @@ void	print_rest(t_input *tmp, int fd)
 
 void	print_cor(t_main *var, char *fname)
 {
-	int	fd;
-	char	*new_name;
+	int			fd;
+	char		*new_name;
 	header_t	header;
 
 	new_name = ft_strsub(fname, 0, ft_indexrcin(fname, '.'));
 	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
-	fd = open (new_name, O_RDWR | O_CREAT);
+	fd = open(new_name, O_RDWR | O_CREAT);
 	chmod(new_name, 0777);
 	header.magic = COREWAR_EXEC_MAGIC;
 	header.magic = rev_endian(header.magic);
@@ -150,6 +131,6 @@ void	print_cor(t_main *var, char *fname)
 	print_comment(&header, var->input);
 	write(fd, &header, sizeof(header_t));
 	print_rest(var->input, fd);
-	close (fd);
+	close(fd);
 	free(new_name);
 }
