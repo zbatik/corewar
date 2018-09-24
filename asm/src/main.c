@@ -93,7 +93,6 @@ void	print_all(t_main *var, char *fname)
 ** Code the exit function
 ** Mem leaks
 */
-
 int 	main(int ac, char *av[])
 {
 	t_main	var;
