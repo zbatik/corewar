@@ -10,16 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-ASM_US=../asm_us
-ASM_BASE=../asm
-S_FILES=$(find . -name "*.s")
+ASM_US=./asm_us
+ASM_BASE=./asm
+S_FILES=$(find . -name "*.s" -maxdepth 1)
 for S_FILE in $S_FILES
 do
 	COR_FILE=$(basename "$S_FILE" .s).cor
+	echo $COR_FILE
 	$ASM_US $S_FILE
 	hexdump $COR_FILE > dump_us
 	rm $COR_FILE
-	echo removed $COR_FILE
+	echo removed $COR_FILE 
 	$ASM_BASE $S_FILE
 	hexdump $COR_FILE > dump_base
 	diff dump_base dump_us > dif
@@ -30,4 +31,3 @@ do
 	echo
 	rm dif dump_base dump_us
 done
-rm *.cor

@@ -96,6 +96,7 @@ int		ft_countc(const char *s, char c);
 int		ft_sign(int n);
 void	ft_putstrarr(char **array);
 int		ft_indexcin(char const *s, int c);
+int		ft_indexrcin(char const *s, int c);
 char	*ft_strnjoin(char const *s1, char const *s2, size_t n);
 char	*ft_strtake(char const *str, size_t n);
 char	*ft_strdrop(char const *str, size_t n);

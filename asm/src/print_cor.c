@@ -11,15 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-#include <stdio.h>
-
-
-/**TODO
-** Take the fname and change it to .cor
-** Find if theres a name and comment section write those first
-** Write everything else that is in byte_code in the head
-**
-*/
 
 void	str_to_str(char *arr, char *str, int size)
 {
@@ -29,23 +20,7 @@ void	str_to_str(char *arr, char *str, int size)
 	while (*str != '\0' && i < size)
 	{
 		if (*str != '"')
-			arr[i++] = (char) *str++;
-		else
-			str++;
-	}
-	while (i < size)
-		arr[i++] = 0;
-}
-
-void	str_to_unstr(unsigned char *arr, char *str, int size)
-{
-	int	i;
-
-	i = 0;
-	while (*str != '\0' && i < size)
-	{
-		if (*str != '"')
-			arr[i++] = (unsigned char) *str++;
+			arr[i++] = (char)*str++;
 		else
 			str++;
 	}
@@ -55,73 +30,65 @@ void	str_to_unstr(unsigned char *arr, char *str, int size)
 
 void	print_name(header_t *header, t_input *head)
 {
-	t_input *tmp;
+	t_input	*tmp;
 	char	*in;
+	int		set;
 
 	tmp = head;
-	while (tmp != NULL)
+	set = 0;
+	while (tmp != NULL && set == 0)
 	{
 		in = tmp->line;
-		while(ft_isws(*in) == TRUE)
+		while (ft_isws(*in) == TRUE)
 			in++;
 		if (ft_strncmp(in, NAME_CMD_STRING, 5) == 0)
 		{
 			in = in + 5;
-			while(ft_isws(*in) == TRUE)
+			while (ft_isws(*in) == TRUE)
 				in++;
 			str_to_str(header->prog_name, in, PROG_NAME_LENGTH);
 			header->prog_name[PROG_NAME_LENGTH] = '\0';
-			break;
+			set = 1;
 		}
 		tmp = tmp->next;
 	}
+	if (set == 0)
+		ft_memset(&header->prog_name, 0, PROG_NAME_LENGTH + 1);
 }
 
 void	print_comment(header_t *header, t_input *head)
 {
-	t_input *tmp;
+	t_input	*tmp;
 	char	*in;
+	int		set;
 
 	tmp = head;
-	while (tmp != NULL)
+	set = 0;
+	while (tmp != NULL && set == 0)
 	{
 		in = tmp->line;
-		while(ft_isws(*in) == TRUE)
+		while (ft_isws(*in) == TRUE)
 			in++;
 		if (ft_strncmp(in, COMMENT_CMD_STRING, 8) == 0)
 		{
 			in = in + 8;
-			while(ft_isws(*in) == TRUE)
+			while (ft_isws(*in) == TRUE)
 				in++;
 			str_to_str(header->comment, in, COMMENT_LENGTH);
 			header->comment[COMMENT_LENGTH] = '\0';
-			break;
+			set = 1;
 		}
 		tmp = tmp->next;
 	}
+	if (set == 0)
+		ft_memset(&header->comment, 0, COMMENT_LENGTH + 1);
 }
 
-void	print_cor(t_main	*var, char *fname)
+void	print_rest(t_input *tmp, int fd)
 {
-	int	fd;
-	t_input	*tmp;
-	int	i;
-	int	j;
-	int max;
-	char	*new_name;
-	header_t	header;
+	int i;
+	int j;
 
-	tmp =  var->input;
-	new_name = ft_strsub(fname, 0, ft_indexcin(fname, '.'));
-	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
-	fd = open (new_name, O_RDWR | O_CREAT, 7777);
-	header.magic = COREWAR_EXEC_MAGIC;
-	header.magic = rev_endian(header.magic);
-	print_name(&header, var->input);
-	var->total_player_size = rev_endian(var->total_player_size);
-	header.prog_size = var->total_player_size;
-	print_comment(&header, var->input);
-	write(fd, &header, sizeof(header_t));
 	while (tmp != NULL)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
@@ -129,22 +96,14 @@ void	print_cor(t_main	*var, char *fname)
 			i = 0;
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE)
-			{	
+			{
 				write(fd, &tmp->byte_code[0][0], sizeof(unsigned char));
 				if (tmp->param_encoding != 0)
 					write(fd, &tmp->param_encoding, sizeof(unsigned char));
 				while (tmp->args[i] != '\0')
 				{
 					j = 0;
-					if (tmp->args[i] == 'I')
-						max = IND_SIZE;
-					else if (tmp->args[i] == 'D')
-						max = DIR_SIZE;
-					else if (tmp->args[i] == 'd')
-						max = ASM_DIR;
-					else
-						max = ASM_REG;
-					while (j  < max)
+					while (j < get_size(tmp->args[i]))
 						write(fd, &tmp->byte_code[i + 1][j++], sizeof(unsigned char));
 					i++;
 				}
@@ -152,5 +111,26 @@ void	print_cor(t_main	*var, char *fname)
 		}
 		tmp = tmp->next;
 	}
-	close (fd);
+}
+
+void	print_cor(t_main *var, char *fname)
+{
+	int			fd;
+	char		*new_name;
+	header_t	header;
+
+	new_name = ft_strsub(fname, 0, ft_indexrcin(fname, '.'));
+	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
+	fd = open(new_name, O_RDWR | O_CREAT);
+	chmod(new_name, 0777);
+	header.magic = COREWAR_EXEC_MAGIC;
+	header.magic = rev_endian(header.magic);
+	print_name(&header, var->input);
+	var->total_player_size = rev_endian(var->total_player_size);
+	header.prog_size = var->total_player_size;
+	print_comment(&header, var->input);
+	write(fd, &header, sizeof(header_t));
+	print_rest(var->input, fd);
+	close(fd);
+	free(new_name);
 }
