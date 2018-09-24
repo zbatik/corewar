@@ -132,18 +132,13 @@ void	print_rest(t_input *tmp, int fd)
 	}
 }
 
-void	print_cor(t_main	*var, char *fname)
+void	print_cor(t_main *var, char *fname)
 {
 	int	fd;
-	t_input	*tmp;
 	char	*new_name;
 	header_t	header;
 
-	tmp =  var->input;
-	if (fname[0] == '.')
-		while(*fname == '.' || *fname == '/')
-			fname++;
-	new_name = ft_strsub(fname, 0, ft_indexcin(fname, '.'));
+	new_name = ft_strsub(fname, 0, ft_indexrcin(fname, '.'));
 	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
 	fd = open (new_name, O_RDWR | O_CREAT);
 	chmod(new_name, 0777);
@@ -156,4 +151,5 @@ void	print_cor(t_main	*var, char *fname)
 	write(fd, &header, sizeof(header_t));
 	print_rest(var->input, fd);
 	close (fd);
+	free(new_name);
 }

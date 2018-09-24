@@ -25,29 +25,6 @@
 # define ASM_DIR 2
 # define NUM_SMALL_DIR 6
 
-/*
-*/
-
-/*
-typedef struct	s_instruct
-{
-	
-	t_opnum 	name;
-	int 		args[MAX_ARGS_NUMBER];
-	t_arg_type	type[MAX_ARGS_NUMBER];
-	t_byte		*instruct_byte_code;		
-	t_instruct	*next;
-
-}				t_instruct;
-*/
-/*
-** Zack's fns
-*/
-
-
-/*
-** Eddie's fns
-*/
 int					is_valid_mnemonic(char *str);
 int					is_label(char *str);
 int					is_valid_label(char *str);
@@ -60,12 +37,6 @@ void				remove_comment(char *line);
 void				convert_spaces(char *line);
 int					check_commas(char *line);
 int					arr_len(char **arr);
-/*
-** Fred's fns
-*/
-
-
-
 
 typedef struct		s_input
 {
@@ -81,13 +52,13 @@ typedef struct		s_input
 	struct s_input	*prev;
 }					t_input;
 
-typedef struct s_main 
+typedef struct 		s_main 
 {
 	t_input			*input;
 	t_input			*temp_input;
 	unsigned int	total_player_size;
 	char			**ins;
-}				t_main;
+}					t_main;
 
 void				input_del(t_input **ahead);
 void				gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count);
@@ -110,22 +81,6 @@ int					is_smalldir(int opnum, int arg_num);
 int					exit_function(t_main *var);
 int					get_size(char arg);
 void				free_split(char **s);
-/*
-typedef struct	s_label
-{
-	char	*name;
-	int		index;
-	
-}				t_label;
-*/
-
-/**
-indexing of labels starts from 256
-*/
-/*
-** Eddie's tdef
-*/
-
 
 void				store_input(t_main *var, char *);
 void				error_check_data(t_main *var);

@@ -79,33 +79,42 @@ void	print_comment_main(t_input *head)
 		value = value->next;
 	}
 }
+
+void	print_all(t_main *var, char *fname)
+{
+	ft_putstr("Assembling ");
+	ft_putstr(fname);
+	ft_putendl(":");
+	print_name_main(var->input);
+	print_comment_main(var->input);
+	print_cor(var, fname);
+}
 /** TODO
 ** Code the exit function
 ** Mem leaks
 */
 int 	main(int ac, char *av[])
 {
-	t_main var;
+	t_main	var;
+	int		i;
 
+	i = 1;
 	if (ac > 1)
 	{
-		store_input(&var, av[1]);
-		error_check_data(&var);
-		if (parse_listinfo(&var) == TRUE)
+		while (i < ac)
 		{
-			ft_putstr("Assembling ");
-			ft_putstr(av[1]);
-			ft_putendl(":");
-			print_name_main(var.input);
-			print_comment_main(var.input);
-			print_cor(&var, av[1]);
+			store_input(&var, av[i]);
+			error_check_data(&var);
+			if (parse_listinfo(&var) == TRUE)
+				print_all(&var, av[i]);
+			else
+				ft_putendl("ERROR: error in file");
+			i++;
 		}
-		else
-			ft_putendl("ERROR: error in file");
 	}
 	else
 	{
-		ft_printf(1, na, "Usage:\n./asm file_name[.s] ...");
+		ft_printf(1, na, "Usage:\n./asm file_name(s)[.s] ...");
 		return (0);
 	}
 	exit_function(&var);

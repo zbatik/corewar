@@ -54,6 +54,7 @@ int		check_and(char **args, t_main *var)
 		exit(EXIT_FAILURE);
 		//free  split and list and par
 	}
+	free_split(par);
 	return (1);
 }
 
