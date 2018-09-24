@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 14:31:36 by mdilapi           #+#    #+#              #
-#    Updated: 2018/09/16 13:50:30 by emaune           ###   ########.fr        #
+#    Updated: 2018/09/24 15:23:02 by emaune           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,14 @@ SRC_FILES		=	args_are_valid.c \
 					parse_listinfo.c \
 					print.c \
 					print_cor.c \
+					print_error_and_no_par.c \
+					print_error_and_2.c \
+					print_or_error_1.c \
+					print_or_error_2.c \
+					print_fork_error_1.c \
+					print_fork_error_2.c \
+					print_lld_error_1.c \
 					store_input.c \
-
 
 all: clean $(NAME)
 $(NAME):
