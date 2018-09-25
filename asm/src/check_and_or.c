@@ -6,15 +6,15 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:29:17 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/24 14:46:21 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:17:12 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int		check_and(char **args, t_main *var)
+int				check_and(char **args, t_main *var)
 {
-	char        **par;
+	char		**par;
 
 	print_error_and_no_par(var, args);
 	par = ft_strsplit(args[1], ',');
@@ -38,12 +38,10 @@ int		check_and(char **args, t_main *var)
 	return (1);
 }
 
-int		check_or(char **args, t_main *var)
+int				check_or(char **args, t_main *var)
 {
-	int         i;
-	char        **par;
+	char		**par;
 
-	i = 0;
 	print_or_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
 	print_or_error_2(var, par);
@@ -53,15 +51,14 @@ int		check_or(char **args, t_main *var)
 				&& !is_indirect(par[1], var))
 			|| !is_register(par[2], var))
 	{
-		ft_printf(2, lr, "Error: invalid arguments.\nExpected: or [T_REG]");
-		ft_printf(2, lr, " | T_DIR | T_IND], [T_REG | T_DIR | T_IND], [T_REG].");
-		ft_printf(2, lr, "\nGot: \"%s\" - line #%d", var->temp_input->line,
-				var->temp_input->line_no);
+		ft_printf(2, lr, "Error: invalid arguments.\nExpected:\tor [T_REG]");
+		ft_printf(2, lr, " | T_DIR | T_IND], [T_REG | T_DIR | T_IND],");
+		ft_printf(2, lr, " [T_REG].\nGot:\t\t\"%s\" - line #%d\n",
+				var->temp_input->line, var->temp_input->line_no);
 		free_input(var->input);
 		ft_arrdel(&var->ins, arr_len(var->ins));
 		free_split(par);
 		exit(EXIT_FAILURE);
 	}
 	return (1);
-
 }

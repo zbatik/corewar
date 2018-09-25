@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/24 15:25:06 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:29:30 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,21 @@ void				print_or_error_2(t_main *var, char **args);
 void				print_fork_error_1(t_main *var, char **args);
 void				print_fork_error_2(t_main *var, char **par);
 void				print_lld_error_1(t_main *var, char **args);
+void				print_lld_error_2(t_main *var, char **args);
+void				print_lldi_error_1(t_main *var, char **args);
+void				print_lldi_error_2(t_main *var, char **par);
+void				print_lfork_error_1(t_main *var, char **args);
+void				print_lfork_error_2(t_main *var, char **par);
+void				print_aff_error_1(t_main *var, char **args);
+void				print_aff_error_2(t_main *var, char **par);
+void				print_sub_error_1(t_main *var, char **args);
+void				print_sub_error_2(t_main *var, char **par);
+void				print_ldi_error_1(t_main *var, char **args);
+void				print_ldi_error_2(t_main *var, char **par);
+void				print_sti_error_1(t_main *var, char **args);
+void				print_sti_error_2(t_main *var, char **par);
+void				print_xor_error_1(t_main *var, char **args);
+void				print_xor_error_2(t_main *var, char **par);
+void				print_zjmp_error_1(t_main *var, char **args);
+void				print_zjmp_error_2(t_main *var, char **par);
 #endif
-
-

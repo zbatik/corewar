@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error_and_too_many_too_few_args.c            :+:      :+:    :+:   */
+/*   print_lldi_error_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/24 14:09:57 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/25 15:02:31 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/25 12:36:22 by emaune            #+#    #+#             */
+/*   Updated: 2018/09/25 12:41:44 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-
-void		print_error_and_2(t_main *var, char **par)
+void		print_lldi_error_2(t_main *var, char **par)
 {
 	int		i;
 
@@ -22,13 +21,12 @@ void		print_error_and_2(t_main *var, char **par)
 		i++;
 	if (i > 3 || i < 3)
 	{
-		ft_printf(2, lr, "Error: too many/too few arguments.\n");
-		ft_printf(2, lr, "Expected: and [T_REG | T_DIR | T_IND], ");
-		ft_printf(2, lr, "[T_REG | T_DIR | T_IND], [T_REG].\nGot: \"%s\"",
-				var->temp_input->line);
-		ft_printf(2, lr, " - line #%d\n", var->temp_input->line_no);
-		free_input(var->input);
+		ft_printf(2, lr, "Error: too many/too few arguments.\nExpected:\tlldi ");
+		ft_printf(2, lr, "[T_REG | T_DIR | T_IND], [T_REG | T_DIR], [T_REG].\n");
+		ft_printf(2, lr, "Got:\t\t\"%s\" - line #%d\n", var->temp_input->line,
+				var->temp_input->line_no);
 		ft_arrdel(&var->ins, arr_len(var->ins));
+		free_input(var->input);
 		free_split(par);
 		exit(EXIT_FAILURE);
 	}

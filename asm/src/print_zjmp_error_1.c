@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error_and_too_many_too_few_args.c            :+:      :+:    :+:   */
+/*   print_zjmp_error_1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/24 14:09:57 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/25 15:02:31 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/25 15:26:23 by emaune            #+#    #+#             */
+/*   Updated: 2018/09/25 15:30:52 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-
-void		print_error_and_2(t_main *var, char **par)
+void		print_zjmp_error_1(t_main *var, char **args)
 {
-	int		i;
-
-	i = 0;
-	while (par[i])
-		i++;
-	if (i > 3 || i < 3)
+	if (!args[1])
 	{
-		ft_printf(2, lr, "Error: too many/too few arguments.\n");
-		ft_printf(2, lr, "Expected: and [T_REG | T_DIR | T_IND], ");
-		ft_printf(2, lr, "[T_REG | T_DIR | T_IND], [T_REG].\nGot: \"%s\"",
-				var->temp_input->line);
-		ft_printf(2, lr, " - line #%d\n", var->temp_input->line_no);
-		free_input(var->input);
+		ft_printf(2, lr, "Error: mnemonic was unaccompanied by arguments.\n");
+		ft_printf(2, lr, "Expected:\tzjmp [T_DIRECT].\n");
+		ft_printf(2, lr, "Got:\t\t\"%s\" - line #%d\n", var->temp_input->line,
+				var->temp_input->line_no);
 		ft_arrdel(&var->ins, arr_len(var->ins));
-		free_split(par);
+		free_input(var->input);
 		exit(EXIT_FAILURE);
 	}
-}
+}	
