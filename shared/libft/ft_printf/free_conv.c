@@ -14,13 +14,15 @@
 
 void		free_conv(t_conv *c)
 {
-	t_conv *temp;
+	t_conv 	*temp;
+	t_conv	*prev;
 
-	while (c)
+	temp = c;
+	while (tmp)
 	{
-		temp = c;
-		ft_strdel(&c->str);
-		c = c->next;
-		free(temp);
+		prev = tmp;
+		temp = temp->next;
+		ft_strdel(&prev->str);
+		free(prev);
 	}
 }

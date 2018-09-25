@@ -99,6 +99,6 @@ void			ft_printf(int fd, t_colour c,  const char *control_string, ...)
 	va_end(var.args);
 	ft_putstr(select_colour(c));
 	print_output(control_string, &var, fd);
-//	free_conv(var.conv);
+	free_conv(var.conv);
 	ft_putstr("\x1b[0m");
 }
