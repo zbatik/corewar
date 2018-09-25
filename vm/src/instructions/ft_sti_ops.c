@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sti_ops.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 09:46:28 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 16:38:33 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 16:04:32 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	sti_rrr(t_core *core, t_process *cursor, int *ind1, int *ind2)
 	int reg1;
 	int reg2;
 
-	reg1 = CORE_VAL(2);
-	reg2 = CORE_VAL(3);
+	reg1 = CORE_VAL(3);
+	reg2 = CORE_VAL(4);
 	if (0 == convert_reg_to_int(cursor, reg1, ind1))
 		return (0);
 	if (0 == convert_reg_to_int(cursor, reg2, ind2))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 17:59:54 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 16:35:32 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:37:37 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_st(t_core *core, t_process *cursor)
 			return (1);
 	}
 	else if (RI == PARA_ENCODE_BYTE)
-		ind = PC(get_indir(core, cursor, 3, e_st));
+		ind = get_indir(core, cursor, 3, e_st);
 	else
 		return (corrupted_encoding_byte(core));
 	cpy_reg_to_mem(core, cursor, reg, ind);

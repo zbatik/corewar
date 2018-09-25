@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:33:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 16:41:14 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 16:04:57 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int			ft_sti(t_core *core, t_process *cursor)
 	reg = CORE_VAL(2);
 	if (0 == sti_type(core, cursor, &ind1, &ind2))
 		return (1);
-	ind = PC(ind1 + ind2 % IDX_MOD) % MEM_SIZE;
+	ind = PC((ind1 + ind2) % IDX_MOD) % MEM_SIZE;
 	cpy_reg_to_mem(core, cursor, reg, ind);
 	if (PBP)
-		ft_printf(1, na, "contents of r%d copied to index %d", reg, ind);
+		ft_printf(1, na, "contents of r%d copied to index %d\n", reg, ind);
 	return (byte_count);
 }

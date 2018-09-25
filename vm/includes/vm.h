@@ -101,6 +101,11 @@ void	process_add(t_process *cursor, int pc, int player_num, int ind);
 **	byte_count.c
 */
 int		byte_counter(t_core *core, int pc, t_opnum op);
+int		bytes_or_gen(t_byte eb);
+int		bytes_st(t_byte eb);
+int		bytes_ld_gen(t_byte eb);
+int		bytes_sti(t_byte eb);
+int		bytes_ldi_gen(t_byte eb);
 
 /*
 **	game.c
@@ -111,16 +116,16 @@ int		update_cycles_to_execute(t_byte current, t_process *cursor);
 /*
 **	disp.c
 */
-void	print_reg(t_process *cursor);
+//void	print_reg(t_process *cursor);
 void	print_instr_info(t_core *core, t_process *cursor, t_opnum op);
 void	print_cursor_info(t_core *core, t_process *cursor);
 void	print_cylce_info(t_core *core);
-void	print_parsed_info(t_core *core);
+//void	print_parsed_info(t_core *core);
 void	print_players(t_core *core);
-void	print_player(t_player *player, int fd);
-void	print_hex(int n, int cl);
+//void	print_player(t_player *player, int fd);
+//void	print_hex(int n, int cl);
 void	print_mem(t_core *core);
-void	print_processes(t_core *core);
+//void	print_processes(t_core *core);
 
 /*
 **	interactive.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ldi_gen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 14:46:56 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 16:14:26 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:54:02 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ static int	ft_ldi_gen(t_core *core, t_process *cursor, t_opnum op)
 	if (0 == ldi_type(core, cursor, &param1, &param2))
 		return (1);
 	if (op == e_lldi)
-		val = param1 + param2;
+		val = convert_bytes_to_int(core, param1 + param2, REG_SIZE);
 	else
-		val = (param1 + param2) % IDX_MOD;
+		val = convert_bytes_to_int(core, (param1 + param2) % IDX_MOD, REG_SIZE);
 	reg = CORE_VAL(byte_count - 1);
 	cpy_int_to_reg(cursor, val, reg);
 	modify_carry(core, cursor, val);
 	if (PBP)
-		ft_printf(1, na, "storing %d (%d + %d) in r%d\n",
+		ft_printf(1, na, "storing %d from pc + (%d + %d) in r%d\n",
 		val, param1, param2, reg);
 	return (byte_count);
 }
