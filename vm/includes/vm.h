@@ -191,6 +191,8 @@ int ft_lfork(t_core *core, t_process *cursor);
 */
 int		general_processing(t_core *core, t_process *cursor, t_opnum op);
 void    modify_carry(t_core *core, t_process *cursor, int val);
+int		get_dir(t_core *core, t_process *cursor, int start, t_opnum op);
+int		get_indir(t_core *core, t_process *cursor, int start, t_opnum op);
 
 /*
 **	ft_live.c 
@@ -218,27 +220,31 @@ int ft_or(t_core *core, t_process *cursor);
 int ft_xor(t_core *core, t_process *cursor);
 
 /*
-**	ft_ldi_gen.c 
+**	ft_st.c 
 */
 int ft_st(t_core *core, t_process *cursor);
 
 /*
-**	ft_ldi_gen.c 
+**	ft_sti_gen.c & ft_sti_ops.c
 */
 int ft_sti(t_core *core, t_process *cursor);
+int sti_rrr(t_core *core, t_process *cursor, int *ind1, int *ind2);
+int sti_rdr(t_core *core, t_process *cursor, int *ind1, int *ind2);
+int sti_rir(t_core *core, t_process *cursor, int *ind1, int *ind2);
 
 /*
-**	ft_ldi_gen.c 
+**	ft_ldi_gen.c & ft_ldi_ops.c
 */
 int ft_zjmp(t_core *core, t_process *cursor);
 
 /*
 **	ft_ldi_ops.c 
 */
-int ld_idr(t_core *core, t_process *cursor, int *param1, int *param2);
-int ld_drr(t_core *core, t_process *cursor, int *param1, int *param2);
-int ld_ddr(t_core *core, t_process *cursor, int *param1, int *param2);
-int ld_rdr(t_core *core, t_process *cursor, int *param1, int *param2);
+int ldi_idr(t_core *core, t_process *cursor, int *param1, int *param2);
+int ldi_drr(t_core *core, t_process *cursor, int *param1, int *param2);
+int ldi_ddr(t_core *core, t_process *cursor, int *param1, int *param2);
+int ldi_rdr(t_core *core, t_process *cursor, int *param1, int *param2);
+int ldi_irr(t_core *core, t_process *cursor, int *param1, int *param2);
 
 /*
 **	ft_general_ops1.c 

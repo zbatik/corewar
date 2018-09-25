@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 15:15:41 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/23 15:31:49 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/24 15:58:18 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	check_alive(t_core *core)
 		{
 			if (player->alive)
 			{
-				if (core->pbp)
+				if (PBP)
 					ft_printf(1, g, "player %d (%s) is still alive\n", player->num, player->name);
 			}
 			else

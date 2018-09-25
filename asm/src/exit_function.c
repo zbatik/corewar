@@ -11,32 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-#include <stdio.h>
-
-
-/*
-typedef struct		s_input
-{
-	char			*line;
-	char			args[MAX_ARGS_NUMBER];
-	int				line_no;
-	int				byte_count;
-	t_byte			*byte_code[MAX_ARGS_NUMBER + 1];
-	t_byte			param_encoding;
-	t_bool			is_label;
-	t_opnum			instruction_type;
-	struct s_input	*next;
-	struct s_input	*prev;
-}					t_input;
-
-typedef struct s_main 
-{
-	t_input			*input;
-	t_input			*temp_input;
-	unsigned int	total_player_size;
-	char			**ins;
-}				t_main;
-*/
 
 void	free_input_min(t_input **input)
 {
@@ -76,9 +50,9 @@ int		exit_function(t_main *var)
 	{
 		prev = curr;
 		curr = prev->next;
-		if (is_wsstring(prev->line) == TRUE || is_label(prev->line) == TRUE 
+		if (is_wsstring(prev->line) == TRUE || is_label(prev->line) == TRUE
 			|| is_name(prev->line) == TRUE || is_comment(prev->line) == TRUE)
-				free_input_min(&prev);
+			free_input_min(&prev);
 		else
 			free_input_whole(&prev);
 		prev = NULL;

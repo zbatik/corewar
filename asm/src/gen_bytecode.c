@@ -47,7 +47,7 @@ void	set_opcode(t_input *elem)
 	ft_memmove(elem->byte_code[0], &inter, sizeof(t_byte));
 }
 
-int		inter_calc(char	arg, char *tmp, int curr_byte_count, t_input *ahead)
+int		inter_calc(char arg, char *tmp, int curr_byte_count, t_input *ahead)
 {
 	int	inter;
 	int	tmp_size;
@@ -56,7 +56,8 @@ int		inter_calc(char	arg, char *tmp, int curr_byte_count, t_input *ahead)
 	tmp_size = get_size(arg);
 	if (arg == 'D' || arg == 'd')
 	{
-		inter = (int)rev_endian((unsigned int)(tmp[1] == ':') ? get_label(ahead, tmp + 2)->byte_count
+		inter = (int)rev_endian((unsigned int)(tmp[1] == ':') ?
+		get_label(ahead, tmp + 2)->byte_count
 		- curr_byte_count : ft_atoi(tmp + 1));
 		inter = (tmp_size == ASM_DIR) ? inter << 16 | inter >> 16 : inter;
 	}
@@ -73,7 +74,7 @@ int		inter_calc(char	arg, char *tmp, int curr_byte_count, t_input *ahead)
 
 void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 {
-	int 	i;
+	int		i;
 	char	*tmp;
 	char	**split;
 	int		inter;
@@ -87,11 +88,11 @@ void	gen_bytecode(t_input *ahead, t_input *elem, int curr_byte_count)
 	{
 		tmp = split[i];
 		while (ft_isws(*tmp) == TRUE)
-			tmp++; 
+			tmp++;
 		tmp_size = get_size(elem->args[i]);
 		elem->byte_code[i + 1] = (t_byte *)malloc(sizeof(t_byte) * tmp_size);
 		inter = inter_calc(elem->args[i], tmp, curr_byte_count, ahead);
-		ft_memmove(elem->byte_code[i +1], &inter, sizeof(t_byte) * tmp_size);
+		ft_memmove(elem->byte_code[i + 1], &inter, sizeof(t_byte) * tmp_size);
 		i++;
 	}
 	free_split(split);

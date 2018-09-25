@@ -6,7 +6,7 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:33:47 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/22 03:11:19 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/24 14:43:46 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int	ft_zjmp(t_core *core, t_process *cursor)
 	byte_count = general_processing(core, cursor, e_zjmp);
 	if (cursor->carry)
 	{
-		jump = convert_bytes_to_int(core, PC(1), 2) % IDX_MOD;
-		//core->cursor[PC(0)] = 0;
+		jump = get_dir(core, cursor, 1, e_zjmp) % IDX_MOD;
 		cursor->pc = PC(jump);
-		if (PC(0) < 0)
+		if (cursor->pc < 0)
 			cursor->pc += MEM_SIZE;
 		if (PBP)
 			ft_printf(1, na, "jumped cursor pc + %d\n", jump);

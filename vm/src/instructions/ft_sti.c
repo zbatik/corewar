@@ -6,22 +6,80 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:33:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/23 20:39:49 by zack             ###   ########.fr       */
+/*   Updated: 2018/09/24 14:40:57 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/vm.h"
 
+static int sti_rid(t_core *core, t_process *cursor, int *ind1, int *ind2)
+{
+	*ind1 = get_indir(core, cursor, 3, e_sti);
+	*ind2 = get_dir(core, cursor, 5, e_sti);
+	//if (PBP)
+	//	ft_printf(1, na, "RID endcoding %x: indir %d reads %d and dir %d\n",
+	//			PARA_ENCODE_BYTE, read_from, *ind1, *ind2);
+	return (1);
+}
+
+static int sti_rdd(t_core *core, t_process *cursor, int *ind1, int *ind2)
+{
+	*ind1 = get_dir(core, cursor, 3, e_sti);
+	*ind2 = get_dir(core, cursor, 5, e_sti);
+//	if (PBP)
+//		ft_printf(1, na, "RDD endcoding %x: dir %d and dir %d\n",
+//				PARA_ENCODE_BYTE, *ind1, *ind2);
+	return (1);
+}
+
+static int sti_rrd(t_core *core, t_process *cursor, int *ind1, int *ind2)
+{
+	int reg;
+
+	reg = CORE_VAL(3);
+	if (0 == convert_reg_to_int(cursor, CORE_VAL(2), ind1))
+		return (0);
+	*ind2 = get_dir(core, cursor, 5, e_sti);
+	if (PBP)
+		ft_printf(1, na, "RRD endcoding %x: r%d holding %d and dir %d\n",
+				PARA_ENCODE_BYTE, CORE_VAL(2), *ind1, *ind2);
+	return (1);
+}
+
+static int sti_type(t_core *core, t_process *cursor, int *ind1, int *ind2)
+{
+	int success;
+
+	if (PARA_ENCODE_BYTE == RRR)
+		success = sti_rrr(core, cursor, ind1, ind2);
+	else if (PARA_ENCODE_BYTE == RDR)
+		success = sti_rdr(core, cursor, ind1, ind2);
+	else if (PARA_ENCODE_BYTE == RIR)
+		success = sti_rir(core, cursor, ind1, ind2);
+	else if (PARA_ENCODE_BYTE  == RRD)
+		success = sti_rrd(core, cursor, ind1, ind2);
+	else if (PARA_ENCODE_BYTE == RDD)
+		success = sti_rdd(core, cursor, ind1, ind2);
+	else if (PARA_ENCODE_BYTE  == RID)
+		success = sti_rid(core, cursor, ind1, ind2);
+	else
+		return(0);
+	return (success);
+}
+
 int ft_sti(t_core *core, t_process *cursor)
 {
 	int byte_count;
-	int success;
+	int reg;
 	int ind1;
 	int ind2;
 	int ind;
 
 	byte_count = general_processing(core, cursor, e_sti);
-	if (0 == sti_type(core, cursor, &ind1, &ind2)
+	if (byte_count == 1)
+		return (1);
+	reg = CORE_VAL(2);
+	if (0 == sti_type(core, cursor, &ind1, &ind2))
 		return (1);
 	ind = PC(ind1 + ind2 % IDX_MOD) % MEM_SIZE;
 	cpy_reg_to_mem(core, cursor, reg, ind);
@@ -30,126 +88,8 @@ int ft_sti(t_core *core, t_process *cursor)
 	return (byte_count);
 }
 
-static int sti_type(t_core *core, t_process *cursor, int *ind1, int *ind2)
-{
-	int success;
-
-	if (PARA_ENCODE_BYTE == RRR)
-		success = sti_rrr(core, cursor, &ind1, &ind2);
-	else if (PARA_ENCODE_BYTE == RDR)
-		success = sti_rdr(core, cursor, &ind1, &ind2);
-	else if (PARA_ENCODE_BYTE == RIR)
-		success = sti_rir(core, cursor, &ind1, &ind2);
-	else if (PARA_ENCODE_BYTE  == RRD)
-		success = sti_rrd(core, cursor, &ind1, &ind2);
-	else if (PARA_ENCODE_BYTE == RDD)
-		success = sti_rdd(core, cursor, &ind1, &ind2);
-	else if (PARA_ENCODE_BYTE  == RID)
-		success = sti_rid_rdd(core, cursor, &ind1, &ind2);
-	else
-		return(0);
-	return (success);
-}
 
 
-static int sti_rrr(t_core *core, t_process *cursor, int *ind1, int *ind2)
-{
-	int reg1;
-	int reg2;
-
-	reg1 = CORE_VAL(2);
-	reg2 = CORE_VAL(3);
-	if (0 == convert_reg_to_int(cursor, reg1, &ind1))
-		return (0);
-	if (0 ==  convert_reg_to_int(cursor, reg2, &ind2))
-		return (0);
-	if (PBP)
-		ft_printf(1, na, "RRR endcoding %x: copy to ind , r%d + %d at r%d to r%d\n",
-				PARA_ENCODE_BYTE, input1, reg1, input2, reg2, reg3);
-	return (1); 
-}
-
-static int sti_rdr(t_core *core, t_process *cursor, int *ind1, int *ind2)
-{
-	int dir;
-	int reg;
-
-	dir = PC(2);
-	reg = CORE_VAL(5);
-	*ind1 = convert_bytes_to_int(core, dir, 2);	
-	if (0 == convert_reg_to_int(cursor, reg, &ind2))
-		return (0);
-	if (PBP)
-		ft_printf(1, na, "RDR endcoding %x: copy %d at r%d + %d to r%d\n",
-				PARA_ENCODE_BYTE, input1, reg1, input2, reg2);
-	return (1);
-}
-
-static int sti_rir(t_core *core, t_process *cursor, int *ind1, int *ind2)
-{
-	int indir;
-	int read_from;
-	int reg;
-
-	indir = PC(2);
-	reg = CORE_VAL(5);
-	read_from = convert_bytes_to_int(core, indir, 2);
-	*ind2 = conver_bytes_to_int(core, read_from, IND_SIZE);
-	if (0 == convert_reg_to_int(cursor, reg, &ind2))
-		return (0);
-	if (PBP)
-		ft_printf(1, na, "RIR endcoding %x: copy %d at r%d + %d to r%d\n",
-				PARA_ENCODE_BYTE, input1, reg1, input2, reg2);
-	return (1);
-}
-
-static int sti_rid(t_core *core, t_process *cursor)
-{
-	int dir;
-	int read_from;
-	int indir;
-
-	dir = PC(3);
-	indir = PC(5);
-	*ind1 = covert_bytes_to_int(core, dir, 2);
-	*read_from = covert_bytes_to_int(core, indir, 2);
-	*ind2 = covert_bytes_to_int(core, read_from, 2);
-	if (PBP)
-		ft_printf(1, na, "RID endcoding %x: copy %d at r%d + %d to %d\n",
-				PARA_ENCODE_BYTE, input1, CORE_VAL(2), input2, cpy_location);
-	return (1);
-}
-
-static int sti_rdd(t_core *core, t_process *cursor)
-{
-	int dir1;
-	int dir2;
-
-	dir1 = PC(3);
-	dir2 = PC(5);
-	*ind1 = covert_bytes_to_int(core, dir1, 2);
-	*ind2 = covert_bytes_to_int(core, dir2, 2);
-	if (PBP)
-		ft_printf(1, na, "RDD endcoding %x: copy %d at r%d + %d to %d\n",
-				PARA_ENCODE_BYTE, input1, CORE_VAL(2), input2, cpy_location);
-	return (1);
-}
-
-static int sti_rrd(t_core *core, t_process *cursor)
-{
-	int reg;
-	int dir;
-
-	reg = CORE_VAL(3);
-	dir = PC(5);
-	if (0 == convert_reg_to_int(cursor, CORE_VAL(2), &ind1))
-		return (0);
-	*ind2 = covert_bytes_to_int(core, dir, 2);
-	if (PBP)
-		ft_printf(1, na, "RRD endcoding %x: copy %d at r%d + %d at r%d to %d\n",
-				PARA_ENCODE_BYTE, input1, CORE_VAL(2), input2, CORE_VAL(3), cpy_location);
-	return (1);
-}
 
 /*
 static int sti_rrr(t_core *core, t_process *cursor)

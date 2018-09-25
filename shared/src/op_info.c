@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 13:28:38 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/06 13:26:24 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/24 16:40:03 by mdilapi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_opinfo	index_opinfo(t_opnum op_index)
 			"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0},
 		{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1},
 		{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
-			"load index", 1, 1}, // make 25 again
+			"load index", 1, 1},
 		{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
-			"store index", 1, 1}, // make 25 again
-		{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1}, // make 800 again
+			"store index", 1, 1},
+		{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1},
 		{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0},
 		{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
 			"long load index", 1, 1},
@@ -41,5 +41,6 @@ t_opinfo	index_opinfo(t_opnum op_index)
 		{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 		{"null", 0, {0}, 0, 0, "", 0, 0}
 	};
+
 	return (op_tab[op_index]);
 }
