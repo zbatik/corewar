@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   byte_count.c                                       :+:      :+:    :+:   */
+/*   byte_count2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 15:54:08 by zbatik           ###   ########.fr       */
+/*   Created: 2018/09/25 12:55:22 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/25 13:18:08 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static int	or_gen(t_byte eb)
+int	bytes_or_gen(t_byte eb)
 {
 	if (eb == RRR)
 		return (B_RRR);
 	else if (eb == RIR)
 		return (B_RIR);
-	else if	(eb == RDR)
+	else if (eb == RDR)
 		return (B_RDR);
 	else if (eb == IRR)
 		return (B_IRR);
@@ -36,7 +36,7 @@ static int	or_gen(t_byte eb)
 		return (1);
 }
 
-static int	ldi_gen(t_byte eb)
+int	bytes_ldi_gen(t_byte eb)
 {
 	if (eb == RRR)
 		return (B_RRR);
@@ -54,7 +54,7 @@ static int	ldi_gen(t_byte eb)
 		return (1);
 }
 
-static int	sti_gen(t_byte eb)
+int	bytes_sti(t_byte eb)
 {
 	if (eb == RRR)
 		return (B_RRR);
@@ -72,7 +72,7 @@ static int	sti_gen(t_byte eb)
 		return (1);
 }
 
-static int	ld_gen(t_byte eb)
+int	bytes_ld_gen(t_byte eb)
 {
 	if (eb == DR)
 		return (B_DR);
@@ -82,48 +82,12 @@ static int	ld_gen(t_byte eb)
 		return (1);
 }
 
-int			byte_counter(t_core *core, int pc, t_opnum op)
+int	bytes_st(t_byte eb)
 {
-	t_byte eb;
-
-	eb = core->mem[pc + 1];
-	if (op == e_live)
-		return (5);
-	else if (op == e_ld)
-		return (ld_gen(eb));
-	else if (op == e_st)
-	{
-		if (eb == RI)
-			return (B_RI);
-		else if (eb == RR)
-			return (B_RR);
-		else
-			return (1);
-	}
-	else if (op == e_add)
-		return (B_RRR);
-	else if (op == e_sub)
-		return (B_RRR);
-	else if (op == e_and)
-		return (or_gen(eb));
-	else if (op == e_or)
-		return (or_gen(eb));
-	else if (op == e_xor)
-		return (or_gen(eb));
-	else if (op == e_zjmp)
-		return (3);
-	else if (op == e_ldi)
-		return (ldi_gen(eb));
-	else if (op == e_sti)
-		return (sti_gen(eb));
-	else if (op == e_fork || op == e_lfork)
-		return (3);
-	else if (op == e_lld)
-		return (ld_gen(eb));
-	else if (op == e_lldi)
-		return (ldi_gen(eb));
-	else if (op == e_aff)
-		return (3);
+	if (eb == RI)
+		return (B_RI);
+	else if (eb == RR)
+		return (B_RR);
 	else
 		return (1);
 }
