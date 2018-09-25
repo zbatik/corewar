@@ -93,19 +93,19 @@ void	print_rest(t_input *tmp, int fd)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
 		{
-			i = 0;
+			i = -1;
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE)
 			{
 				write(fd, &tmp->byte_code[0][0], sizeof(unsigned char));
 				if (tmp->param_encoding != 0)
 					write(fd, &tmp->param_encoding, sizeof(unsigned char));
-				while (tmp->args[i] != '\0')
+				while (tmp->args[++i] != '\0')
 				{
 					j = 0;
 					while (j < get_size(tmp->args[i]))
-						write(fd, &tmp->byte_code[i + 1][j++], sizeof(unsigned char));
-					i++;
+						write(fd, &tmp->byte_code[i + 1][j++],
+							sizeof(unsigned char));
 				}
 			}
 		}

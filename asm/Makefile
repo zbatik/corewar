@@ -45,8 +45,6 @@ SRC_FILES		=	args_are_valid.c \
 					free_input.c \
 					gen_bytecode.c \
 					get_label.c \
-					inlstadd.c \
-					inlstnew.c \
 					input_del.c \
 					inst_to_enum.c \
 					is_dir_indr_reg.c \
