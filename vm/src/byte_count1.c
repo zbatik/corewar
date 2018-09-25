@@ -6,16 +6,16 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 13:47:09 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 18:50:47 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-int			byte_counter1(t_core *core, int pc, t_opnum op)
+int	byte_counter1(t_core *core, int pc, t_opnum op)
 {
 	t_byte eb;
-	
+
 	eb = core->mem[(pc + 1) % MEM_SIZE];
 	if (op == e_live)
 		return (5);
@@ -39,10 +39,10 @@ int			byte_counter1(t_core *core, int pc, t_opnum op)
 		return (1);
 }
 
-int			byte_counter2(t_core *core, int pc, t_opnum op)
+int	byte_counter2(t_core *core, int pc, t_opnum op)
 {
 	t_byte eb;
-	
+
 	eb = core->mem[(pc + 1) % MEM_SIZE];
 	if (op == e_ldi)
 		return (bytes_ldi_gen(eb));
@@ -59,10 +59,10 @@ int			byte_counter2(t_core *core, int pc, t_opnum op)
 	else
 		return (1);
 }
-int			byte_counter(t_core *core, int pc, t_opnum op)
+int	byte_counter(t_core *core, int pc, t_opnum op)
 {
 	if (op < e_ldi)
-		return(byte_counter1(core, pc, op));
+		return (byte_counter1(core, pc, op));
 	else
-		return(byte_counter2(core, pc, op));
+		return (byte_counter2(core, pc, op));
 }

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 09:46:28 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 16:04:32 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 16:21:42 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	sti_rdr(t_core *core, t_process *cursor, int *ind1, int *ind2)
 	int reg;
 
 	reg = CORE_VAL(5);
-	*ind1 = get_dir(core, cursor, 2, e_sti);
+	*ind1 = get_dir(core, cursor, 3, e_sti);
 	if (0 == convert_reg_to_int(cursor, reg, ind2))
 		return (0);
 	if (PBP)
@@ -49,7 +49,7 @@ int	sti_rir(t_core *core, t_process *cursor, int *ind1, int *ind2)
 	int reg;
 
 	reg = CORE_VAL(5);
-	*ind1 = get_indir(core, cursor, 2, e_sti);
+	*ind1 = get_indir(core, cursor, 3, e_sti);
 	if (0 == convert_reg_to_int(cursor, reg, ind2))
 		return (0);
 	if (PBP)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:15:25 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 16:56:03 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 18:05:40 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ int		convert_bytes_to_int(t_core *core, int start, int len)
 		i--;
 	}
 	ret = *(int*)int_bytes;
-	if (ret > 32768)
+	if (len == 2 && ret > 32768)
 		ret -= 65536;
+	if (len == 4 && ret > 1073741824)
+		ret -= 2147483647;
 	return (ret);
 }

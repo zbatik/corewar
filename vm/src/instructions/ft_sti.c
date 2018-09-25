@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 18:33:14 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 16:04:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 16:34:01 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static int	sti_rrd(t_core *core, t_process *cursor, int *ind1, int *ind2)
 	int reg;
 
 	reg = CORE_VAL(3);
-	if (0 == convert_reg_to_int(cursor, CORE_VAL(2), ind1))
+	if (0 == convert_reg_to_int(cursor, reg, ind1))
 		return (0);
-	*ind2 = get_dir(core, cursor, 5, e_sti);
+	*ind2 = get_dir(core, cursor, 4, e_sti);
 	if (PBP)
 		ft_printf(1, na, "RRD endcoding %x: r%d holding %d and dir %d\n",
 				PARA_ENCODE_BYTE, CORE_VAL(2), *ind1, *ind2);

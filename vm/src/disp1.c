@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disp.c                                             :+:      :+:    :+:   */
+/*   disp1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 14:44:00 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 11:41:10 by emaune           ###   ########.fr       */
+/*   Created: 2018/09/25 18:43:33 by zbatik            #+#    #+#             */
+/*   Updated: 2018/09/25 18:45:57 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void		print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 {
 	t_opnum num;
+	char	*instrucntion;
 
 	num = CORE_VAL(0);
 	ft_putstr_cl("process id ", b);
@@ -22,8 +23,10 @@ void		print_instr_info(t_core *core, t_process *cursor, t_opnum op)
 	ft_putstr_cl(" with cursor at ", b);
 	ft_putnbr_cl(cursor->pc, c);
 	ft_putstr_cl(" about to execute\n", b);
-	ft_printf(1, c, "recieved instruction: %s\n", index_opinfo(num).instruction);
-	ft_printf(1, c, "expected intsruction: %s\n", index_opinfo(op).instruction);
+	instrucntion = index_opinfo(num).instruction;
+	ft_printf(1, c, "recieved instruction: %s\n", instrucntion);
+	instrucntion = index_opinfo(op).instruction;
+	ft_printf(1, c, "expected intsruction: %s\n", instrucntion);
 }
 
 static void	print_reg(t_process *cursor)
@@ -56,13 +59,12 @@ void		print_cursor_info(t_core *core, t_process *cursor)
 	ft_putnbr(cursor->cycles_to_execute);
 	ft_putchar('\n');
 	print_reg(cursor);
-	
 }
 
 static void	print_player(t_player *player, int fd)
 {
 	ft_putendl_fd("___Player_Info___", fd);
-	ft_putstr_fd("Player Number", fd); 
+	ft_putstr_fd("Player Number", fd);
 	ft_putnbr_fd(player->num, fd);
 	ft_putchar_fd('\n', fd);
 	ft_putstr_fd("Player Name: ", fd);
@@ -93,4 +95,3 @@ void		print_players(t_core *core)
 	while (++i < core->num_players)
 		print_player(&core->players[i], fd);
 }
-

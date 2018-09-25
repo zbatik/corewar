@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:21:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 15:16:30 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 18:47:52 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ void	modify_carry(t_core *core, t_process *cursor, int val)
 int		get_indir(t_core *core, t_process *cursor, int start, t_opnum op)
 {
 	int indir;
-    int indir_loc;
+	int indir_loc;
 	int rel_index;
 	int ind_val;
 
 	indir_loc = PC(start);
-    indir = convert_bytes_to_int(core, indir_loc, IND_SIZE);
+	indir = convert_bytes_to_int(core, indir_loc, IND_SIZE);
 	if (op == e_lld || op == e_lldi)
 		rel_index = PC(indir);
 	else

@@ -6,13 +6,13 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 13:34:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 15:16:51 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 18:47:03 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-static void		print_hex(int n, int cl)
+static void	print_hex(int n, int cl)
 {
 	char	out[12];
 	char	*hex;

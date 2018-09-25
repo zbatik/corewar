@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 13:28:38 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 16:40:03 by mdilapi          ###   ########.fr       */
+/*   Updated: 2018/09/25 18:31:00 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_opinfo	index_opinfo(t_opnum op_index)
 			"load index", 1, 1},
 		{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
 			"store index", 1, 1},
-		{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1},
+		{"fork", 1, {T_DIR}, 12, 3, "fork", 0, 1},
 		{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0},
 		{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
 			"long load index", 1, 1},
