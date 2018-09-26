@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/asm.h"
 
 void			print_aff_error_2(t_main *var, char **par)

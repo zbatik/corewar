@@ -24,4 +24,4 @@ void		print_st_error_1(t_main *var, char **args)
 		ft_arrdel(&var->ins, arr_len(var->ins));
 		exit(EXIT_FAILURE);
 	}
-}	
+}

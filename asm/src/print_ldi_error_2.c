@@ -22,7 +22,8 @@ void			print_ldi_error_2(t_main *var, char **par)
 	if (i > 3 || i < 3)
 	{
 		ft_printf(2, lr, "Error: too many/too few arguments.\nExpected:\tldi ");
-		ft_printf(2, lr, "[T_REG | T_DIR | T_IND], [T_REG | T_DIR], [T_REG].\n");
+		ft_printf(2, lr,
+				"[T_REG | T_DIR | T_IND], [T_REG | T_DIR], [T_REG].\n");
 		ft_printf(2, lr, "Got:\t\t\"%s\" - line #%d\n", var->temp_input->line,
 				var->temp_input->line_no);
 		ft_arrdel(&var->ins, arr_len(var->ins));

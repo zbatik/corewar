@@ -22,7 +22,8 @@ void		print_st_error_2(t_main *var, char **par)
 	if (i > 2 || i < 2)
 	{
 		ft_printf(2, lr, "Error: too many/too few arguments.\n");
-		ft_printf(2, lr, "Expected:\tst [T_REG], [T_IND | T_REG].\n");
+		ft_printf(2, lr,
+				"Expected:\tst [T_REG], [T_IND | T_REG].\n");
 		ft_printf(2, lr, "Got:\t\t\"%s\" - line #%d\n", var->temp_input->line,
 				var->temp_input->line_no);
 		free_input(var->input);

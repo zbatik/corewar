@@ -12,7 +12,6 @@
 
 #include "../includes/asm.h"
 
-
 void		print_ld_error_2(t_main *var, char **par)
 {
 	int		i;
@@ -30,5 +29,5 @@ void		print_ld_error_2(t_main *var, char **par)
 		free_split(par);
 		free_input(var->input);
 		exit(EXIT_FAILURE);
-	}	
+	}
 }

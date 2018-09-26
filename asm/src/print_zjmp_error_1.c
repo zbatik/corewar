@@ -24,4 +24,4 @@ void		print_zjmp_error_1(t_main *var, char **args)
 		free_input(var->input);
 		exit(EXIT_FAILURE);
 	}
-}	
+}
