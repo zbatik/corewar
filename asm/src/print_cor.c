@@ -28,7 +28,7 @@ void	str_to_str(char *arr, char *str, int size)
 		arr[i++] = 0;
 }
 
-void	print_name(header_t *header, t_input *head)
+void	print_name(t_header *header, t_input *head)
 {
 	t_input	*tmp;
 	char	*in;
@@ -56,7 +56,7 @@ void	print_name(header_t *header, t_input *head)
 		ft_memset(&header->prog_name, 0, PROG_NAME_LENGTH + 1);
 }
 
-void	print_comment(header_t *header, t_input *head)
+void	print_comment(t_header *header, t_input *head)
 {
 	t_input	*tmp;
 	char	*in;
@@ -93,19 +93,19 @@ void	print_rest(t_input *tmp, int fd)
 	{
 		if (is_wsstring(tmp->line) == FALSE)
 		{
-			i = 0;
+			i = -1;
 			if (is_label(tmp->line) == FALSE && is_name(tmp->line) == FALSE
 				&& is_comment(tmp->line) == FALSE)
 			{
 				write(fd, &tmp->byte_code[0][0], sizeof(unsigned char));
 				if (tmp->param_encoding != 0)
 					write(fd, &tmp->param_encoding, sizeof(unsigned char));
-				while (tmp->args[i] != '\0')
+				while (tmp->args[++i] != '\0')
 				{
 					j = 0;
 					while (j < get_size(tmp->args[i]))
-						write(fd, &tmp->byte_code[i + 1][j++], sizeof(unsigned char));
-					i++;
+						write(fd, &tmp->byte_code[i + 1][j++],
+							sizeof(unsigned char));
 				}
 			}
 		}
@@ -117,7 +117,7 @@ void	print_cor(t_main *var, char *fname)
 {
 	int			fd;
 	char		*new_name;
-	header_t	header;
+	t_header	header;
 
 	new_name = ft_strsub(fname, 0, ft_indexrcin(fname, '.'));
 	swapnfree(&new_name, ft_strjoin(new_name, ".cor"));
@@ -129,7 +129,7 @@ void	print_cor(t_main *var, char *fname)
 	var->total_player_size = rev_endian(var->total_player_size);
 	header.prog_size = var->total_player_size;
 	print_comment(&header, var->input);
-	write(fd, &header, sizeof(header_t));
+	write(fd, &header, sizeof(t_header));
 	print_rest(var->input, fd);
 	close(fd);
 	free(new_name);
