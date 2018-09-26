@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 14:24:20 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/13 12:57:54 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:02:13 by mdilapi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int			is_label(char *str)
 {
 	if (ft_strlen(str) > 1)
 		if (str[ft_strlen(str) - 1] == ':')
-		return (TRUE);
+			return (TRUE);
 	return (FALSE);
 }

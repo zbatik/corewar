@@ -53,8 +53,8 @@ static int			is_instruction(t_main *var, char *line, int ln)
 		}
 		if (!is_valid_comment(line) && is_comment(line))
 		{
-			ft_printf(2, lr, "Error: player comment is invalid\n%s - line #%d\n",
-					line, ln);
+			ft_printf(2, lr,
+				"Error: player comment is invalid\n%s - line #%d\n", line, ln);
 			free_input(var->input);
 			ft_putstr("\e[97m");
 			exit(EXIT_FAILURE);

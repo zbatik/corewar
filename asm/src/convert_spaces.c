@@ -12,7 +12,6 @@
 
 #include "../includes/asm.h"
 
-
 void		convert_spaces(char *line)
 {
 	int		i;

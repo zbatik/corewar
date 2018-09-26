@@ -18,7 +18,7 @@ void			print_error_and_no_par(t_main *var, char **args)
 	{
 		ft_printf(2, lr, "Error: mnemonic was unaccompanied by arguments.\n");
 		ft_printf(2, lr, "Expected: and [T_REG | T_DIR | T_IND], [T_REG],");
-		ft_printf(2, lr," [T_REG | T_DIR | T_IND], [T_REG].\nGot: \"%s\"",
+		ft_printf(2, lr, "[T_REG | T_DIR | T_IND], [T_REG].\nGot: \"%s\"",
 				var->temp_input->line);
 		ft_printf(2, lr, " - line #%d\n", var->temp_input->line_no);
 		free_input(var->input);

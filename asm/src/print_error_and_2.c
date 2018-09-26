@@ -12,7 +12,6 @@
 
 #include "../includes/asm.h"
 
-
 void		print_error_and_2(t_main *var, char **par)
 {
 	int		i;

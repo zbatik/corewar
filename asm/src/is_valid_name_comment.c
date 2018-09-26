@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:10:23 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/14 12:54:54 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:04:25 by mdilapi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			is_valid_name(char *line)
 	if (i == 1 || i > 2)
 	{
 		ft_arrdel(&str, i);
-		return (0);	
+		return (0);
 	}
 	t = ft_strtrim(str[1]);
 	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"'
@@ -85,7 +85,7 @@ int			is_valid_comment(char *line)
 	if (i == 1 || i > 2)
 	{
 		ft_arrdel(&str, i);
-		return (0);	
+		return (0);
 	}
 	t = ft_strtrim(str[1]);
 	if (t[0] == '\"' && t[ft_strlen(t) - 1] == '\"' &&
