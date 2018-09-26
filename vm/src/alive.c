@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 12:26:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/26 14:16:27 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 15:04:43 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	check_player_alive(t_core *core, t_player *player)
 	}
 }
 
-void	    check_players_alive(t_core *core)
+void		check_players_alive(t_core *core)
 {
 	int			i;
 	t_player	*player;
@@ -47,7 +47,7 @@ void	    check_players_alive(t_core *core)
 	}
 }
 
-int		    num_players_alive(t_core *core)
+int			num_players_alive(t_core *core)
 {
 	int			i;
 	int			count;
@@ -64,7 +64,7 @@ int		    num_players_alive(t_core *core)
 	return (count);
 }
 
-void    check_cursors_alive(t_core *core)
+void		check_cursors_alive(t_core *core)
 {
 	int			i;
 	t_process	*cursor;

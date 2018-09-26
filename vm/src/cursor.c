@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 12:31:30 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/26 14:22:33 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 15:05:02 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	inherit_cursor_info(t_process *cursor, t_process *new)
 	new->alive = 1;
 }
 
-static int			available_cursor_ind(t_core *core)
+static int	available_cursor_ind(t_core *core)
 {
 	int i;
 
@@ -72,6 +72,6 @@ int			duplicate_process(t_core *core, t_process *cursor, int pc)
 	{
 		if (PBP)
 			ft_putendl_cl("process limit reached", lr);
-			return (0);
+		return (0);
 	}
 }

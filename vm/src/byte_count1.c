@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:12:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 18:50:47 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 15:05:40 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	byte_counter2(t_core *core, int pc, t_opnum op)
 	else
 		return (1);
 }
+
 int	byte_counter(t_core *core, int pc, t_opnum op)
 {
 	if (op < e_ldi)
