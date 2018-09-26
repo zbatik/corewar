@@ -18,9 +18,9 @@ void		free_conv(t_conv *c)
 	t_conv	*prev;
 
 	temp = c;
-	while (tmp)
+	while (temp)
 	{
-		prev = tmp;
+		prev = temp;
 		temp = temp->next;
 		ft_strdel(&prev->str);
 		free(prev);
