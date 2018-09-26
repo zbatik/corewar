@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:32:42 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/26 13:06:30 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:16:03 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				check_ldi(char **args, t_main *var)
 }
 
 int				check_sti(char **args, t_main *var)
-{	
+{
 	char		**par;
 
 	print_sti_error_1(var, args);
