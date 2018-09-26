@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_general.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 10:21:05 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 16:12:24 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 18:47:52 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ void	modify_carry(t_core *core, t_process *cursor, int val)
 int		get_indir(t_core *core, t_process *cursor, int start, t_opnum op)
 {
 	int indir;
+	int indir_loc;
 	int rel_index;
 	int ind_val;
 
-	indir = PC(start);
+	indir_loc = PC(start);
+	indir = convert_bytes_to_int(core, indir_loc, IND_SIZE);
 	if (op == e_lld || op == e_lldi)
-		rel_index = convert_bytes_to_int(core, indir, IND_SIZE);
+		rel_index = PC(indir);
 	else
-		rel_index = PC(convert_bytes_to_int(core, indir, IND_SIZE) % IDX_MOD);
-	ind_val = convert_bytes_to_int(core, rel_index, REG_SIZE);
+		rel_index = PC(indir % IDX_MOD);
+	ind_val = convert_bytes_to_int(core, rel_index, IND_SIZE);
 	if (PBP)
 		ft_printf(1, na, "cacluated indir as %d, read from pc + %d\n",
 		ind_val, rel_index);

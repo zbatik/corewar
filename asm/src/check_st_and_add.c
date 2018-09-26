@@ -6,94 +6,53 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:26:28 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/12 13:56:43 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:01:50 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			check_st(char **args, t_main *var)
+int				check_st(char **args, t_main *var)
 {
-	int         i;
-	char        **par;
+	char		**par;
 
-	i = 0;
-	if (!args[1])
-	{
-		ft_putendl("\x1b[31;1mError: mnemonic was unaccompanied by arguments.\nExpected: st [T_REG], [T_IND | T_REG].");
-		ft_putstr("Got: \"");
-		ft_putstr(var->temp_input->line);
-		ft_putstr("\" - line #");
-		ft_putnbr(var->temp_input->line_no);
-		exit(EXIT_FAILURE);
-		//free split and list and par;
-	}
+	print_st_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
-	while (par[i])
-		i++;
-	if (i > 2 || i < 2)
+	print_st_error_2(var, par);
+	if ((!is_register(par[1], var) && !is_indirect(par[1], var))
+			|| !is_register(par[0], var))
 	{
-		ft_putendl("\x1b[31;1mError: too many/too few arguments.\nExpected: st [T_REG], [T_IND | T_REG].");
-		ft_putstr("Got: \"");
-		ft_putstr(var->temp_input->line);
-		ft_putstr("\" - line #");
-		ft_putnbr(var->temp_input->line_no);
+		ft_printf(2, lr, "Error: invalid arguments.\n");
+		ft_printf(2, lr, "Expected:\tst [T_REG], [T_IND | T_REG].\n");
+		ft_printf(2, lr, "Got:\t\t\"%s\" - line #%d\n", var->temp_input->line,
+				var->temp_input->line_no);
+		free_input(var->input);
+		ft_arrdel(&var->ins, arr_len(var->ins));
+		free_split(par);
 		exit(EXIT_FAILURE);
-		//free split and list and par;
-
 	}
-	if ((!is_register(par[1], var) && !is_indirect(par[1], var)) || !is_register(par[0], var))
-	{
-		ft_putendl("\x1b[31;1mError: invalid arguments.\nExpected: st [T_REG], [T_IND | T_REG].");
-		ft_putstr("Got: \"");
-		ft_putstr(var->temp_input->line);
-		ft_putstr("\" - line #");
-		ft_putnbr(var->temp_input->line_no);
-		exit(EXIT_FAILURE);
-		//free  split and list and par
-	}
+	free_split(par);
 	return (1);
 }
 
-int			check_add(char **args, t_main *var)
+int				check_add(char **args, t_main *var)
 {
-	int         i;
-	char        **par;
+	char		**par;
 
-	i = 0;
-	if (!args[1])
-	{
-		ft_putendl("\x1b[31;1mError: mnemonic was unaccompanied by arguments.\nExpected: add [T_REG], [T_REG], [T_REG].");
-		ft_putstr("Got: \"");
-		ft_putstr(var->temp_input->line);
-		ft_putstr("\" - line #");
-		ft_putnbr(var->temp_input->line_no);
-		exit(EXIT_FAILURE);
-		//free split and list and par;
-	}
+	print_add_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
-	while (par[i])
-		i++;
-	if (i > 3 || i < 3)
+	print_add_error_2(var, par);
+	if (!is_register(par[0], var) || !is_register(par[1], var)
+			|| !is_register(par[2], var))
 	{
-		ft_putendl("\x1b[31;1mError: too many/too few arguments.\nExpected: add [T_REG], [T_REG], [T_REG].");
-		ft_putstr("Got: \"");
-		ft_putstr(var->temp_input->line);
-		ft_putstr("\" - line #");
-		ft_putnbr(var->temp_input->line_no);
+		ft_printf(2, lr, "Error: invalid arguments.\n");
+		ft_printf(2, lr, "Expected:\tadd [T_REG], [T_REG], [T_REG].\n");
+		ft_printf(2, lr, "Got:\t\t\"%s\" - line #%d\n", var->temp_input->line,
+				var->temp_input->line_no);
+		free_input(var->input);
+		ft_arrdel(&var->ins, arr_len(var->ins));
+		free_split(par);
 		exit(EXIT_FAILURE);
-		//free split and list and par;
-
-	}
-	if (!is_register(par[0], var) || !is_register(par[1], var) || !is_register(par[2], var))
-	{
-		ft_putendl("\x1b[31;1mError: invalid arguments.\nExpected: add [T_REG], [T_REG], [T_REG].");
-		ft_putstr("Got: \"");
-		ft_putstr(var->temp_input->line);
-		ft_putstr("\" - line #");
-		ft_putnbr(var->temp_input->line_no);
-		exit(EXIT_FAILURE);
-		//free  split and list and par
 	}
 	return (1);
 }

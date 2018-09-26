@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 14:31:36 by mdilapi           #+#    #+#              #
-#    Updated: 2018/09/24 15:23:02 by emaune           ###   ########.fr        #
+#    Updated: 2018/09/26 12:42:46 by emaune           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,31 @@ SRC_FILES		=	args_are_valid.c \
 					print_fork_error_1.c \
 					print_fork_error_2.c \
 					print_lld_error_1.c \
+					print_lld_error_2.c \
+					print_lldi_error_1.c \
+					print_lldi_error_2.c \
+					print_lfork_error_1.c \
+					print_lfork_error_2.c \
+					print_aff_error_1.c \
+					print_aff_error_2.c \
+					print_sub_error_1.c \
+					print_sub_error_2.c \
+					print_ldi_error_1.c \
+					print_ldi_error_2.c \
+					print_sti_error_1.c \
+					print_sti_error_2.c \
+					print_xor_error_1.c \
+					print_xor_error_2.c \
+					print_zjmp_error_1.c \
+					print_zjmp_error_2.c \
+					print_live_error_1.c \
+					print_live_error_2.c \
+					print_ld_error_1.c \
+					print_ld_error_2.c \
+					print_st_error_1.c \
+					print_st_error_2.c \
+					print_add_error_1.c \
+					print_add_error_2.c \
 					store_input.c \
 
 all: clean $(NAME)
@@ -75,5 +100,3 @@ $(NAME):
 
 clean:
 	rm -f $(NAME)
-
-	

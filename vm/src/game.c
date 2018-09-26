@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 15:43:52 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 15:50:06 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/25 16:39:19 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	dump(t_core *core)
 	{
 		if (core->count.total_turns == core->cycles_to_dump)
 		{
+			print_cylce_info(core);
 			print_mem(core);
 			exit(0);
 		}
