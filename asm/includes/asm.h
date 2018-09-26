@@ -82,6 +82,7 @@ int					exit_function(t_main *var);
 int					get_size(char arg);
 void				free_split(char **s);
 int					arg_byte_count(char *str);
+void				putstr_ignore(const char *str, char c);
 
 void				store_input(t_main *var, char *);
 void				error_check_data(t_main *var);

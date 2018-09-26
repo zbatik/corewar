@@ -123,4 +123,5 @@ static t_opinfo	g_op_tab[18] =
 
 t_opinfo		index_opinfo(t_opnum op_index);
 unsigned int	rev_endian(unsigned int num);
+int				is_valid_filename(char *s, char *extension);
 #endif

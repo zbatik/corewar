@@ -12,6 +12,19 @@
 
 #include "../includes/asm.h"
 
+void	putstr_ignore(const char *str, char c)
+{
+	char	*tmp;
+
+	tmp = (char *)str;
+	while (*tmp != '\0')
+	{
+		if (*tmp != c)
+			write(1, &*tmp, 1);
+		tmp++;
+	}
+}
+
 int		is_wsstring(const char *str)
 {
 	int	i;
