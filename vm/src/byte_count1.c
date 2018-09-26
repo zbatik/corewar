@@ -59,6 +59,7 @@ int	byte_counter2(t_core *core, int pc, t_opnum op)
 	else
 		return (1);
 }
+
 int	byte_counter(t_core *core, int pc, t_opnum op)
 {
 	if (op < e_ldi)

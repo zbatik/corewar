@@ -56,23 +56,21 @@ static int	assign_player_num(t_core *core)
 	return (1);
 }
 
-
-
 static int	read_player_file(t_player *player)
 {
-	char		header_info[sizeof(header_t)]; 
-	header_t	*header;
+	char		header_info[sizeof(t_header)];
+	t_header	*header;
 	int			ret;
 	int			fd;
 
 	fd = open(player->file_name, O_RDONLY);
 	if (fd < 0)
 		exit_on_error("Error: could not read file");
-	ret = read(fd, header_info, sizeof(header_t));
-	header = (header_t *)header_info;
+	ret = read(fd, header_info, sizeof(t_header));
+	header = (t_header *)header_info;
 	if (rev_endian(header->magic) != COREWAR_EXEC_MAGIC)
 		exit_on_error("Error: not a valid file .cor binary");
-	if (ret != sizeof(header_t))
+	if (ret != sizeof(t_header))
 		exit_on_error("Error: invalid read");
 	ft_strcpy((char*)player->name, header->prog_name);
 	ft_strcpy((char*)player->comment, header->comment);
@@ -97,7 +95,7 @@ int			creat_players(t_core *core)
 	return (1);
 }
 
-t_player		*get_player_from_num(t_core *core, int player_num)
+t_player	*get_player_from_num(t_core *core, int player_num)
 {
 	int i;
 

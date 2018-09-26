@@ -14,11 +14,11 @@
 
 static void	set_player_nums(t_core *core, t_player *player)
 {
-	t_opnum	op;
-	int 	pos;
-	t_byte	*player_num;
-	unsigned int    player_num_int;
-	int skip;
+	t_opnum			op;
+	int				pos;
+	t_byte			*player_num;
+	unsigned int	player_num_int;
+	int 			skip;
 
 	pos = player->start_pos;
 	while (pos < (int)player->start_pos + player->size)
@@ -44,7 +44,6 @@ static int	load_players(t_core *core)
 	t_player	player;
 
 	i = -1;
-
 	while (++i < core->num_players)
 	{
 		player = core->players[i];
