@@ -40,7 +40,9 @@ SRC_FILES		=	main.c \
 				interactive.c \
 				byte_count1.c \
 				byte_count2.c \
-				copy.c
+				copy.c \
+				alive.c \
+				player_from_num.c
 
 INST_DIR		= ./src/instructions/
 INST_PATHS		= $(addprefix $(INST_DIR),$(INST_FILES))

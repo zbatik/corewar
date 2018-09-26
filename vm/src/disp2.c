@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 13:34:43 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 18:47:03 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 14:21:40 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ static int	highlight_pc(t_core *core, int pc)
 	int i;
 
 	i = -1;
-	while (++i < core->num_processes)
+	while (++i < MEM_SIZE)
 	{
-		if (core->processes[i].pc == pc)
-			return (1);
+		if (core->processes[i].dead == 0)
+		{
+			if (core->processes[i].pc == pc)
+				return (1);
+		}
 	}
 	return (0);
 }
@@ -80,5 +83,5 @@ void		print_cylce_info(t_core *core)
 	ft_printf(1, m, "totol executed turns:\t%d\n", core->count.total_turns);
 	ft_printf(1, m, "cycles to die:\t\t%d\n", core->count.cycles_to_die);
 	ft_printf(1, m, "live count this cycle:\t%d\n", core->count.lives);
-	ft_printf(1, m, "number players alive:\t%d\n", num_alive(core));
+	ft_printf(1, m, "number players alive:\t%d\n", num_players_alive(core));
 }

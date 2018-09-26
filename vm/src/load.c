@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 18:14:32 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 18:52:33 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 15:13:00 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	set_player_nums(t_core *core, t_player *player)
 	int				pos;
 	t_byte			*player_num;
 	unsigned int	player_num_int;
-	int 			skip;
+	int				skip;
 
 	pos = player->start_pos;
 	while (pos < (int)player->start_pos + player->size)

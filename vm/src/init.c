@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:12:42 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 15:53:50 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:07:19 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,22 @@ static int	init_player(t_player *player)
 	return (1);
 }
 
+static int	init_processes(t_core *core)
+{
+	int i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+		core->processes[i].dead = 1;
+	return (1);
+}
+
 int			init_core(t_core *core)
 {
 	int i;
 
 	init_fnptr(core);
+	init_processes(core);
 	core->num_processes = 0;
 	core->dump = 0;
 	core->interactive = 0;

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 12:38:34 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 16:21:19 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 15:08:19 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@ static int	assign_player_num(t_core *core)
 	return (1);
 }
 
+static void	validate_player(t_header *header)
+{
+	int player_size;
+
+	player_size = rev_endian(header->prog_size);
+	if (rev_endian(header->magic) != COREWAR_EXEC_MAGIC)
+		exit_on_error("Error: not a valid file .cor binary");
+	if (player_size > CHAMP_MAX_SIZE || player_size <= 0)
+		exit_on_error("Error: invalid player size");
+}
+
 static int	read_player_file(t_player *player)
 {
 	char		header_info[sizeof(t_header)];
@@ -70,13 +81,12 @@ static int	read_player_file(t_player *player)
 	header = (t_header *)header_info;
 	if (rev_endian(header->magic) != COREWAR_EXEC_MAGIC)
 		exit_on_error("Error: not a valid file .cor binary");
+	validate_player(header);
 	if (ret != sizeof(t_header))
 		exit_on_error("Error: invalid read");
 	ft_strcpy((char*)player->name, header->prog_name);
 	ft_strcpy((char*)player->comment, header->comment);
 	player->size = rev_endian(header->prog_size);
-	if (player->size > CHAMP_MAX_SIZE)
-		exit_on_error("Error: invalid player size");
 	read(fd, player->program, player->size);
 	return (1);
 }
