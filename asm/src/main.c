@@ -12,19 +12,6 @@
 
 #include "../includes/asm.h"
 
-void	putstr_ignore(const char *str, char c)
-{
-	char	*tmp;
-
-	tmp = (char *)str;
-	while (*tmp != '\0')
-	{
-		if (*tmp != c)
-			write(1, &*tmp, 1);
-		tmp++;
-	}
-}
-
 void	print_name_main(t_input *head)
 {
 	t_input	*value;
@@ -79,6 +66,16 @@ void	print_all(t_main *var, char *fname)
 	print_cor(var, fname);
 }
 
+void	begin_process(t_main *var, char *fname)
+{
+	store_input(var, fname);
+	error_check_data(var);
+	if (parse_listinfo(var) == TRUE)
+		print_all(var, fname);
+	else
+		ft_putendl("ERROR: error in file");
+}
+
 int		main(int ac, char *av[])
 {
 	t_main	var;
@@ -89,12 +86,10 @@ int		main(int ac, char *av[])
 	{
 		while (i < ac)
 		{
-			store_input(&var, av[i]);
-			error_check_data(&var);
-			if (parse_listinfo(&var) == TRUE)
-				print_all(&var, av[i]);
+			if (is_valid_filename(av[i], ".s"))
+				begin_process(&var, av[i]);
 			else
-				ft_putendl("ERROR: error in file");
+				ft_printf(2, na, "File %s is not a .s file\n", av[i]);
 			i++;
 		}
 	}
