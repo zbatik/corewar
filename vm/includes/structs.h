@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 15:26:50 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/26 15:30:35 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 15:56:41 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,21 @@ typedef struct		s_count
 
 typedef struct		s_core
 {
-	int 			(*instructon_fn[16])
-					(struct s_core *core, t_process *cursor);
-	t_process		processes[MEM_SIZE];
-	int				num_processes;
-	t_bool			dump;
-	t_bool			interactive;
-	t_bool			pbp;
-	int				checks;
-	t_count			count;
-	int				last_alive;
-	int				cycles_to_dump;
-	int				num_players;
-	t_player		players[MAX_PLAYERS];
-	t_byte			mem[MEM_SIZE];
-	t_byte			colouring[MEM_SIZE];
-	int				fd;
+	int			(* instructon_fn[16])(struct s_core *core, t_process *cursor);
+	t_process	processes[MEM_SIZE];
+	int			num_processes;
+	t_bool		dump;
+	t_bool		interactive;
+	t_bool		pbp;
+	int			checks;
+	t_count		count;
+	int			last_alive;
+	int			cycles_to_dump;
+	int			num_players;
+	t_player	players[MAX_PLAYERS];
+	t_byte		mem[MEM_SIZE];
+	t_byte		colouring[MEM_SIZE];
+	int			fd;
 }					t_core;
 
 #endif
