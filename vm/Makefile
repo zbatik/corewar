@@ -26,7 +26,8 @@ SHARED_FILES 	= op_info.c \
 SRC_DIR			= ./src/
 SRC_PATH		= $(addprefix $(SRC_DIR),$(SRC_FILES))
 SRC_FILES		=	main.c \
-				disp.c \
+				disp1.c \
+				disp2.c \
 				players.c \
 				exit.c \
 				init.c \
@@ -37,7 +38,8 @@ SRC_FILES		=	main.c \
 				helpers.c \
 				end_cycle_checks.c \
 				interactive.c \
-				byte_count.c \
+				byte_count1.c \
+				byte_count2.c \
 				copy.c
 
 INST_DIR		= ./src/instructions/

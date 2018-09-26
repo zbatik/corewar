@@ -6,14 +6,14 @@
 /*   By: zbatik <zbatik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 12:50:40 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/24 15:46:07 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/24 16:48:48 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
 
-void    exit_on_error(char *error_msg)
+void	exit_on_error(char *error_msg)
 {
-    ft_puterror(error_msg);
-    exit(-1);
+	ft_puterror(error_msg);
+	exit(-1);
 }
