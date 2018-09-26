@@ -3,3 +3,4 @@
 fork %700
 fork %10
 fork %-10
+live %10

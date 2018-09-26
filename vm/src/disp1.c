@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/25 18:43:33 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 18:45:57 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:35:56 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,10 @@ static void	print_reg(t_process *cursor)
 
 void		print_cursor_info(t_core *core, t_process *cursor)
 {
-	ft_putstr("id: ");
-	ft_putnbr(cursor->id);
-	ft_putchar('\n');
-	ft_putstr("carry: ");
-	ft_putnbr(cursor->carry);
-	ft_putchar('\n');
-	ft_putstr("pc location: ");
-	ft_putnbr(cursor->pc);
-	ft_putchar('\n');
+	ft_printf(1, na, "id:\t%d\n", cursor->id);
+	ft_printf(1, na, "carry:\t%d\n", cursor->carry);
+	ft_printf(1, na, "pc location:\t%d\n", cursor->pc);
+	ft_printf(1, na, "alive:\t%d\n", cursor->alive);
 	ft_putstr("instruction to execute: ");
 	ft_putendl((index_opinfo(CORE_VAL(0))).instruction);
 	ft_putstr("cycles_to_execute: ");

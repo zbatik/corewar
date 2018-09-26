@@ -1,4 +1,4 @@
-.name "forking live"
+.name "the giver"
 	
 	zjmp %:end
 	and  %0,%0,r2

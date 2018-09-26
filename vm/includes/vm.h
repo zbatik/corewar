@@ -40,6 +40,7 @@ typedef struct	s_process
 	int		cycles_to_execute;
 	t_byte	reg[REG_NUMBER][REG_SIZE];
 	t_bool	alive;
+	t_bool	dead;
 	t_bool	carry;
 }				t_process;
 
@@ -94,7 +95,7 @@ int load(t_core *core);
 /*
 **	cursor.c
 */
-void	duplicate_process(t_core *core, t_process *cursor, int jump);
+int		duplicate_process(t_core *core, t_process *cursor, int jump);
 void	process_add(t_process *cursor, int pc, int player_num, int ind);
 
 /*
@@ -116,16 +117,13 @@ int		update_cycles_to_execute(t_byte current, t_process *cursor);
 /*
 **	disp.c
 */
-//void	print_reg(t_process *cursor);
+
 void	print_instr_info(t_core *core, t_process *cursor, t_opnum op);
 void	print_cursor_info(t_core *core, t_process *cursor);
 void	print_cylce_info(t_core *core);
-//void	print_parsed_info(t_core *core);
 void	print_players(t_core *core);
-//void	print_player(t_player *player, int fd);
-//void	print_hex(int n, int cl);
 void	print_mem(t_core *core);
-//void	print_processes(t_core *core);
+
 
 /*
 **	interactive.c
@@ -133,9 +131,16 @@ void	print_mem(t_core *core);
 void	interactive(t_core *core);
 
 /*
+**	alive.c
+*/
+int		num_players_alive(t_core *core);
+int		num_cursors_alive(t_core *core);
+void	check_players_alive(t_core *core);
+void    check_cursors_alive(t_core *core);
+
+/*
 **	end_cycle_checks.c
 */
-int		num_alive(t_core *core);
 void	end_cycle_checks_checks(t_core *core);
 
 /*

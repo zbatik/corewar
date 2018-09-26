@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 12:38:34 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 16:21:19 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 15:00:32 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,35 @@ static int	assign_player_num(t_core *core)
 	return (1);
 }
 
+static void	validate_player(t_header *header)
+{
+	int player_size;
 
+	player_size = rev_endian(header->prog_size);
+	if (rev_endian(header->magic) != COREWAR_EXEC_MAGIC)
+		exit_on_error("Error: not a valid file .cor binary");
+	if (player_size > CHAMP_MAX_SIZE || player_size <= 0)
+		exit_on_error("Error: invalid player size");
+}
 
 static int	read_player_file(t_player *player)
 {
-	char		header_info[sizeof(header_t)]; 
-	header_t	*header;
+	char		header_info[sizeof(t_header)];
+	t_header	*header;
 	int			ret;
 	int			fd;
 
 	fd = open(player->file_name, O_RDONLY);
 	if (fd < 0)
 		exit_on_error("Error: could not read file");
-	ret = read(fd, header_info, sizeof(header_t));
-	header = (header_t *)header_info;
-	if (rev_endian(header->magic) != COREWAR_EXEC_MAGIC)
-		exit_on_error("Error: not a valid file .cor binary");
-	if (ret != sizeof(header_t))
+	ret = read(fd, header_info, sizeof(t_header));
+	header = (t_header *)header_info;
+	validate_player(header);
+	if (ret != sizeof(t_header))
 		exit_on_error("Error: invalid read");
 	ft_strcpy((char*)player->name, header->prog_name);
 	ft_strcpy((char*)player->comment, header->comment);
 	player->size = rev_endian(header->prog_size);
-	if (player->size > CHAMP_MAX_SIZE)
-		exit_on_error("Error: invalid player size");
 	read(fd, player->program, player->size);
 	return (1);
 }
@@ -97,15 +103,3 @@ int			creat_players(t_core *core)
 	return (1);
 }
 
-t_player		*get_player_from_num(t_core *core, int player_num)
-{
-	int i;
-
-	i = -1;
-	while (++i < MAX_PLAYERS)
-	{
-		if (core->players[i].num == player_num)
-			return (&core->players[i]);
-	}
-	return (NULL);
-}

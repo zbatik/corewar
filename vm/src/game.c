@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 15:43:52 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/25 16:39:19 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:10:24 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,18 @@ static int	execute_pc(t_core *core, t_process *cursor)
 static int	execute_pcs(t_core *core)
 {
 	int i;
+	int j;
 	int move;
 
-	i = -1;
-	while (++i < core->num_processes)
-		move = execute_pc(core, &core->processes[i]);
+	i = 0;
+	j = 0;
+	while (i < core->num_processes && j + i < MEM_SIZE)
+	{
+		if (core->processes[j + i].dead == 0)
+			move = execute_pc(core, &core->processes[j + i++]);
+		else
+			j++;
+	}
 	return (1);
 }
 
