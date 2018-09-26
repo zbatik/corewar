@@ -1,1 +1,1 @@
-lld
+zjmp s
