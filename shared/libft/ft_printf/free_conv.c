@@ -14,7 +14,7 @@
 
 void		free_conv(t_conv *c)
 {
-	t_conv 	*temp;
+	t_conv	*temp;
 	t_conv	*prev;
 
 	temp = c;

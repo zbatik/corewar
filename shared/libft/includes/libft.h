@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 10:31:39 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/19 14:01:26 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 17:07:04 by mdilapi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s);
 char	**ft_strsplit(char const *s, char c);
 
-int     ft_isint(char *in);
+int		ft_isint(char *in);
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
@@ -88,8 +88,8 @@ int		ft_islower(int c);
 int		ft_max(int n, int m);
 int		ft_min(int n, int m);
 int		ft_abs(int n);
-unsigned int		ft_pow(int n, int pow);
-unsigned int		ft_atoui(const char *str);
+size_t	ft_pow(int n, int pow);
+size_t	ft_atoui(const char *str);
 int		ft_element(char c, char const *str);
 int		ft_isws(int c);
 int		ft_countc(const char *s, char c);

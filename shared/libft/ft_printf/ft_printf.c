@@ -88,7 +88,7 @@ void			store_args(t_var *var)
 	}
 }
 
-void			ft_printf(int fd, t_colour c,  const char *control_string, ...)
+void			ft_printf(int fd, t_colour c, const char *control_string, ...)
 {
 	t_var		var;
 

@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 13:31:47 by zbatik            #+#    #+#             */
-/*   Updated: 2018/08/22 14:38:48 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 17:04:51 by mdilapi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 # include "libft.h"
 
-int	get_next_line(const int fd, char **line);
-int skip_lines(const int fd, int skip);
-int ft_isfile(char *file);
-
+int		get_next_line(const int fd, char **line);
+int		skip_lines(const int fd, int skip);
+int		ft_isfile(char *file);
+void	swapnfree(char **var, char *new_val);
 #endif

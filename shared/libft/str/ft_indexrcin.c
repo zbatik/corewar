@@ -16,7 +16,7 @@ int	ft_indexrcin(char const *str, int c)
 {
 	int		i;
 
-	i = (int) ft_strlen(str);
+	i = (int)ft_strlen(str);
 	while (i >= 0)
 	{
 		if (str[i] == c)
