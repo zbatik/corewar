@@ -6,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:48:49 by zbatik            #+#    #+#             */
-/*   Updated: 2018/09/26 15:29:24 by zbatik           ###   ########.fr       */
+/*   Updated: 2018/09/26 16:00:21 by zbatik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,27 +91,27 @@ int			ft_ldi(t_core *core, t_process *cursor);
 int			ft_lldi(t_core *core, t_process *cursor);
 int			ft_or_gen(t_core *core, t_process *cursor, t_opnum op);
 int			ft_and(t_core *core, t_process *cursor);
-int 		ft_or(t_core *core, t_process *cursor);
-int 		ft_xor(t_core *core, t_process *cursor);
-int 		ft_st(t_core *core, t_process *cursor);
-int 		ft_sti(t_core *core, t_process *cursor);
+int			ft_or(t_core *core, t_process *cursor);
+int			ft_xor(t_core *core, t_process *cursor);
+int			ft_st(t_core *core, t_process *cursor);
+int			ft_sti(t_core *core, t_process *cursor);
 int			sti_rrr(t_core *core, t_process *cursor, int *ind1, int *ind2);
 int			sti_rdr(t_core *core, t_process *cursor, int *ind1, int *ind2);
 int			sti_rir(t_core *core, t_process *cursor, int *ind1, int *ind2);
 int			ft_zjmp(t_core *core, t_process *cursor);
 int			ldi_idr(t_core *core, t_process *cursor, int *param1, int *param2);
 int			ldi_drr(t_core *core, t_process *cursor, int *param1, int *param2);
-int 		ldi_ddr(t_core *core, t_process *cursor, int *param1, int *param2);
-int 		ldi_rdr(t_core *core, t_process *cursor, int *param1, int *param2);
-int 		ldi_irr(t_core *core, t_process *cursor, int *param1, int *param2);
-int 		op_rrr(t_core *core, t_process *cursor, int *param1, int *param2);
+int			ldi_ddr(t_core *core, t_process *cursor, int *param1, int *param2);
+int			ldi_rdr(t_core *core, t_process *cursor, int *param1, int *param2);
+int			ldi_irr(t_core *core, t_process *cursor, int *param1, int *param2);
+int			op_rrr(t_core *core, t_process *cursor, int *param1, int *param2);
 int			op_rir(t_core *core, t_process *cursor, int *param1, int *param2);
-int 		op_rdr(t_core *core, t_process *cursor, int *param1, int *param2);
+int			op_rdr(t_core *core, t_process *cursor, int *param1, int *param2);
 int			op_dir(t_core *core, t_process *cursor, int *param1, int *param2);
 int			op_ddr(t_core *core, t_process *cursor, int *param1, int *param2);
 int			op_drr(t_core *core, t_process *cursor, int *param1, int *param2);
 int			op_idr(t_core *core, t_process *cursor, int *param1, int *param2);
-int 		op_iir(t_core *core, t_process *cursor, int *param1, int *param2);
+int			op_iir(t_core *core, t_process *cursor, int *param1, int *param2);
 int			op_irr(t_core *core, t_process *cursor, int *param1, int *param2);
 
 #endif
