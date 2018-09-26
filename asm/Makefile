@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= asm_us
+NAME			= asm
 CC				= gcc
 FLAGS			= -Wall -Werror 
 LIB_DIR			= ../shared/libft/
@@ -95,9 +95,17 @@ SRC_FILES		=	args_are_valid.c \
 					store_input.c \
 
 all: clean $(NAME)
+
 $(NAME):
 	make -s -C $(LIB_DIR)
 	gcc  -o $(NAME) $(FLAGS) $(SRC_PATH)  $(SHARED_PATHS) $(LIB)
 
 clean:
 	rm -f $(NAME)
+
+fclean: clean
+	rm -f $(LIB)
+
+re: fclean all
+
+.PHONY: clean all fclean re
