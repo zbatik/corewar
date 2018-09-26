@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: zbatik <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:29:35 by mdilapi           #+#    #+#             */
-/*   Updated: 2018/09/25 15:29:30 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 12:08:26 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,4 +134,8 @@ void				print_xor_error_1(t_main *var, char **args);
 void				print_xor_error_2(t_main *var, char **par);
 void				print_zjmp_error_1(t_main *var, char **args);
 void				print_zjmp_error_2(t_main *var, char **par);
+void				print_live_error_1(t_main *var, char **args);
+void				print_live_error_2(t_main *var, char **par);
+void				print_ld_error_1(t_main *var, char **args);
+void				print_ld_error_2(t_main *var, char **par);
 #endif

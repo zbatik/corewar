@@ -6,7 +6,7 @@
 #    By: zbatik <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 14:31:36 by mdilapi           #+#    #+#              #
-#    Updated: 2018/09/25 15:26:15 by emaune           ###   ########.fr        #
+#    Updated: 2018/09/26 11:58:24 by emaune           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,10 @@ SRC_FILES		=	args_are_valid.c \
 					print_xor_error_2.c \
 					print_zjmp_error_1.c \
 					print_zjmp_error_2.c \
+					print_live_error_1.c \
+					print_live_error_2.c \
+					print_ld_error_1.c \
+					print_ld_error_2.c \
 					store_input.c \
 
 all: clean $(NAME)
