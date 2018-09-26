@@ -43,6 +43,6 @@ int			is_label(char *str)
 {
 	if (ft_strlen(str) > 1)
 		if (str[ft_strlen(str) - 1] == ':')
-		return (TRUE);
+			return (TRUE);
 	return (FALSE);
 }

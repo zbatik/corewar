@@ -104,16 +104,3 @@ int			creat_players(t_core *core)
 	}
 	return (1);
 }
-
-t_player	*get_player_from_num(t_core *core, int player_num)
-{
-	int i;
-
-	i = -1;
-	while (++i < MAX_PLAYERS)
-	{
-		if (core->players[i].num == player_num)
-			return (&core->players[i]);
-	}
-	return (NULL);
-}
