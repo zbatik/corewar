@@ -6,18 +6,16 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:33:52 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/25 12:21:40 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:04:11 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			check_fork(char **args, t_main *var)
+int				check_fork(char **args, t_main *var)
 {
-	int         i;
-	char        **par;
+	char		**par;
 
-	i = 0;
 	print_fork_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
 	print_fork_error_2(var, par);
@@ -36,9 +34,9 @@ int			check_fork(char **args, t_main *var)
 	return (1);
 }
 
-int			check_lld(char **args, t_main *var)
+int				check_lld(char **args, t_main *var)
 {
-	char        **par;
+	char		**par;
 
 	print_lld_error_1(var, args);
 	par = ft_strsplit(args[1], ',');

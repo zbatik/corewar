@@ -6,15 +6,15 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:30:31 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/26 11:39:32 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:11:17 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			check_xor(char **args, t_main *var)
+int				check_xor(char **args, t_main *var)
 { 
-	char        **par;
+	char		**par;
 
 	print_xor_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
@@ -38,11 +38,10 @@ int			check_xor(char **args, t_main *var)
 	return (1);
 }
 
-int			check_zjmp(char **args, t_main *var)
-{	int         i;
-	char        **par;
+int				check_zjmp(char **args, t_main *var)
+{
+	char		**par;
 
-	i = 0;
 	print_zjmp_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
 	print_zjmp_error_2(var, par);

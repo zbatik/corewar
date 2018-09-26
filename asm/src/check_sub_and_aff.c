@@ -6,15 +6,15 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:28:10 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/25 14:07:09 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:06:57 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			check_aff(char **args, t_main *var)
+int				check_aff(char **args, t_main *var)
 {
-	char        **par;
+	char		**par;
 
 	print_aff_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
@@ -33,9 +33,9 @@ int			check_aff(char **args, t_main *var)
 	return (1);
 }
 
-int			check_sub(char **args, t_main *var)
+int				check_sub(char **args, t_main *var)
 {
-	char        **par;
+	char		**par;
 
 	print_sub_error_1(var, args);
 	par = ft_strsplit(args[1], ',');

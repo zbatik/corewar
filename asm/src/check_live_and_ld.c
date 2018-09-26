@@ -6,7 +6,7 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:16:01 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/26 12:06:25 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:05:54 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ int				check_live(char **args, t_main *var)
 	if (!is_direct(*par, var))
 	{
 		ft_printf(2, lr, "Error: invalid argument.\n");
-		ft_printf(2, lr, "Expected: live [T_DIRECT].");
+		ft_printf(2, lr, "Expected:\tlive [T_DIRECT].\n");
 		ft_printf(2, lr, "Got:\t\t\"%s\" - line #%d\n", var->temp_input->line,
 				var->temp_input->line_no);
 		ft_arrdel(&var->ins, arr_len(var->ins));
 		free_input(var->input);
 		free_split(par);
-
 		exit(EXIT_FAILURE);
 	}
 	free_split(par);
