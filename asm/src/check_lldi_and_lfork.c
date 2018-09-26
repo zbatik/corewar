@@ -6,15 +6,15 @@
 /*   By: emaune <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:44:08 by emaune            #+#    #+#             */
-/*   Updated: 2018/09/25 13:10:12 by emaune           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:17:37 by emaune           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-int			check_lldi(char **args, t_main *var)
+int				check_lldi(char **args, t_main *var)
 {
-	char        **par;
+	char		**par;
 
 	print_lldi_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
@@ -25,7 +25,7 @@ int			check_lldi(char **args, t_main *var)
 			|| !is_register(par[2], var))
 	{
 		ft_printf(2, lr, "Error: invalid arguments.\nExpected:\tlldi ");
-		ft_printf(2, lr, "[T_REG | T_DIR | T_IND], [T_REG | T_DIR], [T_REG].\n");
+		ft_printf(2, lr, "[T_REG | T_DIR | T_IND], [T_REG | T_DIR],[T_REG].\n");
 		ft_printf(2, lr, "Got:\t\t\"%s\" - line #%d\n", var->temp_input->line,
 				var->temp_input);
 		free_split(par);
@@ -37,9 +37,9 @@ int			check_lldi(char **args, t_main *var)
 	return (1);
 }
 
-int			check_lfork(char **args, t_main *var)
+int				check_lfork(char **args, t_main *var)
 {
-	char        **par;
+	char		**par;
 
 	print_lfork_error_1(var, args);
 	par = ft_strsplit(args[1], ',');
@@ -56,4 +56,5 @@ int			check_lfork(char **args, t_main *var)
 		exit(EXIT_FAILURE);
 	}
 	free_split(par);
-	return (1);}
+	return (1);
+}
