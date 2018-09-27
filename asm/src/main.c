@@ -74,6 +74,7 @@ void	begin_process(t_main *var, char *fname)
 		print_all(var, fname);
 	else
 		ft_putendl("ERROR: error in file");
+	exit_function(var);
 }
 
 int		main(int ac, char *av[])
@@ -98,6 +99,5 @@ int		main(int ac, char *av[])
 		ft_printf(1, na, "Usage:\n./asm file_name(s)[.s] ...");
 		return (0);
 	}
-	exit_function(&var);
 	return (0);
 }
