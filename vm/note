@@ -1,8 +1,0 @@
-* worry about the double free (well maybe don't...)
-	* get printf to not use memory
-
-* check the convert int funtion to handle 4byte ints
-
-* norm
-
-

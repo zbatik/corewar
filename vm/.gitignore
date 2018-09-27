@@ -2,3 +2,4 @@ asm
 .DS_Store
 /*.dSYM
 vm_base
+core

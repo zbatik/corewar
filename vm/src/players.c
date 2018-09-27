@@ -74,13 +74,13 @@ static int	read_player_file(t_player *player)
 	int			ret;
 	int			fd;
 
+	if (!is_valid_filename(player->file_name, ".cor"))
+		exit_on_error("Error: not a .cor file");
 	fd = open(player->file_name, O_RDONLY);
 	if (fd < 0)
 		exit_on_error("Error: could not read file");
 	ret = read(fd, header_info, sizeof(t_header));
 	header = (t_header *)header_info;
-	if (rev_endian(header->magic) != COREWAR_EXEC_MAGIC)
-		exit_on_error("Error: not a valid file .cor binary");
 	validate_player(header);
 	if (ret != sizeof(t_header))
 		exit_on_error("Error: invalid read");
